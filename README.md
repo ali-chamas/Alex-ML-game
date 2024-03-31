@@ -5,14 +5,15 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
->
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> A website builder platform using drag and drop built in, or AI generated, components, making it easier for anyone to build and host his own static website.
+> Building static websites doesn't require much programming skills, yet people must learn certain languages or tools to build them, so that's where Drag & Host shines because it gives any user the ability to build and host his own website without any background in web development. 
+> Drag & Host aims to make website building and hosting fun and easy using the latest tech technologies. We believe in enhancing the static web building experience by saving time and effort.
 
 ### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+- As a user, I want to build a static website and customize it myself using components of my choice.
+- As a user, I'm not a good designer, so I want AI to help me choose my website's color palette and theme.
+- As a user, I don't want to build the website from scratch, so I can use built in templates that the website offers.
+- As a designer, I want to share my work on Drag & Host, so people can give me feedback and hire me to build their websites.
 
 <br><br>
 <!-- Tech stack -->
