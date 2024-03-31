@@ -7,7 +7,7 @@
 
 > A website builder platform using drag and drop built in, or AI generated, components, making it easier for anyone to build and host his own static website.
 > Building static websites doesn't require much programming skills, yet people must learn certain languages or tools to build them, so that's where Drag & Host shines because it gives any user the ability to build and host his own website without any background in web development. 
-> Drag & Host aims to make website building and hosting fun and easy using the latest tech technologies. We believe in enhancing the static web building experience by saving time and effort.
+> Drag & Host aims to make website building and hosting fun and easy using the latest technologies. We believe in enhancing the static web building experience by saving time and effort.
 
 ### User Stories
 - As a user, I want to build a static website and customize it myself using components of my choice.
