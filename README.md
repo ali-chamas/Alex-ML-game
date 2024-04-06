@@ -10,11 +10,14 @@
 > Drag & Host aims to make website building and hosting fun and easy using the latest technologies. We believe in enhancing the static web building experience by saving time and effort.
 
 ### User Stories
-- As a user, I want to build a static website and customize it myself using components of my choice.
-- As a user, I'm not a good designer, so I want AI to help me choose my website's color palette and theme.
-- As a user, I don't want to build the website from scratch, so I can use built in templates that the website offers.
-- As a user, I want to share my website to the world, so Drag & Host can host my website.
-- As a designer, I want to share my work on Drag & Host, so people can give me feedback and hire me to build their websites.
+- As a user:
+-  I'm not a good designer, so I want AI to help me choose my website's color palette and theme.
+-  I don't want to build the website from scratch, so I can use built in templates that the website offers.
+-  I want to share my website to the world, so Drag & Host can host my website.
+- As a designer:
+-  I want to build my static website from scratch using built in components.
+-  I want to share my work on Drag & Host, so people can give me feedback and hire me to build their websites.
+-  I want to receive messages from potential clients.
 
 <br><br>
 <!-- Tech stack -->
