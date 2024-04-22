@@ -5,7 +5,7 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A machine learning game, where kids and even adults can learn machine learning throught by building and testing their own models using NO CODE.
+> A machine learning game, where kids and even adults can learn machine learning by building testing and using their own models using NO CODE.
 > At Alex, users will choose a level (Text recognition, image recognition or numbers recognition), choose a game and build an AI model based on the requirements of this game.
 > After building the model, users can test it, then deploy it to scratch via Alex's extension to play with their model and finish the game! Each time a user finih a game he will unlock another.
 
