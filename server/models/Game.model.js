@@ -67,6 +67,20 @@ const gameSchema = new mongoose.Schema({
         ],
       },
     },
+    isTrained: {
+      type: Boolean,
+      default: false,
+    },
+    modelUrl: {
+      type: String,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    trainedAt: {
+      type: Date,
+    },
   },
 });
 
