@@ -11,10 +11,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: "Last name is required",
   },
+  username: {
+    type: String,
+    required: "username is required",
+    unique: true,
+  },
   email: {
     type: String,
-    required: "email is required",
     unique: true,
+    required: false,
+    sparse: true,
   },
   password: {
     type: String,
@@ -33,6 +39,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "public/avatars/avatar1.jpg",
   },
+  games: [],
 });
 
 userSchema.pre("save", async function (next) {
