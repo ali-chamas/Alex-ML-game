@@ -5,20 +5,20 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A website builder platform using drag and drop built in, or AI generated, components, making it easier for anyone to build and host his own static website.
-> Building static websites doesn't require much programming skills, yet people must learn certain languages or tools to build them, so that's where Drag & Host shines because it gives any user the ability to build and host his own website without any background in web development.
-> Drag & Host aims to make website building and hosting fun and easy using the latest technologies. We believe in enhancing the static web building experience by saving time and effort.
+> A machine learning game, where kids and even adults can learn machine learning by building testing and using their own models using NO CODE.
+> At Alex, users will choose a level (Text recognition, image recognition or numbers recognition), choose a game and build an AI model based on the requirements of this game.
+> After building the model, users can test it, then deploy it to scratch via Alex's extension to play with their model and finish the game! Each time a user finish a game he will unlock another.
 
 ### User Stories
 
 - As a user:
-- I'm not a good designer, so I want AI to help me choose my website's color palette and theme.
-- I don't want to build the website from scratch, so I can use built in templates that the website offers.
-- I want to share my website to the world, so Drag & Host can host my website.
-- As a designer:
-- I want to build my static website from scratch using built in components.
-- I want to share my work on Drag & Host, so people can give me feedback and hire me to build their websites.
-- I want to receive messages from potential clients.
+- I'm interested about machine learning but I want to learn it in a fun and challenging way.
+- I don't want to learn machine learning throught courses since I can't code, I want to build my model using no code.
+- I want to use my model in scratch so I can create a character that represents my model, and play!
+- As a content creator:
+- I want to invent new game ideas and create scratch extensions so users can try my game.
+- I want to post this game on the website after admin's approval.
+- I want to upload a solution guide for struggling users.
 
 <br><br>
 
