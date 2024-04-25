@@ -9,6 +9,8 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+app.use(express.static("public"));
+
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 

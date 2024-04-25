@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
@@ -21,6 +21,7 @@ const register = async (req, res) => {
     return res.status(500).send("Internal server error!");
   }
 };
+
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;

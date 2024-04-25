@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/User.model");
 
 const updateUser = async (req, res) => {
   const allowedUpdates = [
@@ -32,6 +32,7 @@ const updateUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
@@ -64,6 +65,7 @@ const updateUserRole = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();

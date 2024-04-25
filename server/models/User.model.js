@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-
     sparse: true,
   },
   password: {
@@ -37,7 +36,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: "public/avatars/avatar1.jpg",
+    default: "avatars/avatar1.jpg",
   },
   games: [],
 });
