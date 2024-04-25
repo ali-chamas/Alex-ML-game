@@ -38,4 +38,51 @@ const getAllGames = async (req, res) => {
   }
 };
 
-module.exports = { createGame, getAllGames };
+const updateGame = async (req, res) => {
+  const { gameId } = req.params;
+  const updates = req.body;
+  const { image, solution } = req.files;
+  let imagePath = "";
+  let solutionPath = "";
+  if (image) {
+    imagePath = `games-images/${uploadFile(image, "games-images")}`;
+  }
+  if (solution) {
+    solutionPath = `games-solutions/${uploadFile(solution, "games-solutions")}`;
+  }
+
+  try {
+    const updatedGame = await Game.findByIdAndUpdate(
+      gameId,
+      { ...updates, imagePath, solutionPath },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    if (!updatedGame) {
+      return res.status(404).json({ message: "Game not found" });
+    }
+    res.json(updatedGame);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: "Error updating game" });
+  }
+};
+
+const deleteGame = async (req, res) => {
+  const { gameId } = req.params;
+
+  try {
+    const deletedGame = await Game.findByIdAndDelete(gameId);
+    if (!deletedGame) {
+      return res.status(404).json({ message: "Game not found" });
+    }
+    res.json({ message: "Game deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting game" });
+  }
+};
+
+module.exports = { createGame, getAllGames, updateGame, deleteGame };
