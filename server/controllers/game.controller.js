@@ -41,25 +41,28 @@ const getAllGames = async (req, res) => {
 const updateGame = async (req, res) => {
   const { gameId } = req.params;
   const updates = req.body;
-  const { image, solution } = req.files;
-  let imagePath = "";
-  let solutionPath = "";
-  if (image) {
-    imagePath = `games-images/${uploadFile(image, "games-images")}`;
-  }
-  if (solution) {
-    solutionPath = `games-solutions/${uploadFile(solution, "games-solutions")}`;
+  if (req.files) {
+    const { image, solution } = req.files;
+    let imagePath = "";
+    let solutionPath = "";
+
+    if (image) {
+      imagePath = `games-images/${uploadFile(image, "games-images")}`;
+      updates["image"] = imagePath;
+    }
+    if (solution) {
+      solutionPath = `games-solutions/${uploadFile(
+        solution,
+        "games-solutions"
+      )}`;
+      updates["solution"] = solutionPath;
+    }
   }
 
   try {
-    const updatedGame = await Game.findByIdAndUpdate(
-      gameId,
-      { ...updates, imagePath, solutionPath },
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedGame = await Game.findByIdAndUpdate(gameId, updates, {
+      new: true,
+    });
     if (!updatedGame) {
       return res.status(404).json({ message: "Game not found" });
     }
