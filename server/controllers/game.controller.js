@@ -20,17 +20,7 @@ const createGame = async (req, res) => {
       level: level,
       type: type,
     });
-    const imageName = uploadFile(image, "games-images");
-    const solutionaName = uploadFile(solution, "games-solutions");
-    const createdGame = await Game.create({
-      name: name,
-      description: description,
-      image: imageName,
-      level: level,
-      type: type,
-      solution: solutionaName,
-      hint: hint,
-    });
+
     res.status(201).json(newGame);
   } catch (error) {
     console.error(error);
@@ -38,4 +28,14 @@ const createGame = async (req, res) => {
   }
 };
 
-module.exports = { createGame };
+const getAllGames = async (req, res) => {
+  try {
+    const games = await Game.find();
+    res.json(games);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching games" });
+  }
+};
+
+module.exports = { createGame, getAllGames };

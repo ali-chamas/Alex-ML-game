@@ -52,7 +52,6 @@ const gameSchema = new mongoose.Schema({
         },
         labelName: {
           type: String,
-          required: "Label name is required",
         },
         examples: [
           {
@@ -73,6 +72,7 @@ const gameSchema = new mongoose.Schema({
     },
     modelUrl: {
       type: String,
+      default: "",
     },
     createdAt: {
       type: Date,
@@ -80,6 +80,7 @@ const gameSchema = new mongoose.Schema({
     },
     trainedAt: {
       type: Date,
+      default: null,
     },
   },
 });
