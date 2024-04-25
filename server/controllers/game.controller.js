@@ -85,4 +85,57 @@ const deleteGame = async (req, res) => {
   }
 };
 
-module.exports = { createGame, getAllGames, updateGame, deleteGame };
+const approveGame = async (req, res) => {
+  const { gameId } = req.params;
+
+  try {
+    const existingGame = await Game.findById(gameId);
+    if (!existingGame) {
+      return res.status(404).json({ message: "Game not found" });
+    }
+
+    const isApproved = !existingGame.isApproved; // Toggle the existing value
+
+    const updatedGame = await Game.findByIdAndUpdate(
+      gameId,
+      { isApproved },
+      { new: true }
+    );
+    res.json({ message: `Game approval status set to ${isApproved}` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error approving game" });
+  }
+};
+
+const completeGame = async (req, res) => {
+  const { gameId } = req.params;
+
+  try {
+    const existingGame = await Game.findById(gameId);
+    if (!existingGame) {
+      return res.status(404).json({ message: "Game not found" });
+    }
+
+    const isComplete = !existingGame.isComplete; // Toggle the existing value
+
+    const updatedGame = await Game.findByIdAndUpdate(
+      gameId,
+      { isComplete },
+      { new: true }
+    );
+    res.json({ message: `Game completion status set to ${isComplete}` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error approving game" });
+  }
+};
+
+module.exports = {
+  createGame,
+  getAllGames,
+  updateGame,
+  deleteGame,
+  approveGame,
+  completeGame,
+};
