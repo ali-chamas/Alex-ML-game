@@ -2,7 +2,12 @@ const express = require("express");
 const { connect } = require("./config/db.config");
 const authRouter = require("./routes/auth.routes");
 const usersRouter = require("./routes/user.routes");
+const gamesRouter = require("./routes/game.routes");
 const app = express();
+
+var fileupload = require("express-fileupload");
+app.use(fileupload());
+
 app.use(express.json());
 
 require("dotenv").config();
@@ -13,6 +18,7 @@ app.use(express.static("public"));
 
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
+app.use("/games", gamesRouter);
 
 app.listen(PORT, (err) => {
   if (err) throw new Error(err);
