@@ -47,19 +47,11 @@ const gameSchema = new mongoose.Schema({
     dataset: {
       labels: [
         {
-          id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Label",
-          },
           labelName: {
             type: String,
           },
           examples: [
             {
-              exampleId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Example",
-              },
               example: {
                 type: String,
               },
