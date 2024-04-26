@@ -83,12 +83,38 @@ const startGame = async (req, res) => {
   try {
     const game = await Game.findById(gameId);
     const user = await User.findById(userId);
-    console.log(game);
+
     if (game) {
       user.games.push(game);
       await user.save();
     } else res.status(400).json({ message: "no game found" });
     return res.status(200).json({ message: "game started!" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const restartGame = async (req, res) => {
+  const { userId } = req.params;
+  const { gameId } = req.body;
+  try {
+    const newGame = await Game.findById(gameId);
+    const user = await User.findById(userId);
+
+    if (newGame) {
+      if (newGame) {
+        const foundGameIndex = user.games.findIndex(
+          (game) => game._id.toString() === gameId
+        );
+
+        if (foundGameIndex !== -1) {
+          user.games[foundGameIndex] = newGame;
+        }
+      }
+    } else res.status(400).json({ message: "no game found" });
+    await user.save();
+    return res.status(200).json({ message: "game restarted!" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
@@ -101,4 +127,5 @@ module.exports = {
   updateUserRole,
   getAllUsers,
   startGame,
+  restartGame,
 };

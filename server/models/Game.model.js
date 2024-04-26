@@ -52,6 +52,7 @@ const gameSchema = new mongoose.Schema({
         },
         labelName: {
           type: String,
+          default: "",
         },
         examples: [
           {
