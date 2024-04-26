@@ -196,12 +196,27 @@ const trainModel = async (req, res) => {
       const stats = net.train(trainingData, { log: true });
 
       const trainedModelJSON = net.toJSON();
+      const newModelName = `trained_model_${new Date().getTime()}.json`;
       fs.writeFileSync(
-        `public/trained_models/trained_model_${new Date().getTime()}.json`,
+        `public/trained_models/${newModelName}`,
         JSON.stringify(trainedModelJSON)
       );
 
-      res.status(200).json({ message: "trained succesfully!" });
+      user.games[foundGameIndex].model.isTrained = true;
+      user.games[foundGameIndex].model.trainedAt = new Date();
+      user.games[
+        foundGameIndex
+      ].model.modelUrl = `trained_models/${newModelName}`;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          games: user.games,
+        },
+        { new: true }
+      );
+
+      res.status(200).json(updatedUser.games[foundGameIndex]);
     } else {
       res.status(400).json({ message: "game not found" });
     }
@@ -211,10 +226,30 @@ const trainModel = async (req, res) => {
   }
 };
 
+const testModel = async (req, res) => {
+  const { example, modelUrl } = req.body;
+
+  const normalizeText = (text) => text.toLowerCase();
+  const loadedModelJSON = JSON.parse(fs.readFileSync(`public/${modelUrl}`));
+  const loadedModel = new brain.NeuralNetwork().fromJSON(loadedModelJSON);
+  const inputText = example;
+
+  const inputTokens = tokenizer.tokenize(normalizeText(inputText));
+
+  const input = inputTokens.reduce(
+    (acc, token) => ({ ...acc, [token]: 1 }),
+    {}
+  );
+  const result = loadedModel.run(input, loadedModel);
+
+  console.log(result);
+};
+
 module.exports = {
   addLabels,
   addExamples,
   deleteLabel,
   deleteExample,
   trainModel,
+  testModel,
 };
