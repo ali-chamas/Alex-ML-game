@@ -103,14 +103,12 @@ const restartGame = async (req, res) => {
     const user = await User.findById(userId);
 
     if (newGame) {
-      if (newGame) {
-        const foundGameIndex = user.games.findIndex(
-          (game) => game._id.toString() === gameId
-        );
+      const foundGameIndex = user.games.findIndex(
+        (game) => game._id.toString() === gameId
+      );
 
-        if (foundGameIndex !== -1) {
-          user.games[foundGameIndex] = newGame;
-        }
+      if (foundGameIndex >= 0) {
+        user.games[foundGameIndex] = newGame;
       }
     } else res.status(400).json({ message: "no game found" });
     await user.save();
