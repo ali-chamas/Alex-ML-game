@@ -1,4 +1,8 @@
 const User = require("../models/User.model");
+const brain = require("brain.js");
+const { WordTokenizer } = require("natural");
+const tokenizer = new WordTokenizer();
+const fs = require("fs");
 
 const mongoose = require("mongoose");
 
@@ -154,4 +158,63 @@ const deleteExample = async (req, res) => {
   }
 };
 
-module.exports = { addLabels, addExamples, deleteLabel, deleteExample };
+const trainModel = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { gameId } = req.body;
+
+    const user = await User.findById(userId);
+
+    const foundGameIndex = user.games.findIndex(
+      (game) => game._id.toString() === gameId
+    );
+
+    if (foundGameIndex >= 0) {
+      const trainingArray = user.games[foundGameIndex].model.dataset.labels;
+
+      let trainingData = [];
+
+      const normalizeText = (text) => text.toLowerCase();
+
+      for (let label in trainingArray) {
+        const examples = trainingArray[label].examples;
+        examples.forEach((ex) => {
+          const tokens = tokenizer.tokenize(normalizeText(ex.example));
+          const input = tokens.reduce(
+            (acc, token) => ({ ...acc, [token]: 1 }),
+            {}
+          );
+          trainingData.push({
+            input,
+            output: { [trainingArray[label].labelName]: 1 },
+          });
+        });
+      }
+
+      const net = new brain.NeuralNetwork();
+
+      const stats = net.train(trainingData, { log: true });
+
+      const trainedModelJSON = net.toJSON();
+      fs.writeFileSync(
+        `public/trained_models/trained_model_${new Date().getTime()}.json`,
+        JSON.stringify(trainedModelJSON)
+      );
+
+      res.status(200).json({ message: "trained succesfully!" });
+    } else {
+      res.status(400).json({ message: "game not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+};
+
+module.exports = {
+  addLabels,
+  addExamples,
+  deleteLabel,
+  deleteExample,
+  trainModel,
+};
