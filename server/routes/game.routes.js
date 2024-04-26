@@ -14,6 +14,6 @@ router.get("/get", getAllGames);
 router.put("/update/:gameId", updateGame);
 router.put("/approve/:gameId", approveGame);
 router.put("/complete/:gameId", completeGame);
-router.delete("/delete/:gameId", updateGame);
+router.delete("/delete/:gameId", deleteGame);
 
 module.exports = router;
