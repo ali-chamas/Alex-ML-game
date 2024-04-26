@@ -45,27 +45,28 @@ const gameSchema = new mongoose.Schema({
       ref: "Model",
     },
     dataset: {
-      label: {
-        labelId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Label",
-        },
-        labelName: {
-          type: String,
-          default: "",
-        },
-        examples: [
-          {
-            exampleId: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: "Example",
-            },
-            example: {
-              type: String,
-            },
+      labels: [
+        {
+          id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Label",
           },
-        ],
-      },
+          labelName: {
+            type: String,
+          },
+          examples: [
+            {
+              exampleId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Example",
+              },
+              example: {
+                type: String,
+              },
+            },
+          ],
+        },
+      ],
     },
     isTrained: {
       type: Boolean,
