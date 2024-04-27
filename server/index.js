@@ -6,16 +6,16 @@ const authRouter = require("./routes/auth.routes");
 const userRouter = require("./routes/user.routes");
 const adminRouter = require("./routes/admin.routes");
 const creatorRouter = require("./routes/creator.routes");
-
-const app = express();
-
-var fileupload = require("express-fileupload");
 const authMiddleware = require("./middlewares/auth.middleware");
 const creatorMiddleware = require("./middlewares/creators.middleware");
 const adminMiddleware = require("./middlewares/admin.middleware");
-app.use(fileupload());
+const fileupload = require("express-fileupload");
+
+const app = express();
 
 app.use(express.json());
+
+app.use(fileupload());
 
 require("dotenv").config();
 
