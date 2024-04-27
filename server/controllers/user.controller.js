@@ -119,6 +119,27 @@ const restartGame = async (req, res) => {
   }
 };
 
+const getLoggedInUser = async (req, res) => {
+  const bearerHeader = req.headers["authorization"];
+
+  try {
+    if (typeof bearerHeader !== "undefined") {
+      const token = bearerHeader.split(" ")[1];
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+      const user = await User.findById(decoded._id);
+
+      return res.status(200).json(user);
+    } else {
+      return res.status(400).json({ message: "not a valid token" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+};
+
 module.exports = {
   updateUser,
   deleteUser,

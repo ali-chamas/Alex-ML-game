@@ -10,6 +10,7 @@ const modelRouter = require("./routes/model.routes");
 const app = express();
 
 var fileupload = require("express-fileupload");
+const authMiddleware = require("./middlewares/auth.middleware");
 app.use(fileupload());
 
 app.use(express.json());

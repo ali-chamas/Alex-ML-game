@@ -46,7 +46,7 @@ const logout = async (req, res) => {
     res.status(200).json({ success: true, message: "Logout successful" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to logout",
       error: error.message,
@@ -58,4 +58,5 @@ module.exports = {
   register,
   login,
   logout,
+  getLoggedInUser,
 };

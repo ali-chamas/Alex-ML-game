@@ -242,7 +242,7 @@ const testModel = async (req, res) => {
   );
   const result = loadedModel.run(input, loadedModel);
 
-  console.log(result);
+  res.status(200).json(result);
 };
 
 module.exports = {
