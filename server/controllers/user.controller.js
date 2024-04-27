@@ -69,7 +69,7 @@ const updateUserRole = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select("-password");
     return res.status(200).json(users);
   } catch (error) {
     console.error(error);
@@ -77,66 +77,13 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const startGame = async (req, res) => {
-  const { userId } = req.params;
-  const { gameId } = req.body;
-  try {
-    const game = await Game.findById(gameId);
-    const user = await User.findById(userId);
-
-    if (game) {
-      user.games.push(game);
-      await user.save();
-    } else res.status(400).json({ message: "no game found" });
-    return res.status(200).json({ message: "game started!" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};
-
-const restartGame = async (req, res) => {
-  const { userId } = req.params;
-  const { gameId } = req.body;
-  try {
-    const newGame = await Game.findById(gameId);
-    const user = await User.findById(userId);
-
-    if (newGame) {
-      const foundGameIndex = user.games.findIndex(
-        (game) => game._id.toString() === gameId
-      );
-
-      if (foundGameIndex >= 0) {
-        user.games[foundGameIndex] = newGame;
-      }
-    } else res.status(400).json({ message: "no game found" });
-    await user.save();
-    return res.status(200).json({ message: "game restarted!" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};
-
 const getLoggedInUser = async (req, res) => {
-  const bearerHeader = req.headers["authorization"];
+  const { user } = req;
 
-  try {
-    if (typeof bearerHeader !== "undefined") {
-      const token = bearerHeader.split(" ")[1];
-
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      const user = await User.findById(decoded._id);
-
-      return res.status(200).json(user);
-    } else {
-      return res.status(400).json({ message: "not a valid token" });
-    }
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "internal server error" });
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(401).json({ message: "Unauthenticated" });
   }
 };
 
@@ -145,6 +92,5 @@ module.exports = {
   deleteUser,
   updateUserRole,
   getAllUsers,
-  startGame,
-  restartGame,
+  getLoggedInUser,
 };

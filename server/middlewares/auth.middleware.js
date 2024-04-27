@@ -9,9 +9,9 @@ const authMiddleware = async (req, res, next) => {
       const token = bearerHeader.split(" ")[1];
       if (!token) return res.status(401).send("Unauthenticated");
 
-      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      const user = await User.findById(decoded._id);
+      const user = await User.findById(decoded._id).select("-password");
 
       if (decoded) {
         req.user = user;
@@ -22,7 +22,7 @@ const authMiddleware = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    return res.status(500).send("Internal server error.");
+    return res.status(500).send("Internal server error ");
   }
 };
 
