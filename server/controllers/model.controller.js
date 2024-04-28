@@ -7,7 +7,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 
 const addLabels = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId, label } = req.body;
   try {
     const user = await User.findById(userId);
@@ -40,7 +40,7 @@ const addLabels = async (req, res) => {
 };
 
 const addExamples = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId, labelId, example } = req.body;
   try {
     const user = await User.findById(userId);
@@ -55,7 +55,7 @@ const addExamples = async (req, res) => {
         (lab) => lab._id.toString() === labelId
       );
 
-      if (foundLabelIndex) {
+      if (foundLabelIndex >= 0) {
         labels[foundLabelIndex].examples.push({
           _id: new mongoose.Types.ObjectId(),
           example: example,
@@ -73,7 +73,7 @@ const addExamples = async (req, res) => {
         return res.status(400).json({ message: "label not found" });
       }
     } else {
-      return res.status(400).json({ message: "no label found" });
+      return res.status(400).json({ message: "game not found" });
     }
   } catch (error) {
     console.error(error);
@@ -82,7 +82,7 @@ const addExamples = async (req, res) => {
 };
 
 const deleteLabel = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId, labelId } = req.body;
   try {
     const user = await User.findById(userId);
@@ -115,7 +115,7 @@ const deleteLabel = async (req, res) => {
 };
 
 const deleteExample = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId, labelId, exampleId } = req.body;
   try {
     const user = await User.findById(userId);
@@ -160,7 +160,7 @@ const deleteExample = async (req, res) => {
 
 const trainModel = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user._id;
     const { gameId } = req.body;
 
     const user = await User.findById(userId);

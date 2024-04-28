@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { modelSchema, Model } = require("./machineModel.model");
 
 const gameSchema = new mongoose.Schema({
   name: {
@@ -26,6 +27,10 @@ const gameSchema = new mongoose.Schema({
     enum: ["beginner", "intermediate", "advanced"],
     required: "Level is required",
   },
+  order: {
+    type: Number,
+    required: "order is required",
+  },
   type: {
     type: String,
     enum: ["text", "image", "numbers"],
@@ -40,29 +45,8 @@ const gameSchema = new mongoose.Schema({
     default: false,
   },
   model: {
-    modelId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Model",
-    },
-    dataset: {
-      labels: [],
-    },
-    isTrained: {
-      type: Boolean,
-      default: false,
-    },
-    modelUrl: {
-      type: String,
-      default: "",
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    trainedAt: {
-      type: Date,
-      default: null,
-    },
+    type: modelSchema,
+    default: Model,
   },
 });
 

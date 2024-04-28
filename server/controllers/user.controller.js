@@ -1,5 +1,4 @@
 const User = require("../models/User.model");
-const Game = require("../models/Game.model");
 
 const updateUser = async (req, res) => {
   const allowedUpdates = [
@@ -15,7 +14,7 @@ const updateUser = async (req, res) => {
   );
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {
       new: true,
       runValidators: true,
       select: updates.join(" "),

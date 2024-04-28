@@ -1,9 +1,10 @@
 const Game = require("../models/Game.model");
 const uploadFile = require("../utils/uploadFile");
+const User = require("../models/User.model");
 
 const createGame = async (req, res) => {
   try {
-    const { name, description, hint, level, type } = req.body;
+    const { name, description, hint, level, type, order } = req.body;
     const { image, solution } = req.files;
     const imagePath = `games-images/${uploadFile(image, "games-images")}`;
     const solutionPath = `games-solutions/${uploadFile(
@@ -19,6 +20,7 @@ const createGame = async (req, res) => {
       hint: hint,
       level: level,
       type: type,
+      order: order,
     });
 
     res.status(201).json(newGame);
@@ -112,7 +114,7 @@ const approveGame = async (req, res) => {
 };
 
 const completeGame = async (req, res) => {
-  const { gameId } = req.params;
+  const { gameId } = req.body;
 
   try {
     const existingGame = await Game.findById(gameId);
@@ -135,7 +137,7 @@ const completeGame = async (req, res) => {
 };
 
 const startGame = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId } = req.body;
   try {
     const game = await Game.findById(gameId);
@@ -153,7 +155,7 @@ const startGame = async (req, res) => {
 };
 
 const restartGame = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const { gameId } = req.body;
   try {
     const newGame = await Game.findById(gameId);
