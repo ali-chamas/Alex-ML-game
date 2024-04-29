@@ -11,3 +11,7 @@
 .bg {
   background-image: url("./assets/background-image.png");
 }
+
+.bg-primary {
+  @apply bg-black/25 backdrop-blur-lg backdrop-filter;
+}

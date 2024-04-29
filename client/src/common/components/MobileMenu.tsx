@@ -3,6 +3,7 @@ const MobileMenu = () => {
   return (
     <div className="text-4xl">
       <RxHamburgerMenu />
+      <div className="flex flex-col "></div>
     </div>
   );
 };
