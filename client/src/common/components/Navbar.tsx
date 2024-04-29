@@ -9,7 +9,7 @@ const Navbar = () => {
     { name: "Docs", destination: "/docs" },
   ];
   return (
-    <div className="py-3 px-6 lg:px-12 flex justify-between items-center relative">
+    <div className=" flex justify-between items-center relative">
       <div className="flex gap-5 items-center">
         <img
           src="/logo.png"
