@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout children={<Landing />} />} path="/" />
-        <Route element={<Layout children={<Auth />} />} path="/auth" />
+        <Route element={<Layout children={<Auth />} />} path="/auth/:type" />
       </Routes>
     </BrowserRouter>
   );
