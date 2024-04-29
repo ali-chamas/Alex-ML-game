@@ -6,3 +6,7 @@
   font-family: "Roboto Condensed", sans-serif;
   font-optical-sizing: auto;
 }
+
+.bg {
+  background-image: url("./assets/background-image.png");
+}
