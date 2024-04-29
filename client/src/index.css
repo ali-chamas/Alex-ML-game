@@ -22,3 +22,9 @@
 .btn-primary-dark {
   @apply bg-black/25 text-white border-2 border-white/40 px-6 py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-[0.4s];
 }
+
+.text-primary {
+  @apply font-bold;
+
+  filter: drop-shadow(0 0 5px rgba(105, 242, 250, 0.6));
+}
