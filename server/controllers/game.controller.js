@@ -1,4 +1,4 @@
-const Game = require("../models/Game.model");
+const { Game } = require("../models/Game.model");
 const uploadFile = require("../utils/uploadFile");
 const User = require("../models/User.model");
 
