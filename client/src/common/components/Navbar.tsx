@@ -9,14 +9,15 @@ const Navbar = () => {
     { name: "Docs", destination: "/docs" },
   ];
   return (
-    <div className="py-6 px-12 flex justify-between items-center relative">
+    <div className="py-3 px-6 lg:px-12 flex justify-between items-center relative">
       <div className="flex gap-5 items-center">
         <img
           src="/logo.png"
           alt="logo"
-          className="w-[80px] h-[60px] lg:w-[100px] lg:h-[80px] "
+          className="w-[80px] h-[60px] lg:w-[100px] lg:h-[80px] cursor-pointer"
+          onClick={() => navigate("/")}
         />
-        <div className="flex gap-3 items-center">
+        <div className=" gap-3 items-center hidden md:flex">
           {links.map((link: any, i: number) => (
             <button
               key={i}
@@ -32,7 +33,7 @@ const Navbar = () => {
       <div className="md:hidden">
         <MobileMenu links={links} navigate={navigate} />
       </div>
-      <button className="btn-primary-white hidden md:block ">Login</button>
+      <button className="btn-primary-dark hidden md:block ">Login</button>
     </div>
   );
 };
