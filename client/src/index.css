@@ -15,3 +15,10 @@
 .bg-primary {
   @apply bg-black/25 backdrop-blur-lg backdrop-filter;
 }
+
+.btn-primary-white {
+  @apply bg-white text-black px-6 py-2 rounded-lg border-2 border-white/40  hover:bg-black/25 hover:text-white transition-all duration-[0.4s];
+}
+.btn-primary-dark {
+  @apply bg-black/25 text-white border-2 border-white/40 px-6 py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-[0.4s];
+}
