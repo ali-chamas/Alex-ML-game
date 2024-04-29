@@ -3,21 +3,20 @@ import { motion } from "framer-motion";
 
 const Landing = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-between min-h-[80vh]">
-      <div className=" flex flex-col gap-[25px] max-w-[600px]">
+    <div className="flex flex-col lg:flex-row items-center gap-16 lg:justify-between min-h-[80vh] mt-20 md:mt-10 lg:mt-0 lg:gap-0">
+      <div className=" flex flex-col gap-[25px] md:max-w-[450px] lg:max-w-[500px] xl:max-w-[650px]">
         <h1
-          className="text-primary text-[96px] flex flex-col gap-0"
-          style={{ lineHeight: "1.2" }}
+          className="text-primary text-5xl md:text-6xl lg:text-7xl  2xl:text-[96px] "
+          style={{ lineHeight: "1.1" }}
         >
-          <span>LET THE</span>
-          <span>JOUNEY Begin</span>
+          LET THE JOURNEY BEGIN
         </h1>
-        <p className="text-[24px]">
+        <p className="xl:text-[24px]">
           I’m Alex, your guide through this journey! Create an account if you
           haven’t yet, and let’s start a machine learning journey, full of fun
           and discoveries, with me!{" "}
         </p>
-        <div className="flex justify-between gap-5 h-[63px] text-[24px]">
+        <div className="flex justify-between gap-5 h-[50px] xl:h-[63px] xl:text-[24px]">
           <button className="btn-primary-white w-full ">Get started</button>
           <button className="btn-primary-dark w-full">Continue</button>
         </div>
@@ -28,7 +27,7 @@ const Landing = () => {
         transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
         src={alex}
         alt=""
-        className="w-[550px] h-[587px]"
+        className=" w-[250px] lg:w-[350px] xl:w-[530px] 2xl:w-[580px] "
       />
     </div>
   );
