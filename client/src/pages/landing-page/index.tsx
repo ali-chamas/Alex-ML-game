@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import alex from "../../assets/marco.png";
 import { motion } from "framer-motion";
 
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col lg:flex-row items-center gap-16 lg:justify-between min-h-[80vh] mt-20 md:mt-10 lg:mt-0 lg:gap-0">
       <div className=" flex flex-col gap-[25px] md:max-w-[450px] lg:max-w-[500px] xl:max-w-[650px]">
@@ -17,8 +19,18 @@ const Landing = () => {
           and discoveries, with me!{" "}
         </p>
         <div className="flex justify-between gap-5 h-[50px] xl:h-[63px] xl:text-[24px]">
-          <button className="btn-primary-white w-full ">Get started</button>
-          <button className="btn-primary-dark w-full">Continue</button>
+          <button
+            className="btn-primary-white w-full "
+            onClick={() => navigate("/auth/signup")}
+          >
+            Get started
+          </button>
+          <button
+            className="btn-primary-dark w-full"
+            onClick={() => navigate("/auth/login")}
+          >
+            Continue
+          </button>
         </div>
       </div>
       <motion.img
