@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import alex from "../../assets/marco.png";
+import alex from "../../../assets/marco.png";
 import { motion } from "framer-motion";
 
 const Landing = () => {

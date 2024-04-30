@@ -34,7 +34,10 @@ const MobileMenu = ({ links, navigate, user }: any) => {
               </button>
             ))}
             {user && (
-              <button className="hover:opacity-80 transition-all duration-300">
+              <button
+                className="hover:opacity-80 transition-all duration-300"
+                onClick={() => navigate("/games")}
+              >
                 games
               </button>
             )}

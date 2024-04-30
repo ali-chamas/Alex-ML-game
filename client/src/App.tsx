@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./pages/landing-page";
-import Auth from "./pages/auth-page";
+import Landing from "./pages/user/landing-page";
+import Auth from "./pages/user/auth-page";
 import Layout from "./common/components/Layout";
 import AuthProtection from "./tools/protected-routes/AuthRoutes";
 import LoggedInProtection from "./tools/protected-routes/LoggedInRoutes";
-import Profile from "./pages/profile-page";
+import Profile from "./pages/user/profile-page";
 
 const App = () => {
   return (

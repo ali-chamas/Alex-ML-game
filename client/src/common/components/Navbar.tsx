@@ -34,7 +34,10 @@ const Navbar = () => {
           ))}
 
           {user && (
-            <button className="text-lg opacity-80 hover:opacity-100 transition-all duration-300">
+            <button
+              className="text-lg opacity-80 hover:opacity-100 transition-all duration-300"
+              onClick={() => navigate("/games")}
+            >
               games
             </button>
           )}

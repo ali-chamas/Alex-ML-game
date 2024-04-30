@@ -1,8 +1,8 @@
 import { Button, Input, Typography } from "@material-tailwind/react";
-import { userType } from "../../../tools/data-types/userType";
+import { userType } from "../../../../tools/data-types/userType";
 import { useContext, useState } from "react";
-import { sendRequest } from "../../../tools/request-method/request";
-import { UserContext, UserContextType } from "../../../context/userContext";
+import { sendRequest } from "../../../../tools/request-method/request";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const Signup = ({ setType }: any) => {
   const [userInfo, setUserInfo] = useState<userType | {}>({});

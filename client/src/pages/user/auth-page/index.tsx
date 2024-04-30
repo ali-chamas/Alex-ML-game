@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import authBg from "../../assets/login-bg.png";
+import authBg from "../../../assets/login-bg.png";
 
 const Auth = () => {
   const authType = useParams().type;
