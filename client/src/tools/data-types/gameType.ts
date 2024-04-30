@@ -1,4 +1,5 @@
 export interface gameType {
+  _id: string;
   name: string;
   description: string;
   image: string;
