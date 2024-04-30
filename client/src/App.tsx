@@ -5,6 +5,7 @@ import Layout from "./common/components/Layout";
 import AuthProtection from "./tools/protected-routes/AuthRoutes";
 import LoggedInProtection from "./tools/protected-routes/LoggedInRoutes";
 import Profile from "./pages/user/profile-page";
+import Games from "./pages/user/games-page";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
 
         <Route element={<AuthProtection />}>
           <Route element={<Layout children={<Profile />} />} path="/profile" />
+          <Route element={<Layout children={<Games />} />} path="/games" />
         </Route>
       </Routes>
     </BrowserRouter>
