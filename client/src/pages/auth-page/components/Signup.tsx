@@ -1,4 +1,4 @@
-import { Input, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import { userType } from "../../../tools/data-types/userType";
 import { useContext, useState } from "react";
 import { sendRequest } from "../../../tools/request-method/request";
@@ -6,20 +6,28 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 
 const Signup = ({ setType }: any) => {
   const [userInfo, setUserInfo] = useState<userType | {}>({});
-  const { addUser, user } = useContext(UserContext) as UserContextType;
+  const { addUser } = useContext(UserContext) as UserContextType;
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | any>("");
 
   const handleRegister = async () => {
+    setLoading(true);
     try {
       const res = await sendRequest("POST", "/auth/register", userInfo);
       if (res.status == 200) {
         addUser(res.data.token, res.data.user);
         console.log(res.data);
+        setError("");
       } else {
         console.log(res.data);
+        setError(res.data);
       }
     } catch (error) {
       console.log(error);
+      setError(error?.response.data || "something went wrong");
     }
+    setLoading(false);
   };
 
   return (
@@ -85,13 +93,16 @@ const Signup = ({ setType }: any) => {
         color="white"
         onChange={(e) => setUserInfo({ ...userInfo, age: e.target.value })}
       />
-      <button
+
+      <Button
         type="button"
+        loading={loading}
         className="btn-primary-white w-full"
         onClick={handleRegister}
       >
         Let's Start
-      </button>
+      </Button>
+      {error && <small className="text-red-400">{error}</small>}
       <Typography>
         Already has an account?{" "}
         <button className="text-[#69F2FA]" onClick={() => setType("login")}>
