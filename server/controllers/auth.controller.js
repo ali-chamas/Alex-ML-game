@@ -15,7 +15,7 @@ const register = async (req, res) => {
       password,
     });
     const token = jwt.sign({ _id: createdUser._id }, process.env.JWT_SECRET);
-    return res.status(201).json({ user: createdUser, token });
+    return res.status(200).json({ user: createdUser, token });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal server error!");

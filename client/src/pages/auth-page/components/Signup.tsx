@@ -1,6 +1,27 @@
 import { Input, Typography } from "@material-tailwind/react";
+import { userType } from "../../../tools/data-types/userType";
+import { useContext, useState } from "react";
+import { sendRequest } from "../../../tools/request-method/request";
+import { UserContext, UserContextType } from "../../../context/userContext";
 
 const Signup = ({ setType }: any) => {
+  const [userInfo, setUserInfo] = useState<userType | {}>({});
+  const { addUser, user } = useContext(UserContext) as UserContextType;
+
+  const handleRegister = async () => {
+    try {
+      const res = await sendRequest("POST", "/auth/register", userInfo);
+      if (res.status == 200) {
+        addUser(res.data.token, res.data.user);
+        console.log(res.data);
+      } else {
+        console.log(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[400px] xl:w-[450px]">
       <h1 className="text-primary text-2xl lg:text-3xl">
@@ -13,16 +34,34 @@ const Signup = ({ setType }: any) => {
           label="First Name"
           className="md:w-[95%] xl:w-[99%]"
           color="white"
+          onChange={(e) =>
+            setUserInfo({ ...userInfo, firstName: e.target.value })
+          }
         />
         <Input
           label="Last Name "
           className="md:w-[95%] xl:w-[99%]"
           color="white"
+          onChange={(e) =>
+            setUserInfo({ ...userInfo, lastName: e.target.value })
+          }
         />
       </div>
-      <Input label="Username " className="w-full" color="white" />
+      <Input
+        label="Username "
+        className="w-full"
+        color="white"
+        onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
+      />
       <div className="w-full">
-        <Input label="Password " type="password" color="white" />
+        <Input
+          label="Password "
+          type="password"
+          color="white"
+          onChange={(e) =>
+            setUserInfo({ ...userInfo, password: e.target.value })
+          }
+        />
         <Typography className="mt-2 flex items-center gap-1 font-normal text-xs">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +79,19 @@ const Signup = ({ setType }: any) => {
           number.
         </Typography>
       </div>
-      <Input label="Last Name " color="white" />
-      <button className="btn-primary-white w-full">Let's Start</button>
+      <Input
+        label="Age"
+        type="number"
+        color="white"
+        onChange={(e) => setUserInfo({ ...userInfo, age: e.target.value })}
+      />
+      <button
+        type="button"
+        className="btn-primary-white w-full"
+        onClick={handleRegister}
+      >
+        Let's Start
+      </button>
       <Typography>
         Already has an account?{" "}
         <button className="text-[#69F2FA]" onClick={() => setType("login")}>

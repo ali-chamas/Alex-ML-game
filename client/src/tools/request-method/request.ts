@@ -5,7 +5,7 @@ axios.defaults.baseURL = "http://localhost:8000";
 export const sendRequest = async (
   method: "GET" | "POST" | "PUT" | "DELETE",
   route: string,
-  body?: Record<string, any>
+  body?: string | any
 ) => {
   const response = await axios.request({
     method: method,
