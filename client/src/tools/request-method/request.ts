@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000/api";
+axios.defaults.baseURL = "http://localhost:8000";
 
 export const sendRequest = async (
   method: "GET" | "POST" | "PUT" | "DELETE",
