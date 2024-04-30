@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import MobileMenu from "./MobileMenu";
 import { useNavigate } from "react-router-dom";
+import { UserContext, UserContextType } from "../../context/userContext";
+import { apiUrl } from "../../tools/api-url/apiUrl";
 const Navbar = () => {
+  const { user } = useContext(UserContext) as UserContextType;
+
   const navigate = useNavigate();
 
   const links = [
@@ -27,13 +32,24 @@ const Navbar = () => {
               {link.name}
             </button>
           ))}
+          <button className="text-lg opacity-80 hover:opacity-100 transition-all duration-300">
+            games
+          </button>
         </div>
       </div>
 
       <div className="md:hidden">
         <MobileMenu links={links} navigate={navigate} />
       </div>
-      <button className="btn-primary-dark hidden md:block ">Login</button>
+      {!user ? (
+        <button className="btn-primary-dark hidden md:block ">Login</button>
+      ) : (
+        <img
+          src={`${apiUrl}/${user.avatar}`}
+          className=" w-[55px] lg:w-[70px] rounded-full hidden md:block"
+          alt=""
+        />
+      )}
     </div>
   );
 };
