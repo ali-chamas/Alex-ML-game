@@ -6,7 +6,7 @@ import authBg from "../../assets/login-bg.png";
 
 const Auth = () => {
   const authType = useParams().type;
-  const [type, setType] = useState(authType);
+  const [type, setType] = useState<string>(authType || "login");
 
   return (
     <div className="flex justify-center min-h-[85vh] max-h-[87vh] items-center xl:justify-between ">
