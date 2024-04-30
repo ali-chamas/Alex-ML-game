@@ -32,22 +32,26 @@ const Navbar = () => {
               {link.name}
             </button>
           ))}
-          <button className="text-lg opacity-80 hover:opacity-100 transition-all duration-300">
-            games
-          </button>
+
+          {user && (
+            <button className="text-lg opacity-80 hover:opacity-100 transition-all duration-300">
+              games
+            </button>
+          )}
         </div>
       </div>
 
       <div className="md:hidden">
-        <MobileMenu links={links} navigate={navigate} />
+        <MobileMenu links={links} navigate={navigate} user={user} />
       </div>
       {!user ? (
         <button className="btn-primary-dark hidden md:block ">Login</button>
       ) : (
         <img
           src={`${apiUrl}/${user.avatar}`}
-          className=" w-[55px] lg:w-[70px] rounded-full hidden md:block"
-          alt=""
+          className=" w-[55px] lg:w-[70px] rounded-full hidden md:block cursor-pointer"
+          onClick={() => navigate("/profile")}
+          alt="profile"
         />
       )}
     </div>

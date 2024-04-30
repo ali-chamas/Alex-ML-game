@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { motion } from "framer-motion";
+import { apiUrl } from "../../tools/api-url/apiUrl";
+import { IoCloseOutline } from "react-icons/io5";
+import Hamburger from "hamburger-react";
 
-const MobileMenu = ({ links, navigate }: any) => {
+const MobileMenu = ({ links, navigate, user }: any) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -12,7 +15,7 @@ const MobileMenu = ({ links, navigate }: any) => {
         className="text-4xl "
         onClick={() => setOpen((o) => !o)}
       >
-        <RxHamburgerMenu />
+        <Hamburger onToggle={(open) => !open} />
       </button>
       {open && (
         <motion.div
@@ -30,9 +33,23 @@ const MobileMenu = ({ links, navigate }: any) => {
                 {link.name}
               </button>
             ))}
+            {user && (
+              <button className="hover:opacity-80 transition-all duration-300">
+                games
+              </button>
+            )}
           </div>
 
-          <button className="btn-primary-white">Login</button>
+          {!user ? (
+            <button className="btn-primary-white">Login</button>
+          ) : (
+            <img
+              src={`${apiUrl}/${user.avatar}`}
+              className=" w-[60px] rounded-full"
+              onClick={() => navigate("/profile")}
+              alt="profile"
+            />
+          )}
         </motion.div>
       )}
     </div>
