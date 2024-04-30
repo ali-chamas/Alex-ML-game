@@ -14,6 +14,7 @@ const App = () => {
         <Route element={<Layout children={<Landing />} />} path="/" />
         <Route element={<LoggedInProtection />}>
           <Route element={<Layout children={<Auth />} />} path="/auth/:type" />
+          <Route element={<Layout children={<Auth />} />} path="/auth" />
         </Route>
 
         <Route element={<AuthProtection />}>

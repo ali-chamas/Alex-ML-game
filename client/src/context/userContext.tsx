@@ -25,6 +25,7 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setUser(data);
     } catch (error) {
       console.log(error);
+      window.localStorage.removeItem("token");
     }
   };
 

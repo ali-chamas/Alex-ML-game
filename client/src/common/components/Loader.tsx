@@ -1,14 +1,10 @@
-import "../styles/loader.css";
-
 const Loader = () => {
   return (
-    <div className="flex h-screen bg-black/25 items-center justify-center ">
-      <img
-        src="https://samherbert.net/svg-loaders/svg-loaders/grid.svg"
-        className="loader"
-        alt=""
-      />
-    </div>
+    <img
+      src="https://samherbert.net/svg-loaders/svg-loaders/grid.svg"
+      className="loader w-[40px] lg:w-[50px] 2xl:w-[60px]"
+      alt=""
+    />
   );
 };
 

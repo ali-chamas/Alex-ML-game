@@ -11,6 +11,6 @@ export interface gameType {
   order: number;
   type: string;
   isApproved: boolean;
-  iscomplete: boolean;
+  isComplete: boolean;
   model: modelType;
 }

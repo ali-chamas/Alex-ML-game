@@ -10,7 +10,7 @@ const LoggedInProtection = () => {
     ) : user?.role == "creator" ? (
       <Navigate to={"/creator"} />
     ) : (
-      <Navigate to={"admin"} />
+      user?.role == "admin" && <Navigate to={"admin"} />
     )
   ) : (
     <Outlet />
