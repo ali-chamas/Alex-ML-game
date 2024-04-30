@@ -1,3 +1,5 @@
+import { modelType } from "./modelType";
+
 export interface gameType {
   _id: string;
   name: string;
@@ -10,5 +12,5 @@ export interface gameType {
   type: string;
   isApproved: boolean;
   iscomplete: boolean;
-  mmodel: any;
+  model: modelType;
 }
