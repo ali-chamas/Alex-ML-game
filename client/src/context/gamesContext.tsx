@@ -9,7 +9,7 @@ export interface GamesContextType {
 
 export const GamesContext = createContext<GamesContextType | null>(null);
 
-const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
+const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [globalGames, setGlobalGames] = useState<[gameType] | []>([]);
 
   return (
@@ -19,4 +19,4 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   );
 };
 
-export default UserContextProvider;
+export default GamesContextProvider;

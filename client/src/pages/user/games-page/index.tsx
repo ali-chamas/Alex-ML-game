@@ -8,9 +8,11 @@ import Loader from "../../../common/components/Loader";
 import { UserContext, UserContextType } from "../../../context/userContext";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
+  const { setGlobalGames } = useContext(GamesContext) as GamesContextType;
 
   const [games, setGames] = useState<[gameType] | []>([]);
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
@@ -22,6 +24,7 @@ const Games = () => {
     try {
       const res = await sendRequest("GET", "/user/get_games");
       setGames(res.data);
+      setGlobalGames(res.data);
     } catch (error) {
       console.log(error);
     }
