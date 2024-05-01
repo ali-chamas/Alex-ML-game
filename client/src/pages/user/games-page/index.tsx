@@ -88,9 +88,6 @@ const Games = () => {
                 <SwiperSlide>
                   <Gamecard key={i} game={game} user={user} />
                 </SwiperSlide>
-                <SwiperSlide>
-                  <Gamecard key={i} game={game} user={user} />
-                </SwiperSlide>
               </div>
             ))
           ) : (
