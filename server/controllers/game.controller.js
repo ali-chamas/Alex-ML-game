@@ -142,7 +142,7 @@ const startGame = async (req, res) => {
   try {
     const game = await Game.findById(gameId);
     const user = await User.findById(userId);
-
+    game.isStarted = true;
     if (game) {
       user.games.push(game);
       await user.save();

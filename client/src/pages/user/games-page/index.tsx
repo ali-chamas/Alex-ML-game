@@ -26,11 +26,11 @@ const Games = () => {
   };
 
   const getFinalGamesArray = () => {
-    if (user?.games.length > 0) {
-      const gamesWithUser = user?.games.filter((userGame) =>
+    if (user?.games.length && user?.games.length > 0) {
+      const gamesWithNoUser = user?.games.filter((userGame) =>
         games.some((game) => game._id === userGame._id)
       );
-      setFilteredGames(user?.games.concat(gamesWithUser));
+      setFilteredGames(user?.games.concat(gamesWithNoUser));
     } else {
       setFilteredGames(games);
     }

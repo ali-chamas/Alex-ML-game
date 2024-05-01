@@ -10,5 +10,5 @@ export interface userType {
   role: string;
   age: number;
   avatar: string;
-  games: [gameType];
+  games: [gameType] | [];
 }
