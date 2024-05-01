@@ -20,6 +20,10 @@ const App = () => {
         <Route element={<AuthProtection />}>
           <Route element={<Layout children={<Profile />} />} path="/profile" />
           <Route element={<Layout children={<Games />} />} path="/games" />
+          <Route
+            element={<Layout children={<Games />} />}
+            path="/games/:gameId"
+          />
         </Route>
       </Routes>
     </BrowserRouter>

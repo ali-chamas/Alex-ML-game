@@ -15,6 +15,7 @@ const Games = () => {
   const [games, setGames] = useState<[gameType] | []>([]);
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
   const [loading, setLoading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<boolean>(false);
 
   const getGames = async () => {
     setLoading(true);
@@ -29,13 +30,23 @@ const Games = () => {
 
   const getFinalGamesArray = () => {
     if (user?.games.length && user?.games.length > 0) {
-      const gamesWithNoUser = user?.games.filter((userGame) =>
-        games.some((game) => game._id === userGame._id)
+      const gamesWithNoUser = games.filter(
+        (game) => !user?.games.find((userGame) => game._id === userGame._id)
       );
+      console.log(gamesWithNoUser);
+
       setFilteredGames(user?.games.concat(gamesWithNoUser));
     } else {
       setFilteredGames(games);
     }
+  };
+
+  const checkIfGameInProgress = () => {
+    user?.games.map((game) => {
+      if (game.isStarted && !game.isComplete) {
+        setProgress(true);
+      }
+    });
   };
 
   useEffect(() => {
@@ -45,9 +56,8 @@ const Games = () => {
   //in a seperate use effect to prevent fetching twice
   useEffect(() => {
     getFinalGamesArray();
+    checkIfGameInProgress();
   }, [games.length]);
-
-  console.log(filteredGames);
 
   return (
     <div className="flex flex-col mt-12 gap-12 min-h-[80vh] ">
@@ -84,9 +94,9 @@ const Games = () => {
         >
           {filteredGames.length > 0 ? (
             filteredGames.map((game, i) => (
-              <div>
+              <div key={i}>
                 <SwiperSlide>
-                  <Gamecard key={i} game={game} user={user} />
+                  <Gamecard game={game} user={user} checkProgress={progress} />
                 </SwiperSlide>
               </div>
             ))
