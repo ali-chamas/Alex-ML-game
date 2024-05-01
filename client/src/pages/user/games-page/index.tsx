@@ -12,7 +12,7 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
-  const { setGlobalGames } = useContext(GamesContext) as GamesContextType;
+  const { addGames } = useContext(GamesContext) as GamesContextType;
 
   const [games, setGames] = useState<[gameType] | []>([]);
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
@@ -29,7 +29,7 @@ const Games = () => {
           (e: gameType) => e.isApproved == false
         );
         setGames(approvedGames);
-        setGlobalGames(approvedGames);
+        addGames(approvedGames);
       }
     } catch (error) {
       console.log(error);

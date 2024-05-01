@@ -8,7 +8,7 @@ const SingleGame = () => {
 
   const { globalGames } = useContext(GamesContext) as GamesContextType;
 
-  const [activeGame, setActiveGame] = useState<gameType | any>();
+  const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
   const getActiveGame = () => {
     if (globalGames.length == 1) {
@@ -23,7 +23,11 @@ const SingleGame = () => {
     getActiveGame();
   }, []);
 
-  return <div>index</div>;
+  return (
+    <div className="flex flex-col  min-h-[80vh] ">
+      <h1 className="text-primary">{activeGame?.name}</h1>
+    </div>
+  );
 };
 
 export default SingleGame;
