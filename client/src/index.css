@@ -28,3 +28,7 @@
 
   filter: drop-shadow(0 0 5px rgba(105, 242, 250, 0.6));
 }
+
+.border {
+  @apply border-2 border-white/40;
+}

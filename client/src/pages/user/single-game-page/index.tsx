@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 import { gameType } from "../../../tools/data-types/gameType";
 
+import TrainOption from "./components/TrainOption";
+
 const SingleGame = () => {
   const { gameId } = useParams();
 
@@ -24,8 +26,9 @@ const SingleGame = () => {
   }, []);
 
   return (
-    <div className="flex flex-col  min-h-[80vh] ">
-      <h1 className="text-primary">{activeGame?.name}</h1>
+    <div className="flex flex-col  min-h-[80vh] items-center gap-5 mt-10">
+      <h1 className="text-primary text-xl">{activeGame?.name}</h1>
+      <TrainOption />
     </div>
   );
 };

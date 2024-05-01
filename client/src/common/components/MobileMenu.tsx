@@ -21,7 +21,7 @@ const MobileMenu = ({ links, navigate, user }: any) => {
         <motion.div
           initial={{ y: 20 }}
           animate={{ y: 0, transition: { delay: 0.2, stiffness: 20 } }}
-          className="flex flex-col bg-primary p-14 absolute top-18 right-2 text-md rounded-md items-center gap-5 z-40"
+          className="flex flex-col bg-primary p-5 w-[180px] absolute top-18 right-2 text-md rounded-md items-center gap-5 z-40"
         >
           <div className="flex flex-col gap-5">
             {links.map((link: any, i: number) => (
