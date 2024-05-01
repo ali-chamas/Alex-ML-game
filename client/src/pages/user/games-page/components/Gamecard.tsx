@@ -61,7 +61,12 @@ const Gamecard = ({
         {game.isComplete ? (
           <button className="btn-primary-white w-[200px]">finished</button>
         ) : game.isStarted && !game.iscomplete ? (
-          <button className="btn-primary-white w-[200px]">continue</button>
+          <button
+            className="btn-primary-white w-[200px]"
+            onClick={() => navigate(`/games/${game._id}`)}
+          >
+            continue
+          </button>
         ) : !game.isStarted &&
           game.order == availableOrder &&
           !checkProgress ? (
