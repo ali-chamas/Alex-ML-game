@@ -3,17 +3,17 @@ import { createContext, useState } from "react";
 import { gameType } from "../tools/data-types/gameType";
 
 export interface GamesContextType {
-  games: [gameType] | [];
-  setGames: ({}: [gameType] | []) => void;
+  globalGames: [gameType] | [];
+  setGlobalGames: ({}: [gameType] | []) => void;
 }
 
 export const GamesContext = createContext<GamesContextType | null>(null);
 
 const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const [games, setGames] = useState<[gameType] | []>([]);
+  const [globalGames, setGlobalGames] = useState<[gameType] | []>([]);
 
   return (
-    <GamesContext.Provider value={{ games, setGames }}>
+    <GamesContext.Provider value={{ globalGames, setGlobalGames }}>
       {children}
     </GamesContext.Provider>
   );
