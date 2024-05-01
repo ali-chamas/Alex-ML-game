@@ -43,7 +43,7 @@ const Games = () => {
         (game) => !user?.games.find((userGame) => game._id === userGame._id)
       );
 
-      setFilteredGames(user?.games.concat(gamesWithNoUser));
+      setFilteredGames(user?.games.concat(gamesWithNoUser) as [gameType]);
     } else {
       setFilteredGames(games);
     }

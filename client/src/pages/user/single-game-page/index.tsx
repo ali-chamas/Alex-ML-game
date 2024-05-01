@@ -11,7 +11,10 @@ const SingleGame = () => {
   const [activeGame, setActiveGame] = useState<gameType | any>();
 
   const getActiveGame = () => {
-    setActiveGame(globalGames.filter((game) => game._id !== gameId));
+    if (globalGames.length == 1) {
+      setActiveGame(globalGames[0]);
+    }
+    setActiveGame(globalGames.find((game) => game._id == gameId));
   };
 
   console.log(activeGame);
