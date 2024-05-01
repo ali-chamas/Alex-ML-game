@@ -43,13 +43,18 @@ const Gamecard = ({
         <h1 className="font-bold">{game.name}</h1>
         <small className="text-white/70 ">{game.description}</small>
         {game.isStarted && game.iscomplete ? (
-          <button>finished</button>
+          <button className="btn-primary-white w-[200px]">finished</button>
         ) : game.isStarted && !game.iscomplete ? (
-          <button>continue</button>
+          <button className="btn-primary-white w-[200px]">continue</button>
         ) : !game.isStarted && game.order == availableOrder ? (
-          <button>start</button>
+          <button className="btn-primary-white w-[200px]">start Mission</button>
         ) : (
-          <button>locked</button>
+          <button
+            className="border-2 rounded-lg p-2 bg-black/25 border-white/40 disabled:opacity-80 w-[200px] "
+            disabled
+          >
+            locked
+          </button>
         )}
       </div>
     </div>
