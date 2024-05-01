@@ -3,8 +3,15 @@ import { gameType } from "../../../../tools/data-types/gameType";
 
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaFilePdf } from "react-icons/fa6";
+import { userType } from "../../../../tools/data-types/userType";
 
-const Gamecard = ({ game }: gameType | any) => {
+const Gamecard = ({
+  game,
+  user,
+}: {
+  game: gameType | any;
+  user: userType | any;
+}) => {
   const [availableOrder, setAvailableOrder] = useState<number>(-1);
 
   const checkAvailableGame = () => {

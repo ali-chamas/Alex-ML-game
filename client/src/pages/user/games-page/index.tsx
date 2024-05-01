@@ -26,9 +26,14 @@ const Games = () => {
   };
 
   const getFinalGamesArray = () => {
-    const gamesWithNoUser = user?.games.filter((userGame) =>
-      games.some((game) => game._id === userGame._id)
-    );
+    if (user?.games.length > 0) {
+      const gamesWithUser = user?.games.filter((userGame) =>
+        games.some((game) => game._id === userGame._id)
+      );
+      setFilteredGames(user?.games.concat(gamesWithUser));
+    } else {
+      setFilteredGames(games);
+    }
   };
 
   useEffect(() => {
@@ -37,8 +42,10 @@ const Games = () => {
 
   //in a seperate use effect to prevent fetching twice
   useEffect(() => {
-    setFilteredGames(games);
+    getFinalGamesArray();
   }, [games.length]);
+
+  console.log(filteredGames);
 
   return (
     <div className="flex flex-col mt-12 gap-12 min-h-[80vh]">
@@ -55,7 +62,9 @@ const Games = () => {
       ) : (
         <div className="self-center">
           {filteredGames.length > 0 ? (
-            filteredGames.map((game, i) => <Gamecard key={i} game={game} />)
+            filteredGames.map((game, i) => (
+              <Gamecard key={i} game={game} user={user} />
+            ))
           ) : (
             <p>No games yet</p>
           )}
