@@ -23,8 +23,14 @@ const Games = () => {
     setLoading(true);
     try {
       const res = await sendRequest("GET", "/user/get_games");
-      setGames(res.data);
-      setGlobalGames(res.data);
+      const { data } = res;
+      if (data) {
+        const approvedGames = data.filter(
+          (e: gameType) => e.isApproved == false
+        );
+        setGames(approvedGames);
+        setGlobalGames(approvedGames);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +42,6 @@ const Games = () => {
       const gamesWithNoUser = games.filter(
         (game) => !user?.games.find((userGame) => game._id === userGame._id)
       );
-      console.log(gamesWithNoUser);
 
       setFilteredGames(user?.games.concat(gamesWithNoUser));
     } else {
@@ -91,8 +96,6 @@ const Games = () => {
               slidesPerView: 4,
             },
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           className="w-full cursor-grab "
         >
           {filteredGames.length > 0 ? (
