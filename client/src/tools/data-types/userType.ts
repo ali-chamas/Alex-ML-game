@@ -1,3 +1,5 @@
+import { gameType } from "./gameType";
+
 export interface userType {
   _id: string;
   firstName: string;
@@ -8,5 +10,5 @@ export interface userType {
   role: string;
   age: number;
   avatar: string;
-  games: [];
+  games: [gameType];
 }

@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
-import { UserContext, UserContextType } from "../../../../context/userContext";
+
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaFilePdf } from "react-icons/fa6";
 
 const Gamecard = ({ game }: gameType | any) => {
-  const { user } = useContext(UserContext) as UserContextType;
-
   const [availableOrder, setAvailableOrder] = useState<number>(-1);
 
   const checkAvailableGame = () => {

@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GamesFilter from "./components/GamesFilter";
 import { gameType } from "../../../tools/data-types/gameType";
 
 import { sendRequest } from "../../../tools/request-method/request";
 import Gamecard from "./components/Gamecard";
 import Loader from "../../../common/components/Loader";
+import { UserContext, UserContextType } from "../../../context/userContext";
 
 const Games = () => {
+  const { user } = useContext(UserContext) as UserContextType;
+
   const [games, setGames] = useState<[gameType] | []>([]);
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,6 +23,12 @@ const Games = () => {
       console.log(error);
     }
     setLoading(false);
+  };
+
+  const getFinalGamesArray = () => {
+    const gamesWithNoUser = user?.games.filter((userGame) =>
+      games.some((game) => game._id === userGame._id)
+    );
   };
 
   useEffect(() => {
