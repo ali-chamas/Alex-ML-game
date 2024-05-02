@@ -1,10 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { gameType } from "../tools/data-types/gameType";
 import { sendRequest } from "../tools/request-method/request";
+import { UserContext, UserContextType } from "./userContext";
 
 export interface GamesContextType {
   globalGames: [gameType] | [];
+  approvedGames: [gameType] | [];
 
   getGames: () => void;
 }
@@ -12,10 +14,11 @@ export interface GamesContextType {
 export const GamesContext = createContext<GamesContextType | null>(null);
 
 const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const localGames = window.localStorage.getItem("games");
-  const [globalGames, setGlobalGames] = useState<[gameType] | []>(
-    JSON.parse(localGames as string)
-  );
+  const { user } = useContext(UserContext) as UserContextType;
+
+  const [globalGames, setGlobalGames] = useState<[gameType] | []>([]);
+
+  const [approvedGames, setApprovedGames] = useState<[gameType] | []>([]);
 
   const getGames = async () => {
     try {
@@ -27,12 +30,35 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
       console.log(error);
     }
   };
+
+  const getApprovedGames = async () => {
+    if (globalGames) {
+      const games = globalGames.filter(
+        (e: gameType) => e.isApproved !== false
+      ) as [gameType];
+
+      const gamesWithNoUser = games.filter(
+        (game) => !user?.games.find((userGame) => game._id === userGame._id)
+      ) as never[];
+
+      setApprovedGames(user?.games.concat(gamesWithNoUser) as [gameType]);
+    } else {
+      setApprovedGames(globalGames);
+    }
+  };
+
   useEffect(() => {
     getGames();
   }, []);
 
+  useEffect(() => {
+    getApprovedGames();
+  }, [globalGames.length]);
+
+  console.log(approvedGames);
+
   return (
-    <GamesContext.Provider value={{ globalGames, getGames }}>
+    <GamesContext.Provider value={{ globalGames, getGames, approvedGames }}>
       {children}
     </GamesContext.Provider>
   );

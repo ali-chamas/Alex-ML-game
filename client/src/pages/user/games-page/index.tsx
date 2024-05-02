@@ -12,37 +12,11 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
 
-  const { globalGames } = useContext(GamesContext) as GamesContextType;
+  const { approvedGames } = useContext(GamesContext) as GamesContextType;
 
-  const [games, setGames] = useState<[gameType] | []>([]);
-  const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [filteredGames, setFilteredGames] = useState<[gameType] | []>();
+
   const [progress, setProgress] = useState<boolean>(false);
-
-  const getApprovedGames = async () => {
-    setLoading(true);
-
-    if (globalGames) {
-      const approvedGames = globalGames.filter(
-        (e: gameType) => e.isApproved == false
-      ) as [gameType];
-      setGames(approvedGames);
-    }
-    setLoading(false);
-  };
-
-  const getFinalGamesArray = () => {
-    if (user?.games.length && user?.games.length > 0) {
-      const gamesWithNoUser = games.filter(
-        (game) => !user?.games.find((userGame) => game._id === userGame._id)
-      );
-
-      setFilteredGames(user?.games.concat(gamesWithNoUser) as [gameType]);
-    } else {
-      setFilteredGames(games);
-    }
-  };
-  console.log(filteredGames);
 
   const checkIfGameInProgress = () => {
     user?.games.map((game) => {
@@ -53,17 +27,12 @@ const Games = () => {
   };
 
   useEffect(() => {
-    getApprovedGames();
-  }, [globalGames.length]);
-
-  //in a seperate use effect to prevent fetching twice
-  useEffect(() => {
-    getFinalGamesArray();
-  }, [games.length, user]);
+    setFilteredGames(approvedGames);
+  }, [approvedGames?.length]);
 
   useEffect(() => {
     checkIfGameInProgress();
-  }, [filteredGames.length]);
+  }, [user]);
 
   return (
     <div className="flex flex-col mt-12 gap-12 min-h-[80vh] ">
@@ -71,13 +40,10 @@ const Games = () => {
         CHOOSE YOUR MISSION
       </h1>
       <div className="self-end">
-        <GamesFilter setFiltered={setFilteredGames} games={games} />
+        <GamesFilter setFiltered={setFilteredGames} games={approvedGames} />
       </div>
-      {loading ? (
-        <div className="self-center">
-          <Loader />
-        </div>
-      ) : (
+
+      {(filteredGames?.length as number) > 0 ? (
         <Swiper
           spaceBetween={30}
           breakpoints={{
@@ -96,18 +62,18 @@ const Games = () => {
           }}
           className="w-full cursor-grab "
         >
-          {filteredGames.length > 0 ? (
-            filteredGames.map((game, i) => (
-              <div key={i}>
-                <SwiperSlide>
-                  <Gamecard game={game} user={user} checkProgress={progress} />
-                </SwiperSlide>
-              </div>
-            ))
-          ) : (
-            <SwiperSlide>No games yet</SwiperSlide>
-          )}
+          {filteredGames?.map((game, i) => (
+            <div key={i}>
+              <SwiperSlide>
+                <Gamecard game={game} user={user} checkProgress={progress} />
+              </SwiperSlide>
+            </div>
+          ))}
         </Swiper>
+      ) : (
+        <div className="flex w-full h-full justify-center items-center">
+          <p className="text-lg lg:text-2xl">No games yet!</p>
+        </div>
       )}
     </div>
   );
