@@ -22,6 +22,7 @@ const {
   startGame,
   restartGame,
 } = require("../controllers/game.controller");
+const getAvatars = require("../controllers/avatar.controller");
 const router = express.Router();
 
 //user
@@ -41,5 +42,8 @@ router.post("/delete_label/", deleteLabel);
 router.post("/delete_example/", deleteExample);
 router.post("/train/", trainModel);
 router.post("/test", testModel);
+
+//avatars
+router.get("/get_avatars", getAvatars);
 
 module.exports = router;

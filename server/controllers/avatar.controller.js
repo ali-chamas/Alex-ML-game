@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const getAvatars = () => {
+const getAvatars = (req, res) => {
   try {
     const files = fs.readdirSync("public/avatars");
 

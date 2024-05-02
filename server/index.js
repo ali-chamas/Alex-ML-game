@@ -30,8 +30,6 @@ app.use("/user", authMiddleware, userRouter);
 app.use("/creator", authMiddleware, creatorMiddleware, creatorRouter);
 app.use("/admin", authMiddleware, adminMiddleware, adminRouter);
 
-app.get("/avatars", getAvatars);
-
 app.listen(PORT, (err) => {
   if (err) throw new Error(err);
   console.log(`Server is listining on port ${PORT}`);
