@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import GamesFilter from "./components/GamesFilter";
 import { gameType } from "../../../tools/data-types/gameType";
 
-import { sendRequest } from "../../../tools/request-method/request";
 import Gamecard from "./components/Gamecard";
 import Loader from "../../../common/components/Loader";
 import { UserContext, UserContextType } from "../../../context/userContext";
@@ -12,27 +11,22 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
-  const { addGames } = useContext(GamesContext) as GamesContextType;
+
+  const { globalGames } = useContext(GamesContext) as GamesContextType;
 
   const [games, setGames] = useState<[gameType] | []>([]);
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>(games);
   const [loading, setLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<boolean>(false);
 
-  const getGames = async () => {
+  const getApprovedGames = async () => {
     setLoading(true);
-    try {
-      const res = await sendRequest("GET", "/user/get_games");
-      const { data } = res;
-      if (data) {
-        const approvedGames = data.filter(
-          (e: gameType) => e.isApproved == false
-        );
-        setGames(approvedGames);
-        addGames(approvedGames);
-      }
-    } catch (error) {
-      console.log(error);
+
+    if (globalGames) {
+      const approvedGames = globalGames.filter(
+        (e: gameType) => e.isApproved == false
+      ) as [gameType];
+      setGames(approvedGames);
     }
     setLoading(false);
   };
@@ -48,6 +42,7 @@ const Games = () => {
       setFilteredGames(games);
     }
   };
+  console.log(filteredGames);
 
   const checkIfGameInProgress = () => {
     user?.games.map((game) => {
@@ -58,14 +53,17 @@ const Games = () => {
   };
 
   useEffect(() => {
-    getGames();
-  }, []);
+    getApprovedGames();
+  }, [globalGames.length]);
 
   //in a seperate use effect to prevent fetching twice
   useEffect(() => {
     getFinalGamesArray();
+  }, [games.length, user]);
+
+  useEffect(() => {
     checkIfGameInProgress();
-  }, [games.length]);
+  }, [filteredGames.length]);
 
   return (
     <div className="flex flex-col mt-12 gap-12 min-h-[80vh] ">

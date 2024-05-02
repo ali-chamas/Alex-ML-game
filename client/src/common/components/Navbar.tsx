@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: "Docs", destination: "/docs" },
   ];
   return (
-    <header className=" flex justify-between items-center  h-[10vh] sticky top-0">
+    <header className=" flex justify-between items-center  h-[10vh]">
       <div className="flex gap-5 items-center">
         <img
           src="/logo.png"

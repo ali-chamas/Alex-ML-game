@@ -6,7 +6,7 @@ const TrainOption = () => {
       <button className="rounded-full  bg-primary border p-2 hover:opacity-80">
         <IoSettings />
       </button>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 lg:gap-4 items-center">
         <button className="rounded-full  bg-primary border p-2 hover:opacity-80">
           <FaLightbulb />
         </button>

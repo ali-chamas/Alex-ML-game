@@ -1,11 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { gameType } from "../tools/data-types/gameType";
+import { sendRequest } from "../tools/request-method/request";
 
 export interface GamesContextType {
   globalGames: [gameType] | [];
-  setGlobalGames: ({}: [gameType] | []) => void;
-  addGames: (games: [gameType] | []) => void;
+
+  getGames: () => void;
 }
 
 export const GamesContext = createContext<GamesContextType | null>(null);
@@ -16,13 +17,22 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
     JSON.parse(localGames as string)
   );
 
-  const addGames = (games: [gameType] | []) => {
-    setGlobalGames(games);
-    window.localStorage.setItem("games", JSON.stringify(games));
+  const getGames = async () => {
+    try {
+      const res = await sendRequest("GET", "/user/get_games");
+      const { data } = res;
+
+      setGlobalGames(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  useEffect(() => {
+    getGames();
+  }, []);
 
   return (
-    <GamesContext.Provider value={{ globalGames, setGlobalGames, addGames }}>
+    <GamesContext.Provider value={{ globalGames, getGames }}>
       {children}
     </GamesContext.Provider>
   );
