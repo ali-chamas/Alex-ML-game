@@ -8,27 +8,47 @@ import TrainOption from "./components/TrainOption";
 const SingleGame = () => {
   const { gameId } = useParams();
 
-  const { globalGames } = useContext(GamesContext) as GamesContextType;
+  const { approvedGames } = useContext(GamesContext) as GamesContextType;
 
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
+  const [locked, setLocked] = useState<boolean>(true);
+
   const getActiveGame = () => {
-    if (globalGames.length == 1) {
-      setActiveGame(globalGames[0]);
+    if (approvedGames?.length == 1) {
+      setActiveGame(approvedGames[0]);
     }
-    setActiveGame(globalGames.find((game) => game._id == gameId));
+    setActiveGame(approvedGames?.find((game) => game._id == gameId));
   };
 
-  console.log(activeGame);
+  const unlockGame = () => {
+    if (activeGame?.isStarted) {
+      setLocked(false);
+    }
+  };
 
   useEffect(() => {
     getActiveGame();
-  }, []);
+  }, [approvedGames?.length]);
+
+  useEffect(() => {
+    if (activeGame) {
+      unlockGame();
+    }
+  }, [activeGame]);
 
   return (
-    <div className="flex flex-col  min-h-[80vh] items-center gap-5 mt-10">
-      <h1 className="text-primary text-xl">{activeGame?.name}</h1>
-      <TrainOption />
+    <div className=" mt-10">
+      {locked ? (
+        <div className="flex items-center justify-center">
+          <h1 className="text-xl lg:text-3xl">Game is not started yet!</h1>
+        </div>
+      ) : (
+        <div className="flex flex-col  min-h-[80vh] items-center gap-5">
+          <h1 className="text-primary text-xl">{activeGame?.name}</h1>
+          <TrainOption />
+        </div>
+      )}
     </div>
   );
 };

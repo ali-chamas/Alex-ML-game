@@ -3,7 +3,7 @@ import GamesFilter from "./components/GamesFilter";
 import { gameType } from "../../../tools/data-types/gameType";
 
 import Gamecard from "./components/Gamecard";
-import Loader from "../../../common/components/Loader";
+
 import { UserContext, UserContextType } from "../../../context/userContext";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
