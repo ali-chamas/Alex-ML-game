@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+
 import { motion } from "framer-motion";
 import { apiUrl } from "../../tools/api-url/apiUrl";
-import { IoCloseOutline } from "react-icons/io5";
+
 import Hamburger from "hamburger-react";
 
 const MobileMenu = ({ links, navigate, user }: any) => {
@@ -23,7 +23,7 @@ const MobileMenu = ({ links, navigate, user }: any) => {
           animate={{ y: 0, transition: { delay: 0.2, stiffness: 20 } }}
           className="flex flex-col bg-primary p-5 w-[180px] absolute top-18 right-2 text-md rounded-md items-center gap-5 z-40"
         >
-          <div className="flex flex-col gap-5">
+          <nav className="flex flex-col gap-5">
             {links.map((link: any, i: number) => (
               <button
                 key={i}
@@ -41,7 +41,7 @@ const MobileMenu = ({ links, navigate, user }: any) => {
                 games
               </button>
             )}
-          </div>
+          </nav>
 
           {!user ? (
             <button className="btn-primary-white">Login</button>

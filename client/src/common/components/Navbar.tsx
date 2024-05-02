@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: "Docs", destination: "/docs" },
   ];
   return (
-    <div className=" flex justify-between items-center relative h-[10vh]">
+    <header className=" flex justify-between items-center  h-[10vh] sticky top-0">
       <div className="flex gap-5 items-center">
         <img
           src="/logo.png"
@@ -22,7 +22,7 @@ const Navbar = () => {
           className="w-[80px] h-[60px] lg:w-[100px] lg:h-[80px] cursor-pointer"
           onClick={() => navigate("/")}
         />
-        <div className=" gap-3 items-center hidden md:flex">
+        <nav className=" gap-3 items-center hidden md:flex">
           {links.map((link: any, i: number) => (
             <button
               key={i}
@@ -41,7 +41,7 @@ const Navbar = () => {
               games
             </button>
           )}
-        </div>
+        </nav>
       </div>
 
       <div className="md:hidden">
@@ -57,7 +57,7 @@ const Navbar = () => {
           alt="profile"
         />
       )}
-    </div>
+    </header>
   );
 };
 
