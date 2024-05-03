@@ -17,7 +17,7 @@ export interface labelType {
   examples: [exampleType];
 }
 
-interface exampleType {
+export interface exampleType {
   _id: string;
   example: string;
 }

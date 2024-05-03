@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { labelType } from "../../../../tools/data-types/modelType";
+import { exampleType, labelType } from "../../../../tools/data-types/modelType";
 import { IoMdClose } from "react-icons/io";
 import { FaTrash } from "react-icons/fa";
 import { sendRequest } from "../../../../tools/request-method/request";
@@ -27,7 +27,9 @@ const LabelPopup = ({
 
   const [example, setExample] = useState<string>("");
 
-  const [examples, setExamples] = useState<any>(label?.examples);
+  const [examples, setExamples] = useState<[exampleType] | any>(
+    label?.examples
+  );
 
   const deleteLabel = async () => {
     const reqBody = { gameId: gameId, labelId: label?._id };
@@ -46,7 +48,7 @@ const LabelPopup = ({
     try {
       const res = await sendRequest("POST", "/user/add_example", reqBody);
       triggerContext();
-      setExamples([...examples, { example: example }]);
+      setExamples([...examples, { example: example }] as [exampleType]);
       setExample("");
       setTrigger((t) => !t);
     } catch (error) {
@@ -54,9 +56,21 @@ const LabelPopup = ({
     }
   };
 
-  const deleteExample = async () => {
+  const deleteExample = async (id: string) => {
+    const reqBody = {
+      gameId: gameId,
+      labelId: label?._id,
+      exampleId: id,
+    };
     try {
-    } catch (error) {}
+      const res = await sendRequest("POST", "/user/delete_example", reqBody);
+      setTrigger((t) => !t);
+      setExamples(
+        examples?.filter((e: exampleType) => e._id !== id) as [exampleType]
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -104,13 +118,16 @@ const LabelPopup = ({
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {examples.map((ex: { example: string }, i: number) => (
+          {examples.map((ex: exampleType, i: number) => (
             <button
               key={i}
-              className="btn-primary-dark text-xs group flex gap-3 items-center "
+              className="btn-primary-dark text-xs group flex gap-3 items-center cursor-default"
             >
               {ex.example}
-              <small className="invisible group-hover:visible bg-red-500 p-1 rounded-full">
+              <small
+                className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
+                onClick={() => deleteExample(ex._id)}
+              >
                 <FaTrash />
               </small>
             </button>
