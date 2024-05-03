@@ -41,9 +41,11 @@ const getAllGames = async (req, res) => {
 };
 
 const getSingleGame = async (req, res) => {
+  const { user } = req;
   const { gameId } = req.params;
   try {
-    const game = await Game.findById(gameId);
+    const game = user.games.find((g) => g._id.toString() === gameId);
+
     if (game) {
       res.status(200).json(game);
     } else {

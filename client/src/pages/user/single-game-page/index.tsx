@@ -1,31 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GamesContext, GamesContextType } from "../../../context/gamesContext";
+
 import { gameType } from "../../../tools/data-types/gameType";
 
 import TrainOption from "./components/TrainOption";
 import Loader from "../../../common/components/Loader";
 import LabelPopup from "../games-page/components/LabelPopup";
 import { labelType } from "../../../tools/data-types/modelType";
+import { sendRequest } from "../../../tools/request-method/request";
 
 const SingleGame = () => {
   const { gameId } = useParams();
-
-  const { approvedGames, gamesStateTrigger } = useContext(
-    GamesContext
-  ) as GamesContextType;
 
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
   const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [openLabel, setOpenLabel] = useState<labelType | null>(null);
+  const [trigger, setTrigger] = useState<boolean>(false);
 
-  const getActiveGame = () => {
-    if (approvedGames?.length == 1) {
-      setActiveGame(approvedGames[0]);
+  const getActiveGame = async () => {
+    try {
+      const res = await sendRequest("GET", `/user/get_game/${gameId}`);
+
+      if (res.status == 200) {
+        setActiveGame(res.data);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    setActiveGame(approvedGames?.find((game) => game._id == gameId));
   };
 
   const unlockGame = () => {
@@ -41,11 +44,14 @@ const SingleGame = () => {
 
   useEffect(() => {
     getActiveGame();
-  }, [approvedGames?.length, gamesStateTrigger]);
+  }, [trigger]);
 
   useEffect(() => {
     if (activeGame) {
       unlockGame();
+    } else {
+      setLocked(true);
+      setLoading(false);
     }
   }, [activeGame]);
 
@@ -62,7 +68,7 @@ const SingleGame = () => {
       ) : (
         <div className="flex flex-col  min-h-[80vh] items-center gap-10">
           <h1 className="text-primary text-xl">{activeGame?.name}</h1>
-          <TrainOption game={activeGame} />
+          <TrainOption game={activeGame} setTrigger={setTrigger} />
           <div className="flex flex-wrap gap-6">
             {activeGame?.model.dataset.labels.map((label, i) => (
               <button
@@ -77,7 +83,12 @@ const SingleGame = () => {
         </div>
       )}
       {openLabel && (
-        <LabelPopup label={openLabel} setOpen={setOpenLabel} gameId={gameId} />
+        <LabelPopup
+          label={openLabel}
+          setOpen={setOpenLabel}
+          gameId={gameId}
+          setTrigger={setTrigger}
+        />
       )}
     </div>
   );

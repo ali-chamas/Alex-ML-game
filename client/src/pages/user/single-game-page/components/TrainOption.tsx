@@ -9,18 +9,21 @@ import {
 import { useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { gameType } from "../../../../tools/data-types/gameType";
-import { useTriggerContext } from "../../../../common/functions/TriggerContext";
 
-const TrainOption = ({ game }: gameType | any) => {
-  const { triggerContext } = useTriggerContext();
-
+const TrainOption = ({
+  game,
+  setTrigger,
+}: {
+  game: gameType | any;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [label, setLabel] = useState<string>("");
 
   const addLabel = async () => {
     const gameBody = { gameId: game._id, label: label };
     try {
       const res = await sendRequest("POST", "/user/add_label", gameBody);
-      triggerContext();
+      setTrigger((t) => !t);
       setLabel("");
     } catch (error) {
       console.log(error);

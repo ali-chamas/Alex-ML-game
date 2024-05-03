@@ -16,21 +16,25 @@ const LabelPopup = ({
   label,
   setOpen,
   gameId,
+  setTrigger,
 }: {
   label: labelType | null;
   setOpen: React.Dispatch<React.SetStateAction<labelType | null>>;
   gameId: string | undefined;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { triggerContext } = useTriggerContext();
 
   const [example, setExample] = useState<string>("");
+
+  const [examples, setExamples] = useState<any>(label?.examples);
 
   const deleteLabel = async () => {
     const reqBody = { gameId: gameId, labelId: label?._id };
 
     try {
       const res = await sendRequest("POST", "/user/delete_label", reqBody);
-      triggerContext();
+      setTrigger((t) => !t);
       setOpen(null);
     } catch (error) {
       console.log(error);
@@ -42,11 +46,17 @@ const LabelPopup = ({
     try {
       const res = await sendRequest("POST", "/user/add_example", reqBody);
       triggerContext();
+      setExamples([...examples, { example: example }]);
       setExample("");
-      console.log(res);
+      setTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const deleteExample = async () => {
+    try {
+    } catch (error) {}
   };
 
   return (
@@ -94,7 +104,7 @@ const LabelPopup = ({
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {label?.examples.map((ex, i) => (
+          {examples.map((ex: { example: string }, i: number) => (
             <button
               key={i}
               className="btn-primary-dark text-xs group flex gap-3 items-center "
