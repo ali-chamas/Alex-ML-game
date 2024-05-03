@@ -4,6 +4,7 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 import { gameType } from "../../../tools/data-types/gameType";
 
 import TrainOption from "./components/TrainOption";
+import Loader from "../../../common/components/Loader";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -15,6 +16,7 @@ const SingleGame = () => {
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
   const [locked, setLocked] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getActiveGame = () => {
     if (approvedGames?.length == 1) {
@@ -27,10 +29,14 @@ const SingleGame = () => {
     if (activeGame?.isStarted) {
       setLocked(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     getActiveGame();
+    if (!activeGame) {
+      setLoading(false);
+    }
   }, [approvedGames?.length, gamesStateTrigger]);
 
   useEffect(() => {
@@ -41,7 +47,11 @@ const SingleGame = () => {
 
   return (
     <div className=" mt-10">
-      {locked ? (
+      {loading ? (
+        <div className="h-full w-full flex items-center justify-center">
+          <Loader />
+        </div>
+      ) : locked ? (
         <div className="flex items-center justify-center">
           <h1 className="text-xl lg:text-3xl">Game is not started yet!</h1>
         </div>
