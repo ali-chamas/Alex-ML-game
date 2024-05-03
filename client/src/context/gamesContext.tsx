@@ -7,18 +7,22 @@ import { UserContext, UserContextType } from "./userContext";
 export interface GamesContextType {
   globalGames: [gameType] | [];
   approvedGames: [gameType] | [];
-
+  gamesTrigger: boolean;
+  setGamesTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  gamesStateTrigger: boolean;
   getGames: () => void;
 }
 
 export const GamesContext = createContext<GamesContextType | null>(null);
 
 const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const { user } = useContext(UserContext) as UserContextType;
+  const { user, userTrigger } = useContext(UserContext) as UserContextType;
 
   const [globalGames, setGlobalGames] = useState<[gameType] | []>([]);
 
   const [approvedGames, setApprovedGames] = useState<[gameType] | []>([]);
+  const [gamesTrigger, setGamesTrigger] = useState<boolean>(false);
+  const [gamesStateTrigger, setGamesStateTrigger] = useState<boolean>(false);
 
   const getGames = async () => {
     try {
@@ -26,6 +30,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
       const { data } = res;
 
       setGlobalGames(data);
+      setGamesTrigger((t: boolean) => !t);
     } catch (error) {
       console.log(error);
     }
@@ -37,13 +42,16 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
         (e: gameType) => e.isApproved !== false
       ) as [gameType];
 
-      const gamesWithNoUser = games.filter(
-        (game) => !user?.games.find((userGame) => game._id === userGame._id)
-      ) as never[];
+      if (user) {
+        const gamesWithNoUser = games.filter(
+          (game) => !user?.games.find((userGame) => game._id === userGame._id)
+        ) as never[];
 
-      setApprovedGames(user?.games.concat(gamesWithNoUser) as [gameType]);
-    } else {
-      setApprovedGames(globalGames);
+        setApprovedGames(user?.games.concat(gamesWithNoUser) as [gameType]);
+      } else {
+        setApprovedGames(globalGames);
+      }
+      setGamesStateTrigger((t) => !t);
     }
   };
 
@@ -53,12 +61,19 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   useEffect(() => {
     getApprovedGames();
-  }, [globalGames.length]);
-
-  console.log(approvedGames);
+  }, [user, gamesTrigger, userTrigger]);
 
   return (
-    <GamesContext.Provider value={{ globalGames, getGames, approvedGames }}>
+    <GamesContext.Provider
+      value={{
+        globalGames,
+        getGames,
+        approvedGames,
+        gamesTrigger,
+        setGamesTrigger,
+        gamesStateTrigger,
+      }}
+    >
       {children}
     </GamesContext.Provider>
   );

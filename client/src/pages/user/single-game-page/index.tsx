@@ -8,7 +8,9 @@ import TrainOption from "./components/TrainOption";
 const SingleGame = () => {
   const { gameId } = useParams();
 
-  const { approvedGames } = useContext(GamesContext) as GamesContextType;
+  const { approvedGames, gamesStateTrigger } = useContext(
+    GamesContext
+  ) as GamesContextType;
 
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
@@ -29,7 +31,7 @@ const SingleGame = () => {
 
   useEffect(() => {
     getActiveGame();
-  }, [approvedGames?.length]);
+  }, [approvedGames?.length, gamesStateTrigger]);
 
   useEffect(() => {
     if (activeGame) {

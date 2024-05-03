@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
@@ -6,6 +6,11 @@ import { FaFilePdf } from "react-icons/fa6";
 import { userType } from "../../../../tools/data-types/userType";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
+import {
+  GamesContext,
+  GamesContextType,
+} from "../../../../context/gamesContext";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const Gamecard = ({
   game,
@@ -16,6 +21,9 @@ const Gamecard = ({
   user: userType | any;
   checkProgress: boolean | any;
 }) => {
+  const { setGamesTrigger } = useContext(GamesContext) as GamesContextType;
+  const { setUserTrigger } = useContext(UserContext) as UserContextType;
+
   const [availableOrder, setAvailableOrder] = useState<number>(-1);
 
   const navigate = useNavigate();
@@ -34,10 +42,12 @@ const Gamecard = ({
 
   const startGame = async () => {
     try {
-      const res = await sendRequest("POST", "/user/start_game", {
+      await sendRequest("POST", "/user/start_game", {
         gameId: game._id,
       });
-      console.log(res);
+
+      setGamesTrigger((t: boolean) => !t);
+      setUserTrigger((t: boolean) => !t);
       navigate(`/games/${game._id}`);
     } catch (error) {
       console.log(error);

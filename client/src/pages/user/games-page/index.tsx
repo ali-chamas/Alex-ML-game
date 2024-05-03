@@ -12,7 +12,9 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
 
-  const { approvedGames } = useContext(GamesContext) as GamesContextType;
+  const { approvedGames, gamesStateTrigger } = useContext(
+    GamesContext
+  ) as GamesContextType;
 
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>();
 
@@ -28,11 +30,15 @@ const Games = () => {
 
   useEffect(() => {
     setFilteredGames(approvedGames);
-  }, [approvedGames?.length]);
+    console.log("triggered");
+  }, [approvedGames?.length, gamesStateTrigger]);
 
   useEffect(() => {
     checkIfGameInProgress();
   }, [user]);
+
+  // console.log(filteredGames);
+  console.log(approvedGames);
 
   return (
     <div className="flex flex-col mt-12 gap-12 min-h-[80vh] ">

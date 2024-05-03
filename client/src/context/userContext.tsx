@@ -5,8 +5,11 @@ import { sendRequest } from "../tools/request-method/request";
 export interface UserContextType {
   user?: userType | null;
   token: string | null;
+
   addUser: (token: string, user: userType) => void;
   removeUser: () => void;
+  userTrigger: Boolean;
+  setUserTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UserContext = createContext<UserContextType | null>(null);
@@ -16,6 +19,7 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   const [user, setUser] = useState<userType | null>();
   const [token, setToken] = useState<string | null>(localToken);
+  const [userTrigger, setUserTrigger] = useState<boolean>(false);
 
   const getLoggedInUser = async () => {
     try {
@@ -33,7 +37,7 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
     if (token) {
       getLoggedInUser();
     } else setUser(null);
-  }, [token]);
+  }, [token, userTrigger]);
 
   const addUser = (newToken: string, newUser: userType) => {
     setToken(newToken);
@@ -48,7 +52,9 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, token, addUser, removeUser }}>
+    <UserContext.Provider
+      value={{ user, token, addUser, removeUser, userTrigger, setUserTrigger }}
+    >
       {children}
     </UserContext.Provider>
   );
