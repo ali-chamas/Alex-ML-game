@@ -69,11 +69,9 @@ const Games = () => {
           className="w-full cursor-grab "
         >
           {filteredGames?.map((game, i) => (
-            <div key={i}>
-              <SwiperSlide>
-                <Gamecard game={game} user={user} checkProgress={progress} />
-              </SwiperSlide>
-            </div>
+            <SwiperSlide key={i}>
+              <Gamecard game={game} user={user} checkProgress={progress} />
+            </SwiperSlide>
           ))}
         </Swiper>
       ) : (

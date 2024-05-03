@@ -38,5 +38,5 @@
 }
 
 .popup-child {
-  @apply rounded-md p-5 w-[300px] h-[200px] md:w-[500px] md:h-[400px] lg:w-[600px] lg:h-[500px] bg-[#031C28] bg-opacity-80 shadow-md;
+  @apply rounded-md p-5 w-[300px] h-[450px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[400px] lg:w-[600px] lg:h-[500px] bg-[#031C28] bg-opacity-80 shadow-md;
 }

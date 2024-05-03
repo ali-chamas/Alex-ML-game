@@ -21,6 +21,7 @@ const {
   getAllGames,
   startGame,
   restartGame,
+  getSingleGame,
 } = require("../controllers/game.controller");
 const getAvatars = require("../controllers/avatar.controller");
 const router = express.Router();
@@ -34,6 +35,7 @@ router.post("/start_game/", startGame);
 router.put("/restart_game/", restartGame);
 router.put("/complete_game/", completeGame);
 router.get("/get_games", getAllGames);
+router.get("/get_game/:gameId", getSingleGame);
 
 //model
 router.post("/add_label/", addLabels);

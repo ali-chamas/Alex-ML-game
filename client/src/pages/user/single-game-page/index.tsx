@@ -76,7 +76,9 @@ const SingleGame = () => {
           </div>
         </div>
       )}
-      {openLabel && <LabelPopup label={openLabel} setOpen={setOpenLabel} />}
+      {openLabel && (
+        <LabelPopup label={openLabel} setOpen={setOpenLabel} gameId={gameId} />
+      )}
     </div>
   );
 };

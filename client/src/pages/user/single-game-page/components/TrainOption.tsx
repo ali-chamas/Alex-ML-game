@@ -21,6 +21,7 @@ const TrainOption = ({ game }: gameType | any) => {
     try {
       const res = await sendRequest("POST", "/user/add_label", gameBody);
       triggerContext();
+      setLabel("");
     } catch (error) {
       console.log(error);
     }
