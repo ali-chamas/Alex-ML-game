@@ -16,9 +16,9 @@ const SingleGame = () => {
 
   const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [openLabel, setOpenLabel] = useState<labelType | null>(null);
   const [trigger, setTrigger] = useState<boolean>(false);
 
+  const [openLabel, setOpenLabel] = useState<labelType | null>(null);
   const getActiveGame = async () => {
     try {
       const res = await sendRequest("GET", `/user/get_game/${gameId}`);
@@ -56,7 +56,7 @@ const SingleGame = () => {
   }, [activeGame]);
 
   return (
-    <div className=" mt-10">
+    <div className=" mt-10 min-h-[80vh]">
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
@@ -69,7 +69,7 @@ const SingleGame = () => {
         <div className="flex flex-col  min-h-[80vh] items-center gap-10">
           <h1 className="text-primary text-xl">{activeGame?.name}</h1>
           <TrainOption game={activeGame} setTrigger={setTrigger} />
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-6 h-[300px] max-h-[300px]] overflow-y-auto">
             {activeGame?.model.dataset.labels.map((label, i) => (
               <button
                 key={i}
@@ -79,6 +79,11 @@ const SingleGame = () => {
                 {label.labelName}
               </button>
             ))}
+          </div>
+          <div className="flex justify-between w-full ">
+            <button className="ml-auto btn-primary-white">
+              Test your model
+            </button>
           </div>
         </div>
       )}
