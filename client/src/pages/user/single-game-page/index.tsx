@@ -15,7 +15,7 @@ const SingleGame = () => {
 
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
-  const [locked, setLocked] = useState<boolean>(true);
+  const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   const getActiveGame = () => {
@@ -28,15 +28,16 @@ const SingleGame = () => {
   const unlockGame = () => {
     if (activeGame?.isStarted) {
       setLocked(false);
+      setLoading(false);
+    } else {
+      setLocked(true);
+      setLoading(false);
     }
     setLoading(false);
   };
 
   useEffect(() => {
     getActiveGame();
-    if (!activeGame) {
-      setLoading(false);
-    }
   }, [approvedGames?.length, gamesStateTrigger]);
 
   useEffect(() => {
