@@ -9,8 +9,16 @@ const LabelPopup = ({
   setOpen: React.Dispatch<React.SetStateAction<labelType | null>>;
 }) => {
   return (
-    <div className="popup">
-      <motion.div>{label?.labelName}</motion.div>;
+    <div className="popup ">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: label ? 1 : 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="popup-child"
+      >
+        {label?.labelName}
+        <button onClick={() => setOpen(null)}>X</button>
+      </motion.div>
     </div>
   );
 };

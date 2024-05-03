@@ -32,3 +32,11 @@
 .border {
   @apply border-2 border-white/40;
 }
+
+.popup {
+  @apply fixed top-0 left-0 bg-primary flex items-center justify-center h-screen w-screen;
+}
+
+.popup-child {
+  @apply rounded-md p-5 w-[300px] h-[200px] md:w-[500px] md:h-[400px] lg:w-[600px] lg:h-[500px] bg-[#031C28] bg-opacity-80 shadow-md;
+}
