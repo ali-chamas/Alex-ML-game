@@ -11,7 +11,7 @@ interface datasetType {
   labels: [labelType];
 }
 
-interface labelType {
+export interface labelType {
   _id: string;
   labelName: string;
   examples: [exampleType];

@@ -5,6 +5,8 @@ import { gameType } from "../../../tools/data-types/gameType";
 
 import TrainOption from "./components/TrainOption";
 import Loader from "../../../common/components/Loader";
+import LabelPopup from "../games-page/components/LabelPopup";
+import { labelType } from "../../../tools/data-types/modelType";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -17,7 +19,7 @@ const SingleGame = () => {
 
   const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [openLabel, setOpenLabel] = useState<boolean>(false);
+  const [openLabel, setOpenLabel] = useState<labelType | null>(null);
 
   const getActiveGame = () => {
     if (approvedGames?.length == 1) {
@@ -58,18 +60,23 @@ const SingleGame = () => {
           <h1 className="text-xl lg:text-3xl">Game is not started yet!</h1>
         </div>
       ) : (
-        <div className="flex flex-col  min-h-[80vh] items-center gap-5">
+        <div className="flex flex-col  min-h-[80vh] items-center gap-10">
           <h1 className="text-primary text-xl">{activeGame?.name}</h1>
           <TrainOption game={activeGame} />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-6">
             {activeGame?.model.dataset.labels.map((label, i) => (
-              <div key={i} onClick={() => setOpenLabel(true)}>
+              <button
+                key={i}
+                className="btn-primary-dark h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
+                onClick={() => setOpenLabel(label)}
+              >
                 {label.labelName}
-              </div>
+              </button>
             ))}
           </div>
         </div>
       )}
+      {openLabel && <LabelPopup label={openLabel} setOpen={setOpenLabel} />}
     </div>
   );
 };
