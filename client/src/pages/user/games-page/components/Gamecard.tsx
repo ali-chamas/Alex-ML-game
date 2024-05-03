@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
@@ -6,11 +6,8 @@ import { FaFilePdf } from "react-icons/fa6";
 import { userType } from "../../../../tools/data-types/userType";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
-import {
-  GamesContext,
-  GamesContextType,
-} from "../../../../context/gamesContext";
-import { UserContext, UserContextType } from "../../../../context/userContext";
+
+import { useTriggerContext } from "../../../../common/functions/TriggerContext";
 
 const Gamecard = ({
   game,
@@ -21,8 +18,7 @@ const Gamecard = ({
   user: userType | any;
   checkProgress: boolean | any;
 }) => {
-  const { setGamesTrigger } = useContext(GamesContext) as GamesContextType;
-  const { setUserTrigger } = useContext(UserContext) as UserContextType;
+  const { triggerContext } = useTriggerContext();
 
   const [availableOrder, setAvailableOrder] = useState<number>(-1);
 
@@ -46,8 +42,7 @@ const Gamecard = ({
         gameId: game._id,
       });
 
-      setGamesTrigger((t: boolean) => !t);
-      setUserTrigger((t: boolean) => !t);
+      triggerContext();
       navigate(`/games/${game._id}`);
     } catch (error) {
       console.log(error);
@@ -69,7 +64,12 @@ const Gamecard = ({
         <h1 className="font-bold">{game.name}</h1>
         <small className="text-white/70 ">{game.description}</small>
         {game.isComplete ? (
-          <button className="btn-primary-white w-[200px]">finished</button>
+          <button
+            className="btn-primary-white w-[200px]"
+            onClick={() => navigate(`/games/${game._id}`)}
+          >
+            Completed
+          </button>
         ) : game.isStarted && !game.iscomplete ? (
           <button
             className="btn-primary-white w-[200px]"

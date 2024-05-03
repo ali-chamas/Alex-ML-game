@@ -17,6 +17,7 @@ const SingleGame = () => {
 
   const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [openLabel, setOpenLabel] = useState<boolean>(false);
 
   const getActiveGame = () => {
     if (approvedGames?.length == 1) {
@@ -59,7 +60,14 @@ const SingleGame = () => {
       ) : (
         <div className="flex flex-col  min-h-[80vh] items-center gap-5">
           <h1 className="text-primary text-xl">{activeGame?.name}</h1>
-          <TrainOption />
+          <TrainOption game={activeGame} />
+          <div className="flex flex-wrap gap-2">
+            {activeGame?.model.dataset.labels.map((label, i) => (
+              <div key={i} onClick={() => setOpenLabel(true)}>
+                {label.labelName}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
