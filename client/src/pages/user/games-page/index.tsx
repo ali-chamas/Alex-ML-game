@@ -30,14 +30,12 @@ const Games = () => {
 
   useEffect(() => {
     setFilteredGames(approvedGames);
-    console.log("triggered");
   }, [approvedGames?.length, gamesStateTrigger]);
 
   useEffect(() => {
     checkIfGameInProgress();
   }, [user]);
 
-  // console.log(filteredGames);
   console.log(approvedGames);
 
   return (

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 import scratchImg from "../../../../assets/Scratch-cat.png";
 import { sendRequest } from "../../../../tools/request-method/request";
+import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+
 const PlayPopup = ({
   gameId,
   open,
@@ -20,6 +22,8 @@ const PlayPopup = ({
   model: modelType;
   game: gameType;
 }) => {
+  const { triggerContext } = useTriggerContext();
+
   const [complete, setComplete] = useState(game.isComplete);
 
   const toggleComplete = async () => {
@@ -27,9 +31,9 @@ const PlayPopup = ({
       const res = await sendRequest("PUT", "/user/complete_game", {
         gameId: gameId,
       });
-      setTrigger((t) => !t);
       setComplete((c) => !c);
-      console.log(res);
+      triggerContext();
+      setTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
