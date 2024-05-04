@@ -9,6 +9,7 @@ import LabelPopup from "./components/LabelPopup";
 import { labelType, modelType } from "../../../tools/data-types/modelType";
 import { sendRequest } from "../../../tools/request-method/request";
 import TestPopup from "./components/TestPopup";
+import PlayPopup from "./components/PlayPopup";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -21,6 +22,7 @@ const SingleGame = () => {
 
   const [openLabel, setOpenLabel] = useState<labelType | null>(null);
   const [openTest, setOpenTest] = useState<boolean>(false);
+  const [openPlay, setOpenPlay] = useState<boolean>(false);
 
   const getActiveGame = async () => {
     try {
@@ -90,7 +92,12 @@ const SingleGame = () => {
             >
               Test your model
             </button>
-            <button className="\ btn-primary-white">Play!</button>
+            <button
+              className=" btn-primary-white"
+              onClick={() => setOpenPlay(true)}
+            >
+              Play!
+            </button>
           </div>
         </div>
       )}
@@ -109,6 +116,16 @@ const SingleGame = () => {
           setOpen={setOpenTest}
           model={activeGame?.model as modelType}
           setTrigger={setTrigger}
+        />
+      )}
+      {openPlay && (
+        <PlayPopup
+          gameId={gameId as string}
+          open={openPlay}
+          setOpen={setOpenPlay}
+          model={activeGame?.model as modelType}
+          setTrigger={setTrigger}
+          game={activeGame as gameType}
         />
       )}
     </div>
