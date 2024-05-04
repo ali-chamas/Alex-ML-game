@@ -49,7 +49,7 @@ const AvatarsPopup = ({
   return (
     <div className="flex flex-col gap-3 items-center">
       <div className="flex justify-between items-center w-full ">
-        <h1 className=" text-lg ">Choose your avatar!</h1>
+        <h1 className=" text-xl ">Choose your avatar!</h1>
 
         <button onClick={() => setOpen(false)} className="text-xl ">
           <IoMdClose />
@@ -58,12 +58,12 @@ const AvatarsPopup = ({
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex flex-wrap gap-5 justify-center">
+        <div className="flex flex-wrap gap-5 justify-center mt-5">
           {avatars.map((avatar, i) => (
             <img
               src={`${apiUrl}/${avatar}`}
               key={i}
-              className={`w-[100px] rounded-full hover:opacity-90 cursor-pointer ${
+              className={`w-[100px] lg:w-[120px] rounded-full hover:opacity-90 cursor-pointer ${
                 avatar == activeAvatar && "border-[5px] border-[#69F2FA]"
               }`}
               alt="avatar"
