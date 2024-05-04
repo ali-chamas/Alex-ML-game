@@ -36,15 +36,23 @@ const Profile = () => {
       setCurrentGame(current);
       setProgress(true);
     } else {
+      const userGames = user?.games;
+      const lastGameIndex = userGames?.length
+        ? userGames.length - 1
+        : undefined;
+      const lastGame =
+        userGames && lastGameIndex !== undefined
+          ? userGames[lastGameIndex]
+          : undefined;
       const unlockedGame = approvedGames[user?.games.length as number];
       if (unlockedGame) {
         if (unlockedGame.isApproved) {
           setCurrentGame(unlockedGame);
         } else {
-          setCurrentGame(user?.games.pop() as gameType);
+          lastGame && setCurrentGame(lastGame);
         }
       } else {
-        setCurrentGame(user?.games.pop() as gameType);
+        lastGame && setCurrentGame(lastGame);
       }
     }
   };
@@ -89,13 +97,16 @@ const Profile = () => {
 
   return (
     currentGame && (
-      <div className="mt-10 ">
-        <div className="min-h-[80vh] flex flex-col justify-between items-center">
+      <div className="mt-10 lg:flex justify-between items-center xl:mx-12 2xl:mx-20">
+        <div className="min-h-[80vh] lg:min-h-0  flex flex-col justify-between items-center">
           <div className="flex flex-col items-center gap-4 ">
             <h1 className="text-primary text-2xl">Current mission</h1>
             <Gamecard game={currentGame} user={user} checkProgress={progress} />
           </div>
-          <button className="btn-primary-dark" onClick={scrollToProfile}>
+          <button
+            className="btn-primary-dark lg:hidden"
+            onClick={scrollToProfile}
+          >
             My progress
           </button>
         </div>
@@ -103,7 +114,7 @@ const Profile = () => {
           id="profile"
           className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
         >
-          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col gap-2 items-center p-3 justify-between">
+          <div className="bg-primary w-[300px] h-[500px] md:w-[450px] xl:w-[550px]  rounded-lg flex flex-col gap-2 items-center p-3 justify-between">
             <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
               <img
                 src={`${apiUrl}/${user?.avatar}`}
