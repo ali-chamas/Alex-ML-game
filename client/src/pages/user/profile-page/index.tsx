@@ -5,6 +5,8 @@ import { gameType } from "../../../tools/data-types/gameType";
 import Gamecard from "../games-page/components/Gamecard";
 import { apiUrl } from "../../../tools/api-url/apiUrl";
 import { FaPen } from "react-icons/fa";
+import PopupLayout from "../../../common/components/PopupLayout";
+import AvatarsPopup from "./components/AvatarsPopup";
 
 const Profile = () => {
   const { user } = useContext(UserContext) as UserContextType;
@@ -75,13 +77,27 @@ const Profile = () => {
                 className="rounded-full object-fill "
                 alt="avatar"
               />
-              <button className="bg-white/40 rounded-full text-black p-1 absolute top-0 right-4 hover:opacity-90">
+              <button
+                className="bg-white/40 rounded-full text-black p-1 absolute top-0 right-4 hover:opacity-90"
+                onClick={() => setOpenAvatars(true)}
+              >
                 <FaPen />
               </button>
               <h1 className="text-lg">Hi {user?.firstName} !</h1>
             </div>
           </div>
         </div>
+        {openAvatars && (
+          <PopupLayout
+            open={openAvatars}
+            children={
+              <AvatarsPopup
+                userAvatar={user?.avatar as string}
+                setOpen={setOpenAvatars}
+              />
+            }
+          />
+        )}
       </div>
     )
   );
