@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { IoMdClose } from "react-icons/io";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import Loader from "../../../../common/components/Loader";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const AvatarsPopup = ({
   userAvatar,
@@ -11,6 +12,8 @@ const AvatarsPopup = ({
   userAvatar: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const { setUserTrigger } = useContext(UserContext) as UserContextType;
+
   const [avatars, setAvatars] = useState<[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeAvatar, setActiveAvatar] = useState(userAvatar);
@@ -26,22 +29,22 @@ const AvatarsPopup = ({
     setLoading(false);
   };
 
-  const changeAvatar = async () => {
+  const changeAvatar = async (avatar: string) => {
+    setLoading(true);
     try {
       const res = await sendRequest("PUT", "/user/update_my_info", {
-        avatar: activeAvatar,
+        avatar: avatar,
       });
-      console.log(res);
+      setUserTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     getAvatars();
   }, []);
-
-  console.log(userAvatar);
 
   return (
     <div className="flex flex-col gap-3 items-center">
@@ -66,7 +69,7 @@ const AvatarsPopup = ({
               alt="avatar"
               onClick={() => {
                 setActiveAvatar(avatar);
-                changeAvatar();
+                changeAvatar(avatar);
               }}
             />
           ))}
