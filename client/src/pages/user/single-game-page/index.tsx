@@ -24,6 +24,7 @@ const SingleGame = () => {
   const [openLabel, setOpenLabel] = useState<labelType | null>(null);
   const [openTest, setOpenTest] = useState<boolean>(false);
   const [openPlay, setOpenPlay] = useState<boolean>(false);
+  const [trainingdataTracking, setTrainingDataTracking] = useState([]);
 
   const getActiveGame = async () => {
     try {
@@ -106,14 +107,14 @@ const SingleGame = () => {
           </div>
           <div className="flex justify-between w-full ">
             <button
-              className="btn-primary-white"
+              className="btn-primary-white disabled-btn"
               disabled={TrainingEligible()}
               onClick={() => setOpenTest(true)}
             >
               Test your model
             </button>
             <button
-              className=" btn-primary-white"
+              className=" btn-primary-white disabled-btn"
               onClick={() => setOpenPlay(true)}
               disabled={PlayingEligible()}
             >
