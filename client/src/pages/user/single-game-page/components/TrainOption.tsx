@@ -9,6 +9,8 @@ import {
 import { useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { gameType } from "../../../../tools/data-types/gameType";
+import PopupLayout from "../../../../common/components/PopupLayout";
+import HintPopup from "./HintPopup";
 
 const TrainOption = ({
   game,
@@ -18,6 +20,7 @@ const TrainOption = ({
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [label, setLabel] = useState<string>("");
+  const [openHint, setOpenHint] = useState<boolean>(false);
 
   const addLabel = async () => {
     const gameBody = { gameId: game._id, label: label };
@@ -36,7 +39,10 @@ const TrainOption = ({
         <IoSettings />
       </button>
       <div className="flex gap-2 lg:gap-4 items-center">
-        <button className="rounded-full  bg-primary border p-2 hover:opacity-80">
+        <button
+          className="rounded-full  bg-primary border p-2 hover:opacity-80"
+          onClick={() => setOpenHint(true)}
+        >
           <FaLightbulb />
         </button>
         <Popover placement="bottom">
@@ -57,6 +63,12 @@ const TrainOption = ({
           </PopoverContent>
         </Popover>
       </div>
+      {openHint && (
+        <PopupLayout
+          children={<HintPopup setOpen={setOpenHint} hint={game.hint} />}
+          open={openHint}
+        />
+      )}
     </div>
   );
 };
