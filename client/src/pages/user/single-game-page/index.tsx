@@ -48,6 +48,24 @@ const SingleGame = () => {
     setLoading(false);
   };
 
+  //true means disabled in ths=ese two functions
+  const TrainingEligible = () => {
+    let count = 0;
+    activeGame?.model.dataset.labels.forEach((label) => {
+      count += label.examples.length;
+    });
+    if (count >= 10) return false;
+    else return true;
+  };
+
+  const PlayingEligible = () => {
+    if (activeGame?.model.isTrained) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   useEffect(() => {
     getActiveGame();
   }, [trigger]);
@@ -88,7 +106,8 @@ const SingleGame = () => {
           </div>
           <div className="flex justify-between w-full ">
             <button
-              className="\ btn-primary-white"
+              className="btn-primary-white"
+              disabled={TrainingEligible()}
               onClick={() => setOpenTest(true)}
             >
               Test your model
@@ -96,6 +115,7 @@ const SingleGame = () => {
             <button
               className=" btn-primary-white"
               onClick={() => setOpenPlay(true)}
+              disabled={PlayingEligible()}
             >
               Play!
             </button>
