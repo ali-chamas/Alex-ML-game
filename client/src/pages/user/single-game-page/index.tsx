@@ -85,11 +85,12 @@ const SingleGame = () => {
           </div>
           <div className="flex justify-between w-full ">
             <button
-              className="ml-auto btn-primary-white"
+              className="\ btn-primary-white"
               onClick={() => setOpenTest(true)}
             >
               Test your model
             </button>
+            <button className="\ btn-primary-white">Play!</button>
           </div>
         </div>
       )}
