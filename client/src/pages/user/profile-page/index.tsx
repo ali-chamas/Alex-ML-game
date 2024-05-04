@@ -3,11 +3,14 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 import { gameType } from "../../../tools/data-types/gameType";
 import Gamecard from "../games-page/components/Gamecard";
+import { apiUrl } from "../../../tools/api-url/apiUrl";
+import { FaPen } from "react-icons/fa";
 
 const Profile = () => {
-  const [currentGame, setCurrentGame] = useState<gameType | null>(null);
-
   const { user } = useContext(UserContext) as UserContextType;
+
+  const [currentGame, setCurrentGame] = useState<gameType | null>(null);
+  const [openAvatars, setOpenAvatars] = useState<boolean>(false);
 
   const { approvedGames, gamesStateTrigger } = useContext(
     GamesContext
@@ -58,14 +61,26 @@ const Profile = () => {
             <Gamecard game={currentGame} user={user} checkProgress={progress} />
           </div>
           <button className="btn-primary-dark" onClick={scrollToProfile}>
-            Progress
+            My progress
           </button>
         </div>
         <div
           id="profile"
           className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
         >
-          <div className="bg-primary w-[300px] h-[500px] rounded-lg"></div>
+          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col items-center p-3">
+            <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
+              <img
+                src={`${apiUrl}/${user?.avatar}`}
+                className="rounded-full object-fill "
+                alt="avatar"
+              />
+              <button className="bg-white/40 rounded-full text-black p-1 absolute top-0 right-4 hover:opacity-90">
+                <FaPen />
+              </button>
+              <h1 className="text-lg">Hi {user?.firstName} !</h1>
+            </div>
+          </div>
         </div>
       </div>
     )

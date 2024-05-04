@@ -10,6 +10,7 @@ import { labelType, modelType } from "../../../tools/data-types/modelType";
 import { sendRequest } from "../../../tools/request-method/request";
 import TestPopup from "./components/TestPopup";
 import PlayPopup from "./components/PlayPopup";
+import PopupLayout from "../../../common/components/PopupLayout";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -110,22 +111,30 @@ const SingleGame = () => {
         />
       )}
       {openTest && (
-        <TestPopup
-          gameId={gameId as string}
+        <PopupLayout
           open={openTest}
-          setOpen={setOpenTest}
-          model={activeGame?.model as modelType}
-          setTrigger={setTrigger}
+          children={
+            <TestPopup
+              gameId={gameId as string}
+              setOpen={setOpenTest}
+              model={activeGame?.model as modelType}
+              setTrigger={setTrigger}
+            />
+          }
         />
       )}
       {openPlay && (
-        <PlayPopup
-          gameId={gameId as string}
+        <PopupLayout
           open={openPlay}
-          setOpen={setOpenPlay}
-          model={activeGame?.model as modelType}
-          setTrigger={setTrigger}
-          game={activeGame as gameType}
+          children={
+            <PlayPopup
+              gameId={gameId as string}
+              setOpen={setOpenPlay}
+              model={activeGame?.model as modelType}
+              setTrigger={setTrigger}
+              game={activeGame as gameType}
+            />
+          }
         />
       )}
     </div>

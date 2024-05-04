@@ -9,14 +9,14 @@ import { useTriggerContext } from "../../../../common/functions/TriggerContext";
 
 const PlayPopup = ({
   gameId,
-  open,
+
   setOpen,
   model,
   setTrigger,
   game,
 }: {
   gameId: string;
-  open: boolean;
+
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   model: modelType;
@@ -40,46 +40,39 @@ const PlayPopup = ({
   };
 
   return (
-    <div className="popup ">
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: open ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        className="popup-child flex flex-col gap-4 items-center"
-      >
-        <div className="flex justify-between items-center w-full ">
-          <h1 className=" text-lg ">Play with your model</h1>
+    <>
+      <div className="flex justify-between items-center w-full ">
+        <h1 className=" text-lg ">Play with your model</h1>
 
-          <button onClick={() => setOpen(false)} className="text-xl ">
-            <IoMdClose />
-          </button>
-        </div>
-        <div className="flex flex-col items-center gap-3 bg-black/25 rounded-md pb-3 m-auto">
-          <img
-            src={scratchImg}
-            className="w-[220px] md:w-[250px] rounded-t-md"
-            alt=""
-          />
-          Scratch!
-          <button className="btn-primary-dark">Go!</button>
-        </div>
-        {complete ? (
-          <button
-            className="btn-primary-dark self-end mt-auto"
-            onClick={toggleComplete}
-          >
-            Restart
-          </button>
-        ) : (
-          <button
-            className="btn-primary-white self-end mt-auto"
-            onClick={toggleComplete}
-          >
-            Complete
-          </button>
-        )}
-      </motion.div>
-    </div>
+        <button onClick={() => setOpen(false)} className="text-xl ">
+          <IoMdClose />
+        </button>
+      </div>
+      <div className="flex flex-col items-center gap-3 bg-black/25 rounded-md pb-3 m-auto">
+        <img
+          src={scratchImg}
+          className="w-[220px] md:w-[250px] rounded-t-md"
+          alt=""
+        />
+        Scratch!
+        <button className="btn-primary-dark">Go!</button>
+      </div>
+      {complete ? (
+        <button
+          className="btn-primary-dark self-end mt-auto"
+          onClick={toggleComplete}
+        >
+          Restart
+        </button>
+      ) : (
+        <button
+          className="btn-primary-white self-end mt-auto"
+          onClick={toggleComplete}
+        >
+          Complete
+        </button>
+      )}
+    </>
   );
 };
 
