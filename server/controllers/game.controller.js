@@ -131,22 +131,24 @@ const approveGame = async (req, res) => {
 };
 
 const completeGame = async (req, res) => {
+  const { user } = req;
   const { gameId } = req.body;
 
   try {
-    const existingGame = await Game.findById(gameId);
-    if (!existingGame) {
-      return res.status(404).json({ message: "Game not found" });
+    const gameIndex = user.games.findIndex(
+      (game) => game._id.toString() === gameId
+    );
+    if (gameIndex < 0) {
+      return res
+        .status(400)
+        .json({ message: "Game not found in user's games" });
     }
 
-    const isComplete = !existingGame.isComplete; // Toggle the existing value
+    user.games[gameIndex].isComplete = !user.games[gameIndex].isComplete;
 
-    const updatedGame = await Game.findByIdAndUpdate(
-      gameId,
-      { isComplete },
-      { new: true }
-    );
-    res.json({ message: `Game completion status set to ${isComplete}` });
+    await user.save();
+
+    res.status(200).json(user.games[gameIndex]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error approving game" });
