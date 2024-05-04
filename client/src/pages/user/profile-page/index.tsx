@@ -9,6 +9,8 @@ import PopupLayout from "../../../common/components/PopupLayout";
 import AvatarsPopup from "./components/AvatarsPopup";
 import ProgressBar from "@ramonak/react-progress-bar";
 
+import { FaTrophy } from "react-icons/fa6";
+
 const Profile = () => {
   const { user } = useContext(UserContext) as UserContextType;
 
@@ -57,6 +59,16 @@ const Profile = () => {
     });
   };
 
+  const trophyColor = () => {
+    if (countCompletedGames(user?.games) == approvedGames.length) {
+      return "from-yellow-600/70 to-yellow-800/90";
+    } else if (countCompletedGames(user?.games) >= approvedGames.length / 2) {
+      return "from-white/60 to-white/40";
+    } else {
+      return "from-orange-400/20 to-deep-orange-600/80";
+    }
+  };
+
   useEffect(() => {
     findCurrentGame();
   }, [approvedGames?.length, gamesStateTrigger]);
@@ -77,7 +89,7 @@ const Profile = () => {
           id="profile"
           className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
         >
-          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col gap-2 items-center p-3">
+          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col gap-2 items-center p-3 justify-between">
             <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
               <img
                 src={`${apiUrl}/${user?.avatar}`}
@@ -97,6 +109,12 @@ const Profile = () => {
               <button className=" btn-primary-danger ">Logout</button>
             </div>
 
+            <h1
+              className={`p-4 rounded-full  bg-gradient-to-tr ${trophyColor()}  text-7xl`}
+            >
+              <FaTrophy />
+            </h1>
+
             <ProgressBar
               completed={`${countCompletedGames(user?.games)}`}
               customLabel={`${countCompletedGames(user?.games)} / ${
@@ -104,8 +122,8 @@ const Profile = () => {
               }
               `}
               maxCompleted={approvedGames?.length}
-              className=" w-full mt-auto"
-              barContainerClassName="bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
+              className=" w-full "
+              barContainerClassName="  bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
               bgColor="white"
               labelAlignment="outside"
             />
