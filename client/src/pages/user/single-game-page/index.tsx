@@ -5,9 +5,10 @@ import { gameType } from "../../../tools/data-types/gameType";
 
 import TrainOption from "./components/TrainOption";
 import Loader from "../../../common/components/Loader";
-import LabelPopup from "../games-page/components/LabelPopup";
-import { labelType } from "../../../tools/data-types/modelType";
+import LabelPopup from "./components/LabelPopup";
+import { labelType, modelType } from "../../../tools/data-types/modelType";
 import { sendRequest } from "../../../tools/request-method/request";
+import TestPopup from "./components/TestPopup";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -19,6 +20,8 @@ const SingleGame = () => {
   const [trigger, setTrigger] = useState<boolean>(false);
 
   const [openLabel, setOpenLabel] = useState<labelType | null>(null);
+  const [openTest, setOpenTest] = useState<boolean>(false);
+
   const getActiveGame = async () => {
     try {
       const res = await sendRequest("GET", `/user/get_game/${gameId}`);
@@ -81,7 +84,10 @@ const SingleGame = () => {
             ))}
           </div>
           <div className="flex justify-between w-full ">
-            <button className="ml-auto btn-primary-white">
+            <button
+              className="ml-auto btn-primary-white"
+              onClick={() => setOpenTest(true)}
+            >
               Test your model
             </button>
           </div>
@@ -92,6 +98,15 @@ const SingleGame = () => {
           label={openLabel}
           setOpen={setOpenLabel}
           gameId={gameId}
+          setTrigger={setTrigger}
+        />
+      )}
+      {openTest && (
+        <TestPopup
+          gameId={gameId as string}
+          open={openTest}
+          setOpen={setOpenTest}
+          model={activeGame?.model as modelType}
           setTrigger={setTrigger}
         />
       )}

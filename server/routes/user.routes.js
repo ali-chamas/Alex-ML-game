@@ -42,8 +42,8 @@ router.post("/add_label/", addLabels);
 router.post("/add_example/", addExamples);
 router.post("/delete_label/", deleteLabel);
 router.post("/delete_example/", deleteExample);
-router.post("/train/", trainModel);
-router.post("/test", testModel);
+router.post("/train_model", trainModel);
+router.post("/test_model", testModel);
 
 //avatars
 router.get("/get_avatars", getAvatars);
