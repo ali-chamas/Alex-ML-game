@@ -7,6 +7,7 @@ import { apiUrl } from "../../../tools/api-url/apiUrl";
 import { FaPen } from "react-icons/fa";
 import PopupLayout from "../../../common/components/PopupLayout";
 import AvatarsPopup from "./components/AvatarsPopup";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const Profile = () => {
   const { user } = useContext(UserContext) as UserContextType;
@@ -42,6 +43,12 @@ const Profile = () => {
     }
   };
 
+  const countCompletedGames = (games: [gameType] | any): number => {
+    return games.reduce((count: number, game: gameType) => {
+      return count + (game.isComplete ? 1 : 0);
+    }, 0);
+  };
+
   const scrollToProfile = () => {
     let offsetTop = document.getElementById("profile")?.offsetTop;
     window.scrollTo({
@@ -70,7 +77,7 @@ const Profile = () => {
           id="profile"
           className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
         >
-          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col items-center p-3">
+          <div className="bg-primary w-[300px] h-[500px] rounded-lg flex flex-col gap-2 items-center p-3">
             <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
               <img
                 src={`${apiUrl}/${user?.avatar}`}
@@ -85,6 +92,23 @@ const Profile = () => {
               </button>
               <h1 className="text-lg">Hi {user?.firstName} !</h1>
             </div>
+            <div className="flex gap-3">
+              <button className=" btn-primary-white ">edit info</button>
+              <button className=" btn-primary-danger ">Logout</button>
+            </div>
+
+            <ProgressBar
+              completed={`${countCompletedGames(user?.games)}`}
+              customLabel={`${countCompletedGames(user?.games)} / ${
+                approvedGames.length
+              }
+              `}
+              maxCompleted={approvedGames?.length}
+              className=" w-full mt-auto"
+              barContainerClassName="bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
+              bgColor="white"
+              labelAlignment="outside"
+            />
           </div>
         </div>
         {openAvatars && (
