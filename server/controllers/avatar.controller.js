@@ -11,7 +11,7 @@ const getAvatars = (req, res) => {
       )
     );
 
-    const avatars = avatarFiles.map((file) => `/avatars/${file}`);
+    const avatars = avatarFiles.map((file) => `avatars/${file}`);
 
     res.status(200).json(avatars);
   } catch (error) {

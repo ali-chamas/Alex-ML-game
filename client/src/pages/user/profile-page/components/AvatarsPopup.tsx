@@ -25,6 +25,18 @@ const AvatarsPopup = ({
     }
     setLoading(false);
   };
+
+  const changeAvatar = async () => {
+    try {
+      const res = await sendRequest("PUT", "/user/update_my_info", {
+        avatar: activeAvatar,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAvatars();
   }, []);
@@ -49,9 +61,13 @@ const AvatarsPopup = ({
               src={`${apiUrl}/${avatar}`}
               key={i}
               className={`w-[100px] rounded-full hover:opacity-90 cursor-pointer ${
-                avatar == `/${userAvatar}` && "border-[5px] border-[#69F2FA]"
+                avatar == activeAvatar && "border-[5px] border-[#69F2FA]"
               }`}
-              alt=""
+              alt="avatar"
+              onClick={() => {
+                setActiveAvatar(avatar);
+                changeAvatar();
+              }}
             />
           ))}
         </div>
