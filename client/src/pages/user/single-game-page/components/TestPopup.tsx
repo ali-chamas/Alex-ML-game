@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
-import { modelType } from "../../../../tools/data-types/modelType";
+import { labelType, modelType } from "../../../../tools/data-types/modelType";
 import { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { sendRequest } from "../../../../tools/request-method/request";
@@ -29,6 +28,9 @@ const TestPopup = ({
     null
   );
   const [testResults, setTestResults] = useState<[] | any>([]);
+  const [trainingdataTracking, setTrainingDataTracking] = useState<
+    [labelType] | []
+  >([]);
 
   const trainModel = async () => {
     try {
@@ -38,6 +40,7 @@ const TestPopup = ({
       console.log(res);
       setTrained(true);
       setTrigger((t) => !t);
+      setTrainingDataTracking(model.dataset.labels);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +61,23 @@ const TestPopup = ({
       console.log(error);
     }
   };
+  const areLabelsChanged = (): boolean => {
+    const oldData = model.dataset.labels;
+    if (oldData.length !== trainingdataTracking.length) {
+      return false;
+    }
 
+    for (let i = 0; i < oldData.length; i++) {
+      const oldLabel = oldData[i];
+      const newLabel = trainingdataTracking[i];
+
+      if (JSON.stringify(oldLabel) !== JSON.stringify(newLabel)) {
+        return false;
+      }
+    }
+
+    return true;
+  };
   return (
     <>
       <div className="flex justify-between items-center w-full">
@@ -105,7 +124,11 @@ const TestPopup = ({
                 </div>
               )}
             </div>
-            <button className="btn-primary-white text-sm" onClick={trainModel}>
+            <button
+              className="btn-primary-white text-sm disabled-btn"
+              disabled={areLabelsChanged()}
+              onClick={trainModel}
+            >
               Train again
             </button>
           </div>

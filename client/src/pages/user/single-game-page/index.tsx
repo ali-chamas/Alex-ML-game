@@ -24,7 +24,6 @@ const SingleGame = () => {
   const [openLabel, setOpenLabel] = useState<labelType | null>(null);
   const [openTest, setOpenTest] = useState<boolean>(false);
   const [openPlay, setOpenPlay] = useState<boolean>(false);
-  const [trainingdataTracking, setTrainingDataTracking] = useState([]);
 
   const getActiveGame = async () => {
     try {
