@@ -4,6 +4,7 @@ import { modelType } from "../../../../tools/data-types/modelType";
 import { useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 import scratchImg from "../../../../assets/Scratch-cat.png";
+import { sendRequest } from "../../../../tools/request-method/request";
 const PlayPopup = ({
   gameId,
   open,
@@ -20,6 +21,19 @@ const PlayPopup = ({
   game: gameType;
 }) => {
   const [complete, setComplete] = useState(game.isComplete);
+
+  const toggleComplete = async () => {
+    try {
+      const res = await sendRequest("PUT", "/user/complete_game", {
+        gameId: gameId,
+      });
+      setTrigger((t) => !t);
+      setComplete((c) => !c);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="popup ">
@@ -46,9 +60,17 @@ const PlayPopup = ({
           <button className="btn-primary-dark">Go!</button>
         </div>
         {complete ? (
-          <button className="btn-primary-dark">Restart</button>
+          <button
+            className="btn-primary-dark self-end mt-auto"
+            onClick={toggleComplete}
+          >
+            Restart
+          </button>
         ) : (
-          <button className="btn-primary-white self-end mt-auto">
+          <button
+            className="btn-primary-white self-end mt-auto"
+            onClick={toggleComplete}
+          >
             Complete
           </button>
         )}
