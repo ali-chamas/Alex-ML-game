@@ -54,7 +54,9 @@ const SingleGame = () => {
     activeGame?.model.dataset.labels.forEach((label) => {
       count += label.examples.length;
     });
-    if (count >= 10) return false;
+    if (activeGame?.model.isTrained) {
+      return false;
+    } else if (count >= 10) return false;
     else return true;
   };
 
