@@ -10,9 +10,13 @@ import AvatarsPopup from "./components/AvatarsPopup";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import { FaTrophy } from "react-icons/fa6";
+import { sendRequest } from "../../../tools/request-method/request";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user } = useContext(UserContext) as UserContextType;
+  const { user, removeUser } = useContext(UserContext) as UserContextType;
+
+  const navigate = useNavigate();
 
   const [currentGame, setCurrentGame] = useState<gameType | null>(null);
   const [openAvatars, setOpenAvatars] = useState<boolean>(false);
@@ -42,6 +46,16 @@ const Profile = () => {
       } else {
         setCurrentGame(user?.games.pop() as gameType);
       }
+    }
+  };
+
+  const logout = async () => {
+    try {
+      const res = await sendRequest("GET", "/auth/logout");
+      removeUser();
+      navigate("/auth");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -106,7 +120,9 @@ const Profile = () => {
             </div>
             <div className="flex gap-3">
               <button className=" btn-primary-white ">edit info</button>
-              <button className=" btn-primary-danger ">Logout</button>
+              <button className=" btn-primary-danger " onClick={logout}>
+                Logout
+              </button>
             </div>
 
             <h1
