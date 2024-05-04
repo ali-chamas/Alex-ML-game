@@ -9,7 +9,7 @@ const Auth = () => {
   const [type, setType] = useState<string>(authType || "login");
 
   return (
-    <div className="flex justify-center min-h-[85vh] max-h-[87vh] items-center xl:justify-between ">
+    <div className="flex justify-center min-h-[85vh] max-h-[90vh] items-center xl:justify-between ">
       {type == "login" ? (
         <Login setType={setType} />
       ) : (
@@ -18,7 +18,7 @@ const Auth = () => {
       <img
         src={authBg}
         alt=""
-        className="hidden xl:block xl:w-[700px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] relative  xl:-bottom-28 2xl:-bottom-16 -right-20"
+        className="hidden xl:block xl:w-[700px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
       />
     </div>
   );
