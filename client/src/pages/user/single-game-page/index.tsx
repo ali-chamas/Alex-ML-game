@@ -32,6 +32,7 @@ const SingleGame = () => {
       if (res.status == 200) {
         setActiveGame(res.data);
       }
+      console.log("triggered");
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +49,7 @@ const SingleGame = () => {
     setLoading(false);
   };
 
-  //true means disabled in ths=ese two functions
+  //true means disabled in thsese two functions
   const TrainingEligible = () => {
     let count = 0;
     activeGame?.model.dataset.labels.forEach((label) => {
@@ -125,11 +126,17 @@ const SingleGame = () => {
         </div>
       )}
       {openLabel && (
-        <LabelPopup
-          label={openLabel}
-          setOpen={setOpenLabel}
-          gameId={gameId}
-          setTrigger={setTrigger}
+        <PopupLayout
+          children={
+            <LabelPopup
+              label={openLabel}
+              setOpen={setOpenLabel}
+              gameId={gameId}
+              setTrigger={setTrigger}
+              game={activeGame}
+            />
+          }
+          open={openLabel}
         />
       )}
       {openTest && (

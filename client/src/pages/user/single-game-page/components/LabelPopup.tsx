@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { exampleType, labelType } from "../../../../tools/data-types/modelType";
 import { IoMdClose } from "react-icons/io";
 import { FaTrash } from "react-icons/fa";
@@ -10,10 +9,12 @@ import {
   PopoverContent,
   PopoverHandler,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { gameType } from "../../../../tools/data-types/gameType";
 
 const LabelPopup = ({
   label,
+  game,
   setOpen,
   gameId,
   setTrigger,
@@ -21,23 +22,33 @@ const LabelPopup = ({
   label: labelType | null;
   setOpen: React.Dispatch<React.SetStateAction<labelType | null>>;
   gameId: string | undefined;
+  game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { triggerContext } = useTriggerContext();
+  // const { triggerContext } = useTriggerContext();
 
   const [example, setExample] = useState<string>("");
 
-  const [examples, setExamples] = useState<[exampleType] | any>(
-    label?.examples
-  );
+  const [examples, setExamples] = useState<[exampleType] | []>([]);
+
+  const getExamples = () => {
+    const ex = game?.model.dataset.labels.find((lab) => lab._id == label?._id);
+    if (ex) {
+      setExamples(ex.examples);
+    } else {
+      setExamples([]);
+    }
+  };
 
   const deleteLabel = async () => {
     const reqBody = { gameId: gameId, labelId: label?._id };
 
     try {
       const res = await sendRequest("POST", "/user/delete_label", reqBody);
-      setTrigger((t) => !t);
-      setOpen(null);
+      if (res.status == 200) {
+        setTrigger((t) => !t);
+        setOpen(null);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -47,10 +58,10 @@ const LabelPopup = ({
     const reqBody = { gameId: gameId, labelId: label?._id, example: example };
     try {
       const res = await sendRequest("POST", "/user/add_example", reqBody);
-      triggerContext();
-      setExamples([...examples, { example: example }] as [exampleType]);
-      setExample("");
-      setTrigger((t) => !t);
+      if (res.status == 200) {
+        setTrigger((t) => !t);
+        setExample("");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -64,77 +75,74 @@ const LabelPopup = ({
     };
     try {
       const res = await sendRequest("POST", "/user/delete_example", reqBody);
-      setTrigger((t) => !t);
-      setExamples(
-        examples?.filter((e: exampleType) => e._id !== id) as [exampleType]
-      );
+
+      if (res.status == 200) {
+        setTrigger((t) => !t);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    getExamples();
+  }, [game]);
+
   return (
-    <div className="popup ">
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: label ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        className="popup-child flex flex-col gap-5"
-      >
-        <div className="flex justify-between items-center w-full">
-          <button
-            className="bg-red-400/80 rounded-full p-2 hover:opacity-80"
-            onClick={deleteLabel}
-          >
-            <FaTrash />
-          </button>
+    <>
+      <div className="flex justify-between items-center w-full">
+        <button
+          className="bg-red-400/80 rounded-full p-2 hover:opacity-80"
+          onClick={deleteLabel}
+        >
+          <FaTrash />
+        </button>
 
-          <h1 className=" text-lg ">{label?.labelName}</h1>
+        <h1 className=" text-lg ">{label?.labelName}</h1>
 
-          <button onClick={() => setOpen(null)} className="text-xl ">
-            <IoMdClose />
-          </button>
-        </div>
-        <div className="self-end">
-          <Popover placement="bottom">
-            <PopoverHandler>
-              <button className="btn-primary-white  text-xs sm:text-sm md:text-base  ">
-                example +
-              </button>
-            </PopoverHandler>
-            <PopoverContent className="bg-primary flex flex-col items-center gap-2">
-              <Input
-                label="example"
-                value={example}
-                type="text"
-                color="white"
-                onChange={(e) => setExample(e.target.value)}
-              />
-              <button className="btn-primary-white" onClick={addExample}>
-                add
-              </button>
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {examples.map((ex: exampleType, i: number) => (
-            <button
-              key={i}
-              className="btn-primary-dark text-xs group flex gap-3 items-center cursor-default"
-            >
-              {ex.example}
-              <small
-                className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
-                onClick={() => deleteExample(ex._id)}
-              >
-                <FaTrash />
-              </small>
+        <button onClick={() => setOpen(null)} className="text-xl ">
+          <IoMdClose />
+        </button>
+      </div>
+      <div className="self-end">
+        <Popover placement="bottom">
+          <PopoverHandler>
+            <button className="btn-primary-white  text-xs sm:text-sm md:text-base  ">
+              example +
             </button>
-          ))}
-        </div>
-      </motion.div>
-    </div>
+          </PopoverHandler>
+          <PopoverContent className="bg-primary flex flex-col items-center gap-2">
+            <Input
+              label="example"
+              value={example}
+              type="text"
+              color="white"
+              onChange={(e) => setExample(e.target.value)}
+            />
+            <button className="btn-primary-white" onClick={addExample}>
+              add
+            </button>
+          </PopoverContent>
+        </Popover>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {examples.map((ex: exampleType, i: number) => (
+          <button
+            key={i}
+            className="btn-primary-dark text-xs group flex gap-3 items-center cursor-default"
+          >
+            {ex.example}
+            <small
+              className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
+              onClick={() => deleteExample(ex._id)}
+            >
+              <FaTrash />
+            </small>
+          </button>
+        ))}
+      </div>
+    </>
   );
 };
 
