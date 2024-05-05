@@ -12,6 +12,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { FaTrophy } from "react-icons/fa6";
 import { sendRequest } from "../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
+import EditPopup from "./components/EditPopup";
 
 const Profile = () => {
   const { user, removeUser } = useContext(UserContext) as UserContextType;
@@ -20,6 +21,7 @@ const Profile = () => {
 
   const [currentGame, setCurrentGame] = useState<gameType | null>(null);
   const [openAvatars, setOpenAvatars] = useState<boolean>(false);
+  const [openInfo, setOpenInfo] = useState<boolean>(false);
 
   const { approvedGames, gamesStateTrigger } = useContext(
     GamesContext
@@ -127,10 +129,15 @@ const Profile = () => {
               >
                 <FaPen />
               </button>
-              <h1 className="text-lg">Hi {user?.firstName} !</h1>
+              <h1 className="text-lg">Hi {user?.username} !</h1>
             </div>
             <div className="flex gap-3">
-              <button className=" btn-primary-white ">edit info</button>
+              <button
+                className=" btn-primary-white "
+                onClick={() => setOpenInfo(true)}
+              >
+                edit info
+              </button>
               <button className=" btn-primary-danger " onClick={logout}>
                 Logout
               </button>
@@ -165,6 +172,12 @@ const Profile = () => {
                 setOpen={setOpenAvatars}
               />
             }
+          />
+        )}
+        {openInfo && (
+          <PopupLayout
+            children={<EditPopup setOpen={setOpenInfo} user={user} />}
+            open={openInfo}
           />
         )}
       </div>
