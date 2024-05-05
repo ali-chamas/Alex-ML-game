@@ -98,11 +98,11 @@ const SingleGame = () => {
 
           <TrainOption game={activeGame} setTrigger={setTrigger} />
 
-          <div className="flex flex-wrap gap-6 h-[300px] max-h-[300px]] overflow-y-auto">
+          <div className="flex flex-col md:flex-wrap md:flex-row md:items-start  items-center gap-3 h-[300px] max-h-[300px] overflow-y-auto">
             {activeGame?.model.dataset.labels.map((label, i) => (
               <button
                 key={i}
-                className="btn-primary-dark h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
+                className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
                 onClick={() => setOpenLabel(label)}
               >
                 {label.labelName}
