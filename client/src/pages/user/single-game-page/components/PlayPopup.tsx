@@ -31,6 +31,8 @@ const PlayPopup = ({
       const res = await sendRequest("PUT", "/user/complete_game", {
         gameId: gameId,
       });
+      console.log(res);
+
       setComplete((c) => !c);
       triggerContext();
       setTrigger((t) => !t);
