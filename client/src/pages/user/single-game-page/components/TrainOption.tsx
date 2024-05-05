@@ -1,5 +1,3 @@
-import { IoSettings } from "react-icons/io5";
-
 import {
   Input,
   Popover,
@@ -11,6 +9,7 @@ import { sendRequest } from "../../../../tools/request-method/request";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 import HintPopup from "./HintPopup";
+import { MdOutlineQuestionMark } from "react-icons/md";
 
 const TrainOption = ({
   game,
@@ -35,7 +34,7 @@ const TrainOption = ({
   return (
     <div className="flex justify-between w-full items-center">
       <button className="rounded-full  bg-primary border p-2 hover:opacity-80">
-        <IoSettings />
+        <MdOutlineQuestionMark />
       </button>
       <div className="flex gap-2 lg:gap-4 items-center">
         <HintPopup hint={game?.hint} />
