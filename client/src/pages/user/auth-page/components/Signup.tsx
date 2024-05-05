@@ -31,7 +31,7 @@ const Signup = ({ setType }: any) => {
   };
 
   return (
-    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[400px] xl:w-[450px]">
+    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[450px] xl:w-[450px]">
       <h1 className="text-primary text-2xl lg:text-3xl">
         {" "}
         LET'S GET YOU STARTED!
@@ -40,7 +40,7 @@ const Signup = ({ setType }: any) => {
       <div className="flex flex-col w-full md:flex-row gap-6 md:gap-2 ">
         <Input
           label="First Name"
-          className="md:w-[95%] xl:w-[99%]"
+          className="md:w"
           color="white"
           onChange={(e) =>
             setUserInfo({ ...userInfo, firstName: e.target.value })
@@ -48,7 +48,7 @@ const Signup = ({ setType }: any) => {
         />
         <Input
           label="Last Name "
-          className="md:w-[95%] xl:w-[99%]"
+          className=""
           color="white"
           onChange={(e) =>
             setUserInfo({ ...userInfo, lastName: e.target.value })

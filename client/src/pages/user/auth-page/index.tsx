@@ -18,7 +18,7 @@ const Auth = () => {
       <img
         src={authBg}
         alt=""
-        className="hidden xl:block xl:w-[700px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
+        className="hidden xl:block xl:w-[600px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
       />
     </div>
   );
