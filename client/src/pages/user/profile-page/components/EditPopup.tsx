@@ -10,10 +10,10 @@ const EditPopup = ({
   user: userType | null | undefined;
 }) => {
   const infoArray = [
-    { title: "first name", value: user?.firstName },
-    { title: "last name", value: user?.lastName },
-    { title: "username", value: user?.username },
-    { title: "age", value: user?.age },
+    { title: "first name", value: user?.firstName, reqTitle: "firstName" },
+    { title: "last name", value: user?.lastName, reqTitle: "lastName" },
+    { title: "username", value: user?.username, reqTitle: "username" },
+    { title: "age", value: user?.age, reqTitle: "age" },
   ];
 
   return (
@@ -26,7 +26,12 @@ const EditPopup = ({
         </button>
       </div>
       {infoArray.map((info, i) => (
-        <InputPopups title={info.title} value={info.value} key={i} />
+        <InputPopups
+          reqTitle={info.reqTitle}
+          title={info.title}
+          value={info.value}
+          key={i}
+        />
       ))}
     </>
   );
