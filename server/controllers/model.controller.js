@@ -197,6 +197,11 @@ const trainModel = async (req, res) => {
 
       const trainedModelJSON = net.toJSON();
       const newModelName = `trained_model_${new Date().getTime()}.json`;
+
+      if (user.games[foundGameIndex].model.modelUrl) {
+        fs.unlinkSync(`public/${user.games[foundGameIndex].model.modelUrl}`);
+        console.log("removed");
+      }
       fs.writeFileSync(
         `public/trained_models/${newModelName}`,
         JSON.stringify(trainedModelJSON)
