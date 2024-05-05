@@ -18,6 +18,10 @@ const InputPopups = ({
   value: string | number | undefined;
   reqTitle: string | undefined;
 }) => {
+  interface errorType {
+    status: number;
+  }
+
   const [input, setInput] = useState<string | number>("");
   const { setUserTrigger } = useContext(UserContext) as UserContextType;
 
@@ -27,11 +31,16 @@ const InputPopups = ({
     };
     try {
       const res = await sendRequest("PUT", "/user/update_my_info", reqBody);
-      console.log(res);
+
       setUserTrigger((t) => !t);
-    } catch (error) {
+      toast.success(`${title} updated succesfully`);
+    } catch (error: errorType | any) {
       console.log(error);
-      // toast.error(error?.response?.data);
+
+      if (error?.response.status == 400) toast.error("username already taken");
+      else {
+        toast.error("something went wrong");
+      }
     }
   };
 
