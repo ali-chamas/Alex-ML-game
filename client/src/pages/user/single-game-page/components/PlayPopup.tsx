@@ -1,11 +1,12 @@
 import { IoMdClose } from "react-icons/io";
 import { modelType } from "../../../../tools/data-types/modelType";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 import scratchImg from "../../../../assets/Scratch-cat.png";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useTriggerContext } from "../../../../common/functions/TriggerContext";
 import toast, { Toaster } from "react-hot-toast";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const PlayPopup = ({
   gameId,
@@ -23,6 +24,7 @@ const PlayPopup = ({
   game: gameType;
 }) => {
   const { triggerContext } = useTriggerContext();
+  const { token } = useContext(UserContext) as UserContextType;
 
   const [complete, setComplete] = useState(game.isComplete);
 
@@ -64,7 +66,16 @@ const PlayPopup = ({
           alt=""
         />
         Scratch!
-        <button className="btn-primary-dark">Go!</button>
+        <button
+          className="btn-primary-dark"
+          onClick={() =>
+            window.open(
+              `https://alex-ml1.github.io/alex/scratch?url=${game.model.modelUrl}&token=${token}`
+            )
+          }
+        >
+          Go!
+        </button>
       </div>
       {complete ? (
         <button
