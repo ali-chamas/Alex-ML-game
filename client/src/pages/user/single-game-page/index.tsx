@@ -95,7 +95,9 @@ const SingleGame = () => {
       ) : (
         <div className="flex flex-col  min-h-[80vh] items-center gap-10">
           <h1 className="text-primary text-xl">{activeGame?.name}</h1>
+
           <TrainOption game={activeGame} setTrigger={setTrigger} />
+
           <div className="flex flex-wrap gap-6 h-[300px] max-h-[300px]] overflow-y-auto">
             {activeGame?.model.dataset.labels.map((label, i) => (
               <button

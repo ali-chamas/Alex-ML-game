@@ -20,7 +20,6 @@ const TrainOption = ({
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [label, setLabel] = useState<string>("");
-  const [openHint, setOpenHint] = useState<boolean>(false);
 
   const addLabel = async () => {
     const gameBody = { gameId: game?._id, label: label };
@@ -42,7 +41,12 @@ const TrainOption = ({
         <HintPopup hint={game?.hint} />
         <Popover placement="bottom">
           <PopoverHandler>
-            <button className="btn-primary-dark">add label</button>
+            <button
+              className="btn-primary-dark disabled-btn-dark"
+              disabled={game?.isComplete}
+            >
+              add label
+            </button>
           </PopoverHandler>
           <PopoverContent className="bg-primary flex flex-col items-center gap-2">
             <Input

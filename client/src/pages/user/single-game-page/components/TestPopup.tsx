@@ -1,7 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import { labelType, modelType } from "../../../../tools/data-types/modelType";
 import { useState } from "react";
-import { Input } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import { sendRequest } from "../../../../tools/request-method/request";
 
 const TestPopup = ({
@@ -30,9 +30,16 @@ const TestPopup = ({
   const [testResults, setTestResults] = useState<[] | any>([]);
   const [trainingdataTracking, setTrainingDataTracking] = useState<
     [labelType] | []
-  >([]);
+  >(
+    (JSON.parse(window.localStorage.getItem("oldData") as string) as [
+      labelType
+    ]) ?? []
+  );
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const trainModel = async () => {
+    setLoading(true);
     try {
       const res = await sendRequest("POST", "/user/train_model", {
         gameId: gameId,
@@ -41,9 +48,14 @@ const TestPopup = ({
       setTrained(true);
       setTrigger((t) => !t);
       setTrainingDataTracking(model.dataset.labels);
+      window.localStorage.setItem(
+        "oldData",
+        JSON.stringify(model.dataset.labels)
+      );
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   const testModel = async () => {
@@ -63,6 +75,7 @@ const TestPopup = ({
   };
   const areLabelsChanged = (): boolean => {
     const oldData = model.dataset.labels;
+
     if (oldData.length !== trainingdataTracking.length) {
       return false;
     }
@@ -107,7 +120,7 @@ const TestPopup = ({
                 Test
               </button>
             </div>
-            <div className="bg-black/25 rounded-md w-[200px] h-[150px] p-2 text-sm sm:w-[300px] sm:h-[200px] md:text-base lg:w-[400px] ">
+            <div className="bg-black/25 rounded-md w-[200px] h-[150px] p-2 text-sm sm:w-[300px] sm:h-[200px] md:text-base lg:w-[400px] overflow-y-auto">
               {testResponse && (
                 <div className="flex flex-col gap-2">
                   <h1>{testResponse.example}:</h1>
@@ -124,13 +137,14 @@ const TestPopup = ({
                 </div>
               )}
             </div>
-            <button
-              className="btn-primary-white text-sm disabled-btn"
+            <Button
+              className="btn-primary-white text-sm disabled-btn font-normal lowercase"
               disabled={areLabelsChanged()}
               onClick={trainModel}
+              loading={loading}
             >
               Train again
-            </button>
+            </Button>
           </div>
         )}
       </div>

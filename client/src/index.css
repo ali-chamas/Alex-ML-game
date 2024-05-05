@@ -46,5 +46,8 @@
 }
 
 .disabled-btn {
-  @apply disabled:opacity-60 disabled:hover:bg-white disabled:hover:text-black;
+  @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
+}
+.disabled-btn-dark {
+  @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }

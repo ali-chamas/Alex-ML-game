@@ -107,7 +107,10 @@ const LabelPopup = ({
       <div className="self-end">
         <Popover placement="bottom">
           <PopoverHandler>
-            <button className="btn-primary-white  text-xs sm:text-sm md:text-base  ">
+            <button
+              className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn"
+              disabled={game?.isComplete}
+            >
               example +
             </button>
           </PopoverHandler>

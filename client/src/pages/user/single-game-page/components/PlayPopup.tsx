@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 import { modelType } from "../../../../tools/data-types/modelType";
 import { useState } from "react";
@@ -11,7 +10,7 @@ const PlayPopup = ({
   gameId,
 
   setOpen,
-  model,
+
   setTrigger,
   game,
 }: {
@@ -64,7 +63,7 @@ const PlayPopup = ({
           className="btn-primary-dark self-end mt-auto"
           onClick={toggleComplete}
         >
-          Restart
+          Continue
         </button>
       ) : (
         <button
