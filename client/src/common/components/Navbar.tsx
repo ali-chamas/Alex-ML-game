@@ -11,7 +11,6 @@ const Navbar = () => {
   const links = [
     { name: "About", destination: "/about" },
     { name: "Contact", destination: "/contact" },
-    { name: "Docs", destination: "/docs" },
   ];
   return (
     <header className=" flex justify-between items-center  h-[10vh]">
@@ -48,7 +47,12 @@ const Navbar = () => {
         <MobileMenu links={links} navigate={navigate} user={user} />
       </div>
       {!user ? (
-        <button className="btn-primary-dark hidden md:block ">Login</button>
+        <button
+          className="btn-primary-dark hidden md:block "
+          onClick={() => navigate("/auth")}
+        >
+          Login
+        </button>
       ) : (
         <img
           src={`${apiUrl}/${user.avatar}`}

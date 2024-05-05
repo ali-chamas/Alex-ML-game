@@ -31,8 +31,8 @@ const Login = ({ setType }: any) => {
   };
 
   return (
-    <form className=" flex flex-col items-center gap-6 w-[300px] lg:w-[400px]">
-      <h1 className="text-primary text-2xl  lg:text-3xl">
+    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[450px] xl:w-[450px]">
+      <h1 className="text-primary text-xl md:text-2xl  lg:text-3xl">
         {" "}
         LET'S CONTINUE THE JOUNEY!!
       </h1>

@@ -44,7 +44,12 @@ const MobileMenu = ({ links, navigate, user }: any) => {
           </nav>
 
           {!user ? (
-            <button className="btn-primary-white">Login</button>
+            <button
+              className="btn-primary-white"
+              onClick={() => navigate("/auth")}
+            >
+              Login
+            </button>
           ) : (
             <img
               src={`${apiUrl}/${user.avatar}`}
