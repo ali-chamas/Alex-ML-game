@@ -7,6 +7,7 @@ import {
 import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { UserContext, UserContextType } from "../../../../context/userContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const InputPopups = ({
   title,
@@ -30,11 +31,13 @@ const InputPopups = ({
       setUserTrigger((t) => !t);
     } catch (error) {
       console.log(error);
+      // toast.error(error?.response?.data);
     }
   };
 
   return (
     <div className="flex gap-2 w-full items-center justify-between mt-2">
+      <Toaster />
       <p>{title}</p>
       <Popover placement="bottom">
         <PopoverHandler>

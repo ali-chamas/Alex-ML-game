@@ -29,7 +29,10 @@ const updateUser = async (req, res) => {
       .json({ message: "User updated successfully", user: updatedUser });
   } catch (error) {
     console.error("Error updating user:", error);
-    res.status(500).json({ message: "Internal server error" });
+    if (error.name === "MongoServerError" && error.code === 11000) {
+      return res.status(400).json({ message: "Username is already taken" });
+    }
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
