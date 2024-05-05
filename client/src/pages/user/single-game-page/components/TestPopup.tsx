@@ -3,6 +3,7 @@ import { labelType, modelType } from "../../../../tools/data-types/modelType";
 import { useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
 import { sendRequest } from "../../../../tools/request-method/request";
+import toast, { Toaster } from "react-hot-toast";
 
 const TestPopup = ({
   gameId,
@@ -52,8 +53,10 @@ const TestPopup = ({
         "oldData",
         JSON.stringify(model.dataset.labels)
       );
+      toast.success("trained succesfully");
     } catch (error) {
       console.log(error);
+      toast.error("something went wrong");
     }
     setLoading(false);
   };
@@ -93,6 +96,7 @@ const TestPopup = ({
   };
   return (
     <>
+      <Toaster />
       <div className="flex justify-between items-center w-full">
         <h1 className=" text-lg ">Train then test your model!</h1>
 

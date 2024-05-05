@@ -5,6 +5,7 @@ import { gameType } from "../../../../tools/data-types/gameType";
 import scratchImg from "../../../../assets/Scratch-cat.png";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const PlayPopup = ({
   gameId,
@@ -35,13 +36,20 @@ const PlayPopup = ({
       setComplete((c) => !c);
       triggerContext();
       setTrigger((t) => !t);
+      toast.success(
+        complete
+          ? "Continue training!"
+          : "congrats! Note: you can't train you model anymore"
+      );
     } catch (error) {
       console.log(error);
+      toast.error("something went wrong");
     }
   };
 
   return (
     <>
+      <Toaster />
       <div className="flex justify-between items-center w-full ">
         <h1 className=" text-lg ">Play with your model</h1>
 
