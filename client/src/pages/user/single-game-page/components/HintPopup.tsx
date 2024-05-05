@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverHandler,
 } from "@material-tailwind/react";
-const HintPopup = ({ hint }: string | undefined) => {
+const HintPopup = ({ hint }: { hint: string | undefined }) => {
   return (
     <>
       <Popover placement="bottom">
