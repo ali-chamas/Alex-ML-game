@@ -23,7 +23,7 @@ const Signup = ({ setType }: any) => {
         console.log(res.data);
         setError(res.data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setError(error?.response.data || "something went wrong");
     }
@@ -70,7 +70,7 @@ const Signup = ({ setType }: any) => {
             setUserInfo({ ...userInfo, password: e.target.value })
           }
         />
-        <Typography className="mt-2 flex items-center gap-1 font-normal text-xs">
+        <small className="mt-2 flex items-center gap-1 font-normal text-xs">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ const Signup = ({ setType }: any) => {
           </svg>
           Use at least 8 characters, one uppercase, one lowercase and one
           number.
-        </Typography>
+        </small>
       </div>
       <Input
         label="Age"
