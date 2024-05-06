@@ -141,7 +141,7 @@ const LabelPopup = ({
               className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
               onClick={() => deleteExample(ex._id)}
             >
-              x
+              <IoMdClose />
             </small>
           </button>
         ))}
