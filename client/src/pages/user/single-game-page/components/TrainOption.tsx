@@ -21,13 +21,15 @@ const TrainOption = ({
   const [label, setLabel] = useState<string>("");
 
   const addLabel = async () => {
-    const gameBody = { gameId: game?._id, label: label };
-    try {
-      const res = await sendRequest("POST", "/user/add_label", gameBody);
-      setTrigger((t) => !t);
-      setLabel("");
-    } catch (error) {
-      console.log(error);
+    if (label != "") {
+      const gameBody = { gameId: game?._id, label: label };
+      try {
+        const res = await sendRequest("POST", "/user/add_label", gameBody);
+        setTrigger((t) => !t);
+        setLabel("");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
