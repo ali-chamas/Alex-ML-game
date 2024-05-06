@@ -25,8 +25,6 @@ const LabelPopup = ({
   game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  // const { triggerContext } = useTriggerContext();
-
   const [example, setExample] = useState<string>("");
 
   const [examples, setExamples] = useState<[exampleType] | []>([]);
@@ -55,15 +53,17 @@ const LabelPopup = ({
   };
 
   const addExample = async () => {
-    const reqBody = { gameId: gameId, labelId: label?._id, example: example };
-    try {
-      const res = await sendRequest("POST", "/user/add_example", reqBody);
-      if (res.status == 200) {
-        setTrigger((t) => !t);
-        setExample("");
+    if (example != "") {
+      const reqBody = { gameId: gameId, labelId: label?._id, example: example };
+      try {
+        const res = await sendRequest("POST", "/user/add_example", reqBody);
+        if (res.status == 200) {
+          setTrigger((t) => !t);
+          setExample("");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
