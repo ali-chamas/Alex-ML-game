@@ -11,6 +11,7 @@ import { sendRequest } from "../../../tools/request-method/request";
 import TestPopup from "./components/TestPopup";
 import PlayPopup from "./components/PlayPopup";
 import PopupLayout from "../../../common/components/PopupLayout";
+import logo from "../../../assets/marco.png";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -98,17 +99,25 @@ const SingleGame = () => {
 
           <TrainOption game={activeGame} setTrigger={setTrigger} />
 
-          <div className="flex flex-col md:flex-wrap md:flex-row md:items-start  items-center gap-3 h-[300px] max-h-[300px] overflow-y-auto">
-            {activeGame?.model.dataset.labels.map((label, i) => (
-              <button
-                key={i}
-                className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
-                onClick={() => setOpenLabel(label)}
-              >
-                {label.labelName}
-              </button>
-            ))}
-          </div>
+          {activeGame?.model.dataset.labels &&
+          activeGame?.model.dataset.labels.length > 0 ? (
+            <div className="flex flex-col md:flex-wrap md:flex-row md:items-start  items-center gap-3 h-[300px] max-h-[300px] overflow-y-auto">
+              {activeGame?.model.dataset.labels.map((label, i) => (
+                <button
+                  key={i}
+                  className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
+                  onClick={() => setOpenLabel(label)}
+                >
+                  {label.labelName}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <h1 className=" h-[300px] flex flex-col lg:text-2xl justify-center items-center text-xl">
+              No labels yet
+              <img src={logo} alt="" className="w-[150px] lg:w-[200px]" />
+            </h1>
+          )}
           <div className="flex justify-between w-full ">
             <button
               className="btn-primary-white disabled-btn"

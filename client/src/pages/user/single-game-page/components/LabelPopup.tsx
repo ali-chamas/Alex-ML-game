@@ -92,8 +92,9 @@ const LabelPopup = ({
     <>
       <div className="flex justify-between items-center w-full">
         <button
-          className="bg-red-400/80 rounded-full p-2 hover:opacity-80"
+          className="bg-red-400/80 rounded-full p-2 hover:opacity-80 disabled:opacity-80"
           onClick={deleteLabel}
+          disabled={game?.isComplete}
         >
           <FaTrash />
         </button>
