@@ -58,7 +58,7 @@ const AvatarsPopup = ({
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex flex-wrap gap-5 justify-center mt-5">
+        <div className="flex flex-wrap gap-5 justify- mt-5">
           {avatars.map((avatar, i) => (
             <img
               src={`${apiUrl}/${avatar}`}

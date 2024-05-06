@@ -64,12 +64,14 @@ const Games = () => {
               slidesPerView: 4,
             },
           }}
-          className="w-full cursor-grab "
+          className="w-full cursor-grab  "
         >
           {filteredGames?.map((game, i) => (
-            <SwiperSlide key={i}>
-              <Gamecard game={game} user={user} checkProgress={progress} />
-            </SwiperSlide>
+            <>
+              <SwiperSlide key={i}>
+                <Gamecard game={game} user={user} checkProgress={progress} />
+              </SwiperSlide>
+            </>
           ))}
         </Swiper>
       ) : (

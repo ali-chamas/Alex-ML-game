@@ -23,7 +23,7 @@ const Login = ({ setType }: any) => {
         console.log(res.data);
         setError(res.data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setError(error?.response.data || "something went wrong");
     }
