@@ -115,14 +115,14 @@ const SingleGame = () => {
               disabled={TrainingEligible()}
               onClick={() => setOpenTest(true)}
             >
-              Test your model
+              Test Your Model
             </button>
             <button
               className=" btn-primary-white disabled-btn"
               onClick={() => setOpenPlay(true)}
               disabled={PlayingEligible()}
             >
-              Play!
+              Play
             </button>
           </div>
         </div>

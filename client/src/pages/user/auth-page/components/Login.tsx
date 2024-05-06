@@ -31,7 +31,7 @@ const Login = ({ setType }: any) => {
   };
 
   return (
-    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[450px] xl:w-[450px]">
+    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[410px] ">
       <h1 className="text-primary text-xl md:text-2xl  lg:text-3xl">
         {" "}
         LET'S CONTINUE THE JOUNEY!!
@@ -54,15 +54,15 @@ const Login = ({ setType }: any) => {
       <Button
         loading={loading}
         onClick={handleLogin}
-        className="btn-primary-white w-full"
+        className="btn-primary-white h-[45px] text-sm"
       >
-        Continue!
+        Continue
       </Button>
       {error && <small className="text-red-400">{error}</small>}
       <Typography>
         Doesn't have an account?{" "}
         <button className="text-[#69F2FA]" onClick={() => setType("singup")}>
-          SignUp
+          Sign Up
         </button>
       </Typography>
     </form>

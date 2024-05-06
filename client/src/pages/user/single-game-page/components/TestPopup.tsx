@@ -108,7 +108,7 @@ const TestPopup = ({
       <div className="flex h-full w-full justify-center items-center">
         {!trained ? (
           <button className="btn-primary-white" onClick={trainModel}>
-            Train model
+            Train Model
           </button>
         ) : (
           <div className="flex flex-col gap-4 items-center">
@@ -147,8 +147,9 @@ const TestPopup = ({
               onClick={trainModel}
               loading={loading}
             >
-              Train again
+              Train Again
             </Button>
+            {areLabelsChanged() && <small>make changes first</small>}
           </div>
         )}
       </div>

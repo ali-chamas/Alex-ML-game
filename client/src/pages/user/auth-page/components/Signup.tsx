@@ -31,7 +31,7 @@ const Signup = ({ setType }: any) => {
   };
 
   return (
-    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[450px] xl:w-[450px]">
+    <form className=" flex flex-col items-center gap-6 w-[300px] md:w-[410px] ">
       <h1 className="text-primary text-xl md:text-2xl lg:text-3xl">
         {" "}
         LET'S GET YOU STARTED!
@@ -40,7 +40,7 @@ const Signup = ({ setType }: any) => {
       <div className="flex flex-col w-full md:flex-row gap-6 md:gap-2 ">
         <Input
           label="First Name"
-          className="md:w"
+          className=""
           color="white"
           onChange={(e) =>
             setUserInfo({ ...userInfo, firstName: e.target.value })
@@ -97,7 +97,7 @@ const Signup = ({ setType }: any) => {
       <Button
         type="button"
         loading={loading}
-        className="btn-primary-white w-full"
+        className="btn-primary-white h-[45px] text-sm"
         onClick={handleRegister}
       >
         Let's Start

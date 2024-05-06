@@ -63,7 +63,7 @@ const InputPopups = ({
             onChange={(e) => setInput(e.target.value)}
           />
           <button className="btn-primary-white" onClick={updateUser}>
-            edit
+            Edit
           </button>
         </PopoverContent>
       </Popover>

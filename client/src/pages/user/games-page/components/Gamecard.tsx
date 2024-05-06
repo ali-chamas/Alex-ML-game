@@ -81,14 +81,14 @@ const Gamecard = ({
           game.order == availableOrder &&
           !checkProgress ? (
           <button className="btn-primary-white w-[200px]" onClick={startGame}>
-            start Mission
+            Start Mission
           </button>
         ) : (
           <button
             className="border-2 rounded-lg p-2 bg-black/25 border-white/40 disabled:opacity-80 w-[200px] "
             disabled
           >
-            locked
+            Locked
           </button>
         )}
       </div>

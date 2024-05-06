@@ -74,7 +74,7 @@ const PlayPopup = ({
             )
           }
         >
-          Go!
+          Go
         </button>
       </div>
       {complete ? (

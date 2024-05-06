@@ -44,7 +44,7 @@ const TrainOption = ({
               className="btn-primary-dark disabled-btn-dark"
               disabled={game?.isComplete}
             >
-              add label
+              Add Label
             </button>
           </PopoverHandler>
           <PopoverContent className="bg-primary flex flex-col items-center gap-2">
@@ -56,7 +56,7 @@ const TrainOption = ({
               onChange={(e) => setLabel(e.target.value)}
             />
             <button className="btn-primary-white" onClick={addLabel}>
-              add
+              Add
             </button>
           </PopoverContent>
         </Popover>

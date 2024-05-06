@@ -111,7 +111,7 @@ const LabelPopup = ({
               className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn"
               disabled={game?.isComplete}
             >
-              example +
+              + Example
             </button>
           </PopoverHandler>
           <PopoverContent className="bg-primary flex flex-col items-center gap-2">
@@ -123,7 +123,7 @@ const LabelPopup = ({
               onChange={(e) => setExample(e.target.value)}
             />
             <button className="btn-primary-white" onClick={addExample}>
-              add
+              Add
             </button>
           </PopoverContent>
         </Popover>
@@ -140,7 +140,7 @@ const LabelPopup = ({
               className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
               onClick={() => deleteExample(ex._id)}
             >
-              <FaTrash />
+              x
             </small>
           </button>
         ))}

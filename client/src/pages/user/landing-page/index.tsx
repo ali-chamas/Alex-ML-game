@@ -23,7 +23,7 @@ const Landing = () => {
             className="btn-primary-white w-full "
             onClick={() => navigate("/auth/signup")}
           >
-            Get started
+            Get Started
           </button>
           <button
             className="btn-primary-dark w-full"

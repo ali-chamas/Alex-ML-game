@@ -109,7 +109,7 @@ const Profile = () => {
             className="btn-primary-dark lg:hidden"
             onClick={scrollToProfile}
           >
-            My progress
+            My Progress
           </button>
         </div>
         <div
@@ -136,7 +136,7 @@ const Profile = () => {
                 className=" btn-primary-white "
                 onClick={() => setOpenInfo(true)}
               >
-                edit info
+                Edit Info
               </button>
               <button className=" btn-primary-danger " onClick={logout}>
                 Logout
