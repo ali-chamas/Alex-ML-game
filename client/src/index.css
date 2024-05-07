@@ -53,5 +53,5 @@
 }
 
 .dashboard-bg {
-  @apply bg-[#031C28];
+  @apply bg-gradient-to-tr from-[#01141E] via-[#031C28] to-[#031C28]/90;
 }
