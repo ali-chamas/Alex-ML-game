@@ -43,7 +43,9 @@ const Sidebar = () => {
           <img src="/logo.png" className="w-[60px]" alt="" />
           Alex Creator
         </h1>
-        <button onClick={logout}>Logout</button>
+        <button onClick={logout} className="btn-primary-danger">
+          Logout
+        </button>
       </Drawer>
     </>
   );
