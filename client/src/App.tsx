@@ -10,6 +10,7 @@ import SingleGame from "./pages/user/single-game-page";
 import UserProtection from "./tools/protected-routes/UserRoutes";
 import AdminProtection from "./tools/protected-routes/AdminRoutes";
 import AdminHome from "./pages/admin/home";
+import CreatorProtection from "./tools/protected-routes/CreatorRoutes";
 
 const App = () => {
   return (
@@ -35,6 +36,10 @@ const App = () => {
           </Route>
           <Route element={<AdminProtection />}>
             <Route path="/admin" element={<AdminHome />} />
+          </Route>
+
+          <Route element={<CreatorProtection />}>
+            <Route path="/creator" element={<CreatorProtection />} />
           </Route>
         </Route>
       </Routes>
