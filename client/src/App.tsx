@@ -7,6 +7,7 @@ import LoggedInProtection from "./tools/protected-routes/LoggedInRoutes";
 import Profile from "./pages/user/profile-page";
 import Games from "./pages/user/games-page";
 import SingleGame from "./pages/user/single-game-page";
+import UserProtection from "./tools/protected-routes/UserRoutes";
 
 const App = () => {
   return (
@@ -19,12 +20,17 @@ const App = () => {
         </Route>
 
         <Route element={<AuthProtection />}>
-          <Route element={<Layout children={<Profile />} />} path="/profile" />
-          <Route element={<Layout children={<Games />} />} path="/games" />
-          <Route
-            element={<Layout children={<SingleGame />} />}
-            path="games/:gameId"
-          />
+          <Route element={<UserProtection />}>
+            <Route
+              element={<Layout children={<Profile />} />}
+              path="/profile"
+            />
+            <Route element={<Layout children={<Games />} />} path="/games" />
+            <Route
+              element={<Layout children={<SingleGame />} />}
+              path="games/:gameId"
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
