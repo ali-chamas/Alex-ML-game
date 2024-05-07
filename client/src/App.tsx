@@ -8,6 +8,8 @@ import Profile from "./pages/user/profile-page";
 import Games from "./pages/user/games-page";
 import SingleGame from "./pages/user/single-game-page";
 import UserProtection from "./tools/protected-routes/UserRoutes";
+import AdminProtection from "./tools/protected-routes/AdminRoutes";
+import AdminHome from "./pages/admin/home";
 
 const App = () => {
   return (
@@ -30,6 +32,9 @@ const App = () => {
               element={<Layout children={<SingleGame />} />}
               path="games/:gameId"
             />
+          </Route>
+          <Route element={<AdminProtection />}>
+            <Route path="/admin" element={<AdminHome />} />
           </Route>
         </Route>
       </Routes>
