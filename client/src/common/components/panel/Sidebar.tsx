@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { IconButton, Drawer } from "@material-tailwind/react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { sendRequest } from "../../../tools/request-method/request";
 import { UserContext, UserContextType } from "../../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import SidebarLinks from "./SidebarLinks";
 
-const Sidebar = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+const Sidebar = ({ type }: { type: string }) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
@@ -35,15 +36,17 @@ const Sidebar = () => {
         )}
       </IconButton>
       <Drawer
-        className="bg-[#01141E] flex flex-col item-center p-5"
+        className="bg-[#01141E] flex flex-col items-center gap-8 p-5"
         open={isDrawerOpen}
         onClose={closeDrawer}
       >
-        <h1 className="flex gap-2 items-center text-xl">
+        <h1 className="flex gap-2 items-center text-2xl">
           <img src="/logo.png" className="w-[60px]" alt="" />
-          Alex Creator
+          Alex {type == "admin" ? "Admin" : "Creator"}
         </h1>
-        <button onClick={logout} className="btn-primary-danger">
+
+        <SidebarLinks type={type} setIsOpen={setIsDrawerOpen} />
+        <button onClick={logout} className="btn-primary-danger mt-auto ">
           Logout
         </button>
       </Drawer>

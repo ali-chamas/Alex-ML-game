@@ -1,10 +1,16 @@
 import { ReactNode } from "react";
 import Sidebar from "./Sidebar";
 
-const PanelLayout = ({ children }: { children: ReactNode }) => {
+const PanelLayout = ({
+  children,
+  type,
+}: {
+  children: ReactNode;
+  type: string;
+}) => {
   return (
     <section className="dashboard-bg min-h-screen flex">
-      <Sidebar />
+      <Sidebar type={type} />
       {children}
     </section>
   );

@@ -39,14 +39,16 @@ const App = () => {
           <Route element={<AdminProtection />}>
             <Route
               path="/admin"
-              element={<PanelLayout children={<AdminHome />} />}
+              element={<PanelLayout type={"admin"} children={<AdminHome />} />}
             />
           </Route>
 
           <Route element={<CreatorProtection />}>
             <Route
               path="/creator"
-              element={<PanelLayout children={<CreatorHome />} />}
+              element={
+                <PanelLayout type={"creator"} children={<CreatorHome />} />
+              }
             />
           </Route>
         </Route>
