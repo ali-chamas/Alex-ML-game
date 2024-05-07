@@ -39,7 +39,7 @@ const Games = () => {
   console.log(approvedGames);
 
   return (
-    <div className="flex flex-col mt-12 gap-12 min-h-[80vh] ">
+    <section className="flex flex-col mt-12 gap-12 min-h-[80vh] ">
       <h1 className="text-primary text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-[48px] self-center">
         CHOOSE YOUR MISSION
       </h1>
@@ -79,7 +79,7 @@ const Games = () => {
           <p className="text-lg lg:text-2xl">No games yet!</p>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

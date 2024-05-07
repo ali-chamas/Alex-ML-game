@@ -99,7 +99,7 @@ const Profile = () => {
 
   return (
     currentGame && (
-      <div className="mt-10 lg:flex justify-between items-center xl:justify-around xl:gap-10 2xl:mx-10">
+      <section className="mt-10 lg:flex justify-between items-center xl:justify-around xl:gap-10 2xl:mx-10">
         <div className="min-h-[80vh] lg:min-h-0  flex flex-col justify-between items-center">
           <div className="flex flex-col items-center gap-4 ">
             <h1 className="text-primary text-2xl xl:text-4xl">
@@ -186,7 +186,7 @@ const Profile = () => {
             open={openInfo}
           />
         )}
-      </div>
+      </section>
     )
   );
 };

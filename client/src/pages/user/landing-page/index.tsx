@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Landing = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-16 lg:justify-between min-h-[80vh] mt-20 md:mt-10 lg:mt-0 lg:gap-0">
+    <section className="flex flex-col lg:flex-row items-center gap-16 lg:justify-between min-h-[80vh] mt-20 md:mt-10 lg:mt-0 lg:gap-0">
       <div className=" flex flex-col gap-[25px] md:max-w-[450px] lg:max-w-[500px] xl:max-w-[650px]">
         <h1
           className="text-primary text-5xl md:text-6xl lg:text-7xl  2xl:text-[96px] "
@@ -41,7 +41,7 @@ const Landing = () => {
         alt=""
         className=" w-[250px] lg:w-[350px] xl:w-[530px] 2xl:w-[580px] "
       />
-    </div>
+    </section>
   );
 };
 
