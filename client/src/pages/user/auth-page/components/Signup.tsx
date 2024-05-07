@@ -97,7 +97,7 @@ const Signup = ({ setType }: any) => {
       <Button
         type="button"
         loading={loading}
-        className="btn-primary-white h-[45px] text-sm"
+        className="btn-primary-white  "
         onClick={handleRegister}
       >
         Let's Start

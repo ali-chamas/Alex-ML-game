@@ -48,13 +48,14 @@ const Login = ({ setType }: any) => {
         label="Password "
         type="password"
         color="white"
+        cl
         onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
       />
 
       <Button
         loading={loading}
         onClick={handleLogin}
-        className="btn-primary-white h-[45px] text-sm"
+        className="btn-primary-white  "
       >
         Continue
       </Button>

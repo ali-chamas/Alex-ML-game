@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IconButton, Drawer } from "@material-tailwind/react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { sendRequest } from "../../../tools/request-method/request";
+import { UserContext, UserContextType } from "../../../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [open, setOpen] = React.useState(0);
-
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
+  const navigate = useNavigate();
+
+  const { removeUser } = useContext(UserContext) as UserContextType;
+
+  const logout = async () => {
+    try {
+      const res = await sendRequest("GET", "/auth/logout");
+      removeUser();
+      navigate("/auth");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -29,6 +43,7 @@ const Sidebar = () => {
           <img src="/logo.png" className="w-[60px]" alt="" />
           Alex Creator
         </h1>
+        <button onClick={logout}>Logout</button>
       </Drawer>
     </>
   );
