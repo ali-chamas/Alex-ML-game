@@ -1,5 +1,5 @@
 const CreatorHome = () => {
-  return <div>CreatorHome</div>;
+  return <section className="dashboard-bg"></section>;
 };
 
 export default CreatorHome;

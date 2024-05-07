@@ -11,6 +11,7 @@ import UserProtection from "./tools/protected-routes/UserRoutes";
 import AdminProtection from "./tools/protected-routes/AdminRoutes";
 import AdminHome from "./pages/admin/home";
 import CreatorProtection from "./tools/protected-routes/CreatorRoutes";
+import CreatorHome from "./pages/creator/home";
 
 const App = () => {
   return (
@@ -39,7 +40,7 @@ const App = () => {
           </Route>
 
           <Route element={<CreatorProtection />}>
-            <Route path="/creator" element={<CreatorProtection />} />
+            <Route path="/creator" element={<CreatorHome />} />
           </Route>
         </Route>
       </Routes>

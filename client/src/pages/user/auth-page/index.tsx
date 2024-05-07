@@ -9,7 +9,7 @@ const Auth = () => {
   const [type, setType] = useState<string>(authType || "login");
 
   return (
-    <div className="flex justify-center min-h-[85vh] max-h-[90vh] items-center xl:justify-between ">
+    <section className="flex justify-center min-h-[85vh] max-h-[90vh] items-center xl:justify-between ">
       {type == "login" ? (
         <Login setType={setType} />
       ) : (
@@ -20,7 +20,7 @@ const Auth = () => {
         alt=""
         className="hidden xl:block xl:w-[600px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
       />
-    </div>
+    </section>
   );
 };
 

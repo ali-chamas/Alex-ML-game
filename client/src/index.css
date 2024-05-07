@@ -51,3 +51,7 @@
 .disabled-btn-dark {
   @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }
+
+.dashboard-bg {
+  @apply bg-[#031C28];
+}
