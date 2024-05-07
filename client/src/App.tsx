@@ -7,7 +7,6 @@ import LoggedInProtection from "./tools/protected-routes/LoggedInRoutes";
 import Profile from "./pages/user/profile-page";
 import Games from "./pages/user/games-page";
 import SingleGame from "./pages/user/single-game-page";
-import TestPage from "./pages/test-page";
 
 const App = () => {
   return (
@@ -25,10 +24,6 @@ const App = () => {
           <Route
             element={<Layout children={<SingleGame />} />}
             path="games/:gameId"
-          />
-          <Route
-            element={<Layout children={<TestPage />} />}
-            path="games/:gameId/test"
           />
         </Route>
       </Routes>
