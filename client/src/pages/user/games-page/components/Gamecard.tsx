@@ -75,7 +75,7 @@ const Gamecard = ({
             className="btn-primary-white w-[200px]"
             onClick={() => navigate(`/games/${game._id}`)}
           >
-            continue
+            Continue
           </button>
         ) : !game.isStarted &&
           game.order == availableOrder &&
