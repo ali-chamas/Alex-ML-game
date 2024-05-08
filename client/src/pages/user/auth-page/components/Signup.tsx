@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 
-const Signup = ({ setType }: any) => {
+const Signup = ({ setType, isDark }: any) => {
   const [userInfo, setUserInfo] = useState<userType | {}>({});
   const { addUser } = useContext(UserContext) as UserContextType;
 
@@ -41,7 +41,7 @@ const Signup = ({ setType }: any) => {
         <Input
           label="First Name"
           className=""
-          color="white"
+          color={isDark ? "white" : "black"}
           onChange={(e) =>
             setUserInfo({ ...userInfo, firstName: e.target.value })
           }
@@ -49,7 +49,7 @@ const Signup = ({ setType }: any) => {
         <Input
           label="Last Name "
           className=""
-          color="white"
+          color={isDark ? "white" : "black"}
           onChange={(e) =>
             setUserInfo({ ...userInfo, lastName: e.target.value })
           }
@@ -58,14 +58,14 @@ const Signup = ({ setType }: any) => {
       <Input
         label="Username "
         className="w-full"
-        color="white"
+        color={isDark ? "white" : "black"}
         onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
       />
       <div className="w-full">
         <Input
           label="Password "
           type="password"
-          color="white"
+          color={isDark ? "white" : "black"}
           onChange={(e) =>
             setUserInfo({ ...userInfo, password: e.target.value })
           }
@@ -90,7 +90,7 @@ const Signup = ({ setType }: any) => {
       <Input
         label="Age"
         type="number"
-        color="white"
+        color={isDark ? "white" : "black"}
         onChange={(e) => setUserInfo({ ...userInfo, age: e.target.value })}
       />
 
@@ -105,7 +105,10 @@ const Signup = ({ setType }: any) => {
       {error && <small className="text-red-400">{error}</small>}
       <Typography>
         Already has an account?{" "}
-        <button className="text-[#69F2FA]" onClick={() => setType("login")}>
+        <button
+          className="text-cyan-800 font-bold dark:text-cyan-400"
+          onClick={() => setType("login")}
+        >
           Login
         </button>
       </Typography>
