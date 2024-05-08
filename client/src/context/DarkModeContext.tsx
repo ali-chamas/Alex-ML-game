@@ -14,6 +14,19 @@ const DarkModeContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   const [isDarkMode, setIsDarkMode] = useState(localMode === "true");
 
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+    if (isDarkMode) {
+      if (htmlElement) {
+        htmlElement.classList.add("dark");
+      }
+    } else {
+      if (htmlElement) {
+        htmlElement.classList.remove("dark");
+      }
+    }
+  }, []);
+
   const toggleDarkMode = () => {
     setIsDarkMode((dark) => !dark);
 
@@ -21,6 +34,7 @@ const DarkModeContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
     if (htmlElement) {
       htmlElement.classList.toggle("dark");
     }
+    window.localStorage.setItem("dark", `${!isDarkMode}`);
   };
 
   return (
