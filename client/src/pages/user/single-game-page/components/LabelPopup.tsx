@@ -105,7 +105,7 @@ const LabelPopup = ({
           <FaTrash fill="white" />
         </button>
 
-        <h1 className=" text-lg ">{label?.labelName}</h1>
+        <h1 className=" text-2xl font-bold ">{label?.labelName}</h1>
 
         <button onClick={() => setOpen(null)} className="text-xl ">
           <IoMdClose />
