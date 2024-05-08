@@ -140,11 +140,11 @@ const LabelPopup = ({
         {examples.map((ex: exampleType, i: number) => (
           <button
             key={i}
-            className="btn-primary-dark text-xs group flex gap-3 items-center cursor-default"
+            className="btn-primary-dark relative text-xs group flex gap-3 items-center cursor-default"
           >
             {ex.example}
             <small
-              className="invisible group-hover:visible bg-red-500 p-1 rounded-full cursor-pointer"
+              className="invisible absolute group-hover:visible -top-3 right-1 bg-red-500 p-1 rounded-full cursor-pointer"
               onClick={() => deleteExample(ex._id)}
             >
               <IoMdClose />
