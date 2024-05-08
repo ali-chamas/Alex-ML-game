@@ -51,7 +51,7 @@ const Navbar = () => {
         <DarkModeSwitch
           checked={isDarkMode}
           onChange={toggleDarkMode}
-          size={40}
+          size={20}
         />
       </nav>
 

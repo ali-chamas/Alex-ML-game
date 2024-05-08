@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import authBg from "../../../assets/login-bg.png";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../context/DarkModeContext";
 
 const Auth = () => {
   const authType = useParams().type;
   const [type, setType] = useState<string>(authType || "login");
 
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
+
   return (
     <section className="flex justify-center min-h-[85vh] max-h-[90vh] items-center xl:justify-between ">
       {type == "login" ? (
-        <Login setType={setType} />
+        <Login setType={setType} isDark={isDarkMode} />
       ) : (
-        <Signup setType={setType} />
+        <Signup setType={setType} isDark={isDarkMode} />
       )}
       <img
         src={authBg}

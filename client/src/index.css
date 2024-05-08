@@ -16,6 +16,10 @@
 }
 
 .bg-primary {
+  @apply bg-[#69F2FA] bg-opacity-10 backdrop-blur-lg backdrop-filter;
+}
+
+.dark .bg-primary {
   @apply bg-black/25 backdrop-blur-lg backdrop-filter;
 }
 
@@ -59,10 +63,6 @@
   @apply bg-gradient-to-tr from-[#01141E] via-[#031C28] to-[#031C28]/90;
 }
 
-h1 {
-  @apply text-black;
-}
-
 .btn-primary-white {
   @apply bg-[#031C28] text-white px-6 py-2 rounded-lg border-2 border-black/40  hover:bg-white/25 hover:text-black transition-all duration-[0.4s];
 }
@@ -71,15 +71,12 @@ h1 {
   @apply bg-white/25 text-black border-2 border-black/40 px-6 py-2 rounded-lg hover:bg-[#031C28] hover:text-white transition-all duration-[0.4s];
 }
 
-p {
-  @apply text-black;
+.dark p {
+  @apply text-white;
 }
 
-small {
-  @apply text-black;
-}
-button {
-  @apply text-black;
+.dark small {
+  @apply text-white;
 }
 
 .dark h1 {

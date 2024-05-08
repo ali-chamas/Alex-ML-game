@@ -4,7 +4,7 @@ import { userType } from "../../../../tools/data-types/userType";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 import { sendRequest } from "../../../../tools/request-method/request";
 
-const Login = ({ setType }: any) => {
+const Login = ({ setType, isDark }: { setType: any; isDark: boolean }) => {
   const [userInfo, setUserInfo] = useState<userType | {}>({});
   const { addUser } = useContext(UserContext) as UserContextType;
 
@@ -40,13 +40,14 @@ const Login = ({ setType }: any) => {
       <Input
         label="Username "
         className="w-full border-white"
+        color={isDark ? "white" : "black"}
         onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
       />
 
       <Input
         label="Password "
         type="password"
-        color="white"
+        color={isDark ? "white" : "black"}
         onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
       />
 

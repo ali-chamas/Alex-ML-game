@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { motion } from "framer-motion";
 import { apiUrl } from "../../tools/api-url/apiUrl";
 
 import Hamburger from "hamburger-react";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../context/DarkModeContext";
 
 const MobileMenu = ({ links, navigate, user }: any) => {
   const [open, setOpen] = useState(false);
+
+  const { isDarkMode, toggleDarkMode } = useContext(
+    DarkModeContext
+  ) as DarkModeContextType;
 
   return (
     <div>
@@ -23,7 +32,7 @@ const MobileMenu = ({ links, navigate, user }: any) => {
           animate={{ y: 0, transition: { delay: 0.2, stiffness: 20 } }}
           className="flex flex-col bg-primary  p-5 w-[180px] absolute top-18 right-2 text-md rounded-md items-center gap-5 z-40"
         >
-          <nav className="flex flex-col gap-5">
+          <nav className="flex flex-col items-center gap-5">
             {links.map((link: any, i: number) => (
               <button
                 key={i}
@@ -41,6 +50,11 @@ const MobileMenu = ({ links, navigate, user }: any) => {
                 games
               </button>
             )}
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              size={20}
+            />
           </nav>
 
           {!user ? (
