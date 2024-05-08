@@ -54,10 +54,10 @@ const Gamecard = ({
       <div className="relative">
         <img src={`${apiUrl}/${game.image}`} alt="" className="rounded-t-md" />
         <button
-          className="absolute top-0 right-0 m-3 text-red-500 bg-red-500/75 rounded-full p-3"
+          className="absolute top-0 right-0 m-3 bg-black/40 rounded-full p-3"
           onClick={() => window.open(`${apiUrl}/${game.solution}`)}
         >
-          <FaFilePdf />
+          <FaFilePdf fill="white" />
         </button>
       </div>
       <div className="px-5  flex flex-col gap-3 items-center">
