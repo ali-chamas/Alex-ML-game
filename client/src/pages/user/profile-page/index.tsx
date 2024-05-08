@@ -13,9 +13,14 @@ import { FaTrophy } from "react-icons/fa6";
 import { sendRequest } from "../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
 import EditPopup from "./components/EditPopup";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../context/DarkModeContext";
 
 const Profile = () => {
   const { user, removeUser } = useContext(UserContext) as UserContextType;
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
   const navigate = useNavigate();
 
@@ -87,7 +92,9 @@ const Profile = () => {
     if (countCompletedGames(user?.games) == approvedGames.length) {
       return "from-yellow-600/70 to-yellow-800/90";
     } else if (countCompletedGames(user?.games) >= approvedGames.length / 2) {
-      return "from-white/60 to-white/40";
+      return isDarkMode
+        ? "from-white/60 to-white/40"
+        : "from-gray-400 to-gray-600";
     } else {
       return "from-orange-400/20 to-deep-orange-600/80";
     }
@@ -157,14 +164,15 @@ const Profile = () => {
               `}
                 maxCompleted={approvedGames?.length}
                 className="w-full xl:w-1/2 "
-                barContainerClassName="  bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
-                bgColor="white"
+                barContainerClassName=" bg-gray-400/40 dark:bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
+                bgColor={isDarkMode ? "white" : "black"}
                 labelAlignment="outside"
+                labelColor={isDarkMode ? "white" : "black"}
               />
               <h1
                 className={`p-4 rounded-full  bg-gradient-to-tr ${trophyColor()}  text-7xl xl:text-8xl`}
               >
-                <FaTrophy />
+                <FaTrophy fill="white" />
               </h1>
             </div>
           </div>
