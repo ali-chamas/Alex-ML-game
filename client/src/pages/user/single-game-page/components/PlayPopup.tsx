@@ -59,7 +59,7 @@ const PlayPopup = ({
           <IoMdClose />
         </button>
       </div>
-      <div className="flex flex-col items-center gap-3 bg-black/25 rounded-md pb-3 m-auto">
+      <div className="flex flex-col items-center gap-3 bg-primary border-2 border-black/10 rounded-md pb-3 m-auto">
         <img
           src={scratchImg}
           className="w-[220px] md:w-[250px] rounded-t-md"
