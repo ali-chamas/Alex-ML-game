@@ -10,9 +10,9 @@ export interface DarkModeContextType {
 export const DarkModeContext = createContext<DarkModeContextType | null>(null);
 
 const DarkModeContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const localMode = window.localStorage.getItem("dark") || null;
+  const localMode = window.localStorage.getItem("dark") || false;
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(localMode === "true");
 
   const toggleDarkMode = () => {
     setIsDarkMode((dark) => !dark);
