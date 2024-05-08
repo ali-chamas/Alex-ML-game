@@ -51,7 +51,6 @@ const Navbar = () => {
         <DarkModeSwitch
           checked={isDarkMode}
           onChange={toggleDarkMode}
-          className="fill-black"
           size={40}
         />
       </nav>
