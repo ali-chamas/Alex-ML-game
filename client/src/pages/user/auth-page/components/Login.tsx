@@ -39,7 +39,7 @@ const Login = ({ setType, isDark }: { setType: any; isDark: boolean }) => {
 
       <Input
         label="Username "
-        className="w-full border-white"
+        className="w-full"
         color={isDark ? "white" : "black"}
         onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
       />
