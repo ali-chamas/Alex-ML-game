@@ -102,7 +102,7 @@ const LabelPopup = ({
           onClick={deleteLabel}
           disabled={game?.isComplete}
         >
-          <FaTrash />
+          <FaTrash fill="white" />
         </button>
 
         <h1 className=" text-lg ">{label?.labelName}</h1>

@@ -130,7 +130,7 @@ const TestPopup = ({
                 Test
               </button>
             </div>
-            <div className="bg-black/25 rounded-md w-[200px] h-[150px] p-2 text-sm sm:w-[300px] sm:h-[200px] md:text-base lg:w-[400px] overflow-y-auto">
+            <div className="dark:bg-black/25 bg-white/40 rounded-md w-[200px] h-[150px] p-2 text-sm sm:w-[300px] sm:h-[200px] md:text-base lg:w-[400px] overflow-y-auto">
               {testResponse && (
                 <div className="flex flex-col gap-2">
                   <h1>{testResponse.example}:</h1>
