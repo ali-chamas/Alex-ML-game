@@ -39,8 +39,7 @@ const Login = ({ setType }: any) => {
 
       <Input
         label="Username "
-        className="w-full"
-        color="white"
+        className="w-full border-white"
         onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
       />
 
@@ -48,7 +47,6 @@ const Login = ({ setType }: any) => {
         label="Password "
         type="password"
         color="white"
-        cl
         onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
       />
 

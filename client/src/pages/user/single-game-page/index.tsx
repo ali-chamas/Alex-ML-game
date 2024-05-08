@@ -95,7 +95,7 @@ const SingleGame = () => {
         </div>
       ) : (
         <div className="flex flex-col  min-h-[80vh] items-center gap-10">
-          <h1 className="text-primary text-xl">{activeGame?.name}</h1>
+          <h1 className="text-primary text-4xl">{activeGame?.name}</h1>
 
           <TrainOption game={activeGame} setTrigger={setTrigger} />
 

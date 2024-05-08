@@ -8,18 +8,22 @@
   color: white;
 }
 
-.bg {
+.dark .bg {
   background-image: url("./assets/background-image.png");
+}
+
+.bg {
+  background-image: url("./assets/background-image-light.png");
 }
 
 .bg-primary {
   @apply bg-black/25 backdrop-blur-lg backdrop-filter;
 }
 
-.btn-primary-white {
+.dark .btn-primary-white {
   @apply bg-white text-black px-6 py-2 rounded-lg border-2 border-white/40  hover:bg-black/25 hover:text-white transition-all duration-[0.4s];
 }
-.btn-primary-dark {
+.dark .btn-primary-dark {
   @apply bg-black/25 text-white border-2 border-white/40 px-6 py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-[0.4s];
 }
 
@@ -33,7 +37,7 @@
   filter: drop-shadow(0 0 5px rgba(105, 242, 250, 0.6));
 }
 
-.border {
+.dark .border {
   @apply border-2 border-white/40;
 }
 
@@ -41,17 +45,44 @@
   @apply fixed top-0 left-0 bg-primary flex items-center justify-center h-screen w-screen;
 }
 
-.popup-child {
+.dark .popup-child {
   @apply rounded-md p-5 w-[300px] h-[450px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[400px] lg:w-[600px] lg:h-[500px] bg-[#031C28] bg-opacity-80 shadow-md;
 }
 
-.disabled-btn {
+.dark .disabled-btn {
   @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
 }
-.disabled-btn-dark {
+.dark .disabled-btn-dark {
   @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }
 
 .dashboard-bg {
   @apply bg-gradient-to-tr from-[#01141E] via-[#031C28] to-[#031C28]/90;
+}
+
+h1 {
+  @apply text-black;
+}
+
+.btn-primary-white {
+  @apply bg-[#031C28] text-white px-6 py-2 rounded-lg border-2 border-black/40  hover:bg-white/25 hover:text-black transition-all duration-[0.4s];
+}
+
+.btn-primary-dark {
+  @apply bg-white/25 text-black border-2 border-black/40 px-6 py-2 rounded-lg hover:bg-[#031C28] hover:text-white transition-all duration-[0.4s];
+}
+
+p {
+  @apply text-black;
+}
+
+small {
+  @apply text-black;
+}
+button {
+  @apply text-black;
+}
+
+.dark h1 {
+  @apply text-white;
 }
