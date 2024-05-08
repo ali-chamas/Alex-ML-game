@@ -1,9 +1,13 @@
 import { IoMdClose } from "react-icons/io";
 import { labelType, modelType } from "../../../../tools/data-types/modelType";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../../context/DarkModeContext";
 
 const TestPopup = ({
   gameId,
@@ -22,6 +26,8 @@ const TestPopup = ({
     example: string;
     result: {};
   }
+
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
   const [trained, setTrained] = useState<boolean>(model.isTrained);
   const [example, setExample] = useState("");
@@ -117,7 +123,7 @@ const TestPopup = ({
                 label="example"
                 value={example}
                 type="text"
-                color="white"
+                color={isDarkMode ? "white" : "black"}
                 onChange={(e) => setExample(e.target.value)}
               />
               <button className="btn-primary-white text-sm" onClick={testModel}>

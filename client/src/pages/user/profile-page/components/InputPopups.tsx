@@ -8,6 +8,10 @@ import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../../context/DarkModeContext";
 
 const InputPopups = ({
   title,
@@ -24,6 +28,7 @@ const InputPopups = ({
 
   const [input, setInput] = useState<string | number>("");
   const { setUserTrigger } = useContext(UserContext) as UserContextType;
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
   const updateUser = async () => {
     const reqBody = {
@@ -58,7 +63,7 @@ const InputPopups = ({
           <Input
             label={title}
             type={typeof value == "number" ? "number" : "text"}
-            color="white"
+            color={isDarkMode ? "white" : "black"}
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />

@@ -9,8 +9,12 @@ import {
   PopoverContent,
   PopoverHandler,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../../context/DarkModeContext";
 
 const LabelPopup = ({
   label,
@@ -25,6 +29,8 @@ const LabelPopup = ({
   game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
+
   const [example, setExample] = useState<string>("");
 
   const [examples, setExamples] = useState<[exampleType] | []>([]);
@@ -120,7 +126,7 @@ const LabelPopup = ({
               label="example"
               value={example}
               type="text"
-              color="white"
+              color={isDarkMode ? "white" : "black"}
               onChange={(e) => setExample(e.target.value)}
             />
             <button className="btn-primary-white" onClick={addExample}>

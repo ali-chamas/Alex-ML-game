@@ -4,12 +4,16 @@ import {
   PopoverContent,
   PopoverHandler,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 import HintPopup from "./HintPopup";
 import { MdOutlineQuestionMark } from "react-icons/md";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../../context/DarkModeContext";
 
 const TrainOption = ({
   game,
@@ -18,6 +22,7 @@ const TrainOption = ({
   game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
   const [label, setLabel] = useState<string>("");
 
   const addLabel = async () => {
@@ -54,7 +59,7 @@ const TrainOption = ({
               label="label"
               value={label}
               type="text"
-              color="white"
+              color={isDarkMode ? "white" : "black"}
               onChange={(e) => setLabel(e.target.value)}
             />
             <button className="btn-primary-white" onClick={addLabel}>
