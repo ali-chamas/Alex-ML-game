@@ -61,7 +61,10 @@ const Login = ({ setType, isDark }: { setType: any; isDark: boolean }) => {
       {error && <small className="text-red-400">{error}</small>}
       <Typography>
         Doesn't have an account?{" "}
-        <button className="text-[#69F2FA]" onClick={() => setType("singup")}>
+        <button
+          className="text-cyan-800 font-bold dark:text-cyan-400"
+          onClick={() => setType("singup")}
+        >
           Sign Up
         </button>
       </Typography>

@@ -82,3 +82,7 @@
 .dark h1 {
   @apply text-white;
 }
+
+.dark button {
+  @apply text-white;
+}
