@@ -1,3 +1,4 @@
+import { Option, Select } from "@material-tailwind/react";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 const GamesFilter = ({
@@ -16,15 +17,17 @@ const GamesFilter = ({
   };
 
   return (
-    <select
-      className="rounded-lg bg-black/25 border-2 outline-none border-white/40 p-2"
-      onChange={(e) => filterGames(e.target.value)}
+    <Select
+      color="blue-gray"
+      label="Select level"
+      className="bg-primary"
+      onChange={(e) => filterGames(e)}
     >
-      <option value="all">All</option>
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
-    </select>
+      <Option value="all">All</Option>
+      <Option value="beginner">Beginner</Option>
+      <Option value="intermediate">Intermediate</Option>
+      <Option value="advanced">Advanced</Option>
+    </Select>
   );
 };
 
