@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import authBg from "../../../assets/login-bg.png";
 import lightBg from "../../../assets/auth-light.png";
+import { motion } from "framer-motion";
 import {
   DarkModeContext,
   DarkModeContextType,
@@ -22,14 +23,21 @@ const Auth = () => {
       ) : (
         <Signup setType={setType} isDark={isDarkMode} />
       )}
+
       {isDarkMode ? (
-        <img
+        <motion.img
+          whileInView={{ opacity: 100 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, ease: "easeIn" }}
           src={authBg}
           alt=""
           className="hidden xl:block xl:w-[600px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
         />
       ) : (
-        <img
+        <motion.img
+          whileInView={{ opacity: 100 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, ease: "easeIn" }}
           src={lightBg}
           alt="bg"
           className="hidden xl:block w-[600px] 2xl:w-[620px]"
