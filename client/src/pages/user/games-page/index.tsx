@@ -36,7 +36,40 @@ const Games = () => {
     checkIfGameInProgress();
   }, [user]);
 
-  console.log(approvedGames);
+  const slides = [
+    {
+      key: 1,
+      content: <img src="https://picsum.photos/800/800/?random" alt="1" />,
+    },
+    {
+      key: 2,
+      content: <img src="https://picsum.photos/800/800/?random" alt="2" />,
+    },
+    {
+      key: 3,
+      content: <img src="https://picsum.photos/600/800/?random" alt="3" />,
+    },
+  ];
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <section className="flex flex-col mt-12 gap-12 min-h-[80vh] ">
@@ -48,32 +81,7 @@ const Games = () => {
       </div>
 
       {(filteredGames?.length as number) > 0 ? (
-        <Swiper
-          spaceBetween={30}
-          breakpoints={{
-            576: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1200: {
-              slidesPerView: 3,
-            },
-            1900: {
-              slidesPerView: 4,
-            },
-          }}
-          className="w-full cursor-grab  "
-        >
-          {filteredGames?.map((game, i) => (
-            <>
-              <SwiperSlide key={i}>
-                <Gamecard game={game} user={user} checkProgress={progress} />
-              </SwiperSlide>
-            </>
-          ))}
-        </Swiper>
+        ""
       ) : (
         <div className="flex w-full h-full justify-center items-center">
           <p className="text-lg lg:text-2xl">No games yet!</p>
