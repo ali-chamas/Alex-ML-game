@@ -14,8 +14,12 @@ const PanelLayout = ({
   const dispatcher = useDispatch();
 
   const getAllUsers = async () => {
-    const res = await sendRequest("GET", "creator/get_users");
-    dispatcher(setUsers(res.data));
+    try {
+      const res = await sendRequest("GET", "creator/get_users");
+      dispatcher(setUsers(res.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
