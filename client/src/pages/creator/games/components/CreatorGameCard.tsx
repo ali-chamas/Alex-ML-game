@@ -8,7 +8,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10">
+      <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10 ">
         <div className="relative">
           <img
             src={`${apiUrl}/${game.image}`}
@@ -39,12 +39,14 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
         </div>
       </div>
       {openEdit && (
-        <PopupLayout
-          children={""}
-          open={openEdit}
-          setOpen={setOpenEdit}
-          title="Edit Game"
-        />
+        <div className="z-20">
+          <PopupLayout
+            children={""}
+            open={openEdit}
+            setOpen={setOpenEdit}
+            title="Edit Game"
+          />
+        </div>
       )}
     </>
   );
