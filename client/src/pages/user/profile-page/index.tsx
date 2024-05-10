@@ -181,18 +181,16 @@ const Profile = () => {
           <PopupLayout
             title="Choose Your Avatar"
             open={openAvatars}
-            children={
-              <AvatarsPopup
-                userAvatar={user?.avatar as string}
-                setOpen={setOpenAvatars}
-              />
-            }
+            setOpen={setOpenAvatars}
+            children={<AvatarsPopup userAvatar={user?.avatar as string} />}
           />
         )}
         {openInfo && (
           <PopupLayout
-            children={<EditPopup setOpen={setOpenInfo} user={user} />}
+            title="Edit Your Info"
+            children={<EditPopup user={user} />}
             open={openInfo}
+            setOpen={setOpenInfo}
           />
         )}
       </section>

@@ -2,13 +2,7 @@ import { IoMdClose } from "react-icons/io";
 import { userType } from "../../../../tools/data-types/userType";
 import InputPopups from "./InputPopups";
 
-const EditPopup = ({
-  setOpen,
-  user,
-}: {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  user: userType | null | undefined;
-}) => {
+const EditPopup = ({ user }: { user: userType | null | undefined }) => {
   const infoArray = [
     { title: "first name", value: user?.firstName, reqTitle: "firstName" },
     { title: "last name", value: user?.lastName, reqTitle: "lastName" },

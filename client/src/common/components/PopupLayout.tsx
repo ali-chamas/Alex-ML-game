@@ -22,7 +22,7 @@ const PopupLayout = ({
         className="popup-child flex flex-col gap-5 "
       >
         <div className="flex justify-between items-center w-full ">
-          <h1 className=" text-xl ">Choose your avatar!</h1>
+          <h1 className=" text-xl ">{title}</h1>
 
           <button onClick={() => setOpen(false)} className="text-xl ">
             <IoMdClose />
