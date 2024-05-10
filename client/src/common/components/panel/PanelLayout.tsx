@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { sendRequest } from "../../../tools/request-method/request";
 import { useDispatch } from "react-redux";
+import { setUsers } from "../../../redux/users";
 
 const PanelLayout = ({
   children,
@@ -14,7 +15,7 @@ const PanelLayout = ({
 
   const getAllUsers = async () => {
     const res = await sendRequest("GET", "creator/get_users");
-    console.log(res.data);
+    dispatcher(setUsers(res.data));
   };
 
   useEffect(() => {
