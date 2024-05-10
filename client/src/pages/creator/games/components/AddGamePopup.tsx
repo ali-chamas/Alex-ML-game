@@ -13,17 +13,20 @@ import {
 import { FileUploader } from "react-drag-drop-files";
 
 import { gameType } from "../../../../tools/data-types/gameType";
+import { sendRequest } from "../../../../tools/request-method/request";
 
 const AddGamePopup = () => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
+  const { setCreatorTrigger } = useContext() as DarkModeContextType;
 
   const [game, setGame] = useState<gameType | any>({
-    name: "",
+    title: "",
     hint: "",
     description: "",
     image: null,
     solution: null,
     level: "",
+    type: "text",
     order: 0,
   });
 
@@ -35,9 +38,24 @@ const AddGamePopup = () => {
   };
 
   const addGame = async () => {
+    const formData = new FormData();
+    formData.append("name", game.title);
+    formData.append("description", game.description);
+    formData.append("hint", game.hint);
+    formData.append("level", game.level);
+    formData.append("type", game.type);
+    formData.append("order", game.order);
+    formData.append("image", game.image);
+    formData.append("solution", game.solution);
     try {
-    } catch (error) {}
+      const res = await sendRequest("POST", "/creator/add_game", formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  console.log(game);
 
   return (
     <div className="flex flex-col gap-3 items-center">
@@ -46,7 +64,7 @@ const AddGamePopup = () => {
           label="Title"
           className="w-full"
           color={isDarkMode ? "white" : "black"}
-          onChange={(e) => setGame({ ...game, name: e.target.value })}
+          onChange={(e) => setGame({ ...game, title: e.target.value })}
         />
         <Input
           label="Hint"
@@ -88,7 +106,7 @@ const AddGamePopup = () => {
         />
       </div>
 
-      <Button>add</Button>
+      <Button onClick={addGame}>add</Button>
     </div>
   );
 };

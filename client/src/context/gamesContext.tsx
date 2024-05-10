@@ -9,6 +9,7 @@ export interface GamesContextType {
   approvedGames: [gameType] | [];
   gamesTrigger: boolean;
   setGamesTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  setCreatorTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   gamesStateTrigger: boolean;
   getGames: () => void;
 }
@@ -23,6 +24,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [approvedGames, setApprovedGames] = useState<[gameType] | []>([]);
   const [gamesTrigger, setGamesTrigger] = useState<boolean>(false);
   const [gamesStateTrigger, setGamesStateTrigger] = useState<boolean>(false);
+  const [creatorTrigger, setCreatorTrigger] = useState<boolean>(false);
 
   const getGames = async () => {
     try {
@@ -57,7 +59,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   useEffect(() => {
     getGames();
-  }, []);
+  }, [creatorTrigger]);
 
   useEffect(() => {
     getApprovedGames();
@@ -72,6 +74,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
         gamesTrigger,
         setGamesTrigger,
         gamesStateTrigger,
+        setCreatorTrigger,
       }}
     >
       {children}
