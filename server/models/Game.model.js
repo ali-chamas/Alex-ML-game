@@ -30,6 +30,7 @@ const gameSchema = new mongoose.Schema({
   order: {
     type: Number,
     required: "order is required",
+    unique: true,
   },
   type: {
     type: String,
