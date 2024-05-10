@@ -13,6 +13,7 @@ import AdminHome from "./pages/admin/home";
 import CreatorProtection from "./tools/protected-routes/CreatorRoutes";
 import CreatorHome from "./pages/creator/home";
 import PanelLayout from "./common/components/panel/PanelLayout";
+import CreatorGames from "./pages/creator/games";
 
 const App = () => {
   return (
@@ -48,6 +49,12 @@ const App = () => {
               path="/creator"
               element={
                 <PanelLayout type={"creator"} children={<CreatorHome />} />
+              }
+            />
+            <Route
+              path="/creator/games"
+              element={
+                <PanelLayout type={"creator"} children={<CreatorGames />} />
               }
             />
           </Route>
