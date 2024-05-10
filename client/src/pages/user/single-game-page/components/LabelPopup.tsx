@@ -2,7 +2,7 @@ import { exampleType, labelType } from "../../../../tools/data-types/modelType";
 import { IoMdClose } from "react-icons/io";
 import { FaTrash } from "react-icons/fa";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+
 import {
   Input,
   Popover,
@@ -24,7 +24,7 @@ const LabelPopup = ({
   setTrigger,
 }: {
   label: labelType | null;
-  setOpen: React.Dispatch<React.SetStateAction<labelType | null>>;
+  setOpen: React.Dispatch<React.SetStateAction<labelType | boolean>>;
   gameId: string | undefined;
   game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,7 +51,7 @@ const LabelPopup = ({
       const res = await sendRequest("POST", "/user/delete_label", reqBody);
       if (res.status == 200) {
         setTrigger((t) => !t);
-        setOpen(null);
+        setOpen(false);
       }
     } catch (error) {
       console.log(error);
@@ -96,22 +96,14 @@ const LabelPopup = ({
 
   return (
     <>
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between w-full">
         <button
-          className="bg-red-400/80 rounded-full p-2 hover:opacity-80 disabled:opacity-80"
+          className="bg-red-400/80 rounded-full p-3 hover:opacity-80 disabled:opacity-80"
           onClick={deleteLabel}
           disabled={game?.isComplete}
         >
           <FaTrash fill="white" />
         </button>
-
-        <h1 className=" text-2xl font-bold ">{label?.labelName}</h1>
-
-        <button onClick={() => setOpen(null)} className="text-xl ">
-          <IoMdClose />
-        </button>
-      </div>
-      <div className="self-end">
         <Popover placement="bottom">
           <PopoverHandler>
             <button
@@ -143,12 +135,13 @@ const LabelPopup = ({
             className="btn-primary-dark relative text-xs group flex gap-3 items-center cursor-default"
           >
             {ex.example}
-            <small
-              className="invisible absolute group-hover:visible -top-3 right-1 bg-red-500 p-1 rounded-full cursor-pointer"
+            <button
+              className="invisible absolute group-hover:visible -top-3 right-1 bg-red-500 p-1 rounded-full "
               onClick={() => deleteExample(ex._id)}
+              disabled={game?.isComplete}
             >
               <IoMdClose />
-            </small>
+            </button>
           </button>
         ))}
       </div>

@@ -11,7 +11,7 @@ const PopupLayout = ({
   children: ReactNode;
   open: boolean | any;
   title: string;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>> | any;
 }) => {
   return (
     <div className="popup ">

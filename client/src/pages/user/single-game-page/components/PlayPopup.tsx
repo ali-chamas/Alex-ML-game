@@ -1,4 +1,3 @@
-import { IoMdClose } from "react-icons/io";
 import { modelType } from "../../../../tools/data-types/modelType";
 import { useContext, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
@@ -11,14 +10,11 @@ import { UserContext, UserContextType } from "../../../../context/userContext";
 const PlayPopup = ({
   gameId,
 
-  setOpen,
-
   setTrigger,
   game,
 }: {
   gameId: string;
 
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   model: modelType;
   game: gameType;
@@ -52,13 +48,7 @@ const PlayPopup = ({
   return (
     <>
       <Toaster />
-      <div className="flex justify-between items-center w-full ">
-        <h1 className=" text-lg ">Play with your model</h1>
 
-        <button onClick={() => setOpen(false)} className="text-xl ">
-          <IoMdClose />
-        </button>
-      </div>
       <div className="flex flex-col items-center gap-3 bg-primary border-2 border-black/10 rounded-md pb-3 m-auto">
         <img
           src={scratchImg}

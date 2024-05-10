@@ -12,13 +12,11 @@ import {
 const TestPopup = ({
   gameId,
 
-  setOpen,
   model,
   setTrigger,
 }: {
   gameId: string;
 
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   model: modelType;
 }) => {
@@ -103,13 +101,6 @@ const TestPopup = ({
   return (
     <>
       <Toaster />
-      <div className="flex justify-between items-center w-full">
-        <h1 className=" text-lg ">Train then test your model!</h1>
-
-        <button onClick={() => setOpen(false)} className="text-xl ">
-          <IoMdClose />
-        </button>
-      </div>
 
       <div className="flex h-full w-full justify-center items-center">
         {!trained ? (

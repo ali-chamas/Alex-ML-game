@@ -22,7 +22,7 @@ const SingleGame = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [trigger, setTrigger] = useState<boolean>(false);
 
-  const [openLabel, setOpenLabel] = useState<labelType | null>(null);
+  const [openLabel, setOpenLabel] = useState<labelType | any>(false);
   const [openTest, setOpenTest] = useState<boolean>(false);
   const [openPlay, setOpenPlay] = useState<boolean>(false);
 
@@ -140,13 +140,15 @@ const SingleGame = () => {
       )}
       {openLabel && (
         <PopupLayout
+          setOpen={setOpenLabel}
+          title={openLabel.labelName}
           children={
             <LabelPopup
               label={openLabel}
-              setOpen={setOpenLabel}
               gameId={gameId}
               setTrigger={setTrigger}
               game={activeGame}
+              setOpen={setOpenLabel}
             />
           }
           open={openLabel}
@@ -155,10 +157,11 @@ const SingleGame = () => {
       {openTest && (
         <PopupLayout
           open={openTest}
+          setOpen={setOpenTest}
+          title="Test your model"
           children={
             <TestPopup
               gameId={gameId as string}
-              setOpen={setOpenTest}
               model={activeGame?.model as modelType}
               setTrigger={setTrigger}
             />
@@ -168,10 +171,11 @@ const SingleGame = () => {
       {openPlay && (
         <PopupLayout
           open={openPlay}
+          setOpen={setOpenPlay}
+          title="Try your model and complete!"
           children={
             <PlayPopup
               gameId={gameId as string}
-              setOpen={setOpenPlay}
               model={activeGame?.model as modelType}
               setTrigger={setTrigger}
               game={activeGame as gameType}
