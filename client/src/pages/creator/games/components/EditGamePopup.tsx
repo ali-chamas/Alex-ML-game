@@ -1,5 +1,7 @@
+import { FileUploader } from "react-drag-drop-files";
 import { gameType } from "../../../../tools/data-types/gameType";
 import GamePopups from "./GamePopups";
+import { useState } from "react";
 
 const EditGamePopup = ({ game }: { game: gameType }) => {
   const infoArray = [
@@ -9,6 +11,8 @@ const EditGamePopup = ({ game }: { game: gameType }) => {
     { title: "Order", value: game?.order, reqTitle: "order" },
     { title: "Level", value: game?.level, reqTitle: "level" },
   ];
+
+  const editGame = async () => {};
 
   return (
     <>
@@ -21,6 +25,18 @@ const EditGamePopup = ({ game }: { game: gameType }) => {
           key={i}
         />
       ))}
+      <div className="max-w-[280px] sm:max-w-full flex flex-col gap-3 overflow-hidden">
+        <FileUploader
+          name="file"
+          label="Image"
+          handleChange={(file: any) => editGame(file)}
+        />
+        <FileUploader
+          name="file"
+          label="Solution"
+          handleChange={(file: any) => editGame(file)}
+        />
+      </div>
     </>
   );
 };
