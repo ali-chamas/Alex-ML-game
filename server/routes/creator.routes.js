@@ -11,5 +11,5 @@ router.put("/update_game/:gameId", updateGame);
 //users
 
 router.get("/get_users", getAllUsers);
-
+router.delete("/delete_game/:gameId", deleteGame);
 module.exports = router;

@@ -42,7 +42,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
       {openEdit && (
         <div className="z-20">
           <PopupLayout
-            children={<EditGamePopup game={game} />}
+            children={<EditGamePopup game={game} setOpen={setOpenEdit} />}
             open={openEdit}
             setOpen={setOpenEdit}
             title="Edit Game"

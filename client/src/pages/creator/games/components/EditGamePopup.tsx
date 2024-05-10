@@ -9,7 +9,7 @@ import {
 } from "../../../../context/gamesContext";
 import toast, { Toaster } from "react-hot-toast";
 
-const EditGamePopup = ({ game }: { game: gameType }) => {
+const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
   const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
 
   const infoArray = [
@@ -31,6 +31,15 @@ const EditGamePopup = ({ game }: { game: gameType }) => {
       );
       setCreatorTrigger((t) => !t);
       toast.success("updated");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteGame = async () => {
+    try {
+      const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
+      setCreatorTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +69,9 @@ const EditGamePopup = ({ game }: { game: gameType }) => {
           handleChange={(file: any) => editGame(file, "solution")}
         />
       </div>
+      <button className="btn-primary-danger" onClick={deleteGame}>
+        Delete
+      </button>
     </>
   );
 };

@@ -14,6 +14,5 @@ router.put("/update_role/:id", updateUserRole);
 
 //games
 router.put("/approve_game/:gameId", approveGame);
-router.delete("/delete_game/:gameId", deleteGame);
 
 module.exports = router;
