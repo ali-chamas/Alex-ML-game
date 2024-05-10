@@ -6,7 +6,7 @@ const CreatorHome = () => {
       <CounterCards />
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-primary md:text-xl lg:text-2xl xl:text-4xl">
-          LETS CREATE GREAT THINGS
+          LET'S CREATE GREAT THINGS
         </h1>
         <img src={alexImg} className=" w-[250px] sm:w-[300px] " alt="alex" />
       </div>

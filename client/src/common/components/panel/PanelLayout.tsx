@@ -26,7 +26,7 @@ const PanelLayout = ({
     getAllUsers();
   }, []);
   return (
-    <section className="dashboard-bg min-h-screen flex">
+    <section className="bg min-h-screen flex">
       <Sidebar type={type} />
       {children}
     </section>

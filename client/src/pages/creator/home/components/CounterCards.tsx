@@ -32,10 +32,10 @@ const CounterCards = () => {
   return (
     <div className="flex gap-5 md:gap-10 lg:gap-20">
       <div className="px-10 py-6 bg-primary rounded-lg border lg:text-xl">
-        {usersCount} creators
+        <h1>{usersCount} creators</h1>
       </div>
       <div className="px-10 py-6 bg-primary rounded-lg border lg:text-xl">
-        {gamesCount} games
+        <h1>{gamesCount} games</h1>
       </div>
     </div>
   );

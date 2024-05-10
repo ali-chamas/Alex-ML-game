@@ -9,10 +9,16 @@
 
 .dark .bg {
   background-image: url("./assets/background-image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .bg {
   background-image: url("./assets/background-image-light.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .bg-primary {
@@ -81,11 +87,4 @@
 
 .dark button {
   @apply text-white;
-}
-
-.dashboard-bg {
-  background-image: url("./assets/background-image-light.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }

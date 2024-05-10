@@ -3,16 +3,11 @@ import MobileMenu from "./MobileMenu";
 import { useNavigate } from "react-router-dom";
 import { UserContext, UserContextType } from "../../context/userContext";
 import { apiUrl } from "../../tools/api-url/apiUrl";
-import { DarkModeSwitch } from "react-toggle-dark-mode";
-import {
-  DarkModeContext,
-  DarkModeContextType,
-} from "../../context/DarkModeContext";
+
+import DarkModeToggler from "./DarkModeToggler";
 const Navbar = () => {
   const { user } = useContext(UserContext) as UserContextType;
-  const { isDarkMode, toggleDarkMode } = useContext(
-    DarkModeContext
-  ) as DarkModeContextType;
+
   const navigate = useNavigate();
 
   const links = [
@@ -48,11 +43,7 @@ const Navbar = () => {
             games
           </button>
         )}
-        <DarkModeSwitch
-          checked={isDarkMode}
-          onChange={toggleDarkMode}
-          size={20}
-        />
+        <DarkModeToggler />
       </nav>
 
       <div className="md:hidden">
