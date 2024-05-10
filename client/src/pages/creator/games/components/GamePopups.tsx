@@ -12,6 +12,10 @@ import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
+import {
+  GamesContext,
+  GamesContextType,
+} from "../../../../context/gamesContext";
 
 const GamePopups = ({
   title,
@@ -29,17 +33,25 @@ const GamePopups = ({
   }
 
   const [input, setInput] = useState<string | number>("");
-  const { setUserTrigger } = useContext(UserContext) as UserContextType;
+  const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
   const updateGame = async () => {
+    const reqBody = {
+      [reqTitle as string]: input,
+    };
     try {
-      const res = await sendRequest("PUT", `/creator/update_game/${gameId}`, {
-        reqTitle: input,
-      });
+      const res = await sendRequest(
+        "PUT",
+        `/creator/update_game/${gameId}`,
+        reqBody
+      );
       console.log(res);
-    } catch (error) {
+      toast.success(`edited`);
+      setCreatorTrigger((t) => !t);
+    } catch (error: any) {
       console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -47,13 +59,13 @@ const GamePopups = ({
     <div className="flex gap-2 w-full items-center justify-between mt-2">
       <Toaster />
       <p>{title}</p>
-      <Popover placement="bottom">
+      <Popover placement="bottom ">
         <PopoverHandler>
           <button className="btn-primary-dark disabled-btn-dark">
             {value}
           </button>
         </PopoverHandler>
-        <PopoverContent className="bg-primary flex flex-col items-center gap-2">
+        <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
           <Input
             label={title}
             type={typeof value == "number" ? "number" : "text"}
