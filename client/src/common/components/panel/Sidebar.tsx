@@ -36,7 +36,7 @@ const Sidebar = ({ type }: { type: string }) => {
         )}
       </IconButton>
       <Drawer
-        className="bg-gradient-to-tr from-white to-cyan-50 dark:bg-primary flex flex-col items-center gap-8 p-5"
+        className="bg-gradient-to-tr from-white to-cyan-50 dark:from-[#031C28] dark:to-[#031C28] flex flex-col items-center gap-8 p-5"
         open={isDrawerOpen}
         onClose={closeDrawer}
       >
