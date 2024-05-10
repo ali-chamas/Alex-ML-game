@@ -4,6 +4,7 @@ import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 import CreatorGameCard from "./components/CreatorGameCard";
 
 import PopupLayout from "../../../common/components/PopupLayout";
+import AddGamePopup from "./components/AddGamePopup";
 
 const CreatorGames = () => {
   const { globalGames } = useContext(GamesContext) as GamesContextType;
@@ -28,7 +29,7 @@ const CreatorGames = () => {
       </div>
       {openAdd && (
         <PopupLayout
-          children={""}
+          children={<AddGamePopup />}
           open={openAdd}
           setOpen={setOpenAdd}
           title="Add A Game"

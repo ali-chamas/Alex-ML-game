@@ -51,7 +51,7 @@
 }
 
 .popup {
-  @apply fixed top-0 left-0  backdrop-blur-lg backdrop-filter flex items-center justify-center h-screen w-screen;
+  @apply fixed top-0 left-0 bg-white/10 dark:bg-black/40  backdrop-blur-lg backdrop-filter flex items-center justify-center h-screen w-screen;
 }
 
 .popup-child {
