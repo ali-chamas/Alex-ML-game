@@ -8,6 +8,10 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
@@ -50,9 +54,13 @@ const Games = () => {
       {(filteredGames?.length as number) > 0 ? (
         <Swiper
           effect={"coverflow"}
+          modules={[Navigation, Pagination, Scrollbar]}
           centeredSlides={true}
           spaceBetween={30}
           grabCursor={true}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
           breakpoints={{
             576: {
               slidesPerView: 1,

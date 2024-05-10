@@ -1,4 +1,3 @@
-import { IoMdClose } from "react-icons/io";
 import { userType } from "../../../../tools/data-types/userType";
 import InputPopups from "./InputPopups";
 

@@ -3,7 +3,14 @@ import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
-import { Input, Select, Textarea, Option } from "@material-tailwind/react";
+import {
+  Input,
+  Select,
+  Textarea,
+  Option,
+  Button,
+} from "@material-tailwind/react";
+import { FileUploader } from "react-drag-drop-files";
 
 const AddGamePopup = () => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
@@ -11,8 +18,8 @@ const AddGamePopup = () => {
   const checkIfOrderIsAvailable = () => {};
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex gap-2">
+    <div className="flex flex-col gap-3 items-center">
+      <div className="flex gap-2 w-full">
         <Input
           label="Title"
           className="w-full"
@@ -28,7 +35,7 @@ const AddGamePopup = () => {
         label="Description"
         className="w-full border-white dark:text-white"
       />
-      <div className="flex gap-2">
+      <div className="flex gap-2 w-full">
         <Input
           label="Order"
           className="w-full"
@@ -42,7 +49,10 @@ const AddGamePopup = () => {
         </Select>
       </div>
 
-      <div className="flex gap-2"></div>
+      <FileUploader name="file" label="Image" />
+      <FileUploader name="file" label="Solution" />
+
+      <Button>add</Button>
     </div>
   );
 };
