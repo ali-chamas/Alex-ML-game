@@ -40,6 +40,7 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
     try {
       const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
       setCreatorTrigger((t) => !t);
+      setOpen(false);
     } catch (error) {
       console.log(error);
     }

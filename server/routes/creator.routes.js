@@ -1,5 +1,9 @@
 const express = require("express");
-const { createGame, updateGame } = require("../controllers/game.controller");
+const {
+  createGame,
+  updateGame,
+  deleteGame,
+} = require("../controllers/game.controller");
 const { getAllUsers } = require("../controllers/user.controller");
 const router = express.Router();
 
