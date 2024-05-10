@@ -26,7 +26,18 @@ const AddGamePopup = () => {
     level: "",
     order: 0,
   });
-  console.log(game);
+
+  const handleImageUpload = (file: any) => {
+    setGame({ ...game, image: file });
+  };
+  const handleSolutionUpload = (file: any) => {
+    setGame({ ...game, solution: file });
+  };
+
+  const addGame = async () => {
+    try {
+    } catch (error) {}
+  };
 
   return (
     <div className="flex flex-col gap-3 items-center">
@@ -58,9 +69,9 @@ const AddGamePopup = () => {
           onChange={(e) => setGame({ ...game, order: e.target.value })}
         />
         <Select label="Level" onChange={(e) => setGame({ ...game, level: e })}>
-          <Option>Beginner</Option>
-          <Option>Intermediate</Option>
-          <Option>Advanced</Option>
+          <Option value="beginner">Beginner</Option>
+          <Option value="intermediate">Intermediate</Option>
+          <Option value="advanced">Advanced</Option>
         </Select>
       </div>
 
@@ -68,12 +79,12 @@ const AddGamePopup = () => {
         <FileUploader
           name="file"
           label="Image"
-          onChange={(e: any) => setGame({ ...game, order: e.target.files[0] })}
+          handleChange={handleImageUpload}
         />
         <FileUploader
           name="file"
           label="Solution"
-          onChange={(e) => setGame({ ...game, order: e.target.files[0] })}
+          handleChange={handleSolutionUpload}
         />
       </div>
 

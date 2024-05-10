@@ -21,7 +21,7 @@ const GamesFilter = ({
       color="blue-gray"
       label="Select level"
       className="bg-primary"
-      onChange={(e) => filterGames(e)}
+      onChange={(e: any) => filterGames(e)}
     >
       <Option value="all">All</Option>
       <Option value="beginner">Beginner</Option>
