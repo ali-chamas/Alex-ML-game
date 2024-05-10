@@ -8,7 +8,7 @@ const { approveGame, deleteGame } = require("../controllers/game.controller");
 const router = express.Router();
 
 //users
-router.get("/get_users", getAllUsers);
+
 router.delete("/delete_user/:id", deleteUser);
 router.put("/update_role/:id", updateUserRole);
 
