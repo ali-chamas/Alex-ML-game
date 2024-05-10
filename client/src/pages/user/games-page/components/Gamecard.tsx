@@ -52,7 +52,11 @@ const Gamecard = ({
   return (
     <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10">
       <div className="relative">
-        <img src={`${apiUrl}/${game.image}`} alt="" className="rounded-t-md" />
+        <img
+          src={`${apiUrl}/${game.image}`}
+          alt=""
+          className="rounded-t-md h-[150px] w-[300px]"
+        />
         <button
           className="absolute top-0 right-0 m-3 bg-black/40 rounded-full p-3"
           onClick={() => window.open(`${apiUrl}/${game.solution}`)}

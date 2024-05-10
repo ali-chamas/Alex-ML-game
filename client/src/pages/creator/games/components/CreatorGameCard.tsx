@@ -13,7 +13,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
           <img
             src={`${apiUrl}/${game.image}`}
             alt=""
-            className="rounded-t-md"
+            className="rounded-t-md h-[150px] w-[300px]"
           />
           {game.isApproved ? (
             <p className="absolute top-0 m-3 right-0 bg-green-500/60 rounded-full text-white p-3 ">
