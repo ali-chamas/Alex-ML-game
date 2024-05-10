@@ -32,11 +32,12 @@ const GamePopups = ({
   const { setUserTrigger } = useContext(UserContext) as UserContextType;
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
-  const updateGame = () => {
+  const updateGame = async () => {
     try {
       const res = await sendRequest("PUT", `/creator/update_game/${gameId}`, {
         reqTitle: input,
       });
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +61,7 @@ const GamePopups = ({
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button className="btn-primary-white" onClick={updateUser}>
+          <button className="btn-primary-white" onClick={updateGame}>
             Edit
           </button>
         </PopoverContent>

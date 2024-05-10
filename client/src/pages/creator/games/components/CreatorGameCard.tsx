@@ -2,6 +2,7 @@ import { useState } from "react";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import PopupLayout from "../../../../common/components/PopupLayout";
+import EditGamePopup from "./EditGamePopup";
 
 const CreatorGameCard = ({ game }: { game: gameType }) => {
   const [openEdit, setOpenEdit] = useState<any | gameType>(false);
@@ -41,7 +42,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
       {openEdit && (
         <div className="z-20">
           <PopupLayout
-            children={""}
+            children={<EditGamePopup />}
             open={openEdit}
             setOpen={setOpenEdit}
             title="Edit Game"
