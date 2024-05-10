@@ -14,10 +14,14 @@ import { FileUploader } from "react-drag-drop-files";
 
 import { gameType } from "../../../../tools/data-types/gameType";
 import { sendRequest } from "../../../../tools/request-method/request";
+import {
+  GamesContext,
+  GamesContextType,
+} from "../../../../context/gamesContext";
 
 const AddGamePopup = () => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
-  const { setCreatorTrigger } = useContext() as DarkModeContextType;
+  const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
 
   const [game, setGame] = useState<gameType | any>({
     title: "",
@@ -50,12 +54,11 @@ const AddGamePopup = () => {
     try {
       const res = await sendRequest("POST", "/creator/add_game", formData);
       console.log(res);
+      setCreatorTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(game);
 
   return (
     <div className="flex flex-col gap-3 items-center">
