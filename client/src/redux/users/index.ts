@@ -8,3 +8,13 @@ interface UserState {
 const initialState: UserState = {
   users: [],
 };
+
+const userSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {
+    setUser: (state, action: PayloadAction<UserState>) => {
+      state.users = action.payload.users;
+    },
+  },
+});
