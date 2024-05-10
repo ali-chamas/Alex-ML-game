@@ -16,11 +16,11 @@
 }
 
 .bg-primary {
-  @apply bg-[#69F2FA] bg-opacity-10 backdrop-blur-lg backdrop-filter;
+  @apply bg-[#ffffff] bg-opacity-60 backdrop-blur-xl backdrop-filter;
 }
 
 .dark .bg-primary {
-  @apply bg-black/25 backdrop-blur-lg backdrop-filter;
+  @apply bg-black/25 backdrop-blur-2xl backdrop-filter;
 }
 
 .dark .btn-primary-white {
@@ -45,7 +45,7 @@
 }
 
 .popup {
-  @apply fixed top-0 left-0 bg-primary flex items-center justify-center h-screen w-screen;
+  @apply fixed top-0 left-0  backdrop-blur-lg backdrop-filter flex items-center justify-center h-screen w-screen;
 }
 
 .popup-child {
