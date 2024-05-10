@@ -179,6 +179,7 @@ const Profile = () => {
         </div>
         {openAvatars && (
           <PopupLayout
+            title="Choose Your Avatar"
             open={openAvatars}
             children={
               <AvatarsPopup

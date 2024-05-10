@@ -18,13 +18,6 @@ const EditPopup = ({
 
   return (
     <>
-      <div className="flex justify-between items-center w-full ">
-        <h1 className=" text-lg ">Play with your model</h1>
-
-        <button onClick={() => setOpen(false)} className="text-xl ">
-          <IoMdClose />
-        </button>
-      </div>
       {infoArray.map((info, i) => (
         <InputPopups
           reqTitle={info.reqTitle}

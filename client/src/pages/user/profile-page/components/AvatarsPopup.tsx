@@ -5,13 +5,7 @@ import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import Loader from "../../../../common/components/Loader";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 
-const AvatarsPopup = ({
-  userAvatar,
-  setOpen,
-}: {
-  userAvatar: string;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const AvatarsPopup = ({ userAvatar }: { userAvatar: string }) => {
   const { setUserTrigger } = useContext(UserContext) as UserContextType;
 
   const [avatars, setAvatars] = useState<[]>([]);
@@ -48,13 +42,6 @@ const AvatarsPopup = ({
 
   return (
     <div className="flex flex-col gap-3 items-center">
-      <div className="flex justify-between items-center w-full ">
-        <h1 className=" text-xl ">Choose your avatar!</h1>
-
-        <button onClick={() => setOpen(false)} className="text-xl ">
-          <IoMdClose />
-        </button>
-      </div>
       {loading ? (
         <Loader />
       ) : (
