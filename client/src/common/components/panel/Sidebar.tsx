@@ -36,7 +36,7 @@ const Sidebar = ({ type }: { type: string }) => {
         )}
       </IconButton>
       <Drawer
-        className="bg-[#01141E] flex flex-col items-center gap-8 p-5"
+        className="bg-white/90 flex flex-col items-center gap-8 p-5"
         open={isDrawerOpen}
         onClose={closeDrawer}
       >

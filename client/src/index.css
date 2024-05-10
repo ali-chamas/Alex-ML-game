@@ -59,10 +59,6 @@
   @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }
 
-.dashboard-bg {
-  @apply bg-gradient-to-tr from-[#01141E] via-[#031C28] to-[#031C28]/90;
-}
-
 .btn-primary-white {
   @apply bg-[#031C28] text-white px-6 py-2 rounded-lg border-2 border-black/40  hover:bg-white/25 hover:text-black transition-all duration-[0.4s];
 }
@@ -85,4 +81,11 @@
 
 .dark button {
   @apply text-white;
+}
+
+.dashboard-bg {
+  background-image: url("./assets/background-image-light.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }

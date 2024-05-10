@@ -24,25 +24,23 @@ const Auth = () => {
         <Signup setType={setType} isDark={isDarkMode} />
       )}
 
-      {isDarkMode ? (
-        <motion.img
-          whileInView={{ opacity: 100 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeIn" }}
-          src={authBg}
-          alt=""
-          className="hidden xl:block xl:w-[600px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
-        />
-      ) : (
-        <motion.img
-          whileInView={{ opacity: 100 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeIn" }}
-          src={lightBg}
-          alt="bg"
-          className="hidden xl:block w-[600px] 2xl:w-[620px]"
-        />
-      )}
+      <motion.img
+        whileInView={{ opacity: 100 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, ease: "easeIn" }}
+        src={authBg}
+        alt=""
+        className="hidden  dark:xl:block xl:w-[600px] xl:h-[500px] 2xl:w-[800px] 2xl:h-[600px] absolute bottom-0 right-0  mt-auto"
+      />
+
+      <motion.img
+        whileInView={{ opacity: 100 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, ease: "easeIn" }}
+        src={lightBg}
+        alt="bg"
+        className="hidden xl:block dark:xl:hidden w-[600px] 2xl:w-[620px]"
+      />
     </section>
   );
 };
