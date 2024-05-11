@@ -15,17 +15,15 @@ const UsersTable = () => {
 
   const TABLE_ROWS = users;
 
-  console.log(users);
-
   return (
-    <Card className="h-[500px] overflow-auto w-full">
+    <Card className="h-[500px] overflow-auto w-full bg-white/0">
       <table className="w-full min-w-max table-auto text-left">
         <thead className="sticky top-0">
           <tr>
             {TABLE_HEAD.map((head) => (
               <th
                 key={head}
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4 w-[10%]"
+                className="border-b border-blue-gray-100 dark:border-black bg-cyan-50 dark:bg-black/20 p-4 w-[10%]"
               >
                 <Typography
                   variant="small"
@@ -41,10 +39,15 @@ const UsersTable = () => {
         <tbody>
           {TABLE_ROWS.map((user: userType, index: number) => {
             const isLast = index === TABLE_ROWS.length - 1;
-            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+            const classes = isLast
+              ? "p-4"
+              : "p-4 border-b border-blue-gray-50 dark:border-black";
 
             return (
-              <tr key={user._id} className="even:bg-blue-gray-50/50">
+              <tr
+                key={user._id}
+                className="even:bg-cyan-50 dark:even:bg-black/20 dark:odd:bg-[#031C28]"
+              >
                 <td className={classes}>
                   <Typography
                     variant="small"
