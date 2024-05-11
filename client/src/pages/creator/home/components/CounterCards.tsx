@@ -5,6 +5,7 @@ import {
 } from "../../../../context/gamesContext";
 import { useSelector } from "react-redux";
 import { userType } from "../../../../tools/data-types/userType";
+import { sendRequest } from "../../../../tools/request-method/request";
 
 const CounterCards = () => {
   const { globalGames } = useContext(GamesContext) as GamesContextType;
@@ -14,11 +15,14 @@ const CounterCards = () => {
   const [gamesCount, setGamesCount] = useState<number>(0);
   const [usersCount, setUsersCount] = useState<number>(0);
 
-  const getCreators = () => {
-    const creators = usersState.filter(
-      (user: userType) => user.role == "creator"
-    );
-    setUsersCount(creators.length);
+  const getCreators = async () => {
+    try {
+      const res = await sendRequest("GET", "/creator/get_creators");
+      const creators = res.data;
+      setUsersCount(creators.length);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
