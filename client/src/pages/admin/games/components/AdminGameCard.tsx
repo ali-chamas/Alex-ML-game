@@ -1,6 +1,7 @@
 import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
+import { sendRequest } from "../../../../tools/request-method/request";
 
 const AdminGameCard = ({
   game,
@@ -9,6 +10,15 @@ const AdminGameCard = ({
   game: gameType;
   setTrigger: any;
 }) => {
+  const toggleApprove = async () => {
+    try {
+      const res = await sendRequest("PUT", `/admin/approve_game/${game._id}`);
+      console.log(res);
+      setTrigger((t: Boolean) => !t);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10 ">
       <div className="relative">
@@ -18,11 +28,17 @@ const AdminGameCard = ({
           className="rounded-t-md h-[150px] w-[300px]"
         />
         {!game.isApproved ? (
-          <button className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 ">
+          <button
+            className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 "
+            onClick={toggleApprove}
+          >
             Yes
           </button>
         ) : (
-          <button className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3 ">
+          <button
+            className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3 "
+            onClick={toggleApprove}
+          >
             <IoClose />
           </button>
         )}
