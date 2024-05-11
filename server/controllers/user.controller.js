@@ -106,4 +106,5 @@ module.exports = {
   updateUserRole,
   getAllUsers,
   getLoggedInUser,
+  getCreators,
 };

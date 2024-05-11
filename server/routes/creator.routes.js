@@ -4,15 +4,16 @@ const {
   updateGame,
   deleteGame,
 } = require("../controllers/game.controller");
-const { getAllUsers } = require("../controllers/user.controller");
+const { getAllUsers, getCreators } = require("../controllers/user.controller");
 const router = express.Router();
 
 //games
 
 router.post("/add_game", createGame);
 router.put("/update_game/:gameId", updateGame);
+router.delete("/delete_game/:gameId", deleteGame);
 
 //users
+router.get("/get_creators", getCreators);
 
-router.delete("/delete_game/:gameId", deleteGame);
 module.exports = router;
