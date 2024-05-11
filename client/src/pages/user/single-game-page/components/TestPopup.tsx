@@ -1,4 +1,4 @@
-import { IoMdClose } from "react-icons/io";
+import alexImg from "../../../../assets/marco.png";
 import { labelType, modelType } from "../../../../tools/data-types/modelType";
 import { useContext, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
@@ -104,9 +104,12 @@ const TestPopup = ({
 
       <div className="flex h-full w-full justify-center items-center">
         {!trained ? (
-          <button className="btn-primary-white" onClick={trainModel}>
-            Train Model
-          </button>
+          <div className="flex flex-col gap-3 mt-10 items-center">
+            <button className="btn-primary-white" onClick={trainModel}>
+              Train Model
+            </button>
+            <img src={alexImg} className="w-[200px]" alt="" />
+          </div>
         ) : (
           <div className="flex flex-col gap-4 items-center">
             <div className="flex gap-2 items-center">
