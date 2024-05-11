@@ -73,6 +73,15 @@ const UsersTable = () => {
     }
   };
 
+  const deleteUser = async (userId: string) => {
+    try {
+      const res = await sendRequest("DELETE", `/admin/delete_user/${userId}`);
+      toast.success("deleted user");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full gap-5">
       <Toaster />
