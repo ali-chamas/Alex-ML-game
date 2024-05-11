@@ -72,7 +72,8 @@ const UsersTable = () => {
           />
         </div>
         <div>
-          <Select label="Role">
+          <Select label="Role" onChange={(e) => roleFilter(e)}>
+            <Option value="all">ALL</Option>
             <Option value="admin">Admin</Option>
             <Option value="creator">Creator</Option>
             <Option value="user">User</Option>
