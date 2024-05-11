@@ -79,6 +79,17 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getCreators = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    const creators = users.filter((user) => user.role == "creator");
+    return res.status(200).json(creators);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const getLoggedInUser = async (req, res) => {
   const { user } = req;
 
