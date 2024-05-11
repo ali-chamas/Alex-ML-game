@@ -13,6 +13,8 @@ import {
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
 import { UserContext, UserContextType } from "../../../../context/userContext";
+import { sendRequest } from "../../../../tools/request-method/request";
+import toast, { Toaster } from "react-hot-toast";
 const UsersTable = () => {
   const users = useSelector((state: any) => state.users.users);
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
@@ -59,8 +61,21 @@ const UsersTable = () => {
     }
   };
 
+  const updateRole = async (newRole: string, id: string) => {
+    try {
+      const res = await sendRequest("PUT", `/admin/update_role/${id}`, {
+        role: newRole,
+      });
+      toast.success(`updated role to ${newRole}`);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full gap-5">
+      <Toaster />
       <div className="flex justify-between flex-col gap-3 md:flex-row md:items-center items-start">
         <h1 className="md:text-xl xl:text-2xl">{filteredUsers.length} Users</h1>
         <div>
@@ -149,13 +164,15 @@ const UsersTable = () => {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
+                    <select
+                      className="w-[80px] rounded-md p-1 bg-transparent border border-black dark:border-white"
+                      defaultValue={user.role}
+                      onChange={(e) => updateRole(e.target.value, user._id)}
                     >
-                      {user.role}
-                    </Typography>
+                      <option value="admin">Admin</option>
+                      <option value="creator">Creator</option>
+                      <option value="user">User</option>
+                    </select>
                   </td>
                   <td className={classes}>
                     {user._id === activeUser?._id ? (
