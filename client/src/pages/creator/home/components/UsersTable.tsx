@@ -36,6 +36,24 @@ const UsersTable = () => {
 
   const TABLE_ROWS = filteredUsers;
 
+  const searchFilter = (filter: string) => {
+    const searchedUsers = users.filter(
+      (user: userType) => user.username == filter
+    );
+    setFilteredUsers(searchedUsers);
+  };
+
+  const roleFilter = (filter: string) => {
+    if (filter == "all") {
+      setFilteredUsers(users);
+    } else {
+      const searchedUsers = users.filter(
+        (user: userType) => user.role == filter
+      );
+      setFilteredUsers(searchedUsers);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full gap-5">
       <div className="flex justify-between items-center">
@@ -49,9 +67,9 @@ const UsersTable = () => {
         </div>
         <div>
           <Select label="Role">
-            <Option value="admin">Beginner</Option>
-            <Option value="creator">Intermediate</Option>
-            <Option value="user">Advanced</Option>
+            <Option value="admin">Admin</Option>
+            <Option value="creator">Creator</Option>
+            <Option value="user">User</Option>
           </Select>
         </div>
       </div>
