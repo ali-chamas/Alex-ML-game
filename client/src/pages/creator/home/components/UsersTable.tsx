@@ -18,14 +18,14 @@ const UsersTable = () => {
   console.log(users);
 
   return (
-    <Card className="h-full w-full overflow-scroll">
+    <Card className="h-[500px] overflow-auto w-full">
       <table className="w-full min-w-max table-auto text-left">
-        <thead>
+        <thead className="sticky top-0">
           <tr>
             {TABLE_HEAD.map((head) => (
               <th
                 key={head}
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4 w-[10%]"
               >
                 <Typography
                   variant="small"
@@ -39,57 +39,71 @@ const UsersTable = () => {
           </tr>
         </thead>
         <tbody>
-          {TABLE_ROWS.map(
-            ({ firstName, lastName, username }, index: number) => {
-              const isLast = index === TABLE_ROWS.length - 1;
-              const classes = isLast
-                ? "p-4"
-                : "p-4 border-b border-blue-gray-50";
+          {TABLE_ROWS.map((user: userType, index: number) => {
+            const isLast = index === TABLE_ROWS.length - 1;
+            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
-              return (
-                <tr key={firstName}>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {firstName}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {lastName}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {username}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      as="a"
-                      href="#"
-                      variant="small"
-                      color="blue-gray"
-                      className="font-medium"
-                    >
-                      Edit
-                    </Typography>
-                  </td>
-                </tr>
-              );
-            }
-          )}
+            return (
+              <tr key={user._id} className="even:bg-blue-gray-50/50">
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {user.firstName}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {user.lastName}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {user.username}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {user.age}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {user.role}
+                  </Typography>
+                </td>
+                <td className={classes}>
+                  <Typography
+                    as="a"
+                    href="#"
+                    variant="small"
+                    color="blue-gray"
+                    className="btn-primary-danger text-sm w-[90px]"
+                  >
+                    Delete
+                  </Typography>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </Card>
