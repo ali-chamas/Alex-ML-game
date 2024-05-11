@@ -61,8 +61,8 @@ const UsersTable = () => {
 
   return (
     <div className="flex flex-col w-full gap-5">
-      <div className="flex justify-between items-center">
-        <h1 className="md:text-xl xl:text-2xl">{users.length} Users</h1>
+      <div className="flex justify-between flex-col gap-3 md:flex-row md:items-center items-start">
+        <h1 className="md:text-xl xl:text-2xl">{filteredUsers.length} Users</h1>
         <div>
           <Input
             label="Search"
