@@ -22,7 +22,7 @@ const CreatorGames = () => {
           + Game
         </button>
       </div>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap gap-5 justify-center md:justify-start">
         {globalGames.map((game, i) => (
           <CreatorGameCard game={game} key={i} />
         ))}
