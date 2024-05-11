@@ -4,7 +4,7 @@ import {
   GamesContextType,
 } from "../../../../context/gamesContext";
 import { useSelector } from "react-redux";
-import { userType } from "../../../../tools/data-types/userType";
+
 import { sendRequest } from "../../../../tools/request-method/request";
 
 const CounterCards = () => {
