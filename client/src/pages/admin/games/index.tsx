@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
 import AdminGameCard from "./components/AdminGameCard";
 import toast, { Toaster } from "react-hot-toast";
+import { gameType } from "../../../tools/data-types/gameType";
 
 const AdminGames = () => {
   const { globalGames, setCreatorTrigger } = useContext(
     GamesContext
   ) as GamesContextType;
+
+  const [filteredGames, setFilteredGames] = useState<gameType[] | []>([]);
+
+  useEffect(() => {
+    setFilteredGames(globalGames);
+  }, [globalGames.length]);
 
   const deleteGameAlert = (title: string, method: () => void) => {
     toast((t: any) => (
@@ -33,12 +40,21 @@ const AdminGames = () => {
     ));
   };
 
+  const filterAprroved = (param: boolean) => {
+    const filtered = filteredGames.filter(
+      (game: gameType) => game.isApproved == param
+    );
+    setFilteredGames(filtered);
+  };
+
   return (
     <div className="flex flex-col gap-5 ">
       <Toaster />
-      <h1 className="text-primary text-lg m:text-xl lg:text-2xl">Games</h1>
+      <div className="flex justify-between sticky top-0 bg-primary p-5 rounded-lg z-10">
+        <h1 className="text-primary text-3xl">Our Games</h1>
+      </div>
       <div className="flex flex-wrap justify-center md:justify-start gap-4">
-        {globalGames.map((game, i) => (
+        {filteredGames.map((game, i) => (
           <AdminGameCard
             game={game}
             setTrigger={setCreatorTrigger}
