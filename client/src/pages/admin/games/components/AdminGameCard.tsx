@@ -2,6 +2,7 @@ import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import { sendRequest } from "../../../../tools/request-method/request";
+import toast, { Toaster } from "react-hot-toast";
 
 const AdminGameCard = ({
   game,
@@ -14,13 +15,24 @@ const AdminGameCard = ({
     try {
       const res = await sendRequest("PUT", `/admin/approve_game/${game._id}`);
       console.log(res);
-      setTrigger((t: Boolean) => !t);
+      setTrigger((t: boolean) => !t);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const deleteGame = async () => {
+    try {
+      const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
+      setTrigger((t: boolean) => !t);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10 ">
+      <Toaster />
       <div className="relative">
         <img
           src={`${apiUrl}/${game.image}`}
@@ -48,7 +60,9 @@ const AdminGameCard = ({
         <small className="text-black/70 dark:text-white/70 ">
           {game.description}
         </small>
-        <button className="btn-primary-danger">Delete</button>
+        <button className="btn-primary-danger" onClick={deleteGameAlert}>
+          Delete
+        </button>
       </div>
     </div>
   );
