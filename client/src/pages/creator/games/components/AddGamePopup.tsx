@@ -78,7 +78,7 @@ const AddGamePopup = () => {
       </div>
       <Textarea
         label="Description"
-        className="w-full border-white dark:text-white"
+        className="w-full  dark:text-white"
         onChange={(e) => setGame({ ...game, description: e.target.value })}
       />
       <div className="flex flex-col md:flex-row gap-2 w-full">

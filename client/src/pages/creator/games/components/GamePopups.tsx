@@ -59,20 +59,28 @@ const GamePopups = ({
     <div className="flex gap-2 w-full items-center justify-between mt-2">
       <Toaster />
       <p>{title}</p>
-      <Popover placement="bottom ">
+      <Popover placement="bottom">
         <PopoverHandler>
           <button className="btn-primary-dark disabled-btn-dark">
             {value}
           </button>
         </PopoverHandler>
         <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
-          <Input
-            label={title}
-            type={typeof value == "number" ? "number" : "text"}
-            color={isDarkMode ? "white" : "black"}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
+          {title == "Description" ? (
+            <Textarea
+              label="Description"
+              className="w-full  dark:text-white"
+              onChange={(e) => setInput(e.target.value)}
+            />
+          ) : (
+            <Input
+              label={title}
+              type={typeof value == "number" ? "number" : "text"}
+              color={isDarkMode ? "white" : "black"}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+          )}
           <button className="btn-primary-white" onClick={updateGame}>
             Edit
           </button>
