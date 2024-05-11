@@ -113,7 +113,7 @@ const LabelPopup = ({
               + Example
             </button>
           </PopoverHandler>
-          <PopoverContent className="bg-primary flex flex-col items-center gap-2">
+          <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
             <Input
               label="example"
               value={example}
