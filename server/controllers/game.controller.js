@@ -58,6 +58,7 @@ const getSingleGame = async (req, res) => {
 };
 
 const updateGame = async (req, res) => {
+  const { user } = req;
   const { gameId } = req.params;
   const updates = req.body;
   if (req.files) {
@@ -79,6 +80,14 @@ const updateGame = async (req, res) => {
   }
 
   try {
+    const gamesAfterUpdate = user.games.map((game) =>
+      game._id === gameId ? { ...game, updates } : game
+    );
+
+    const updatedUser = await User.findByIdAndUpdate(user_id, {
+      games: gamesAfterUpdate,
+    });
+
     const updatedGame = await Game.findByIdAndUpdate(gameId, updates, {
       new: true,
     });
@@ -94,12 +103,20 @@ const updateGame = async (req, res) => {
 
 const deleteGame = async (req, res) => {
   const { gameId } = req.params;
+  const { user } = req;
 
   try {
+    const gamesAfterDelete = user.games.filter((game) => game._id != gameId);
+
+    const updatedUser = await User.findByIdAndUpdate(user_id, {
+      games: gamesAfterDelete,
+    });
+
     const deletedGame = await Game.findByIdAndDelete(gameId);
     if (!deletedGame) {
       return res.status(404).json({ message: "Game not found" });
     }
+
     res.json({ message: "Game deleted successfully" });
   } catch (error) {
     console.error(error);
