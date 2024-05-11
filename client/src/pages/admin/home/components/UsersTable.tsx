@@ -82,6 +82,21 @@ const UsersTable = () => {
     }
   };
 
+  const deleteAlert = (user: userType) => {
+    toast((t: any) => (
+      <>
+        <h1>Delete {user.username} ? </h1>
+        <button className="btn-primary-danger">Yes</button>
+        <button
+          className="btn-primary-white"
+          onClick={() => toast.dismiss(t.id)}
+        >
+          No
+        </button>
+      </>
+    ));
+  };
+
   return (
     <div className="flex flex-col w-full gap-5">
       <Toaster />
@@ -193,6 +208,7 @@ const UsersTable = () => {
                         variant="small"
                         color="blue-gray"
                         className="btn-primary-danger text-sm w-[90px]"
+                        onClick={(user) => deleteAlert(user)}
                       >
                         Delete
                       </Typography>
