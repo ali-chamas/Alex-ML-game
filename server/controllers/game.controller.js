@@ -84,7 +84,7 @@ const updateGame = async (req, res) => {
       game._id === gameId ? { ...game, updates } : game
     );
 
-    const updatedUser = await User.findByIdAndUpdate(user_id, {
+    const updatedUser = await User.findByIdAndUpdate(user._id, {
       games: gamesAfterUpdate,
     });
 
@@ -108,7 +108,7 @@ const deleteGame = async (req, res) => {
   try {
     const gamesAfterDelete = user.games.filter((game) => game._id != gameId);
 
-    const updatedUser = await User.findByIdAndUpdate(user_id, {
+    const updatedUser = await User.findByIdAndUpdate(user._id, {
       games: gamesAfterDelete,
     });
 
