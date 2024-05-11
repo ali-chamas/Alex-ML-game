@@ -53,6 +53,14 @@ const Games = () => {
 
       {(filteredGames?.length as number) > 0 ? (
         <Swiper
+          style={{
+            "--swiper-pagination-color": "cyan",
+            "--swiper-navigation-color": "cyan",
+            "--swiper-pagination-bullet-inactive-color": "#999999",
+            "--swiper-pagination-bullet-inactive-opacity": "1",
+            "--swiper-pagination-bullet-size": "13px",
+            "--swiper-pagination-bullet-horizontal-gap": "6px",
+          }}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
@@ -64,15 +72,12 @@ const Games = () => {
             modifier: 2.5,
           }}
           pagination={{ clickable: true }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
+          navigation
           modules={[EffectCoverflow, Pagination, Navigation]}
-          className="relative w-full"
+          className="relative w-full h-[370px]"
         >
           {filteredGames?.map((game, i) => (
-            <SwiperSlide key={i} className="w-[300px] relative">
+            <SwiperSlide key={i} className="w-[300px] relative h-[320px]">
               <Gamecard game={game} user={user} checkProgress={progress} />
             </SwiperSlide>
           ))}
