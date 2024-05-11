@@ -1,8 +1,15 @@
 import { Card, Typography } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { userType } from "../../../../tools/data-types/userType";
+import { useEffect, useState } from "react";
 const UsersTable = () => {
   const users = useSelector((state: any) => state.users.users);
+
+  const [filteredUsers, setFilteredUsers] = useState<userType[] | []>(users);
+
+  useEffect(() => {
+    setFilteredUsers(users);
+  }, [users.length]);
 
   const TABLE_HEAD = [
     "First Name",
@@ -13,17 +20,17 @@ const UsersTable = () => {
     "Delete",
   ];
 
-  const TABLE_ROWS = users;
+  const TABLE_ROWS = filteredUsers;
 
   return (
     <Card className="h-[500px] overflow-auto w-full bg-white/0">
       <table className="w-full min-w-max table-auto text-left">
-        <thead className="sticky top-0">
+        <thead className="sticky top-0 ">
           <tr>
             {TABLE_HEAD.map((head) => (
               <th
                 key={head}
-                className="border-b border-blue-gray-100 dark:border-black bg-cyan-50 dark:bg-black/20 p-4 w-[10%]"
+                className="border-b border-blue-gray-100 dark:border-black bg-cyan-50  dark:bg-black/70 p-4 w-[10%]"
               >
                 <Typography
                   variant="small"
