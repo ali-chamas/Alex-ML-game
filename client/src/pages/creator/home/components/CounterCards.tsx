@@ -3,14 +3,11 @@ import {
   GamesContext,
   GamesContextType,
 } from "../../../../context/gamesContext";
-import { useSelector } from "react-redux";
 
 import { sendRequest } from "../../../../tools/request-method/request";
 
 const CounterCards = () => {
   const { globalGames } = useContext(GamesContext) as GamesContextType;
-
-  const usersState = useSelector((state: any) => state.users.users);
 
   const [gamesCount, setGamesCount] = useState<number>(0);
   const [usersCount, setUsersCount] = useState<number>(0);
