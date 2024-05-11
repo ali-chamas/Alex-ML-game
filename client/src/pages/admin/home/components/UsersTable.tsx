@@ -21,6 +21,8 @@ const UsersTable = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const activeUser = userContext.user;
 
+  const { setUserTrigger } = useContext(UserContext) as UserContextType;
+
   const [filteredUsers, setFilteredUsers] = useState<userType[] | []>(users);
 
   useEffect(() => {
@@ -77,6 +79,7 @@ const UsersTable = () => {
     try {
       const res = await sendRequest("DELETE", `/admin/delete_user/${userId}`);
       toast.success("deleted user");
+      setUserTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +90,15 @@ const UsersTable = () => {
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-lg">Delete {user.username} ? </h1>
         <div className="flex  w-full gap-5">
-          <button className="btn-primary-danger">Yes</button>
+          <button
+            className="btn-primary-danger"
+            onClick={() => {
+              deleteUser(user._id);
+              toast.dismiss(t.id);
+            }}
+          >
+            Yes
+          </button>
           <button
             className="btn-primary-dark"
             onClick={() => toast.dismiss(t.id)}
@@ -206,7 +217,7 @@ const UsersTable = () => {
                     ) : (
                       <button
                         className="btn-primary-danger text-sm w-[90px]"
-                        onClick={(user: userType) => deleteAlert(user)}
+                        onClick={() => deleteAlert(user)}
                       >
                         Delete
                       </button>
