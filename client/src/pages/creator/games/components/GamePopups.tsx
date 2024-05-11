@@ -3,6 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverHandler,
+  Textarea,
 } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
@@ -32,7 +33,7 @@ const GamePopups = ({
     status: number;
   }
 
-  const [input, setInput] = useState<string | number>("");
+  const [input, setInput] = useState<string | number>(value as string | number);
   const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
@@ -48,6 +49,7 @@ const GamePopups = ({
       );
       console.log(res);
       toast.success(`edited`);
+
       setCreatorTrigger((t) => !t);
     } catch (error: any) {
       console.log(error);
@@ -69,6 +71,7 @@ const GamePopups = ({
           {title == "Description" ? (
             <Textarea
               label="Description"
+              value={input}
               className="w-full  dark:text-white"
               onChange={(e) => setInput(e.target.value)}
             />
