@@ -12,9 +12,12 @@ import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 const UsersTable = () => {
   const users = useSelector((state: any) => state.users.users);
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
+  const userContext = useContext(UserContext) as UserContextType;
+  const activeUser = userContext.user;
 
   const [filteredUsers, setFilteredUsers] = useState<userType[] | []>(users);
 
@@ -45,10 +48,10 @@ const UsersTable = () => {
           />
         </div>
         <div>
-          <Select label="Level">
-            <Option value="beginner">Beginner</Option>
-            <Option value="intermediate">Intermediate</Option>
-            <Option value="advanced">Advanced</Option>
+          <Select label="Role">
+            <Option value="admin">Beginner</Option>
+            <Option value="creator">Intermediate</Option>
+            <Option value="user">Advanced</Option>
           </Select>
         </div>
       </div>
@@ -130,15 +133,19 @@ const UsersTable = () => {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Typography
-                      as="a"
-                      href="#"
-                      variant="small"
-                      color="blue-gray"
-                      className="btn-primary-danger text-sm w-[90px]"
-                    >
-                      Delete
-                    </Typography>
+                    {user._id === activeUser?._id ? (
+                      <p>(You)</p>
+                    ) : (
+                      <Typography
+                        as="a"
+                        href="#"
+                        variant="small"
+                        color="blue-gray"
+                        className="btn-primary-danger text-sm w-[90px]"
+                      >
+                        Delete
+                      </Typography>
+                    )}
                   </td>
                 </tr>
               );
