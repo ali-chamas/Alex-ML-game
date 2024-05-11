@@ -20,7 +20,7 @@ const GamesFilter = ({
     <Select
       color="blue-gray"
       label="Select level"
-      className="bg-primary"
+      className="bg-primary "
       onChange={(e: any) => filterGames(e)}
     >
       <Option value="all">All</Option>

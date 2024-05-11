@@ -12,7 +12,7 @@ const CreatorGames = () => {
   const [openAdd, setOpenAdd] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col gap-10 my-10 md:m-10 w-full">
+    <div className="flex flex-col gap-10 pt-5 px-3 md:m-10 w-full">
       <div className="flex justify-between sticky top-0 bg-primary p-5 rounded-lg z-10">
         <h1 className="text-primary text-3xl">Our Games</h1>
         <button

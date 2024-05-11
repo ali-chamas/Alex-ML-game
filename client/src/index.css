@@ -73,8 +73,17 @@
   @apply bg-white/25 text-black border-2 border-black/40 px-6 py-2 rounded-lg hover:bg-[#031C28] hover:text-white transition-all duration-[0.4s];
 }
 
-.dark * {
-  color: white;
+.dark h1 {
+  @apply text-white;
+}
+.dark p {
+  @apply text-white;
+}
+.dark small {
+  @apply text-white;
+}
+.dark button {
+  @apply text-white;
 }
 
 .dark select option {

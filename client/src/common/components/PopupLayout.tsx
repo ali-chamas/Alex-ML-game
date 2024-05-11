@@ -14,7 +14,7 @@ const PopupLayout = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>> | any;
 }) => {
   return (
-    <div className="popup ">
+    <div className="popup z-20">
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: open ? 1 : 0 }}
