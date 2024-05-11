@@ -8,10 +8,10 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import "swiper/css/navigation";
+import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
+import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import "swiper/css/navigation";
 
 const Games = () => {
   const { user } = useContext(UserContext) as UserContextType;
@@ -54,31 +54,25 @@ const Games = () => {
       {(filteredGames?.length as number) > 0 ? (
         <Swiper
           effect={"coverflow"}
-          modules={[Navigation, Pagination, Scrollbar]}
-          centeredSlides={true}
-          spaceBetween={30}
           grabCursor={true}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          breakpoints={{
-            576: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1200: {
-              slidesPerView: 3,
-            },
-            1400: {
-              slidesPerView: 4,
-            },
+          centeredSlides={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
           }}
-          className="w-full  "
+          pagination={{ el: ".swiper-pagination", clickable: true }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="relative w-full"
         >
           {filteredGames?.map((game, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i} className="w-[300px] relative">
               <Gamecard game={game} user={user} checkProgress={progress} />
             </SwiperSlide>
           ))}
