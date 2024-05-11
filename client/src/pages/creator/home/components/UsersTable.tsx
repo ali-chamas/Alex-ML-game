@@ -37,10 +37,15 @@ const UsersTable = () => {
   const TABLE_ROWS = filteredUsers;
 
   const searchFilter = (filter: string) => {
-    const searchedUsers = users.filter(
-      (user: userType) => user.username == filter
-    );
-    setFilteredUsers(searchedUsers);
+    if (filter == "") {
+      setFilteredUsers(users);
+    } else {
+      const searchedUsers = users.filter((user: userType) =>
+        user.username.startsWith(filter)
+      );
+
+      setFilteredUsers(searchedUsers);
+    }
   };
 
   const roleFilter = (filter: string) => {
@@ -63,6 +68,7 @@ const UsersTable = () => {
             label="Search"
             type="search"
             color={isDarkMode ? "white" : "black"}
+            onChange={(e) => searchFilter(e.target.value)}
           />
         </div>
         <div>
