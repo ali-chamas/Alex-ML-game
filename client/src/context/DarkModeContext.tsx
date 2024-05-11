@@ -1,6 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { userType } from "../tools/data-types/userType";
-import { sendRequest } from "../tools/request-method/request";
 
 export interface DarkModeContextType {
   isDarkMode: boolean;

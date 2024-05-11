@@ -1,5 +1,5 @@
 import CounterCards from "../../creator/home/components/CounterCards";
-import UsersTable from "../../creator/home/components/UsersTable";
+import UsersTable from "./components/UsersTable";
 
 const AdminHome = () => {
   return (
