@@ -14,7 +14,10 @@ const SidebarLinks = ({
     path: string;
   }
 
-  const adminLinks: linksType[] | [] = [];
+  const adminLinks: linksType[] | [] = [
+    { title: "Home", path: "/admin" },
+    { title: "Games", path: "/admin/games" },
+  ];
 
   const creatorLinks: linksType[] = [
     { title: "Home", path: "/creator" },
