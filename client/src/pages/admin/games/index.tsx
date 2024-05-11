@@ -8,7 +8,7 @@ const AdminGames = () => {
   ) as GamesContextType;
 
   return (
-    <div className="flex flex-col p-10">
+    <div className="flex flex-col gap-5 ">
       <h1 className="text-primary text-lg m:text-xl lg:text-2xl">Games</h1>
       <div className="flex flex-wrap justify-center md:justify-start gap-4">
         {globalGames.map((game, i) => (

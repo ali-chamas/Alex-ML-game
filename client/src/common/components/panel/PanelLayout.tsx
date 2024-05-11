@@ -33,7 +33,7 @@ const PanelLayout = ({
   return (
     <section className="bg min-h-screen p-5 flex overflow-x-auto">
       <Sidebar type={type} />
-      {children}
+      <div className="p-5 w-full h-full">{children}</div>
     </section>
   );
 };

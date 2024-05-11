@@ -1,3 +1,4 @@
+import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 
@@ -21,8 +22,8 @@ const AdminGameCard = ({
             Yes
           </button>
         ) : (
-          <button className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white px-4 p-3 ">
-            No
+          <button className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3 ">
+            <IoClose />
           </button>
         )}
       </div>
