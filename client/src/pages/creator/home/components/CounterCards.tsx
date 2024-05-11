@@ -28,7 +28,7 @@ const CounterCards = () => {
 
   useEffect(() => {
     getCreators();
-  }, [usersState.length]);
+  }, []);
 
   return (
     <div className="flex gap-5 md:gap-10 lg:gap-20">

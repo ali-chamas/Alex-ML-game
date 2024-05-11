@@ -29,7 +29,7 @@ const PanelLayout = ({
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, [user]);
   return (
     <section className="bg min-h-screen flex">
       <Sidebar type={type} />
