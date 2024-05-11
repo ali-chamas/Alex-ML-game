@@ -2,14 +2,15 @@ import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import { sendRequest } from "../../../../tools/request-method/request";
-import toast, { Toaster } from "react-hot-toast";
 
 const AdminGameCard = ({
   game,
   setTrigger,
+  alert,
 }: {
   game: gameType;
   setTrigger: any;
+  alert: (name: string, deleteGame: () => void) => void;
 }) => {
   const toggleApprove = async () => {
     try {
@@ -32,7 +33,6 @@ const AdminGameCard = ({
 
   return (
     <div className="flex flex-col items-center gap-2 rounded-md bg-primary  bg-opacity-75 h-[320px] w-[300px] border-2 border-black/10 ">
-      <Toaster />
       <div className="relative">
         <img
           src={`${apiUrl}/${game.image}`}
@@ -60,7 +60,10 @@ const AdminGameCard = ({
         <small className="text-black/70 dark:text-white/70 ">
           {game.description}
         </small>
-        <button className="btn-primary-danger" onClick={deleteGameAlert}>
+        <button
+          className="btn-primary-danger"
+          onClick={() => alert(game.name, deleteGame)}
+        >
           Delete
         </button>
       </div>
