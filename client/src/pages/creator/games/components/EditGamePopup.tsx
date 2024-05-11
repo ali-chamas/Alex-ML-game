@@ -1,7 +1,7 @@
 import { FileUploader } from "react-drag-drop-files";
 import { gameType } from "../../../../tools/data-types/gameType";
 import GamePopups from "./GamePopups";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import {
   GamesContext,
