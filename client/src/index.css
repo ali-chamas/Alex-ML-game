@@ -58,6 +58,14 @@
   @apply rounded-md p-5 w-[300px] min-h-[450px] h-auto sm:w-[400px] sm:min-h-[400px] md:w-[500px] md:min-h-[400px] lg:w-[600px] lg:min-h-[500px] bg-primary bg-opacity-80 shadow-md;
 }
 
+.disabled-btn {
+  @apply disabled:opacity-50 disabled:hover:bg-black disabled:hover:text-white;
+}
+
+.disabled-btn-dark {
+  @apply disabled:opacity-50 disabled:hover:bg-white/25 disabled:hover:text-black;
+}
+
 .dark .disabled-btn {
   @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
 }

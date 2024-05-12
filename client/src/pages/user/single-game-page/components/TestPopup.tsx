@@ -104,11 +104,10 @@ const TestPopup = ({
 
       <div className="flex h-full w-full justify-center items-center">
         {!trained ? (
-          <div className="flex flex-col gap-3 mt-10 items-center">
+          <div className="flex flex-col gap-3 mt-[30%] items-center">
             <button className="btn-primary-white" onClick={trainModel}>
               Train Model
             </button>
-            <img src={alexImg} className="w-[200px]" alt="" />
           </div>
         ) : (
           <div className="flex flex-col gap-4 items-center">
