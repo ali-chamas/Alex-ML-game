@@ -132,9 +132,9 @@ const TestPopup = ({
                     ([key, value]: [key: string, value: number]) => {
                       const percentage = (value * 100).toFixed(2);
                       return (
-                        <div key={key}>
+                        <p key={key}>
                           {key}: {percentage}%
-                        </div>
+                        </p>
                       );
                     }
                   )}

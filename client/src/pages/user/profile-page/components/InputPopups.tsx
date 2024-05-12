@@ -59,7 +59,7 @@ const InputPopups = ({
             {value}
           </button>
         </PopoverHandler>
-        <PopoverContent className="bg-primary flex flex-col items-center gap-2">
+        <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
           <Input
             label={title}
             type={typeof value == "number" ? "number" : "text"}
