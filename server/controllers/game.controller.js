@@ -128,7 +128,7 @@ const approveGame = async (req, res) => {
       return res.status(404).json({ message: "Game not found" });
     }
 
-    const isApproved = !existingGame.isApproved; // Toggle the existing value
+    const isApproved = !existingGame.isApproved;
 
     const updatedGame = await Game.findByIdAndUpdate(
       gameId,
@@ -189,7 +189,7 @@ const startGame = async (req, res) => {
     const user = await User.findById(userId);
 
     if (game) {
-      user.gamesProgress.push({ _id: gameId });
+      user.gamesProgress.push({ _id: gameId, order: game.order });
       await user.save();
     } else res.status(400).json({ message: "no game found" });
     return res.status(200).json({ message: "game started!" });
