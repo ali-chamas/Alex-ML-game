@@ -53,7 +53,7 @@ const Profile = () => {
   };
 
   const countCompletedGames = () => {
-    return (user?.progress as number) - 1;
+    return user?.progress as number;
   };
 
   const scrollToProfile = () => {

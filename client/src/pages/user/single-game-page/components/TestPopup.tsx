@@ -50,13 +50,13 @@ const TestPopup = ({
         gameId: gameId,
       });
 
-      setTrained(true);
-      setTrigger((t) => !t);
       setTrainingDataTracking(model.dataset.labels);
       window.localStorage.setItem(
         "oldData",
         JSON.stringify(model.dataset.labels)
       );
+
+      setTrigger((t) => !t);
       toast.success("trained succesfully", {
         className: "dark:bg-blue-gray-900",
       });

@@ -19,7 +19,6 @@ import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
-import { userType } from "../../../../tools/data-types/userType";
 
 const LabelPopup = ({
   label,
