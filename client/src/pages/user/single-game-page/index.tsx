@@ -27,6 +27,7 @@ const SingleGame = () => {
   const [openTest, setOpenTest] = useState<boolean>(false);
   const [openPlay, setOpenPlay] = useState<boolean>(false);
   const [activeModel, setActiveModel] = useState<modelType | any>({});
+  const [userGame, setUserGame] = useState<any>();
 
   const getActiveGame = async () => {
     try {
@@ -61,6 +62,7 @@ const SingleGame = () => {
     user?.gamesProgress.map((game) => {
       if (game._id == gameId) {
         setActiveModel(game.model);
+        setUserGame(game);
       }
     });
   };
@@ -91,7 +93,6 @@ const SingleGame = () => {
 
   useEffect(() => {
     getActiveModel();
-    console.log("triggered");
   }, [user]);
 
   useEffect(() => {
@@ -198,7 +199,7 @@ const SingleGame = () => {
               gameId={gameId as string}
               model={activeModel as modelType}
               setTrigger={setUserTrigger}
-              game={activeGame as gameType}
+              game={userGame}
             />
           }
         />

@@ -1,9 +1,9 @@
 import { modelType } from "../../../../tools/data-types/modelType";
 import { useContext, useState } from "react";
-import { gameType } from "../../../../tools/data-types/gameType";
+
 import scratchImg from "../../../../assets/Scratch-cat.png";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+
 import toast, { Toaster } from "react-hot-toast";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 
@@ -17,12 +17,11 @@ const PlayPopup = ({
 
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   model: modelType;
-  game: gameType;
+  game: any;
 }) => {
-  const { triggerContext } = useTriggerContext();
   const { token } = useContext(UserContext) as UserContextType;
 
-  const [complete, setComplete] = useState(model.finished);
+  const [complete, setComplete] = useState(game.finished);
 
   const toggleComplete = async () => {
     try {
@@ -30,8 +29,8 @@ const PlayPopup = ({
         gameId: gameId,
       });
 
-      setComplete((c) => !c);
-      triggerContext();
+      setComplete((c: boolean) => !c);
+
       setTrigger((t) => !t);
       toast.success(
         complete
@@ -62,7 +61,7 @@ const PlayPopup = ({
           className="btn-primary-dark"
           onClick={() =>
             window.open(
-              `https://alex-ml1.github.io/alex/scratch?url=${game.model.modelUrl}&token=${token}`
+              `https://alex-ml1.github.io/alex/scratch?url=${model.modelUrl}&token=${token}`
             )
           }
         >

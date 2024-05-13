@@ -4,11 +4,10 @@ import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaFilePdf } from "react-icons/fa6";
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
-import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+
 import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const Gamecard = ({ game }: { game: gameType | any }) => {
-  const { triggerContext } = useTriggerContext();
   const { user } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
 
@@ -54,7 +53,6 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
         gameId: game._id,
       });
 
-      triggerContext();
       navigate(`/games/${game._id}`);
     } catch (error) {
       console.log(error);
