@@ -79,6 +79,9 @@ const updateGame = async (req, res) => {
     }
   }
 
+  //set the game approval to false
+  updates["isApproved"] = false;
+
   try {
     const gamesAfterUpdate = user.games.map((game) =>
       game._id === gameId ? { ...game, updates } : game
