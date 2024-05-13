@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { gameType } from "../../../tools/data-types/gameType";
@@ -12,10 +12,12 @@ import TestPopup from "./components/TestPopup";
 import PlayPopup from "./components/PlayPopup";
 import PopupLayout from "../../../common/components/PopupLayout";
 import logo from "../../../assets/marco.png";
+import { UserContext, UserContextType } from "../../../context/userContext";
 
 const SingleGame = () => {
   const { gameId } = useParams();
 
+  const { user } = useContext(UserContext) as UserContextType;
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
   const [locked, setLocked] = useState<boolean>(false);
@@ -38,14 +40,18 @@ const SingleGame = () => {
     }
   };
 
+  console.log(activeGame);
+
   const unlockGame = () => {
-    if (activeGame?.isStarted) {
-      setLocked(false);
-      setLoading(false);
-    } else {
-      setLocked(true);
-      setLoading(false);
-    }
+    user?.gamesProgress.map((game) => {
+      if (game._id == activeGame?._id) {
+        setLocked(false);
+        setLoading(false);
+      } else {
+        setLocked(true);
+        setLoading(false);
+      }
+    });
     setLoading(false);
   };
 
