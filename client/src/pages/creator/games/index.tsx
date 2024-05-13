@@ -29,7 +29,7 @@ const CreatorGames = () => {
       </div>
       {openAdd && (
         <PopupLayout
-          children={<AddGamePopup />}
+          children={<AddGamePopup setOpen={setOpenAdd} />}
           open={openAdd}
           setOpen={setOpenAdd}
           title="Add A Game"

@@ -19,7 +19,11 @@ import {
   GamesContextType,
 } from "../../../../context/gamesContext";
 
-const AddGamePopup = () => {
+const AddGamePopup = ({
+  setOpen,
+}: {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>> | any;
+}) => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
   const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
 
@@ -55,6 +59,7 @@ const AddGamePopup = () => {
       const res = await sendRequest("POST", "/creator/add_game", formData);
 
       setCreatorTrigger((t) => !t);
+      setOpen(false);
     } catch (error) {
       console.log(error);
     }
