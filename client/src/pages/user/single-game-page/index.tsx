@@ -42,15 +42,19 @@ const SingleGame = () => {
   };
 
   const unlockGame = () => {
-    user?.gamesProgress.map((game) => {
-      if (game._id == activeGame?._id) {
-        setLocked(false);
-        setLoading(false);
-      } else {
-        setLocked(true);
-        setLoading(false);
-      }
-    });
+    const lastUserGame = user?.gamesProgress[user.gamesProgress.length - 1];
+
+    if (
+      (activeGame?.order as number) <= lastUserGame.order ||
+      (activeGame?.order as number) < (user?.progress as number) + 1
+    ) {
+      setLocked(false);
+      setLoading(false);
+    } else {
+      setLocked(true);
+      setLoading(false);
+    }
+
     setLoading(false);
   };
 
