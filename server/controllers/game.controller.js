@@ -144,27 +144,34 @@ const approveGame = async (req, res) => {
 };
 
 const completeGame = async (req, res) => {
-  const { user } = req;
   const { gameId } = req.body;
 
   try {
-    const gameIndex = user.games.findIndex(
-      (game) => game._id.toString() === gameId
-    );
-    if (gameIndex < 0) {
-      return res
-        .status(400)
-        .json({ message: "Game not found in user's games" });
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    user.games[gameIndex].isComplete = !user.games[gameIndex].isComplete;
+    const gameIndex = user.gamesProgress.findIndex(
+      (game) => game.gameId.toString() === gameId
+    );
 
+    if (gameIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Game not found in user's progress" });
+    }
+
+    user.gamesProgress[gameIndex].finished = true;
+    user.progress += 1;
     await user.save();
 
-    res.status(200).json(user.games[gameIndex]);
+    res.json({ message: "Game completed successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error approving game" });
+    res.status(500).json({ message: "Error completing game" });
   }
 };
 
@@ -227,5 +234,4 @@ module.exports = {
   approveGame,
   completeGame,
   startGame,
-  restartGame,
 };

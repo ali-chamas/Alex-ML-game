@@ -46,9 +46,9 @@ const userSchema = new mongoose.Schema({
   },
   gamesProgress: [
     {
-      gameId: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: "Game", index: true },
       finished: { type: Boolean, default: false },
-      model: { type: modelSchema, default: Model },
+      model: { type: mongoose.Schema.Types.ObjectId, ref: "Model" },
     },
   ],
 });
