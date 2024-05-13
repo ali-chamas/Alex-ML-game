@@ -13,26 +13,30 @@ import { UserContext, UserContextType } from "../../../../context/userContext";
 const Gamecard = ({ game }: { game: gameType | any }) => {
   const { triggerContext } = useTriggerContext();
   const { user } = useContext(UserContext) as UserContextType;
-
-  const [availableOrder, setAvailableOrder] = useState<number>(-1);
+  const [status, setStatus] = useState<string>("locked");
 
   const navigate = useNavigate();
 
-  const checkAvailableGame = () => {
-    if (user?.gamesProgress.length == 0) {
-      setAvailableOrder(0);
-    } else if (
-      user?.gamesProgress[user?.gamesProgress.length - 1].finished == false
-    ) {
-      setAvailableOrder(user.progress);
-    } else {
-      setAvailableOrder((user?.progress as number) + 1);
+  const checkGameStatus = () => {
+    if (user?.gamesProgress[user.gamesProgress.length - 1].finished == true) {
+      if (game.order == user.progress) {
+        setStatus("ready");
+      }
     }
+    user?.gamesProgress.map((userGame) => {
+      if (userGame._id == game._id && userGame.finished) {
+        setStatus("completed");
+      } else if (userGame._id == game._id && !userGame.finished) {
+        setStatus("in progress");
+      } else {
+        setStatus("locked");
+      }
+    });
   };
 
   useEffect(() => {
-    checkAvailableGame();
-  }, []);
+    checkGameStatus();
+  }, [user]);
 
   const startGame = async () => {
     try {
@@ -67,21 +71,21 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
         <small className="text-black/70 dark:text-white/70 ">
           {game.description}
         </small>
-        {game.order < (user?.progress as number) ? (
+        {status == "completed" ? (
           <button
             className="btn-primary-white w-[200px]"
             onClick={() => navigate(`/games/${game._id}`)}
           >
             Completed
           </button>
-        ) : game.order == availableOrder ? (
+        ) : status == "in progress" ? (
           <button
             className="btn-primary-white w-[200px]"
             onClick={() => navigate(`/games/${game._id}`)}
           >
             Continue
           </button>
-        ) : false ? (
+        ) : status == "ready" ? (
           <button className="btn-primary-white w-[200px]" onClick={startGame}>
             Start Mission
           </button>
