@@ -18,4 +18,5 @@ interface userGame {
   _id: String;
   finished: boolean;
   model: [modelType];
+  order: number;
 }
