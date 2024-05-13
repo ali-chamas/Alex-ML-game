@@ -35,32 +35,13 @@ const Profile = () => {
   const [progress, setProgress] = useState<boolean>(false);
 
   const findCurrentGame = () => {
-    const current = user?.games.find(
-      (game) => game.isStarted && !game.isComplete
-    );
+    const current = approvedGames[(user?.progress as number) - 1];
 
     if (current) {
       setCurrentGame(current);
       setProgress(true);
     } else {
-      const userGames = user?.games;
-      const lastGameIndex = userGames?.length
-        ? userGames.length - 1
-        : undefined;
-      const lastGame =
-        userGames && lastGameIndex !== undefined
-          ? userGames[lastGameIndex]
-          : undefined;
-      const unlockedGame = approvedGames[user?.games.length as number];
-      if (unlockedGame) {
-        if (unlockedGame.isApproved) {
-          setCurrentGame(unlockedGame);
-        } else {
-          lastGame && setCurrentGame(lastGame);
-        }
-      } else {
-        lastGame && setCurrentGame(lastGame);
-      }
+      setCurrentGame(approvedGames[approvedGames.length - 1]);
     }
   };
 
@@ -74,10 +55,8 @@ const Profile = () => {
     }
   };
 
-  const countCompletedGames = (games: [gameType] | any): number => {
-    return games.reduce((count: number, game: gameType) => {
-      return count + (game.isComplete ? 1 : 0);
-    }, 0);
+  const countCompletedGames = () => {
+    return (user?.progress as number) - 1;
   };
 
   const scrollToProfile = () => {
@@ -89,9 +68,9 @@ const Profile = () => {
   };
 
   const trophyColor = () => {
-    if (countCompletedGames(user?.games) == approvedGames.length) {
+    if (countCompletedGames() == approvedGames.length) {
       return "from-yellow-600/70 to-yellow-800/90";
-    } else if (countCompletedGames(user?.games) >= approvedGames.length / 2) {
+    } else if (countCompletedGames() >= approvedGames.length / 2) {
       return isDarkMode
         ? "from-white/60 to-white/40"
         : "from-gray-400 to-gray-600";
@@ -157,10 +136,8 @@ const Profile = () => {
 
             <div className="flex flex-col xl:flex-row w-full items-center justify-evenly">
               <ProgressBar
-                completed={`${countCompletedGames(user?.games)}`}
-                customLabel={`${countCompletedGames(user?.games)} / ${
-                  approvedGames.length
-                }
+                completed={`${countCompletedGames()}`}
+                customLabel={`${countCompletedGames()} / ${approvedGames.length}
               `}
                 maxCompleted={approvedGames?.length}
                 className="w-full xl:w-1/2 "

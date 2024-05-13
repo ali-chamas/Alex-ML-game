@@ -1,4 +1,4 @@
-import { gameType } from "./gameType";
+import { modelType } from "./modelType";
 
 export interface userType {
   _id: string;
@@ -10,5 +10,12 @@ export interface userType {
   role: string;
   age: number;
   avatar: string;
-  games: [gameType] | [];
+  progress: number;
+  gamesProgress: [userGame] | [];
+}
+
+interface userGame {
+  _id: String;
+  finished: boolean;
+  model: [modelType];
 }
