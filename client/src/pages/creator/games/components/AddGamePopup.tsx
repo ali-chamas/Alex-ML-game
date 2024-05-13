@@ -18,6 +18,7 @@ import {
   GamesContext,
   GamesContextType,
 } from "../../../../context/gamesContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddGamePopup = ({
   setOpen,
@@ -62,11 +63,13 @@ const AddGamePopup = ({
       setOpen(false);
     } catch (error) {
       console.log(error);
+      toast.error("order already exist");
     }
   };
 
   return (
     <div className="flex flex-col gap-3 items-center">
+      <Toaster />
       <div className="flex flex-col md:flex-row gap-2 w-full">
         <Input
           label="Title"

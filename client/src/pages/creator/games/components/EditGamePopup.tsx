@@ -41,7 +41,7 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
   const deleteGame = async () => {
     try {
       const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
-      setCreatorTrigger((t) => !t);
+      if ((await res).status == 200) setCreatorTrigger((t) => !t);
       setOpen(false);
     } catch (error) {
       console.log(error);

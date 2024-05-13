@@ -56,6 +56,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   }, [token]);
   useEffect(() => {
     if (user?.role == "creator" || user?.role == "admin") getGames();
+    console.log("triggered");
   }, [creatorTrigger]);
 
   useEffect(() => {
