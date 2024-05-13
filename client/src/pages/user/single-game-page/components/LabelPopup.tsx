@@ -1,4 +1,8 @@
-import { exampleType, labelType } from "../../../../tools/data-types/modelType";
+import {
+  exampleType,
+  labelType,
+  modelType,
+} from "../../../../tools/data-types/modelType";
 import { IoMdClose } from "react-icons/io";
 import { FaTrash } from "react-icons/fa";
 import { sendRequest } from "../../../../tools/request-method/request";
@@ -22,8 +26,10 @@ const LabelPopup = ({
   setOpen,
   gameId,
   setTrigger,
+  model,
 }: {
   label: labelType | null;
+  model: modelType | any;
   setOpen: React.Dispatch<React.SetStateAction<labelType | boolean>>;
   gameId: string | undefined;
   game: gameType | undefined;
@@ -36,7 +42,9 @@ const LabelPopup = ({
   const [examples, setExamples] = useState<[exampleType] | []>([]);
 
   const getExamples = () => {
-    const ex = game?.model.dataset.labels.find((lab) => lab._id == label?._id);
+    const ex = model.dataset.labels.find(
+      (lab: labelType) => lab._id == label?._id
+    );
     if (ex) {
       setExamples(ex.examples);
     } else {
@@ -100,16 +108,12 @@ const LabelPopup = ({
         <button
           className="bg-red-400/80 rounded-full p-3 hover:opacity-80 disabled:opacity-80"
           onClick={deleteLabel}
-          disabled={game?.isComplete}
         >
           <FaTrash fill="white" />
         </button>
         <Popover placement="bottom">
           <PopoverHandler>
-            <button
-              className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn"
-              disabled={game?.isComplete}
-            >
+            <button className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn">
               + Example
             </button>
           </PopoverHandler>
@@ -138,7 +142,6 @@ const LabelPopup = ({
             <button
               className="invisible absolute group-hover:visible -top-3 right-1 bg-red-500 p-1 rounded-full "
               onClick={() => deleteExample(ex._id)}
-              disabled={game?.isComplete}
             >
               <IoMdClose />
             </button>

@@ -36,6 +36,7 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   useEffect(() => {
     if (token) {
       getLoggedInUser();
+      console.log(user);
     } else setUser(null);
   }, [token, userTrigger]);
 

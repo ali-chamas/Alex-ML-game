@@ -17,7 +17,7 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 const SingleGame = () => {
   const { gameId } = useParams();
 
-  const { user } = useContext(UserContext) as UserContextType;
+  const { user, setUserTrigger } = useContext(UserContext) as UserContextType;
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
 
   const [locked, setLocked] = useState<boolean>(false);
@@ -82,14 +82,13 @@ const SingleGame = () => {
     }
   };
 
-  console.log(activeModel);
-
   useEffect(() => {
     getActiveGame();
-  }, [trigger]);
+  }, []);
 
   useEffect(() => {
     getActiveModel();
+    console.log("triggered");
   }, [user]);
 
   useEffect(() => {
@@ -117,7 +116,7 @@ const SingleGame = () => {
             {activeGame?.name}
           </h1>
 
-          <TrainOption game={activeGame} setTrigger={setTrigger} />
+          <TrainOption game={activeGame} setTrigger={setUserTrigger} />
 
           {activeModel.dataset.labels &&
           activeModel.dataset.labels.length > 0 ? (
@@ -164,8 +163,9 @@ const SingleGame = () => {
             <LabelPopup
               label={openLabel}
               gameId={gameId}
-              setTrigger={setTrigger}
+              setTrigger={setUserTrigger}
               game={activeGame}
+              model={activeModel}
               setOpen={setOpenLabel}
             />
           }
