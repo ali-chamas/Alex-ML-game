@@ -186,35 +186,37 @@ const startGame = async (req, res) => {
   }
 };
 
-const restartGame = async (req, res) => {
-  const userId = req.user._id;
-  const { gameId } = req.body;
-  try {
-    const newGame = await Game.findById(gameId);
-    const user = await User.findById(userId);
+//NOT USED AT THE MOMENT
 
-    if (newGame) {
-      const foundGameIndex = user.games.findIndex(
-        (game) => game._id.toString() === gameId
-      );
+// const restartGame = async (req, res) => {
+//   const userId = req.user._id;
+//   const { gameId } = req.body;
+//   try {
+//     const newGame = await Game.findById(gameId);
+//     const user = await User.findById(userId);
 
-      if (foundGameIndex >= 0) {
-        user.games[foundGameIndex] = newGame;
-      }
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        {
-          games: user.games,
-        },
-        { new: true }
-      );
-      return res.status(200).json({ updatedUser });
-    } else res.status(400).json({ message: "no game found" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};
+//     if (newGame) {
+//       const foundGameIndex = user.games.findIndex(
+//         (game) => game._id.toString() === gameId
+//       );
+
+//       if (foundGameIndex >= 0) {
+//         user.games[foundGameIndex] = newGame;
+//       }
+//       const updatedUser = await User.findByIdAndUpdate(
+//         userId,
+//         {
+//           games: user.games,
+//         },
+//         { new: true }
+//       );
+//       return res.status(200).json({ updatedUser });
+//     } else res.status(400).json({ message: "no game found" });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
 
 module.exports = {
   createGame,
