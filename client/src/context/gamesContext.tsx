@@ -44,15 +44,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
         (e: gameType) => e.isApproved !== false
       ) as [gameType];
 
-      if (user) {
-        const gamesWithNoUser = games.filter(
-          (game) => !user?.games.find((userGame) => game._id === userGame._id)
-        ) as never[];
-
-        setApprovedGames(user?.games.concat(gamesWithNoUser) as [gameType]);
-      } else {
-        setApprovedGames(globalGames);
-      }
+      setApprovedGames(games);
       setGamesStateTrigger((t) => !t);
     }
   };
