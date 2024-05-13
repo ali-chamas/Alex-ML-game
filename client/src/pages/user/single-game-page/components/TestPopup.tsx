@@ -58,12 +58,12 @@ const TestPopup = ({
       setTrained(true);
       setTrigger((t) => !t);
       toast.success("trained succesfully", {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     } catch (error) {
       console.log(error);
       toast.error("something went wrong", {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     }
     setLoading(false);
