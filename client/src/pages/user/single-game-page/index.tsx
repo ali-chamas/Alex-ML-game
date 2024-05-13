@@ -27,6 +27,7 @@ const SingleGame = () => {
   const [openLabel, setOpenLabel] = useState<labelType | any>(false);
   const [openTest, setOpenTest] = useState<boolean>(false);
   const [openPlay, setOpenPlay] = useState<boolean>(false);
+  const [activeModel, setActiveModel] = useState<modelType | any>({});
 
   const getActiveGame = async () => {
     try {
@@ -39,8 +40,6 @@ const SingleGame = () => {
       console.log(error);
     }
   };
-
-  console.log(activeGame);
 
   const unlockGame = () => {
     user?.gamesProgress.map((game) => {
@@ -55,29 +54,43 @@ const SingleGame = () => {
     setLoading(false);
   };
 
+  const getActiveModel = () => {
+    user?.gamesProgress.map((game) => {
+      if (game._id == gameId) {
+        setActiveModel(game.model);
+      }
+    });
+  };
+
   //true means disabled in thsese two functions
   const TrainingEligible = () => {
     let count = 0;
-    activeGame?.model.dataset.labels.forEach((label) => {
+    activeModel.dataset?.labels.forEach((label: labelType) => {
       count += label.examples.length;
     });
-    if (activeGame?.model.isTrained) {
+    if (activeModel.isTrained) {
       return false;
     } else if (count >= 10) return false;
     else return true;
   };
 
   const PlayingEligible = () => {
-    if (activeGame?.model.isTrained) {
+    if (activeModel.isTrained) {
       return false;
     } else {
       return true;
     }
   };
 
+  console.log(activeModel);
+
   useEffect(() => {
     getActiveGame();
   }, [trigger]);
+
+  useEffect(() => {
+    getActiveModel();
+  }, [user]);
 
   useEffect(() => {
     if (activeGame) {
@@ -106,10 +119,10 @@ const SingleGame = () => {
 
           <TrainOption game={activeGame} setTrigger={setTrigger} />
 
-          {activeGame?.model.dataset.labels &&
-          activeGame?.model.dataset.labels.length > 0 ? (
+          {activeModel.dataset.labels &&
+          activeModel.dataset.labels.length > 0 ? (
             <div className="flex flex-col md:flex-wrap md:flex-row md:items-start  items-center gap-3 h-[300px] max-h-[300px] overflow-y-auto">
-              {activeGame?.model.dataset.labels.map((label, i) => (
+              {activeModel.dataset.labels.map((label: labelType, i: number) => (
                 <button
                   key={i}
                   className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
@@ -167,7 +180,7 @@ const SingleGame = () => {
           children={
             <TestPopup
               gameId={gameId as string}
-              model={activeGame?.model as modelType}
+              model={activeModel as modelType}
               setTrigger={setTrigger}
             />
           }
@@ -181,7 +194,7 @@ const SingleGame = () => {
           children={
             <PlayPopup
               gameId={gameId as string}
-              model={activeGame?.model as modelType}
+              model={activeModel as modelType}
               setTrigger={setTrigger}
               game={activeGame as gameType}
             />
