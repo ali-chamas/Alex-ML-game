@@ -1,4 +1,3 @@
-import alexImg from "../../../../assets/marco.png";
 import { labelType, modelType } from "../../../../tools/data-types/modelType";
 import { useContext, useState } from "react";
 import { Button, Input } from "@material-tailwind/react";
