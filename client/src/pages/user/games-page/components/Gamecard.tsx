@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const Gamecard = ({ game }: { game: gameType | any }) => {
-  const { user } = useContext(UserContext) as UserContextType;
+  const { user, setUserTrigger } = useContext(UserContext) as UserContextType;
   const navigate = useNavigate();
 
   const [status, setStatus] = useState<string>("");
@@ -52,7 +52,7 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
       await sendRequest("POST", "/user/start_game", {
         gameId: game._id,
       });
-
+      setUserTrigger((t) => !t);
       navigate(`/games/${game._id}`);
     } catch (error) {
       console.log(error);
