@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   progress: {
     type: Number,
-    default: 1,
+    default: 0,
   },
   gamesProgress: [
     {

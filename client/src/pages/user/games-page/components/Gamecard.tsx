@@ -12,11 +12,9 @@ import { useTriggerContext } from "../../../../common/functions/TriggerContext";
 const Gamecard = ({
   game,
   user,
-  checkProgress,
 }: {
   game: gameType | any;
   user: userType | any;
-  checkProgress: boolean | any;
 }) => {
   const { triggerContext } = useTriggerContext();
 
@@ -25,13 +23,15 @@ const Gamecard = ({
   const navigate = useNavigate();
 
   const checkAvailableGame = () => {
-    const completedGames = user?.games.filter(
-      (game: gameType) => game.isComplete
-    );
-    if (completedGames?.length == user?.games.length) {
-      setAvailableOrder(completedGames?.length + 1);
+    if (user.gamesProgress.length == 0) {
+      setAvailableOrder(0);
+    } else if (
+      user.gamesProgress[user.gamesProgress.length - 1].finished == false
+    ) {
+      setAvailableOrder(user.progress);
     }
   };
+
   useEffect(() => {
     checkAvailableGame();
   }, []);

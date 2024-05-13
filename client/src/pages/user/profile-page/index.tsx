@@ -32,14 +32,11 @@ const Profile = () => {
     GamesContext
   ) as GamesContextType;
 
-  const [progress, setProgress] = useState<boolean>(false);
-
   const findCurrentGame = () => {
-    const current = approvedGames[(user?.progress as number) - 1];
+    const current = approvedGames[user?.progress as number];
 
     if (current) {
       setCurrentGame(current);
-      setProgress(true);
     } else {
       setCurrentGame(approvedGames[approvedGames.length - 1]);
     }
@@ -91,7 +88,7 @@ const Profile = () => {
             <h1 className="text-primary text-2xl xl:text-4xl">
               Current mission
             </h1>
-            <Gamecard game={currentGame} user={user} checkProgress={progress} />
+            <Gamecard game={currentGame} user={user} } />
           </div>
           <button
             className="btn-primary-dark lg:hidden"
