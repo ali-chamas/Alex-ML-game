@@ -109,7 +109,9 @@ const AddGamePopup = () => {
         />
       </div>
 
-      <Button onClick={addGame}>add</Button>
+      <button onClick={addGame} className="btn-primary-white">
+        Add
+      </button>
     </div>
   );
 };

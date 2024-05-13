@@ -1,13 +1,15 @@
 import {
   Input,
+  Option,
   Popover,
   PopoverContent,
   PopoverHandler,
+  Select,
   Textarea,
 } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { UserContext, UserContextType } from "../../../../context/userContext";
+
 import toast, { Toaster } from "react-hot-toast";
 import {
   DarkModeContext,
@@ -75,6 +77,12 @@ const GamePopups = ({
               className="w-full  dark:text-white"
               onChange={(e) => setInput(e.target.value)}
             />
+          ) : title == "Level" ? (
+            <Select label="Level" onChange={(e) => setInput(e)}>
+              <Option value="beginner">Beginner</Option>
+              <Option value="intermediate">Intermediate</Option>
+              <Option value="advanced">Advanced</Option>
+            </Select>
           ) : (
             <Input
               label={title}

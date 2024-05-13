@@ -17,28 +17,31 @@ const AdminGames = () => {
   }, [gamesStateTrigger]);
 
   const deleteGameAlert = (title: string, method: () => void) => {
-    toast((t: any) => (
-      <div className="flex flex-col gap-2 items-center">
-        <h1 className="text-lg">Delete {title} ? </h1>
-        <div className="flex  w-full gap-5">
-          <button
-            className="btn-primary-danger"
-            onClick={() => {
-              method();
-              toast.dismiss(t.id);
-            }}
-          >
-            Yes
-          </button>
-          <button
-            className="btn-primary-dark"
-            onClick={() => toast.dismiss(t.id)}
-          >
-            No
-          </button>
+    toast(
+      (t: any) => (
+        <div className="flex flex-col gap-2 items-center">
+          <h1 className="text-lg">Delete {title} ? </h1>
+          <div className="flex  w-full gap-5">
+            <button
+              className="btn-primary-danger"
+              onClick={() => {
+                method();
+                toast.dismiss(t.id);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="btn-primary-dark"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              No
+            </button>
+          </div>
         </div>
-      </div>
-    ));
+      ),
+      { className: "dark:bg-blue-gray-900" }
+    );
   };
 
   const filterAprroved = (param: string) => {
