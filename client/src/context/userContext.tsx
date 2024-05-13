@@ -43,7 +43,6 @@ const UserContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
     setToken(newToken);
     window.localStorage.setItem("token", newToken);
     setUser(newUser);
-    console.log("done");
   };
 
   const removeUser = () => {

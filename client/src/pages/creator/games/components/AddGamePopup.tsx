@@ -53,7 +53,7 @@ const AddGamePopup = () => {
     formData.append("solution", game.solution);
     try {
       const res = await sendRequest("POST", "/creator/add_game", formData);
-      console.log(res);
+
       setCreatorTrigger((t) => !t);
     } catch (error) {
       console.log(error);

@@ -15,7 +15,7 @@ const AdminGameCard = ({
   const toggleApprove = async () => {
     try {
       const res = await sendRequest("PUT", `/admin/approve_game/${game._id}`);
-      console.log(res);
+
       setTrigger((t: boolean) => !t);
     } catch (error) {
       console.log(error);

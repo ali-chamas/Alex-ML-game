@@ -33,7 +33,6 @@ const SingleGame = () => {
       if (res.status == 200) {
         setActiveGame(res.data);
       }
-      console.log("triggered");
     } catch (error) {
       console.log(error);
     }

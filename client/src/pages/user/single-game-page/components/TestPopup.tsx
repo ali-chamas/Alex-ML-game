@@ -49,7 +49,7 @@ const TestPopup = ({
       const res = await sendRequest("POST", "/user/train_model", {
         gameId: gameId,
       });
-      console.log(res);
+
       setTrained(true);
       setTrigger((t) => !t);
       setTrainingDataTracking(model.dataset.labels);
@@ -75,7 +75,7 @@ const TestPopup = ({
         modelUrl: model.modelUrl,
         example: example,
       });
-      console.log(res);
+
       setTestResponse(res.data);
       setTestResults(Object.entries(res.data.result));
       setExample("");

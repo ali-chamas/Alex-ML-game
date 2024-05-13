@@ -49,7 +49,7 @@ const GamePopups = ({
         `/creator/update_game/${gameId}`,
         reqBody
       );
-      console.log(res);
+
       toast.success(`edited`, { className: "dark:bg-blue-gray-900" });
 
       setCreatorTrigger((t) => !t);

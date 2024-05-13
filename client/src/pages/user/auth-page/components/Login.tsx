@@ -17,10 +17,9 @@ const Login = ({ setType, isDark }: { setType: any; isDark: boolean }) => {
       const res = await sendRequest("POST", "/auth/login", userInfo);
       if (res.status == 200) {
         addUser(res.data.token, res.data.user);
-        console.log(res.data);
+
         setError("");
       } else {
-        console.log(res.data);
         setError(res.data);
       }
     } catch (error: any) {
