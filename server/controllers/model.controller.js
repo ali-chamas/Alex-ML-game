@@ -95,24 +95,24 @@ const deleteLabel = async (req, res) => {
   try {
     const user = await User.findById(userId);
 
-    const foundGameIndex = user.games.findIndex(
+    const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
 
     if (foundGameIndex >= 0) {
-      const labels = user.games[foundGameIndex].model.dataset.labels;
-      user.games[foundGameIndex].model.dataset.labels = labels.filter(
+      const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
+      user.gamesProgress[foundGameIndex].model.dataset.labels = labels.filter(
         (label) => label._id.toString() !== labelId
       );
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         {
-          games: user.games,
+          gamesProgress: user.gamesProgress,
         },
         { new: true }
       );
 
-      return res.status(200).json(updatedUser.games);
+      return res.status(200).json(updatedUser.gamesProgress);
     } else {
       return res.status(400).json({ message: "game no found" });
     }
@@ -128,19 +128,19 @@ const deleteExample = async (req, res) => {
   try {
     const user = await User.findById(userId);
 
-    const foundGameIndex = user.games.findIndex(
+    const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
 
     if (foundGameIndex >= 0) {
-      const labels = user.games[foundGameIndex].model.dataset.labels;
+      const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
 
       const foundLabelIndex = labels.findIndex(
         (label) => label._id.toString() === labelId
       );
 
       if (foundLabelIndex >= 0) {
-        user.games[foundGameIndex].model.dataset.labels[
+        user.gamesProgress[foundGameIndex].model.dataset.labels[
           foundLabelIndex
         ].examples = labels[foundLabelIndex].examples.filter(
           (example) => example._id.toString() !== exampleId
@@ -148,12 +148,12 @@ const deleteExample = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
           userId,
           {
-            games: user.games,
+            gamesProgress: user.gamesProgress,
           },
           { new: true }
         );
 
-        return res.status(200).json(updatedUser.games);
+        return res.status(200).json(updatedUser.gamesProgress);
       } else {
         return res.status(400).json({ message: "label not found" });
       }
@@ -173,12 +173,13 @@ const trainModel = async (req, res) => {
 
     const user = await User.findById(userId);
 
-    const foundGameIndex = user.games.findIndex(
+    const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
 
     if (foundGameIndex >= 0) {
-      const trainingArray = user.games[foundGameIndex].model.dataset.labels;
+      const trainingArray =
+        user.gamesProgress[foundGameIndex].model.dataset.labels;
 
       let trainingData = [];
 
@@ -206,8 +207,10 @@ const trainModel = async (req, res) => {
       const trainedModelJSON = net.toJSON();
       const newModelName = `trained_model_${new Date().getTime()}.json`;
 
-      if (user.games[foundGameIndex].model.modelUrl) {
-        fs.unlinkSync(`public/${user.games[foundGameIndex].model.modelUrl}`);
+      if (user.gamesProgress[foundGameIndex].model.modelUrl) {
+        fs.unlinkSync(
+          `public/${user.gamesProgress[foundGameIndex].model.modelUrl}`
+        );
         console.log("removed");
       }
       fs.writeFileSync(
@@ -215,21 +218,21 @@ const trainModel = async (req, res) => {
         JSON.stringify(trainedModelJSON)
       );
 
-      user.games[foundGameIndex].model.isTrained = true;
-      user.games[foundGameIndex].model.trainedAt = new Date();
-      user.games[
+      user.gamesProgress[foundGameIndex].model.isTrained = true;
+      user.gamesProgress[foundGameIndex].model.trainedAt = new Date();
+      user.gamesProgress[
         foundGameIndex
       ].model.modelUrl = `trained_models/${newModelName}`;
 
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         {
-          games: user.games,
+          gamesProgress: user.gamesProgress,
         },
         { new: true }
       );
 
-      res.status(200).json(updatedUser.games[foundGameIndex]);
+      res.status(200).json(updatedUser.gamesProgress[foundGameIndex]);
     } else {
       res.status(400).json({ message: "game not found" });
     }
