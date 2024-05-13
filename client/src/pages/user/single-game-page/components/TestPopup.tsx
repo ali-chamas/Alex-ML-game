@@ -55,6 +55,7 @@ const TestPopup = ({
         JSON.stringify(model.dataset.labels)
       );
 
+      setTrained(true);
       setTrigger((t) => !t);
       toast.success("trained succesfully", {
         className: "dark:bg-blue-gray-900",

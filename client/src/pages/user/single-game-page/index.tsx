@@ -184,7 +184,7 @@ const SingleGame = () => {
             <TestPopup
               gameId={gameId as string}
               model={activeModel as modelType}
-              setTrigger={setTrigger}
+              setTrigger={setUserTrigger}
             />
           }
         />
