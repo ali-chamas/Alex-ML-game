@@ -58,7 +58,6 @@ const getSingleGame = async (req, res) => {
 };
 
 const updateGame = async (req, res) => {
-  const { user } = req;
   const { gameId } = req.params;
   const updates = req.body;
   if (req.files) {
@@ -100,7 +99,9 @@ const deleteGame = async (req, res) => {
     const users = await User.find();
 
     for (const user of users) {
-      const gamesAfterDelete = user.games.filter((game) => game._id != gameId);
+      const gamesAfterDelete = user.gamesProgress.filter(
+        (game) => game._id != gameId
+      );
 
       const updatedUser = await User.findByIdAndUpdate(user._id, {
         games: gamesAfterDelete,
@@ -173,10 +174,9 @@ const startGame = async (req, res) => {
   try {
     const game = await Game.findById(gameId);
     const user = await User.findById(userId);
-    game.isStarted = true;
 
     if (game) {
-      user.games.push(game);
+      user.gamesProgress.push();
       await user.save();
     } else res.status(400).json({ message: "no game found" });
     return res.status(200).json({ message: "game started!" });
