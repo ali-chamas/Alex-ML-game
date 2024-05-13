@@ -79,18 +79,7 @@ const updateGame = async (req, res) => {
     }
   }
 
-  //set the game approval to false
-  updates["isApproved"] = false;
-
   try {
-    const gamesAfterUpdate = user.games.map((game) =>
-      game._id === gameId ? { ...game, updates } : game
-    );
-
-    const updatedUser = await User.findByIdAndUpdate(user._id, {
-      games: gamesAfterUpdate,
-    });
-
     const updatedGame = await Game.findByIdAndUpdate(gameId, updates, {
       new: true,
     });
@@ -106,14 +95,17 @@ const updateGame = async (req, res) => {
 
 const deleteGame = async (req, res) => {
   const { gameId } = req.params;
-  const { user } = req;
 
   try {
-    const gamesAfterDelete = user.games.filter((game) => game._id != gameId);
+    const users = await User.find();
 
-    const updatedUser = await User.findByIdAndUpdate(user._id, {
-      games: gamesAfterDelete,
-    });
+    for (const user of users) {
+      const gamesAfterDelete = user.games.filter((game) => game._id != gameId);
+
+      const updatedUser = await User.findByIdAndUpdate(user._id, {
+        games: gamesAfterDelete,
+      });
+    }
 
     const deletedGame = await Game.findByIdAndDelete(gameId);
     if (!deletedGame) {

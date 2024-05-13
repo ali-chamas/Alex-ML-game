@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const USER_ROLES = require("../utils/USER_ROLE_ENUMS");
 const { gameSchema } = require("./Game.model");
+const { modelSchema } = require("./machineModel.model");
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -39,7 +40,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "avatars/avatar1.jpg",
   },
-  games: [gameSchema],
+  progress: {
+    type: Number,
+    default: 1,
+  },
+  gamesProgress: [
+    {
+      gameId: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
+      finished: { type: Boolean, default: false },
+      model: { modelSchema },
+    },
+  ],
 });
 
 userSchema.pre("save", async function (next) {

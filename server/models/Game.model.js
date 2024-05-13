@@ -41,18 +41,6 @@ const gameSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  isComplete: {
-    type: Boolean,
-    default: false,
-  },
-  isStarted: {
-    type: Boolean,
-    default: false,
-  },
-  model: {
-    type: modelSchema,
-    default: Model,
-  },
 });
 
 const Game = mongoose.model("Game", gameSchema);
