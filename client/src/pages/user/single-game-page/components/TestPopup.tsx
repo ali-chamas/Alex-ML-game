@@ -84,6 +84,9 @@ const TestPopup = ({
       console.log(error);
     }
   };
+
+  console.log(model.modelUrl);
+
   const areLabelsChanged = (): boolean => {
     const oldData = model.dataset.labels;
 

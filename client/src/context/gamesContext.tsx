@@ -51,7 +51,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   useEffect(() => {
     getGames();
-  }, [creatorTrigger]);
+  }, []);
 
   useEffect(() => {
     getApprovedGames();

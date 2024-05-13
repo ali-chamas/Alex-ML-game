@@ -20,7 +20,7 @@ const Games = () => {
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>();
 
   useEffect(() => {
-    setFilteredGames(approvedGames);
+    setFilteredGames(approvedGames.sort((a, b) => a.order - b.order));
   }, [approvedGames?.length, gamesStateTrigger]);
 
   console.log(approvedGames);

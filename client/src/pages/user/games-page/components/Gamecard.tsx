@@ -18,18 +18,21 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
   const navigate = useNavigate();
 
   const checkGameStatus = () => {
+    if (game.order < (user?.progress as number) + 1) {
+      return setStatus("completed");
+    }
     if (user?.gamesProgress[user.gamesProgress.length - 1].finished == true) {
-      if (game.order == user.progress) {
-        setStatus("ready");
+      if (game.order + 1 == user.progress) {
+        return setStatus("ready");
       }
     }
     user?.gamesProgress.map((userGame) => {
       if (userGame._id == game._id && userGame.finished) {
-        setStatus("completed");
+        return setStatus("completed");
       } else if (userGame._id == game._id && !userGame.finished) {
-        setStatus("in progress");
+        return setStatus("in progress");
       } else {
-        setStatus("locked");
+        return setStatus("locked");
       }
     });
   };

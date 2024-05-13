@@ -13,7 +13,7 @@ const AdminGames = () => {
   const [filteredGames, setFilteredGames] = useState<gameType[] | []>([]);
 
   useEffect(() => {
-    setFilteredGames(globalGames);
+    setFilteredGames(globalGames.sort((a, b) => a.order - b.order));
   }, [gamesStateTrigger]);
 
   const deleteGameAlert = (title: string, method: () => void) => {
