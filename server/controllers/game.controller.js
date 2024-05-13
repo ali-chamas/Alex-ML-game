@@ -155,7 +155,7 @@ const completeGame = async (req, res) => {
     }
 
     const gameIndex = user.gamesProgress.findIndex(
-      (game) => game.gameId.toString() === gameId
+      (game) => game._id.toString() === gameId
     );
 
     if (gameIndex === -1) {
