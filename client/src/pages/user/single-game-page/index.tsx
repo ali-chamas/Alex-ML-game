@@ -164,7 +164,6 @@ const SingleGame = () => {
               label={openLabel}
               gameId={gameId}
               setTrigger={setUserTrigger}
-              game={activeGame}
               model={activeModel}
               setOpen={setOpenLabel}
             />

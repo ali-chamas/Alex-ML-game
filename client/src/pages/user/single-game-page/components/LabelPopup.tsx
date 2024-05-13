@@ -14,15 +14,16 @@ import {
   PopoverHandler,
 } from "@material-tailwind/react";
 import { useContext, useEffect, useState } from "react";
-import { gameType } from "../../../../tools/data-types/gameType";
+
 import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
+import { userType } from "../../../../tools/data-types/userType";
 
 const LabelPopup = ({
   label,
-  game,
+
   setOpen,
   gameId,
   setTrigger,
@@ -32,7 +33,7 @@ const LabelPopup = ({
   model: modelType | any;
   setOpen: React.Dispatch<React.SetStateAction<labelType | boolean>>;
   gameId: string | undefined;
-  game: gameType | undefined;
+
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
@@ -71,10 +72,9 @@ const LabelPopup = ({
       const reqBody = { gameId: gameId, labelId: label?._id, example: example };
       try {
         const res = await sendRequest("POST", "/user/add_example", reqBody);
-        if (res.status == 200) {
-          setTrigger((t) => !t);
-          setExample("");
-        }
+
+        setTrigger((t) => !t);
+        setExample("");
       } catch (error) {
         console.log(error);
       }
@@ -90,9 +90,7 @@ const LabelPopup = ({
     try {
       const res = await sendRequest("POST", "/user/delete_example", reqBody);
 
-      if (res.status == 200) {
-        setTrigger((t) => !t);
-      }
+      setTrigger((t) => !t);
     } catch (error) {
       console.log(error);
     }
@@ -100,7 +98,7 @@ const LabelPopup = ({
 
   useEffect(() => {
     getExamples();
-  }, [game]);
+  }, [model]);
 
   return (
     <>
