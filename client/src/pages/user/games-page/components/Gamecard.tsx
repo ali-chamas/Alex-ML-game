@@ -1,34 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { gameType } from "../../../../tools/data-types/gameType";
 
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaFilePdf } from "react-icons/fa6";
-import { userType } from "../../../../tools/data-types/userType";
+
 import { sendRequest } from "../../../../tools/request-method/request";
 import { useNavigate } from "react-router-dom";
 
 import { useTriggerContext } from "../../../../common/functions/TriggerContext";
+import { UserContext, UserContextType } from "../../../../context/userContext";
 
-const Gamecard = ({
-  game,
-  user,
-}: {
-  game: gameType | any;
-  user: userType | any;
-}) => {
+const Gamecard = ({ game }: { game: gameType | any }) => {
   const { triggerContext } = useTriggerContext();
+  const { user } = useContext(UserContext) as UserContextType;
 
   const [availableOrder, setAvailableOrder] = useState<number>(-1);
 
   const navigate = useNavigate();
 
   const checkAvailableGame = () => {
-    if (user.gamesProgress.length == 0) {
+    if (user?.gamesProgress.length == 0) {
       setAvailableOrder(0);
     } else if (
-      user.gamesProgress[user.gamesProgress.length - 1].finished == false
+      user?.gamesProgress[user?.gamesProgress.length - 1].finished == false
     ) {
       setAvailableOrder(user.progress);
+    } else {
+      setAvailableOrder((user?.progress as number) + 1);
     }
   };
 
@@ -69,23 +67,21 @@ const Gamecard = ({
         <small className="text-black/70 dark:text-white/70 ">
           {game.description}
         </small>
-        {game.isComplete ? (
+        {game.order < (user?.progress as number) ? (
           <button
             className="btn-primary-white w-[200px]"
             onClick={() => navigate(`/games/${game._id}`)}
           >
             Completed
           </button>
-        ) : game.isStarted && !game.iscomplete ? (
+        ) : game.order == availableOrder ? (
           <button
             className="btn-primary-white w-[200px]"
             onClick={() => navigate(`/games/${game._id}`)}
           >
             Continue
           </button>
-        ) : !game.isStarted &&
-          game.order == availableOrder &&
-          !checkProgress ? (
+        ) : false ? (
           <button className="btn-primary-white w-[200px]" onClick={startGame}>
             Start Mission
           </button>

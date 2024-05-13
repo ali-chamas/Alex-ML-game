@@ -88,7 +88,7 @@ const Profile = () => {
             <h1 className="text-primary text-2xl xl:text-4xl">
               Current mission
             </h1>
-            <Gamecard game={currentGame} user={user} } />
+            <Gamecard game={currentGame} />
           </div>
           <button
             className="btn-primary-dark lg:hidden"

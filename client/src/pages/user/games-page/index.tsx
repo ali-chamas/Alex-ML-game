@@ -4,7 +4,6 @@ import { gameType } from "../../../tools/data-types/gameType";
 
 import Gamecard from "./components/Gamecard";
 
-import { UserContext, UserContextType } from "../../../context/userContext";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GamesContext, GamesContextType } from "../../../context/gamesContext";
@@ -14,31 +13,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const Games = () => {
-  const { user } = useContext(UserContext) as UserContextType;
-
   const { approvedGames, gamesStateTrigger } = useContext(
     GamesContext
   ) as GamesContextType;
 
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>();
 
-  const [progress, setProgress] = useState<boolean>(false);
-
-  const checkIfGameInProgress = () => {
-    user?.games.map((game) => {
-      if (game.isStarted && !game.isComplete) {
-        setProgress(true);
-      }
-    });
-  };
-
   useEffect(() => {
     setFilteredGames(approvedGames);
   }, [approvedGames?.length, gamesStateTrigger]);
-
-  useEffect(() => {
-    checkIfGameInProgress();
-  }, [user]);
 
   console.log(approvedGames);
 
@@ -78,7 +61,7 @@ const Games = () => {
         >
           {filteredGames?.map((game, i) => (
             <SwiperSlide key={i} className="w-[300px] relative h-[320px]">
-              <Gamecard game={game} user={user} checkProgress={progress} />
+              <Gamecard game={game} />
             </SwiperSlide>
           ))}
         </Swiper>
