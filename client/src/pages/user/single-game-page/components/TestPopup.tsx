@@ -57,10 +57,14 @@ const TestPopup = ({
         "oldData",
         JSON.stringify(model.dataset.labels)
       );
-      toast.success("trained succesfully");
+      toast.success("trained succesfully", {
+        className: "dark:bg-blue-gray-900",
+      });
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("something went wrong", {
+        className: "dark:bg-blue-gray-900",
+      });
     }
     setLoading(false);
   };

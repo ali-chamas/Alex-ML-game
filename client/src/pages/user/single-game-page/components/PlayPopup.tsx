@@ -37,11 +37,14 @@ const PlayPopup = ({
       toast.success(
         complete
           ? "Continue training!"
-          : "congrats! Note: you can't train you model anymore"
+          : "congrats! Note: you can't train you model anymore",
+        { className: "dark:bg-blue-gray-900" }
       );
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("something went wrong", {
+        className: "dark:bg-blue-gray-900",
+      });
     }
   };
 

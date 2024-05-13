@@ -68,7 +68,9 @@ const UsersTable = () => {
       const res = await sendRequest("PUT", `/admin/update_role/${id}`, {
         role: newRole,
       });
-      toast.success(`updated role to ${newRole}`);
+      toast.success(`updated role to ${newRole}`, {
+        className: "dark:bg-blue-gray-900",
+      });
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -78,7 +80,7 @@ const UsersTable = () => {
   const deleteUser = async (userId: string) => {
     try {
       const res = await sendRequest("DELETE", `/admin/delete_user/${userId}`);
-      toast.success("deleted user");
+      toast.success("deleted user", { className: "dark:bg-blue-gray-900" });
       setUserTrigger((t) => !t);
     } catch (error) {
       console.log(error);
@@ -86,28 +88,31 @@ const UsersTable = () => {
   };
 
   const deleteAlert = (user: userType) => {
-    toast((t: any) => (
-      <div className="flex flex-col gap-2 items-center">
-        <h1 className="text-lg">Delete {user.username} ? </h1>
-        <div className="flex  w-full gap-5">
-          <button
-            className="btn-primary-danger"
-            onClick={() => {
-              deleteUser(user._id);
-              toast.dismiss(t.id);
-            }}
-          >
-            Yes
-          </button>
-          <button
-            className="btn-primary-dark"
-            onClick={() => toast.dismiss(t.id)}
-          >
-            No
-          </button>
+    toast(
+      (t: any) => (
+        <div className="flex flex-col gap-2 items-center">
+          <h1 className="text-lg">Delete {user.username} ? </h1>
+          <div className="flex  w-full gap-5">
+            <button
+              className="btn-primary-danger"
+              onClick={() => {
+                deleteUser(user._id);
+                toast.dismiss(t.id);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="btn-primary-dark"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              No
+            </button>
+          </div>
         </div>
-      </div>
-    ));
+      ),
+      { className: "dark:bg-blue-gray-900" }
+    );
   };
 
   return (

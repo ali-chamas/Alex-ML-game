@@ -50,12 +50,14 @@ const GamePopups = ({
         reqBody
       );
       console.log(res);
-      toast.success(`edited`);
+      toast.success(`edited`, { className: "dark:bg-blue-gray-900" });
 
       setCreatorTrigger((t) => !t);
     } catch (error: any) {
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, {
+        className: "dark:bg-blue-gray-900",
+      });
     }
   };
 

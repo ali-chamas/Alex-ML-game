@@ -30,7 +30,7 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
         formData
       );
       setCreatorTrigger((t) => !t);
-      toast.success("updated");
+      toast.success("updated", { className: "dark:bg-blue-gray-900" });
     } catch (error) {
       console.log(error);
     }

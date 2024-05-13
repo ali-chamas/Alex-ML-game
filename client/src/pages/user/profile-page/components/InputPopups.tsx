@@ -38,13 +38,17 @@ const InputPopups = ({
       const res = await sendRequest("PUT", "/user/update_my_info", reqBody);
 
       setUserTrigger((t) => !t);
-      toast.success(`${title} updated succesfully`);
+      toast.success(`${title} updated succesfully`, {
+        className: "dark:bg-blue-gray-900",
+      });
     } catch (error: errorType | any) {
       console.log(error);
 
       if (error?.response.status == 400) toast.error("username already taken");
       else {
-        toast.error("something went wrong");
+        toast.error("something went wrong", {
+          className: "dark:bg-blue-gray-900",
+        });
       }
     }
   };
