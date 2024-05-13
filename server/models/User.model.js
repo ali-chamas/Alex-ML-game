@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
       _id: { type: mongoose.Schema.Types.ObjectId, ref: "Game", index: true },
       finished: { type: Boolean, default: false },
       model: { type: modelSchema, default: Model },
-      order: { type: number, unique: true },
+      order: { type: Number, unique: true },
     },
   ],
 });

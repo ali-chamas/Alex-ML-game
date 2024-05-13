@@ -22,8 +22,9 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
       return setStatus("completed");
     }
     const lastGame = user?.gamesProgress[user.gamesProgress.length - 1];
+
     if (lastGame?.finished == true) {
-      if (game.order + 1 == lastGame.order) {
+      if (game.order == lastGame.order + 1) {
         return setStatus("ready");
       }
     }
