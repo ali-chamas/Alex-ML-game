@@ -197,7 +197,7 @@ const SingleGame = () => {
           children={
             <PlayPopup
               gameId={gameId as string}
-              model={activeModel as modelType}
+              model={userGame.model as modelType}
               setTrigger={setUserTrigger}
               game={userGame}
             />
