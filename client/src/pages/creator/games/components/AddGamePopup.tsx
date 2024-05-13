@@ -63,7 +63,9 @@ const AddGamePopup = ({
       setOpen(false);
     } catch (error) {
       console.log(error);
-      toast.error("order already exist");
+      toast.error("order already exist ", {
+        className: "dark:text-white dark:bg-blue-gray-900",
+      });
     }
   };
 

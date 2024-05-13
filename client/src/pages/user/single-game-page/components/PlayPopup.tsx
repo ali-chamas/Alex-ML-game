@@ -9,7 +9,7 @@ import { UserContext, UserContextType } from "../../../../context/userContext";
 
 const PlayPopup = ({
   gameId,
-
+  model,
   setTrigger,
   game,
 }: {
@@ -22,7 +22,7 @@ const PlayPopup = ({
   const { triggerContext } = useTriggerContext();
   const { token } = useContext(UserContext) as UserContextType;
 
-  const [complete, setComplete] = useState(game.isComplete);
+  const [complete, setComplete] = useState(model.finished);
 
   const toggleComplete = async () => {
     try {
@@ -37,12 +37,12 @@ const PlayPopup = ({
         complete
           ? "Continue training!"
           : "congrats! Note: you can't train you model anymore",
-        { className: "dark:bg-blue-gray-900" }
+        { className: "dark:bg-blue-gray-900 dark:text-white" }
       );
     } catch (error) {
       console.log(error);
       toast.error("something went wrong", {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     }
   };

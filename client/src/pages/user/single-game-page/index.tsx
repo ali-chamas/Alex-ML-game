@@ -22,7 +22,6 @@ const SingleGame = () => {
 
   const [locked, setLocked] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  const [trigger, setTrigger] = useState<boolean>(false);
 
   const [openLabel, setOpenLabel] = useState<labelType | any>(false);
   const [openTest, setOpenTest] = useState<boolean>(false);
@@ -45,7 +44,7 @@ const SingleGame = () => {
     const lastUserGame = user?.gamesProgress[user.gamesProgress.length - 1];
 
     if (
-      (activeGame?.order as number) <= lastUserGame.order ||
+      (activeGame?.order as number) <= (lastUserGame?.order as number) ||
       (activeGame?.order as number) < (user?.progress as number) + 1
     ) {
       setLocked(false);
@@ -198,7 +197,7 @@ const SingleGame = () => {
             <PlayPopup
               gameId={gameId as string}
               model={activeModel as modelType}
-              setTrigger={setTrigger}
+              setTrigger={setUserTrigger}
               game={activeGame as gameType}
             />
           }

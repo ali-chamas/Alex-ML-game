@@ -79,7 +79,9 @@ const UsersTable = () => {
   const deleteUser = async (userId: string) => {
     try {
       const res = await sendRequest("DELETE", `/admin/delete_user/${userId}`);
-      toast.success("deleted user", { className: "dark:bg-blue-gray-900" });
+      toast.success("deleted user", {
+        className: "dark:bg-blue-gray-900 dark:text-white",
+      });
       setUserTrigger((t) => !t);
     } catch (error) {
       console.log(error);

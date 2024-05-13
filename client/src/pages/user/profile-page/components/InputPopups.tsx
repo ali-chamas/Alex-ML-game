@@ -44,7 +44,10 @@ const InputPopups = ({
     } catch (error: errorType | any) {
       console.log(error);
 
-      if (error?.response.status == 400) toast.error("username already taken");
+      if (error?.response.status == 400)
+        toast.error("username already taken", {
+          className: "dark:text-white dark:bg-blue-gray-900",
+        });
       else {
         toast.error("something went wrong", {
           className: "dark:bg-blue-gray-900",

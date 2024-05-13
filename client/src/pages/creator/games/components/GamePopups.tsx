@@ -56,7 +56,7 @@ const GamePopups = ({
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message, {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     }
   };
