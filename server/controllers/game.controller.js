@@ -176,7 +176,7 @@ const startGame = async (req, res) => {
     const user = await User.findById(userId);
 
     if (game) {
-      user.gamesProgress.push();
+      user.gamesProgress.push({ gameId: gameId });
       await user.save();
     } else res.status(400).json({ message: "no game found" });
     return res.status(200).json({ message: "game started!" });

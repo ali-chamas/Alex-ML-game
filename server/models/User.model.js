@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const USER_ROLES = require("../utils/USER_ROLE_ENUMS");
 const { gameSchema } = require("./Game.model");
-const { modelSchema } = require("./machineModel.model");
+const { modelSchema, Model } = require("./machineModel.model");
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
     {
       gameId: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
       finished: { type: Boolean, default: false },
-      model: { modelSchema },
+      model: { type: modelSchema, default: Model },
     },
   ],
 });
