@@ -154,24 +154,31 @@ const completeGame = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const gameIndex = user.gamesProgress.findIndex(
+    const gameProgress = user.gamesProgress.find(
       (game) => game._id.toString() === gameId
     );
-
-    if (gameIndex === -1) {
-      return res
-        .status(404)
-        .json({ message: "Game not found in user's progress" });
+    if (!gameProgress) {
+      return res.status(404).json({ message: "Game progress not found" });
     }
 
-    user.gamesProgress[gameIndex].finished = true;
-    user.progress += 1;
+    const previousFinishedStatus = gameProgress.finished;
+    gameProgress.finished = !gameProgress.finished;
+
+    if (gameProgress.finished && !previousFinishedStatus) {
+      user.progress += 1;
+    } else if (!gameProgress.finished && previousFinishedStatus) {
+      user.progress -= 1;
+    }
+
     await user.save();
 
-    res.json({ message: "Game completed successfully" });
+    res.json({
+      message: "Game status toggled successfully",
+      userProgress: user.progress,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error completing game" });
+    res.status(500).json({ message: "Error toggling game status" });
   }
 };
 
