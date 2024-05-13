@@ -26,8 +26,6 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
         const lastUserGame = user.gamesProgress[user.gamesProgress.length - 1];
 
         if (lastUserGame.finished) {
-          console.log("hello");
-
           if (game.order < user.progress + 1) {
             setStatus("completed");
           } else if (game.order == lastUserGame.order + 1) {

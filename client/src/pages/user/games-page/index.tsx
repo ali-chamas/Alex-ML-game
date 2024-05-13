@@ -20,10 +20,8 @@ const Games = () => {
   const [filteredGames, setFilteredGames] = useState<[gameType] | []>();
 
   useEffect(() => {
-    setFilteredGames(approvedGames.sort((a, b) => a.order - b.order));
+    setFilteredGames(approvedGames);
   }, [approvedGames?.length, gamesStateTrigger]);
-
-  console.log(approvedGames);
 
   return (
     <section className="flex flex-col mt-12 gap-12 min-h-[80vh] ">

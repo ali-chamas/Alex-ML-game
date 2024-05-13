@@ -17,7 +17,9 @@ export interface GamesContextType {
 export const GamesContext = createContext<GamesContextType | null>(null);
 
 const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const { user, userTrigger } = useContext(UserContext) as UserContextType;
+  const { user, token, userTrigger } = useContext(
+    UserContext
+  ) as UserContextType;
 
   const [globalGames, setGlobalGames] = useState<[gameType] | []>([]);
 
@@ -44,14 +46,17 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
         (e: gameType) => e.isApproved !== false
       ) as [gameType];
 
-      setApprovedGames(games);
+      setApprovedGames(games.sort((a, b) => a.order - b.order));
       setGamesStateTrigger((t) => !t);
     }
   };
 
   useEffect(() => {
     getGames();
-  }, []);
+  }, [token]);
+  useEffect(() => {
+    if (user?.role == "creaor") getGames();
+  }, [creatorTrigger]);
 
   useEffect(() => {
     getApprovedGames();
