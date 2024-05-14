@@ -151,7 +151,7 @@ const SingleGame = () => {
 
   useEffect(() => {
     getActiveModel();
-  }, [user]);
+  }, [user, activeGame]);
 
   useEffect(() => {
     if (activeGame) {
