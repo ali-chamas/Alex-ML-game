@@ -10,7 +10,7 @@ const DarkModeToggler = () => {
     DarkModeContext
   ) as DarkModeContextType;
   return (
-    <DarkModeSwitch checked={isDarkMode} onChange={toggleDarkMode} size={20} />
+    <DarkModeSwitch checked={isDarkMode} onChange={toggleDarkMode} size={30} />
   );
 };
 

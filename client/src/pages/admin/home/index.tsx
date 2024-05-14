@@ -1,10 +1,9 @@
-import CounterCards from "../../creator/home/components/CounterCards";
 import UsersTable from "./components/UsersTable";
 
 const AdminHome = () => {
   return (
     <div className="flex flex-col gap-10 w-full items-center">
-      <CounterCards />
+      {/* <CounterCards /> */}
       <UsersTable />
     </div>
   );

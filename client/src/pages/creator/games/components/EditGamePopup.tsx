@@ -1,14 +1,19 @@
 import { gameType } from "../../../../tools/data-types/gameType";
 import GamePopups from "./GamePopups";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 
 import toast, { Toaster } from "react-hot-toast";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaPen } from "react-icons/fa6";
+import {
+  GamesContext,
+  GamesContextType,
+} from "../../../../context/gamesContext";
 
 const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
   const [gameInfo, setGameInfo] = useState({});
+  const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
 
   const infoArray = [
     { title: "Title", value: game?.name, reqTitle: "name" },

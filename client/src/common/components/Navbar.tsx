@@ -27,7 +27,7 @@ const Navbar = () => {
       <nav className=" gap-3 items-center hidden md:flex">
         {user && (
           <button
-            className="text-lg opacity-80 hover:opacity-100 transition-all duration-300"
+            className="text-lg lg:text-xl opacity-80 hover:opacity-100 transition-all duration-300"
             onClick={() => navigate("/games")}
           >
             Games
@@ -36,33 +36,35 @@ const Navbar = () => {
         {links.map((link: any, i: number) => (
           <button
             key={i}
-            className="text-lg opacity-80 hover:opacity-100 transition-all duration-300"
+            className="text-lg lg:text-xl opacity-80 hover:opacity-100 transition-all duration-300"
             onClick={() => navigate(link.destination)}
           >
             {link.name}
           </button>
         ))}
-        <DarkModeToggler />
       </nav>
 
       <div className="md:hidden">
         <MobileMenu links={links} navigate={navigate} user={user} />
       </div>
-      {!user ? (
-        <button
-          className="btn-primary-dark hidden md:block "
-          onClick={() => navigate("/auth")}
-        >
-          Login
-        </button>
-      ) : (
-        <img
-          src={`${apiUrl}/${user.avatar}`}
-          className=" w-[55px] lg:w-[70px] rounded-full hidden md:block cursor-pointer"
-          onClick={() => navigate("/profile")}
-          alt="profile"
-        />
-      )}
+      <div className="flex gap-5 items-center">
+        {!user ? (
+          <button
+            className="btn-primary-dark hidden md:block "
+            onClick={() => navigate("/auth")}
+          >
+            Login
+          </button>
+        ) : (
+          <img
+            src={`${apiUrl}/${user.avatar}`}
+            className=" w-[55px] lg:w-[70px] rounded-full hidden md:block cursor-pointer"
+            onClick={() => navigate("/profile")}
+            alt="profile"
+          />
+        )}
+        <DarkModeToggler />
+      </div>
     </header>
   );
 };

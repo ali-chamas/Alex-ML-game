@@ -14,6 +14,7 @@ import PopupLayout from "../../../common/components/PopupLayout";
 import logo from "../../../assets/marco.png";
 import { UserContext, UserContextType } from "../../../context/userContext";
 import JoyrideComponent from "../../../common/components/JoyrideComponent";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 const SingleGame = () => {
   const { name } = useParams();
@@ -196,7 +197,7 @@ const SingleGame = () => {
                   onClick={() => setOpenLabel(label)}
                   id="step-2"
                 >
-                  {label.labelName}
+                  <HiOutlineDotsVertical /> {label.labelName}
                 </button>
               ))}
             </div>

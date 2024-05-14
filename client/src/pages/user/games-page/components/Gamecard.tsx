@@ -53,7 +53,7 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
         gameId: game._id,
       });
       setUserTrigger((t) => !t);
-      navigate(`/games/${game._id}`);
+      navigate(`/games/${game.name}`);
     } catch (error) {
       console.log(error);
     }
