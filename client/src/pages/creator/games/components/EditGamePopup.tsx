@@ -118,10 +118,24 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
             className="hidden"
             onChange={(file: any) => editGame(file.target.files[0], "solution")}
           />
+
+          <div className="relative group">
+            <embed
+              src={`${apiUrl}/${game.solution}`}
+              type="application/pdf"
+              width="250"
+              height="150"
+            />
+            <label
+              className="bg-white/50 w-full h-full absolute top-0  hidden group-hover:flex justify-center items-center cursor-pointer"
+              htmlFor="solution"
+            >
+              <p className="text-xl text-black">
+                <FaPen />
+              </p>
+            </label>
+          </div>
         </div>
-        {/* <button className="btn-primary-danger" onClick={deleteGame}>
-          Delete
-        </button> */}
       </div>
     </>
   );
