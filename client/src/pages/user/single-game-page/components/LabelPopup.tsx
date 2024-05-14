@@ -79,6 +79,21 @@ const LabelPopup = ({
       }
     }
   };
+  const generateExample = async () => {
+    const reqBody = {
+      gameId: gameId,
+      labelId: label?._id,
+      labelName: label?.labelName,
+    };
+    try {
+      const res = await sendRequest("POST", "/user/generate_example", reqBody);
+
+      setTrigger((t) => !t);
+      setExample("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const deleteExample = async (id: string) => {
     const reqBody = {
