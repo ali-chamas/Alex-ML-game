@@ -17,6 +17,7 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
     if (!user || !user.gamesProgress) return;
 
     const lastUserGame = user.gamesProgress[user.gamesProgress.length - 1];
+
     if (!user.currentGame) {
       if (game.order === user.progress + 1) {
         setStatus("ready");
