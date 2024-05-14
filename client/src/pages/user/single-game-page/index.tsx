@@ -189,6 +189,7 @@ const SingleGame = () => {
           callback={handleJoyrideCallback}
           run={run}
           steps={steps}
+          showSkipButton
           continuous
           styles={{
             options: {
