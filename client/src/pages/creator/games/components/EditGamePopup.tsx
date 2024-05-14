@@ -1,19 +1,13 @@
-import { FileUploader } from "react-drag-drop-files";
 import { gameType } from "../../../../tools/data-types/gameType";
 import GamePopups from "./GamePopups";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
-import {
-  GamesContext,
-  GamesContextType,
-} from "../../../../context/gamesContext";
+
 import toast, { Toaster } from "react-hot-toast";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { FaPen } from "react-icons/fa6";
 
 const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
-  const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
-
   const [gameInfo, setGameInfo] = useState({});
 
   const infoArray = [
@@ -60,16 +54,6 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
       toast.error(error.response.data.message, {
         className: "dark:bg-blue-gray-900 dark:text-white",
       });
-    }
-  };
-
-  const deleteGame = async () => {
-    try {
-      const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
-      if ((await res).status == 200) setCreatorTrigger((t) => !t);
-      setOpen(false);
-    } catch (error) {
-      console.log(error);
     }
   };
 

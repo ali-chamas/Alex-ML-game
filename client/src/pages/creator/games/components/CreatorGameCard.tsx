@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import PopupLayout from "../../../../common/components/PopupLayout";
 import EditGamePopup from "./EditGamePopup";
+import { sendRequest } from "../../../../tools/request-method/request";
+import {
+  GamesContext,
+  GamesContextType,
+} from "../../../../context/gamesContext";
 
 const CreatorGameCard = ({ game }: { game: gameType }) => {
   const [openEdit, setOpenEdit] = useState<any | gameType>(false);
+  const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
+  const deleteGame = async () => {
+    try {
+      const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
+      if ((await res).status == 200) setCreatorTrigger((t) => !t);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -31,12 +45,17 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
           <small className="text-black/70 dark:text-white/70 h-[45px]">
             {game.description}
           </small>
-          <button
-            className="btn-primary-white"
-            onClick={() => setOpenEdit(game)}
-          >
-            Edit
-          </button>
+          <div className="flex gap-5">
+            <button
+              className="btn-primary-white"
+              onClick={() => setOpenEdit(game)}
+            >
+              Edit
+            </button>
+            <button className="btn-primary-danger" onClick={deleteGame}>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
       {openEdit && (
