@@ -13,7 +13,7 @@ import PlayPopup from "./components/PlayPopup";
 import PopupLayout from "../../../common/components/PopupLayout";
 import logo from "../../../assets/marco.png";
 import { UserContext, UserContextType } from "../../../context/userContext";
-import Joyride, { CallBackProps, STATUS } from "react-joyride";
+import JoyrideComponent from "../../../common/components/JoyrideComponent";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -97,15 +97,6 @@ const SingleGame = () => {
     ],
   });
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
-    const { status, type } = data;
-    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
-
-    if (finishedStatuses.includes(status)) {
-      setState((prev: any) => ({ ...prev, run: false }));
-    }
-  };
-
   const getActiveGame = async () => {
     try {
       const res = await sendRequest("GET", `/user/get_game/${gameId}`);
@@ -184,26 +175,6 @@ const SingleGame = () => {
 
   return (
     <section className=" mt-10 min-h-[80vh]">
-      {run && (
-        <Joyride
-          callback={handleJoyrideCallback}
-          run={run}
-          steps={steps}
-          showSkipButton
-          continuous
-          styles={{
-            options: {
-              arrowColor: "#031C28",
-              backgroundColor: "#163748",
-              primaryColor: "#69F2FA",
-              textColor: "white",
-
-              beaconSize: 20,
-              zIndex: 1000,
-            },
-          }}
-        />
-      )}
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
@@ -214,6 +185,7 @@ const SingleGame = () => {
         </div>
       ) : (
         <div className="flex flex-col  min-h-[80vh] items-center gap-10">
+          <JoyrideComponent run={run} steps={steps} setState={setState} />
           <h1 className="text-primary text-2xl lg:text-4xl">
             {activeGame?.name}
           </h1>
