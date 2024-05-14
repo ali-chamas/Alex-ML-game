@@ -1,5 +1,3 @@
-import { modelType } from "./modelType";
-
 export interface gameType {
   _id: string;
   name: string;
@@ -10,5 +8,6 @@ export interface gameType {
   level: string;
   order: number;
   type: string;
+
   isApproved: boolean;
 }

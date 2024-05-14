@@ -16,29 +16,22 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
   const checkGameStatus = () => {
     if (!user || !user.gamesProgress) return;
 
-    if (user.gamesProgress) {
-      if (user.gamesProgress.length == 0) {
-        if (game.order == user.progress + 1) {
-          setStatus("ready");
-        }
+    if (!user.currentGame) {
+      if (game.order === user.progress + 1) {
+        setStatus("ready");
       } else {
-        const lastUserGame = user.gamesProgress[user.gamesProgress.length - 1];
-
-        if (lastUserGame.finished) {
-          if (game.order < user.progress + 1) {
-            setStatus("completed");
-          } else if (game.order == lastUserGame.order + 1) {
-            setStatus("ready");
-          }
-        } else if (!lastUserGame.finished) {
-          if (game.order < user.progress + 1) {
-            setStatus("completed");
-          } else if (game._id == lastUserGame._id) {
-            setStatus("in progress");
-          }
-        } else {
-          setStatus("locked");
-        }
+        setStatus("locked");
+      }
+    } else if (user.currentGame._id === game._id) {
+      setStatus("in progress");
+    } else {
+      const lastUserGame = user.gamesProgress[user.gamesProgress.length - 1];
+      if (game.order <= lastUserGame.order) {
+        setStatus("completed");
+      } else if (game.order === lastUserGame.order + 1) {
+        setStatus("ready");
+      } else {
+        setStatus("locked");
       }
     }
   };
