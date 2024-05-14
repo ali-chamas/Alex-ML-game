@@ -2,6 +2,7 @@ import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import { sendRequest } from "../../../../tools/request-method/request";
+import { TiTick } from "react-icons/ti";
 
 const AdminGameCard = ({
   game,
@@ -44,7 +45,7 @@ const AdminGameCard = ({
             className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 "
             onClick={toggleApprove}
           >
-            Yes
+            <TiTick />
           </button>
         ) : (
           <button
