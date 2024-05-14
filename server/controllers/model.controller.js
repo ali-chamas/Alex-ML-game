@@ -86,13 +86,15 @@ const addExamples = async (req, res) => {
 
 const generateAiExample = async (req, res) => {
   const userId = req.user._id;
-  const { gameId, labelId, labelName, previousExample } = req.body;
+  const { gameId, labelId, labelName, previousExamples } = req.body;
+
   try {
     const user = await User.findById(userId);
 
     const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
+
     if (foundGameIndex >= 0) {
       const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
 
@@ -103,23 +105,35 @@ const generateAiExample = async (req, res) => {
       if (foundLabelIndex >= 0) {
         const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
+        const messages =
+          previousExamples.length > 0
+            ? previousExamples.map((example) => ({
+                role: "user",
+                content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra, different than ${example}`,
+              }))
+            : [
+                {
+                  role: "user",
+                  content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra.`,
+                },
+              ];
+
         const response = await openai.chat.completions.create({
-          messages: [
-            {
-              role: "user",
-              content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra, different than ${previousExample}`,
-            },
-          ],
+          messages,
           model: "gpt-3.5-turbo",
         });
 
         if (response && response.choices) {
-          const generatedText = response.choices[0].message.content;
+          const generatedTexts = response.choices.map(
+            (choice) => choice.message.content
+          );
 
-          labels[foundLabelIndex].examples.push({
+          const newExamples = generatedTexts.map((text) => ({
             _id: new mongoose.Types.ObjectId(),
-            example: generatedText,
-          });
+            example: text,
+          }));
+
+          labels[foundLabelIndex].examples.push(...newExamples);
 
           const updatedUser = await User.findByIdAndUpdate(
             userId,
