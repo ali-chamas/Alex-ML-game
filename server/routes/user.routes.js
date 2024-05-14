@@ -35,7 +35,7 @@ router.post("/start_game/", startGame);
 
 router.put("/complete_game/", completeGame);
 router.get("/get_games", getAllGames);
-router.get("/get_game/:gameId", getSingleGame);
+router.get("/get_game/:name", getSingleGame);
 
 //model
 router.post("/add_label/", addLabels);
