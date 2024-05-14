@@ -164,7 +164,7 @@ const SingleGame = () => {
   }, [activeGame]);
 
   return (
-    <section className=" mt-2 min-h-[80vh]">
+    <section className="min-h-[80vh]">
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
