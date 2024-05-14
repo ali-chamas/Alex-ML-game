@@ -3,6 +3,7 @@ const brain = require("brain.js");
 const { WordTokenizer } = require("natural");
 const tokenizer = new WordTokenizer();
 const fs = require("fs");
+const OpenAI = require("openai");
 
 const mongoose = require("mongoose");
 
@@ -74,6 +75,63 @@ const addExamples = async (req, res) => {
       }
     } else {
       return res.status(400).json({ message: "game not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const generateAiExample = async (req, res) => {
+  const userId = req.user._id;
+  const { gameId, labelId, labelName } = req.body;
+  try {
+    const user = await User.findById(userId);
+
+    const foundGameIndex = user.gamesProgress.findIndex(
+      (game) => game._id.toString() === gameId
+    );
+    if (foundGameIndex >= 0) {
+      const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
+
+      const foundLabelIndex = labels.findIndex(
+        (lab) => lab._id.toString() === labelId
+      );
+
+      if (foundLabelIndex >= 0) {
+        const openai = new OpenAI(process.env.OPENAI_API_KEY);
+
+        const response = await openai.complete({
+          engine: "text-davinci-003",
+          prompt: `Generate one word related to ${labelName}.`,
+          maxTokens: 1,
+        });
+
+        if (response && response.data && response.data.choices) {
+          const generatedText = response.data.choices[0].text;
+
+          labels[foundLabelIndex].examples.push({
+            _id: new mongoose.Types.ObjectId(),
+            example: generatedText,
+          });
+
+          const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            {
+              gamesProgress: user.gamesProgress,
+            },
+            { new: true }
+          );
+
+          return res.status(200).json(updatedUser.gamesProgress);
+        } else {
+          return res.status(500).json({ message: "Failed to generate text" });
+        }
+      } else {
+        return res.status(400).json({ message: "Label not found" });
+      }
+    } else {
+      return res.status(400).json({ message: "Game not found" });
     }
   } catch (error) {
     console.error(error);
@@ -260,4 +318,5 @@ module.exports = {
   deleteExample,
   trainModel,
   testModel,
+  generateAiExample,
 };
