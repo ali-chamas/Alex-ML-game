@@ -1,7 +1,7 @@
 import { FileUploader } from "react-drag-drop-files";
 import { gameType } from "../../../../tools/data-types/gameType";
 import GamePopups from "./GamePopups";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { sendRequest } from "../../../../tools/request-method/request";
 import {
   GamesContext,
@@ -11,6 +11,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
   const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
+
+  const [gameInfo, setGameInfo] = useState({});
 
   const infoArray = [
     { title: "Title", value: game?.name, reqTitle: "name" },
@@ -38,6 +40,25 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
     }
   };
 
+  const saveUpdates = async () => {
+    try {
+      const res = await sendRequest(
+        "PUT",
+        `/creator/update_game/${game._id}`,
+        gameInfo
+      );
+
+      toast.success(`edited`, { className: "dark:bg-blue-gray-900" });
+
+      setCreatorTrigger((t) => !t);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.response.data.message, {
+        className: "dark:bg-blue-gray-900 dark:text-white",
+      });
+    }
+  };
+
   const deleteGame = async () => {
     try {
       const res = sendRequest("DELETE", `creator/delete_game/${game._id}`);
@@ -53,7 +74,6 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
       <Toaster />
       {infoArray.map((info, i) => (
         <GamePopups
-          gameId={game._id}
           reqTitle={info.reqTitle}
           title={info.title}
           value={info.value}
