@@ -18,9 +18,11 @@ import {
 const TrainOption = ({
   game,
   setTrigger,
+  setOpenJoyride,
 }: {
   game: gameType | undefined;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenJoyride: React.Dispatch<React.SetStateAction<Object>>;
 }) => {
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
   const [label, setLabel] = useState<string>("");
@@ -40,7 +42,10 @@ const TrainOption = ({
 
   return (
     <div className="flex justify-between w-full items-center">
-      <button className="rounded-full  bg-primary border p-2 hover:opacity-80">
+      <button
+        className="rounded-full  bg-primary border p-2 hover:opacity-80"
+        onClick={() => setOpenJoyride((prev) => ({ ...prev, run: true }))}
+      >
         <MdOutlineQuestionMark />
       </button>
       <div className="flex gap-2 lg:gap-4 items-center">

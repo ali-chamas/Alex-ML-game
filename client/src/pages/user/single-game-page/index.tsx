@@ -13,7 +13,7 @@ import PlayPopup from "./components/PlayPopup";
 import PopupLayout from "../../../common/components/PopupLayout";
 import logo from "../../../assets/marco.png";
 import { UserContext, UserContextType } from "../../../context/userContext";
-import Joyride from "react-joyride";
+import Joyride, { CallBackProps, STATUS } from "react-joyride";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -30,8 +30,8 @@ const SingleGame = () => {
   const [activeModel, setActiveModel] = useState<modelType | any>({});
   const [userGame, setUserGame] = useState<any>();
 
-  const [{ run, steps }] = useState<any>({
-    run: true,
+  const [{ run, steps }, setState] = useState<any>({
+    run: false,
     steps: [
       {
         content: <h2 className="text-xl">Let's begin our journey!</h2>,
@@ -96,6 +96,15 @@ const SingleGame = () => {
       },
     ],
   });
+
+  const handleJoyrideCallback = (data: CallBackProps) => {
+    const { status, type } = data;
+    const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
+
+    if (finishedStatuses.includes(status)) {
+      setState((prev: any) => ({ ...prev, run: false }));
+    }
+  };
 
   const getActiveGame = async () => {
     try {
@@ -170,26 +179,30 @@ const SingleGame = () => {
       setLocked(true);
       setLoading(false);
     }
+    setState((prev: any) => ({ ...prev, run: activeGame?.order == 1 }));
   }, [activeGame]);
 
   return (
     <section className=" mt-10 min-h-[80vh]">
-      <Joyride
-        run={run}
-        steps={steps}
-        continuous
-        styles={{
-          options: {
-            arrowColor: "#031C28",
-            backgroundColor: "#163748",
-            primaryColor: "#000",
-            textColor: "white",
+      {run && (
+        <Joyride
+          callback={handleJoyrideCallback}
+          run={run}
+          steps={steps}
+          continuous
+          styles={{
+            options: {
+              arrowColor: "#031C28",
+              backgroundColor: "#163748",
+              primaryColor: "#000",
+              textColor: "white",
 
-            beaconSize: 20,
-            zIndex: 1000,
-          },
-        }}
-      />
+              beaconSize: 20,
+              zIndex: 1000,
+            },
+          }}
+        />
+      )}
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
@@ -204,7 +217,11 @@ const SingleGame = () => {
             {activeGame?.name}
           </h1>
 
-          <TrainOption game={activeGame} setTrigger={setUserTrigger} />
+          <TrainOption
+            game={activeGame}
+            setTrigger={setUserTrigger}
+            setOpenJoyride={setState}
+          />
 
           {activeModel.dataset.labels &&
           activeModel.dataset.labels.length > 0 ? (
