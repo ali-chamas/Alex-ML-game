@@ -25,6 +25,14 @@ const Navbar = () => {
         />
       </div>
       <nav className=" gap-3 items-center hidden md:flex">
+        {user && (
+          <button
+            className="text-lg opacity-80 hover:opacity-100 transition-all duration-300"
+            onClick={() => navigate("/games")}
+          >
+            Games
+          </button>
+        )}
         {links.map((link: any, i: number) => (
           <button
             key={i}
@@ -34,15 +42,6 @@ const Navbar = () => {
             {link.name}
           </button>
         ))}
-
-        {user && (
-          <button
-            className="text-lg opacity-80 hover:opacity-100 transition-all duration-300"
-            onClick={() => navigate("/games")}
-          >
-            games
-          </button>
-        )}
         <DarkModeToggler />
       </nav>
 

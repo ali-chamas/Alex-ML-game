@@ -40,6 +40,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "avatars/avatar1.jpg",
   },
+  currentGame: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Game",
+    default: null,
+  },
   progress: {
     type: Number,
     default: 0,

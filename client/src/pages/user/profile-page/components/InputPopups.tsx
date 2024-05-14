@@ -39,7 +39,7 @@ const InputPopups = ({
 
       setUserTrigger((t) => !t);
       toast.success(`${title} updated succesfully`, {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     } catch (error: errorType | any) {
       console.log(error);

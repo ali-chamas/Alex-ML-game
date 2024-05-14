@@ -163,12 +163,9 @@ const completeGame = async (req, res) => {
     const previousFinishedStatus = gameProgress.finished;
     gameProgress.finished = !gameProgress.finished;
 
-    // if (gameProgress.finished && !previousFinishedStatus) {
-    //   user.progress += 1;
-    // } else if (!gameProgress.finished && previousFinishedStatus) {
-    //   user.progress -= 1;
-    // }
-
+    if (gameProgress.finished && !previousFinishedStatus) {
+      user.progress += 1;
+    }
     await user.save();
 
     res.json({
@@ -189,6 +186,7 @@ const startGame = async (req, res) => {
     const user = await User.findById(userId);
 
     if (game) {
+      user.currentGame = gameId;
       user.gamesProgress.push({ _id: gameId, order: game.order });
       await user.save();
     } else res.status(400).json({ message: "no game found" });
