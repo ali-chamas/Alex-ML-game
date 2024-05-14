@@ -195,7 +195,7 @@ const SingleGame = () => {
             options: {
               arrowColor: "#031C28",
               backgroundColor: "#163748",
-              primaryColor: "#000",
+              primaryColor: "#69F2FA",
               textColor: "white",
 
               beaconSize: 20,
