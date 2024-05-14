@@ -46,6 +46,8 @@ const addExamples = async (req, res) => {
   try {
     const user = await User.findById(userId);
 
+    console.log(user);
+
     const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
@@ -101,14 +103,20 @@ const generateAiExample = async (req, res) => {
       if (foundLabelIndex >= 0) {
         const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
-        const response = await openai.complete({
-          engine: "text-davinci-003",
-          prompt: `Generate one word related to ${labelName}.`,
-          maxTokens: 1,
+        const response = await openai.chat.completions.create({
+          messages: [
+            {
+              role: "user",
+              content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra`,
+            },
+          ],
+          model: "gpt-3.5-turbo",
+          temperature: 2,
+          top_p: 1,
         });
 
-        if (response && response.data && response.data.choices) {
-          const generatedText = response.data.choices[0].text;
+        if (response && response.choices) {
+          const generatedText = response.choices[0].message.content;
 
           labels[foundLabelIndex].examples.push({
             _id: new mongoose.Types.ObjectId(),
