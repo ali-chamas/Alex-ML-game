@@ -41,35 +41,28 @@ const SingleGame = () => {
       },
       {
         content: (
-          <div className="flex flex-col items-center gap-4">
-            <h1 className="text-xl">Create a label</h1>
-            <p className="text-sm">
-              Create a label and a clickable label button will show up
-            </p>
-          </div>
+          <p className="text-sm">
+            Create a label and a clickable label button will show up
+          </p>
         ),
         placement: "bottom",
         target: "#step-1",
-        title: "Labels",
+        title: "Add Labels",
       },
       {
         content: (
-          <div className="flex flex-col items-center gap-4">
-            <h1 className="text-xl">Add labels here</h1>
-            <p className="text-sm">
-              Create examples for you model using this clickable label
-            </p>
-          </div>
+          <p className="text-sm">
+            Create examples for you model using this clickable label
+          </p>
         ),
         placement: "bottom",
         target: "#step-2",
-        title: "Examples",
+        title: "Add Examples",
       },
 
       {
         content: (
           <div className="flex flex-col items-center gap-4">
-            <h1 className="text-xl">Train Your Model Here</h1>
             <p className="text-sm">
               Train your model on the dataset you provided!
             </p>
@@ -77,22 +70,19 @@ const SingleGame = () => {
         ),
         placement: "bottom",
         target: "#step-4",
-        title: "Training",
+        title: "Train Your Model",
       },
 
       {
         content: (
-          <div className="flex flex-col items-center gap-4">
-            <h1 className="text-xl">Play With Your Model Here</h1>
-            <p className="text-sm">
-              Build something fun in Scratch and play! you can complete the
-              mission to unlock the next one
-            </p>
-          </div>
+          <p className="text-sm">
+            Build something fun in Scratch and play! you can complete the
+            mission to unlock the next one
+          </p>
         ),
         placement: "bottom",
         target: "#step-6",
-        title: "Playing",
+        title: "Play And Complete",
       },
     ],
   });
@@ -174,7 +164,7 @@ const SingleGame = () => {
   }, [activeGame]);
 
   return (
-    <section className=" mt-10 min-h-[80vh]">
+    <section className=" mt-2 min-h-[80vh]">
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
