@@ -16,24 +16,20 @@ const addLabels = async (req, res) => {
       (game) => game._id.toString() === gameId
     );
     if (foundGameIndex >= 0) {
-      if (!user.gamesProgress[foundGameIndex].finished) {
-        user.gamesProgress[foundGameIndex].model.dataset.labels.push({
-          _id: new mongoose.Types.ObjectId(),
-          labelName: label,
-          examples: [],
-        });
-        const updatedUser = await User.findByIdAndUpdate(
-          userId,
-          {
-            gamesProgress: user.gamesProgress,
-          },
-          { new: true }
-        );
+      user.gamesProgress[foundGameIndex].model.dataset.labels.push({
+        _id: new mongoose.Types.ObjectId(),
+        labelName: label,
+        examples: [],
+      });
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          gamesProgress: user.gamesProgress,
+        },
+        { new: true }
+      );
 
-        return res.status(200).json(updatedUser.gamesProgress);
-      } else {
-        return res.status(402).json({ message: "game is finished" });
-      }
+      return res.status(200).json(updatedUser.gamesProgress);
     } else {
       return res.status(400).json({ message: "game no found" });
     }
@@ -53,30 +49,26 @@ const addExamples = async (req, res) => {
       (game) => game._id.toString() === gameId
     );
     if (foundGameIndex >= 0) {
-      if (!user.gamesProgress[foundGameIndex].finished) {
-        const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
+      const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
 
-        const foundLabelIndex = labels.findIndex(
-          (lab) => lab._id.toString() === labelId
+      const foundLabelIndex = labels.findIndex(
+        (lab) => lab._id.toString() === labelId
+      );
+
+      if (foundLabelIndex >= 0) {
+        labels[foundLabelIndex].examples.push({
+          _id: new mongoose.Types.ObjectId(),
+          example: example,
+        });
+        const updatedUser = await User.findByIdAndUpdate(
+          userId,
+          {
+            gamesProgress: user.gamesProgress,
+          },
+          { new: true }
         );
 
-        if (foundLabelIndex >= 0) {
-          labels[foundLabelIndex].examples.push({
-            _id: new mongoose.Types.ObjectId(),
-            example: example,
-          });
-          const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            {
-              gamesProgress: user.gamesProgress,
-            },
-            { new: true }
-          );
-
-          return res.status(200).json(updatedUser.gamesProgress);
-        } else {
-          return res.status(400).json({ message: "Game is finished" });
-        }
+        return res.status(200).json(updatedUser.gamesProgress);
       } else {
         return res.status(400).json({ message: "label not found" });
       }
