@@ -24,7 +24,7 @@ const GamePopups = ({
       {title == "Description" ? (
         <Textarea
           label="Description"
-          value={value}
+          defaultValue={value}
           className="w-full  dark:text-white"
           onChange={(e) =>
             setState((prev: any) => ({ ...prev, [reqTitle]: e.target.value }))
@@ -47,7 +47,7 @@ const GamePopups = ({
           label={title}
           type={typeof value == "number" ? "number" : "text"}
           color={isDarkMode ? "white" : "black"}
-          value={input}
+          defaultValue={value}
           onChange={(e) =>
             setState((prev: any) => ({ ...prev, [reqTitle]: e.target.value }))
           }

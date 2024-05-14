@@ -72,29 +72,34 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
   return (
     <>
       <Toaster />
-      {infoArray.map((info, i) => (
-        <GamePopups
-          reqTitle={info.reqTitle}
-          title={info.title}
-          value={info.value}
-          key={i}
-        />
-      ))}
-      <div className="max-w-[280px] sm:max-w-full flex flex-col gap-3 overflow-hidden">
-        <FileUploader
-          name="file"
-          label="Image"
-          handleChange={(file: any) => editGame(file, "image")}
-        />
-        <FileUploader
-          name="file"
-          label="Solution"
-          handleChange={(file: any) => editGame(file, "solution")}
-        />
+      <div className="flex flex-col items-center gap-3">
+        {infoArray.map((info, i) => (
+          <GamePopups
+            setState={setGameInfo}
+            reqTitle={info.reqTitle}
+            title={info.title}
+            value={info.value}
+            key={i}
+          />
+        ))}
+
+        <button className="btn-primary-white" onClick={saveUpdates}>
+          Save
+        </button>
+        <div className="max-w-[280px] sm:max-w-full flex  gap-3 overflow-hidden">
+          <input
+            type="file"
+            onChange={(file: any) => editGame(file.target.files[0], "image")}
+          />
+          <input
+            type="file"
+            onChange={(file: any) => editGame(file.target.files[0], "solution")}
+          />
+        </div>
+        {/* <button className="btn-primary-danger" onClick={deleteGame}>
+          Delete
+        </button> */}
       </div>
-      <button className="btn-primary-danger" onClick={deleteGame}>
-        Delete
-      </button>
     </>
   );
 };
