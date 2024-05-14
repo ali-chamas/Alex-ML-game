@@ -83,16 +83,17 @@ const addExamples = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-
 const generateAiExample = async (req, res) => {
   const userId = req.user._id;
-  const { gameId, labelId, labelName } = req.body;
+  const { gameId, labelId, labelName, previousExamples } = req.body; // Change to previousExamples
+
   try {
     const user = await User.findById(userId);
 
     const foundGameIndex = user.gamesProgress.findIndex(
       (game) => game._id.toString() === gameId
     );
+
     if (foundGameIndex >= 0) {
       const labels = user.gamesProgress[foundGameIndex].model.dataset.labels;
 
@@ -103,25 +104,27 @@ const generateAiExample = async (req, res) => {
       if (foundLabelIndex >= 0) {
         const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
+        const messages = previousExamples.map((example) => ({
+          role: "user",
+          content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra, different than ${example}`,
+        }));
+
         const response = await openai.chat.completions.create({
-          messages: [
-            {
-              role: "user",
-              content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra`,
-            },
-          ],
+          messages,
           model: "gpt-3.5-turbo",
-          temperature: 2,
-          top_p: 1,
         });
 
         if (response && response.choices) {
-          const generatedText = response.choices[0].message.content;
+          const generatedTexts = response.choices.map(
+            (choice) => choice.message.content
+          );
 
-          labels[foundLabelIndex].examples.push({
+          const newExamples = generatedTexts.map((text) => ({
             _id: new mongoose.Types.ObjectId(),
-            example: generatedText,
-          });
+            example: text,
+          }));
+
+          labels[foundLabelIndex].examples.push(...newExamples);
 
           const updatedUser = await User.findByIdAndUpdate(
             userId,

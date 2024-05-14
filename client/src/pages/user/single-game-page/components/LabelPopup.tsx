@@ -19,6 +19,7 @@ import {
   DarkModeContext,
   DarkModeContextType,
 } from "../../../../context/DarkModeContext";
+import { BsStars } from "react-icons/bs";
 
 const LabelPopup = ({
   label,
@@ -40,6 +41,8 @@ const LabelPopup = ({
   const [example, setExample] = useState<string>("");
 
   const [examples, setExamples] = useState<[exampleType] | []>([]);
+
+  const [loading, setLoading] = useState(false);
 
   const getExamples = () => {
     const ex = model.dataset.labels.find(
@@ -80,6 +83,7 @@ const LabelPopup = ({
     }
   };
   const generateExample = async () => {
+    setLoading(true);
     const reqBody = {
       gameId: gameId,
       labelId: label?._id,
@@ -93,6 +97,7 @@ const LabelPopup = ({
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   const deleteExample = async (id: string) => {
@@ -116,32 +121,42 @@ const LabelPopup = ({
 
   return (
     <>
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between items-center w-full">
         <button
           className="bg-red-400/80 rounded-full p-3 hover:opacity-80 disabled:opacity-80"
           onClick={deleteLabel}
         >
           <FaTrash fill="white" />
         </button>
-        <Popover placement="bottom">
-          <PopoverHandler>
-            <button className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn">
-              + Example
-            </button>
-          </PopoverHandler>
-          <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
-            <Input
-              label="example"
-              value={example}
-              type="text"
-              color={isDarkMode ? "white" : "black"}
-              onChange={(e) => setExample(e.target.value)}
-            />
-            <button className="btn-primary-white" onClick={addExample}>
-              Add
-            </button>
-          </PopoverContent>
-        </Popover>
+
+        <div className="flex gap-2 items-center">
+          <button
+            className="text-lg rounded-full border border-black/50 dark:border-white p-3 hover:opacity-60 disabled:opacity-60"
+            onClick={generateExample}
+            disabled={loading}
+          >
+            <BsStars />
+          </button>
+          <Popover placement="bottom">
+            <PopoverHandler>
+              <button className="btn-primary-white  text-xs sm:text-sm md:text-base  disabled-btn">
+                + Example
+              </button>
+            </PopoverHandler>
+            <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
+              <Input
+                label="example"
+                value={example}
+                type="text"
+                color={isDarkMode ? "white" : "black"}
+                onChange={(e) => setExample(e.target.value)}
+              />
+              <button className="btn-primary-white" onClick={addExample}>
+                Add
+              </button>
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-2">
