@@ -28,7 +28,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
         </div>
         <div className="px-5  flex flex-col gap-3 items-center">
           <h1 className="font-bold">{game.name}</h1>
-          <small className="text-black/70 dark:text-white/70 ">
+          <small className="text-black/70 dark:text-white/70 h-[45px]">
             {game.description}
           </small>
           <button
