@@ -82,14 +82,14 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
         {status === "completed" ? (
           <button
             className="btn-primary-white w-[200px]"
-            onClick={() => navigate(`/games/${game._id}`)}
+            onClick={() => navigate(`/games/${game.name}`)}
           >
             Completed
           </button>
         ) : status === "in progress" ? (
           <button
             className="btn-primary-white w-[200px]"
-            onClick={() => navigate(`/games/${game._id}`)}
+            onClick={() => navigate(`/games/${game.name}`)}
           >
             Continue
           </button>
