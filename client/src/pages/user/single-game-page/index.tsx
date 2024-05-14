@@ -16,7 +16,7 @@ import { UserContext, UserContextType } from "../../../context/userContext";
 import JoyrideComponent from "../../../common/components/JoyrideComponent";
 
 const SingleGame = () => {
-  const { gameId } = useParams();
+  const { name } = useParams();
 
   const { user, setUserTrigger } = useContext(UserContext) as UserContextType;
   const [activeGame, setActiveGame] = useState<gameType | undefined>();
@@ -87,11 +87,9 @@ const SingleGame = () => {
     ],
   });
 
-  console.log(gameId);
-
   const getActiveGame = async () => {
     try {
-      const res = await sendRequest("GET", `/user/get_game/${gameId}`);
+      const res = await sendRequest("GET", `/user/get_game/${name}`);
 
       if (res.status == 200) {
         setActiveGame(res.data);
@@ -120,7 +118,7 @@ const SingleGame = () => {
 
   const getActiveModel = () => {
     user?.gamesProgress.map((game) => {
-      if (game._id == gameId) {
+      if (game._id == activeGame?._id) {
         setActiveModel(game.model);
         setUserGame(game);
       }
@@ -235,7 +233,7 @@ const SingleGame = () => {
           children={
             <LabelPopup
               label={openLabel}
-              gameId={gameId}
+              gameId={activeGame?._id}
               setTrigger={setUserTrigger}
               model={activeModel}
               setOpen={setOpenLabel}
@@ -251,7 +249,7 @@ const SingleGame = () => {
           title="Test your model"
           children={
             <TestPopup
-              gameId={gameId as string}
+              gameId={activeGame?._id as string}
               model={activeModel as modelType}
               setTrigger={setUserTrigger}
             />
@@ -265,7 +263,7 @@ const SingleGame = () => {
           title="Try your model and complete!"
           children={
             <PlayPopup
-              gameId={gameId as string}
+              gameId={activeGame?._id as string}
               model={userGame.model as modelType}
               setTrigger={setUserTrigger}
               game={userGame}
