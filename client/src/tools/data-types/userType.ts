@@ -6,7 +6,7 @@ export interface userType {
   lastName: string;
   email?: string;
   username: string;
-
+  currentGame: string;
   role: string;
   age: number;
   avatar: string;
