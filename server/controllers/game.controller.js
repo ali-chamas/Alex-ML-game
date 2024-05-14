@@ -166,6 +166,7 @@ const completeGame = async (req, res) => {
     if (gameProgress.finished && !previousFinishedStatus) {
       user.progress += 1;
     }
+    user.currentGame = null;
     await user.save();
 
     res.json({
