@@ -85,11 +85,13 @@ const LabelPopup = ({
   const generateExample = async () => {
     setLoading(true);
 
+    const previous = examples.map((ex) => ex.example);
+
     const reqBody = {
       gameId: gameId,
       labelId: label?._id,
       labelName: label?.labelName,
-      previousExamples: "any",
+      previousExamples: previous,
     };
     try {
       const res = await sendRequest("POST", "/user/generate_example", reqBody);
