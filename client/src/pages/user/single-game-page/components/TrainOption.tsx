@@ -47,10 +47,7 @@ const TrainOption = ({
         <HintPopup hint={game?.hint} />
         <Popover placement="bottom">
           <PopoverHandler>
-            <button
-              className="btn-primary-dark disabled-btn-dark"
-              disabled={game?.isComplete}
-            >
+            <button className="btn-primary-dark disabled-btn-dark" id="step-1">
               Add Label
             </button>
           </PopoverHandler>

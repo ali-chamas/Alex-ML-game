@@ -13,6 +13,7 @@ import PlayPopup from "./components/PlayPopup";
 import PopupLayout from "../../../common/components/PopupLayout";
 import logo from "../../../assets/marco.png";
 import { UserContext, UserContextType } from "../../../context/userContext";
+import Joyride from "react-joyride";
 
 const SingleGame = () => {
   const { gameId } = useParams();
@@ -28,6 +29,73 @@ const SingleGame = () => {
   const [openPlay, setOpenPlay] = useState<boolean>(false);
   const [activeModel, setActiveModel] = useState<modelType | any>({});
   const [userGame, setUserGame] = useState<any>();
+
+  const [{ run, steps }] = useState<any>({
+    run: true,
+    steps: [
+      {
+        content: <h2 className="text-xl">Let's begin our journey!</h2>,
+        locale: { skip: <strong>SKIP</strong> },
+        placement: "center",
+        target: "body",
+      },
+      {
+        content: (
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-xl">Create a label</h1>
+            <p className="text-sm">
+              Create a label and a clickable label button will show up
+            </p>
+          </div>
+        ),
+        placement: "bottom",
+        target: "#step-1",
+        title: "Labels",
+      },
+      {
+        content: (
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-xl">Add labels here</h1>
+            <p className="text-sm">
+              Create examples for you model using this clickable label
+            </p>
+          </div>
+        ),
+        placement: "bottom",
+        target: "#step-2",
+        title: "Examples",
+      },
+
+      {
+        content: (
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-xl">Train Your Model Here</h1>
+            <p className="text-sm">
+              Train your model on the dataset you provided!
+            </p>
+          </div>
+        ),
+        placement: "bottom",
+        target: "#step-4",
+        title: "Training",
+      },
+
+      {
+        content: (
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-xl">Play With Your Model Here</h1>
+            <p className="text-sm">
+              Build something fun in Scratch and play! you can complete the
+              mission to unlock the next one
+            </p>
+          </div>
+        ),
+        placement: "bottom",
+        target: "#step-6",
+        title: "Playing",
+      },
+    ],
+  });
 
   const getActiveGame = async () => {
     try {
@@ -106,6 +174,22 @@ const SingleGame = () => {
 
   return (
     <section className=" mt-10 min-h-[80vh]">
+      <Joyride
+        run={run}
+        steps={steps}
+        continuous
+        styles={{
+          options: {
+            arrowColor: "#031C28",
+            backgroundColor: "#163748",
+            primaryColor: "#000",
+            textColor: "white",
+
+            beaconSize: 20,
+            zIndex: 1000,
+          },
+        }}
+      />
       {loading ? (
         <div className="h-full w-full flex items-center justify-center">
           <Loader />
@@ -130,6 +214,7 @@ const SingleGame = () => {
                   key={i}
                   className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
                   onClick={() => setOpenLabel(label)}
+                  id="step-2"
                 >
                   {label.labelName}
                 </button>
@@ -146,13 +231,15 @@ const SingleGame = () => {
               className="btn-primary-white disabled-btn"
               disabled={TrainingEligible()}
               onClick={() => setOpenTest(true)}
+              id="step-4"
             >
-              Test Your Model
+              Train
             </button>
             <button
               className=" btn-primary-white disabled-btn"
               onClick={() => setOpenPlay(true)}
               disabled={PlayingEligible()}
+              id="step-6"
             >
               Play
             </button>
