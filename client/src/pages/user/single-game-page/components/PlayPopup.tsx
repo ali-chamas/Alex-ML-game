@@ -70,10 +70,10 @@ const PlayPopup = ({
       </div>
       {complete ? (
         <button
-          className="btn-primary-dark self-end mt-auto"
-          onClick={toggleComplete}
+          className="btn-primary-dark self-end mt-auto disabled-btn"
+          disabled
         >
-          Continue
+          Completed
         </button>
       ) : (
         <button

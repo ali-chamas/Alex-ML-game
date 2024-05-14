@@ -59,16 +59,13 @@
 }
 
 .disabled-btn {
-  @apply disabled:opacity-50 disabled:hover:bg-black disabled:hover:text-white;
-}
-
-.disabled-btn-dark {
-  @apply disabled:opacity-50 disabled:hover:bg-white/25 disabled:hover:text-black;
+  @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
 }
 
 .dark .disabled-btn {
-  @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
+  @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }
+
 .dark .disabled-btn-dark {
   @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
 }
