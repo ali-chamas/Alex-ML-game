@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { userType } from "../../../../tools/data-types/userType";
 import InputPopups from "./InputPopups";
 
 const EditPopup = ({ user }: { user: userType | null | undefined }) => {
+  const [userInfo, setUserInfo] = useState<{} | userType>({});
+
   const infoArray = [
     { title: "first name", value: user?.firstName, reqTitle: "firstName" },
     { title: "last name", value: user?.lastName, reqTitle: "lastName" },
@@ -17,6 +20,7 @@ const EditPopup = ({ user }: { user: userType | null | undefined }) => {
           title={info.title}
           value={info.value}
           key={i}
+          setUserInfo={setUserInfo}
         />
       ))}
     </>

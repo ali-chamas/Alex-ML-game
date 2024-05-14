@@ -26,7 +26,7 @@ const InputPopups = ({
     status: number;
   }
 
-  const [input, setInput] = useState<string | number>("");
+  const [input, setInput] = useState<string | number>(value);
   const { setUserTrigger } = useContext(UserContext) as UserContextType;
   const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
 
@@ -57,28 +57,17 @@ const InputPopups = ({
   };
 
   return (
-    <div className="flex gap-2 w-full items-center justify-between mt-2">
+    <div className="flex gap-2 w-full items-center justify-center mt-2">
       <Toaster />
-      <p>{title}</p>
-      <Popover placement="bottom">
-        <PopoverHandler>
-          <button className="btn-primary-dark disabled-btn-dark">
-            {value}
-          </button>
-        </PopoverHandler>
-        <PopoverContent className="bg-primary flex flex-col items-center gap-2 z-30">
-          <Input
-            label={title}
-            type={typeof value == "number" ? "number" : "text"}
-            color={isDarkMode ? "white" : "black"}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button className="btn-primary-white" onClick={updateUser}>
-            Edit
-          </button>
-        </PopoverContent>
-      </Popover>
+
+      <Input
+        label={title}
+        type={typeof value == "number" ? "number" : "text"}
+        className="w-full"
+        color={isDarkMode ? "white" : "black"}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
     </div>
   );
 };

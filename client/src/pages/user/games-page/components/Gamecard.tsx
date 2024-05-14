@@ -21,7 +21,7 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
     if (!user.currentGame) {
       if (game.order === user.progress + 1) {
         setStatus("ready");
-      } else if (game.order <= lastUserGame.order) {
+      } else if (lastUserGame && game.order <= lastUserGame.order) {
         setStatus("completed");
       } else {
         setStatus("locked");
@@ -29,9 +29,10 @@ const Gamecard = ({ game }: { game: gameType | any }) => {
     } else if (user.currentGame === game._id) {
       setStatus("in progress");
     } else {
-      if (game.order <= lastUserGame.order) {
+      if (lastUserGame && game.order <= lastUserGame.order) {
         setStatus("completed");
       } else if (
+        lastUserGame &&
         game.order === lastUserGame.order + 1 &&
         lastUserGame.finished
       ) {
