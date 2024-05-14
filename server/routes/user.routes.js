@@ -14,6 +14,7 @@ const {
   deleteLabel,
   testModel,
   trainModel,
+  generateAiExample,
 } = require("../controllers/model.controller");
 
 const {
@@ -40,6 +41,7 @@ router.get("/get_game/:name", getSingleGame);
 //model
 router.post("/add_label/", addLabels);
 router.post("/add_example/", addExamples);
+router.post("/generate_example/", generateAiExample);
 router.post("/delete_label/", deleteLabel);
 router.post("/delete_example/", deleteExample);
 router.post("/train_model", trainModel);
