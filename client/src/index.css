@@ -59,11 +59,15 @@
 }
 
 .disabled-btn {
-  @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
+  @apply disabled:opacity-50 disabled:hover:bg-[#031C28] disabled:hover:text-white;
+}
+
+.disabled-btn-dark {
+  @apply disabled:opacity-50 hover:bg-white/25 hover:text-black;
 }
 
 .dark .disabled-btn {
-  @apply disabled:opacity-50 disabled:hover:bg-black/25 disabled:hover:text-white;
+  @apply disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-black;
 }
 
 .dark .disabled-btn-dark {
