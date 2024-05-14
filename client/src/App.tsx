@@ -35,7 +35,7 @@ const App = () => {
             <Route element={<Layout children={<Games />} />} path="/games" />
             <Route
               element={<Layout children={<SingleGame />} />}
-              path="games/:gameId"
+              path="games/:name"
             />
           </Route>
           <Route element={<AdminProtection />}>

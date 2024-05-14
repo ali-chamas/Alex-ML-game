@@ -87,6 +87,8 @@ const SingleGame = () => {
     ],
   });
 
+  console.log(gameId);
+
   const getActiveGame = async () => {
     try {
       const res = await sendRequest("GET", `/user/get_game/${gameId}`);
