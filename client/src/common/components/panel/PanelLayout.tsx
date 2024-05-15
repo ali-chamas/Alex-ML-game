@@ -17,9 +17,9 @@ const PanelLayout = ({
   const { user } = useContext(UserContext) as UserContextType;
 
   const getAllUsers = async () => {
-    if (user?.role == "admin") {
+    if (user?.role == "admin" || user?.role == "creator") {
       try {
-        const res = await sendRequest("GET", "admin/get_users");
+        const res = await sendRequest("GET", "creator/get_users");
         dispatcher(setUsers(res.data));
       } catch (error) {
         console.log(error);
