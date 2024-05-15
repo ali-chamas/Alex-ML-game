@@ -55,7 +55,11 @@ const CounterCards = ({ type }: { type: string }) => {
           <h1 className="text-2xl">
             <IoMdColorPalette />
           </h1>
-          <h1 className="text-xl">{creatorsCount} Creators</h1>
+          {creatorsCount == 1 ? (
+            <h1 className="text-xl">{creatorsCount} Creator</h1>
+          ) : (
+            <h1 className="text-xl">{creatorsCount} Creators</h1>
+          )}
         </div>
       </div>
       <div className=" bg-primary rounded-lg border  w-[250px] h-[120px] flex items-center justify-center">
