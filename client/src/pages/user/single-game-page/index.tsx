@@ -193,11 +193,15 @@ const SingleGame = () => {
               {activeModel.dataset.labels.map((label: labelType, i: number) => (
                 <button
                   key={i}
-                  className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px]"
+                  className="btn-primary-dark h-[60px] min-h-[60px] w-[160px] lg:h-[70px] lg:w-[180px]   xl:h-[78px] xl:w-[200px] relative"
                   onClick={() => setOpenLabel(label)}
                   id="step-2"
                 >
-                  <HiOutlineDotsVertical /> {label.labelName}
+                  <p className="absolute top-0 right-0 m-2">
+                    <HiOutlineDotsVertical />
+                  </p>
+
+                  {label.labelName}
                 </button>
               ))}
             </div>
