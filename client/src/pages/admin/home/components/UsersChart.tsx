@@ -1,16 +1,23 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-
-defaults.maintainAspectRatio = false;
-defaults.responsive = true;
-
-defaults.plugins.title.display = true;
-defaults.plugins.title.align = "start";
-defaults.plugins.title.font.size = 20;
-defaults.plugins.title.color = "black";
+import { sendRequest } from "../../../../tools/request-method/request";
+import { useEffect } from "react";
 
 const UsersChart = () => {
-  return <Line data={{ labels: ["10", "20", "30", "40", "50"] }} />;
+  const getRegistrations = async () => {
+    try {
+      const res = await sendRequest("GET", "/admin/get_registrations");
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getRegistrations();
+  }, []);
+
+  return "hello";
 };
 
 export default UsersChart;

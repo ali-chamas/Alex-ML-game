@@ -3,6 +3,7 @@ const {
   getAllUsers,
   deleteUser,
   updateUserRole,
+  getUserRegistrations,
 } = require("../controllers/user.controller");
 const { approveGame, deleteGame } = require("../controllers/game.controller");
 const router = express.Router();
@@ -11,6 +12,7 @@ const router = express.Router();
 
 router.delete("/delete_user/:id", deleteUser);
 router.get("/get_users", getAllUsers);
+router.get("/get_registrations", getUserRegistrations);
 router.put("/update_role/:id", updateUserRole);
 
 //games
