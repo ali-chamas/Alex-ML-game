@@ -11,7 +11,7 @@ import {
   GamesContextType,
 } from "../../../../context/gamesContext";
 
-const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
+const EditGamePopup = ({ game }: { game: gameType }) => {
   const [gameInfo, setGameInfo] = useState({});
   const { setCreatorTrigger } = useContext(GamesContext) as GamesContextType;
 

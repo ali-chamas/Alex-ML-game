@@ -8,6 +8,8 @@ import {
   GamesContext,
   GamesContextType,
 } from "../../../../context/gamesContext";
+import { TiTick } from "react-icons/ti";
+import { IoClose } from "react-icons/io5";
 
 const CreatorGameCard = ({ game }: { game: gameType }) => {
   const [openEdit, setOpenEdit] = useState<any | gameType>(false);
@@ -31,12 +33,12 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
             className="rounded-t-md h-[150px] w-[300px]"
           />
           {game.isApproved ? (
-            <p className="absolute top-0 m-3 right-0 bg-green-500/60 rounded-full text-white p-3 ">
-              Yes
+            <p className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 ">
+              <TiTick />
             </p>
           ) : (
-            <p className="absolute top-0 m-3 right-0 bg-red-500/60 rounded-full text-white px-4 p-3 ">
-              No
+            <p className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white px-4 p-3 ">
+              <IoClose />
             </p>
           )}
         </div>
