@@ -53,7 +53,6 @@ const SidebarLinks = ({
               {link.title}
             </button>
           ))}
-      <DarkModeToggler />
     </div>
   );
 };

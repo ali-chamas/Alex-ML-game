@@ -6,6 +6,7 @@ import { sendRequest } from "../../../tools/request-method/request";
 import { UserContext, UserContextType } from "../../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import SidebarLinks from "./SidebarLinks";
+import DarkModeToggler from "../DarkModeToggler";
 
 const Sidebar = ({ type }: { type: string }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -65,9 +66,12 @@ const Sidebar = ({ type }: { type: string }) => {
         </h1>
 
         <SidebarLinks type={type} setIsOpen={setIsDrawerOpen} />
-        <button onClick={logout} className="btn-primary-danger mt-auto ">
-          Logout
-        </button>
+        <div className="flex gap-4 items-center  mt-auto">
+          <DarkModeToggler />
+          <button onClick={logout} className="btn-primary-danger ">
+            Logout
+          </button>
+        </div>
       </Card>
     </>
   );
