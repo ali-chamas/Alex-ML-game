@@ -15,12 +15,13 @@ const SidebarLinks = ({
   }
 
   const adminLinks: linksType[] | [] = [
-    { title: "Home", path: "/admin" },
+    { title: "Dashboard", path: "/admin" },
+    { title: "Users", path: "/admin/users" },
     { title: "Games", path: "/admin/games" },
   ];
 
   const creatorLinks: linksType[] = [
-    { title: "Home", path: "/creator" },
+    { title: "Dashboard", path: "/creator" },
     { title: "Games", path: "/creator/games" },
   ];
 
