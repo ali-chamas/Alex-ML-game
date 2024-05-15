@@ -97,7 +97,7 @@ const UsersChart = () => {
   };
 
   return (
-    <div className="h-[400px] max-w-[900px]  w-full">
+    <div className="h-[400px] w-[450px] ">
       <Line
         data={chartData}
         options={chartOptions}
