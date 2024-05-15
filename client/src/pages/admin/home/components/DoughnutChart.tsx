@@ -31,8 +31,10 @@ const DoughnutChart = () => {
   // return <Doughnut data={chartData} />;
   return (
     finishedData && (
-      <div className="w-[300px]">
+      <div className="w-[400px] h-[400px] bg-primary rounded-lg p-6 items-center flex flex-col gap-4">
+        <h1 className="text-primary text-lg lg:text-xl">Completed Accounts</h1>
         <Doughnut
+          style={{ width: 300, height: 320 }}
           data={{
             labels: ["finished", "unfinished"],
 
