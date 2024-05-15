@@ -1,3 +1,4 @@
+const { Game } = require("../models/Game.model");
 const User = require("../models/User.model");
 
 const updateUser = async (req, res) => {

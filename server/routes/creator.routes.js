@@ -4,7 +4,11 @@ const {
   updateGame,
   deleteGame,
 } = require("../controllers/game.controller");
-const { getAllUsers, getCreators } = require("../controllers/user.controller");
+const {
+  getAllUsers,
+  getCreators,
+  getFinishedUsers,
+} = require("../controllers/user.controller");
 const router = express.Router();
 
 //games
@@ -16,5 +20,6 @@ router.delete("/delete_game/:gameId", deleteGame);
 //users
 router.get("/get_creators", getCreators);
 router.get("/get_users", getAllUsers);
+router.get("/get_finished_users", getFinishedUsers);
 
 module.exports = router;
