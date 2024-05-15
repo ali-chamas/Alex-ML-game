@@ -1,13 +1,20 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const UsersChart = () => {
+  interface ChartDataType {
+    _id: string;
+    userCount: number;
+  }
+
+  const [registrations, setRegistrations] = useState([]);
+
   const getRegistrations = async () => {
     try {
       const res = await sendRequest("GET", "/admin/get_registrations");
-      console.log(res);
+      setRegistrations(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -17,7 +24,25 @@ const UsersChart = () => {
     getRegistrations();
   }, []);
 
-  return "hello";
+  const chartData = {
+    labels: registrations.map((reg: ChartDataType) => reg._id),
+    datasets: [
+      {
+        label: "Number of Users",
+        data: registrations.map((reg: ChartDataType) => reg.userCount),
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <h2>User Registration Trend</h2>
+      <Line data={chartData} />
+    </div>
+  );
 };
 
 export default UsersChart;
