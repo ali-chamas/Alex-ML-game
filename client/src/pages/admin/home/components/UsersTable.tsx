@@ -147,12 +147,12 @@ const UsersTable = () => {
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className="border-b border-blue-gray-100 dark:border-black bg-cyan-50  dark:bg-black/70 p-4 w-[10%]"
+                  className="border-b border-blue-gray-100 dark:border-black bg-cyan-50  dark:bg-black/70 px-3 p-4 w-[10%]"
                 >
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="font-normal leading-none opacity-70 text-xs"
                   >
                     {head}
                   </Typography>
@@ -164,13 +164,13 @@ const UsersTable = () => {
             {TABLE_ROWS.map((user: userType, index: number) => {
               const isLast = index === TABLE_ROWS.length - 1;
               const classes = isLast
-                ? "p-4"
-                : "p-4 border-b border-blue-gray-50 dark:border-black";
+                ? "px-3 py-4"
+                : "px-3 py-4 border-b border-blue-gray-50 dark:border-black";
 
               return (
                 <tr
                   key={user._id}
-                  className="even:bg-cyan-50 odd:bg-white/40 dark:even:bg-black/20 dark:odd:bg-[#031C28]"
+                  className="even:bg-cyan-50 odd:bg-white/40 dark:even:bg-black/20 dark:odd:bg-[#031C28] text-xs"
                 >
                   <td className={classes}>
                     <Typography
