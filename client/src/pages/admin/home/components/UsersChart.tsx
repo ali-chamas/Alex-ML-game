@@ -56,6 +56,7 @@ const UsersChart = () => {
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 2,
         color: "rgba(255, 255, 255, 1)",
+        borderRadius: 2,
       },
     ],
   };
@@ -63,7 +64,7 @@ const UsersChart = () => {
   const chartOptions = {
     elements: {
       line: {
-        tension: 0.5,
+        tension: 0.2,
         fontColor: "green",
       },
     },
@@ -96,7 +97,7 @@ const UsersChart = () => {
   };
 
   return (
-    <div className="h-[300px] max-w-[800px] w-full">
+    <div className="h-[400px] max-w-[900px]  w-full">
       <Line
         data={chartData}
         options={chartOptions}

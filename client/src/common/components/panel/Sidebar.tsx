@@ -28,21 +28,16 @@ const Sidebar = ({ type }: { type: string }) => {
   };
 
   return (
-    <>
-      <IconButton
-        variant="text"
-        size="lg"
-        onClick={openDrawer}
-        className="lg:hidden"
-      >
+    <div className="h-screen sticky top-0">
+      <button onClick={openDrawer} className="lg:hidden relative m-3">
         {isDrawerOpen ? (
-          <XMarkIcon className="h-8 w-8 stroke-2" />
+          <XMarkIcon className="h-8 w-8" />
         ) : (
-          <Bars3Icon className="h-8 w-8 stroke-2" />
+          <Bars3Icon className="h-8 w-8 " />
         )}
-      </IconButton>
+      </button>
       <Drawer
-        className="bg-gradient-to-tr from-white to-cyan-50 dark:from-[#031C28] dark:to-[#031C28] flex flex-col items-center gap-8 p-5 "
+        className="bg-gradient-to-tr h-full from-white to-cyan-50 dark:from-[#031C28] dark:to-[#031C28] flex flex-col lg:hidden items-center gap-8 p-5 "
         open={isDrawerOpen}
         onClose={closeDrawer}
       >
@@ -56,10 +51,7 @@ const Sidebar = ({ type }: { type: string }) => {
           Logout
         </button>
       </Drawer>
-      <Card
-        className="bg-gradient-to-tr rounded-none  w-[300px] from-white  to-cyan-50 dark:from-[#031C28] dark:to-[#031C28]  flex-col items-center gap-8 p-5 hidden lg:flex"
-        open={true}
-      >
+      <aside className="bg-gradient-to-tr   w-[300px] from-white  to-cyan-50 h-screen   dark:from-[#031C28] dark:to-[#031C28]  flex-col items-center gap-8 p-5 hidden lg:flex">
         <h1 className="flex gap-2 items-center text-2xl">
           <img src="/logo.png" className="w-[60px]" alt="" />
           Alex {type == "admin" ? "Admin" : "Creator"}
@@ -72,8 +64,8 @@ const Sidebar = ({ type }: { type: string }) => {
             Logout
           </button>
         </div>
-      </Card>
-    </>
+      </aside>
+    </div>
   );
 };
 export default Sidebar;

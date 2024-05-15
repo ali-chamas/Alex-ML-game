@@ -69,7 +69,7 @@ const UsersTable = () => {
         role: newRole,
       });
       toast.success(`updated role to ${newRole}`, {
-        className: "dark:bg-blue-gray-900",
+        className: "dark:bg-blue-gray-900 dark:text-white",
       });
     } catch (error) {
       console.log(error);
