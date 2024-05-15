@@ -122,7 +122,10 @@ const getUserRegistrations = async (req, res) => {
 
 const getFinishedUsers = async (req, res) => {
   try {
-    const lastGame = await Game.findOne().sort({ order: -1 });
+    const lastGame = await Game.findOne({ isApproved: true }).sort({
+      order: -1,
+    });
+
     const lastGameOrder = lastGame ? lastGame.order : 0;
 
     const usersFinishedGames = await User.countDocuments({
