@@ -23,7 +23,14 @@ const UsersChart = () => {
     userCount: number;
   }
 
-  const [registrations, setRegistrations] = useState([]);
+  const [registrations, setRegistrations] = useState<ChartDataType[]>([
+    { _id: "2024-05-25", userCount: 2 },
+    { _id: "2024-05-26", userCount: 7 },
+    { _id: "2024-05-27", userCount: 10 },
+    { _id: "2024-05-28", userCount: 12 },
+    { _id: "2024-05-29", userCount: 4 },
+    { _id: "2024-05-30", userCount: 9 },
+  ]);
 
   const getRegistrations = async () => {
     try {
@@ -34,9 +41,9 @@ const UsersChart = () => {
     }
   };
 
-  useEffect(() => {
-    getRegistrations();
-  }, []);
+  //   useEffect(() => {
+  //     getRegistrations();
+  //   }, []);
 
   const chartData = {
     labels: registrations.map((reg: ChartDataType) => reg._id),
@@ -56,7 +63,7 @@ const UsersChart = () => {
   const chartOptions = {
     elements: {
       line: {
-        tension: 10,
+        tension: 0.5,
         fontColor: "green",
       },
     },
@@ -78,15 +85,11 @@ const UsersChart = () => {
       y: {
         ticks: {
           color: isDarkMode ? "white" : "black",
-
-          beginAtZero: true,
         },
       },
       x: {
         ticks: {
           color: isDarkMode ? "white" : "black",
-
-          beginAtZero: true,
         },
       },
     },
