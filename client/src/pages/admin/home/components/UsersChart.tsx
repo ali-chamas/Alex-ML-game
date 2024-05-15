@@ -97,11 +97,14 @@ const UsersChart = () => {
   };
 
   return (
-    <div className="h-[400px] w-[450px] ">
+    <div className="  w-[350px] md:w-[350px] xl:w-[450px]      2xl:w-[780px]   h-[420px] bg-primary rounded-lg p-6 items-center flex flex-col ">
+      <h1 className="text-lg lg:text-xl text-primary ">
+        Number Of Users Trend
+      </h1>
       <Line
         data={chartData}
         options={chartOptions}
-        style={{ color: "white" }}
+        style={{ color: "white", maxHeight: 350 }}
       />
     </div>
   );

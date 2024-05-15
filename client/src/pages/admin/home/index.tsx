@@ -1,7 +1,7 @@
 import Title from "../../../common/components/panel/Title";
 import CounterCards from "../../creator/home/components/CounterCards";
 import UsersChart from "./components/UsersChart";
-import UsersTable from "./components/UsersTable";
+
 import DoughnutChart from "./components/DoughnutChart";
 
 const AdminHome = () => {
@@ -10,11 +10,10 @@ const AdminHome = () => {
       <Title title="Dashboard" />
       <CounterCards />
 
-      <div className="flex flex-col lg:flex-row gap-5 items-center">
+      <div className="flex flex-col lg:flex-row items-center justify-between w-full">
         <UsersChart />
-        <div className="max-h-[400px]">
-          <DoughnutChart />
-        </div>
+
+        <DoughnutChart />
       </div>
     </div>
   );
