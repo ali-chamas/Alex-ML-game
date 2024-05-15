@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { IconButton, Drawer } from "@material-tailwind/react";
+import { IconButton, Drawer, Card } from "@material-tailwind/react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { sendRequest } from "../../../tools/request-method/request";
@@ -28,7 +28,12 @@ const Sidebar = ({ type }: { type: string }) => {
 
   return (
     <>
-      <IconButton variant="text" size="lg" onClick={openDrawer}>
+      <IconButton
+        variant="text"
+        size="lg"
+        onClick={openDrawer}
+        className="lg:hidden"
+      >
         {isDrawerOpen ? (
           <XMarkIcon className="h-8 w-8 stroke-2" />
         ) : (
@@ -50,6 +55,20 @@ const Sidebar = ({ type }: { type: string }) => {
           Logout
         </button>
       </Drawer>
+      <Card
+        className="bg-gradient-to-tr rounded-none  w-[300px] from-white  to-cyan-50 dark:from-[#031C28] dark:to-[#031C28]  flex-col items-center gap-8 p-5 hidden lg:flex"
+        open={true}
+      >
+        <h1 className="flex gap-2 items-center text-2xl">
+          <img src="/logo.png" className="w-[60px]" alt="" />
+          Alex {type == "admin" ? "Admin" : "Creator"}
+        </h1>
+
+        <SidebarLinks type={type} setIsOpen={setIsDrawerOpen} />
+        <button onClick={logout} className="btn-primary-danger mt-auto ">
+          Logout
+        </button>
+      </Card>
     </>
   );
 };

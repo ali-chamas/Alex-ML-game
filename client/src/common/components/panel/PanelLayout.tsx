@@ -31,7 +31,7 @@ const PanelLayout = ({
     getAllUsers();
   }, [user]);
   return (
-    <section className="bg min-h-screen p-5 flex overflow-x-auto">
+    <section className="bg min-h-screen flex overflow-x-auto">
       <Sidebar type={type} />
       <div className="p-5 w-full h-full">{children}</div>
     </section>
