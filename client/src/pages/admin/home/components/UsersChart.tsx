@@ -1,9 +1,23 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import {
+  DarkModeContext,
+  DarkModeContextType,
+} from "../../../../context/DarkModeContext";
 
 const UsersChart = () => {
+  const { isDarkMode } = useContext(DarkModeContext) as DarkModeContextType;
+
+  defaults.maintainAspectRatio = false;
+  defaults.responsive = true;
+
+  defaults.plugins.title.display = true;
+  defaults.plugins.title.align = "start";
+  defaults.plugins.title.font.size = 20;
+  defaults.plugins.title.color = isDarkMode ? "white" : "black";
+
   interface ChartDataType {
     _id: string;
     userCount: number;
@@ -37,10 +51,26 @@ const UsersChart = () => {
     ],
   };
 
+  const chartOptions = {
+    elements: {
+      line: {
+        tension: 0.5,
+      },
+    },
+    plugins: {
+      title: {
+        text: "Daily Users",
+      },
+    },
+  };
+
   return (
-    <div>
-      <h2>User Registration Trend</h2>
-      <Line data={chartData} />
+    <div className="h-[300px] max-w-[800px]">
+      <Line
+        data={chartData}
+        options={chartOptions}
+        style={{ color: "white" }}
+      />
     </div>
   );
 };
