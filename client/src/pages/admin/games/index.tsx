@@ -64,7 +64,7 @@ const AdminGames = () => {
     <div className="flex flex-col gap-5 ">
       <Toaster />
       <div className="flex justify-between sticky top-0 bg-primary p-5 rounded-lg z-10">
-        <h1 className="text-primary text-lg lg:text-3xl">Our Games</h1>
+        <h1 className="text-primary text-lg lg:text-3xl">Games</h1>
         <div>
           <Select label="Status" onChange={(e) => filterAprroved(e as string)}>
             <Option value="all">All</Option>
