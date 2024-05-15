@@ -6,7 +6,7 @@ const LoggedInProtection = () => {
   const { token, user } = useContext(UserContext) as UserContextType;
   return token ? (
     user?.role == "user" ? (
-      <Navigate to={"/profile"} />
+      <Navigate to={"/games"} />
     ) : user?.role == "creator" ? (
       <Navigate to={"/creator"} />
     ) : (

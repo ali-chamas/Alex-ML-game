@@ -37,7 +37,7 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
               <TiTick />
             </p>
           ) : (
-            <p className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white px-4 p-3 ">
+            <p className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white p-3 ">
               <IoClose />
             </p>
           )}
