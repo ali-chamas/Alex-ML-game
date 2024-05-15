@@ -5,7 +5,7 @@ import UsersTable from "./components/UsersTable";
 
 const AdminHome = () => {
   return (
-    <div className="flex flex-col gap-10 w-full ">
+    <div className="flex flex-col gap-10 w-full  items-center">
       <Title title="Dashboard" />
       <CounterCards />
       {/* <UsersTable /> */}

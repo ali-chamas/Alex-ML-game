@@ -43,10 +43,12 @@ const UsersChart = () => {
     datasets: [
       {
         label: "Number of Users",
+
         data: registrations.map((reg: ChartDataType) => reg.userCount),
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
+        borderWidth: 2,
+        color: "rgba(255, 255, 255, 1)",
       },
     ],
   };
@@ -54,18 +56,44 @@ const UsersChart = () => {
   const chartOptions = {
     elements: {
       line: {
-        tension: 0.5,
+        tension: 10,
+        fontColor: "green",
       },
     },
     plugins: {
-      title: {
-        text: "Daily Users",
+      legend: {
+        labels: {
+          color: isDarkMode ? "white" : "black",
+
+          font: {
+            size: 14,
+          },
+        },
+        title: {
+          text: "Daily Users",
+        },
+      },
+    },
+    scales: {
+      y: {
+        ticks: {
+          color: isDarkMode ? "white" : "black",
+
+          beginAtZero: true,
+        },
+      },
+      x: {
+        ticks: {
+          color: isDarkMode ? "white" : "black",
+
+          beginAtZero: true,
+        },
       },
     },
   };
 
   return (
-    <div className="h-[300px] max-w-[800px]">
+    <div className="h-[300px] max-w-[800px] w-full">
       <Line
         data={chartData}
         options={chartOptions}
