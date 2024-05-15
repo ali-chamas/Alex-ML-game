@@ -41,9 +41,9 @@ const UsersChart = () => {
     }
   };
 
-  //   useEffect(() => {
-  //     getRegistrations();
-  //   }, []);
+  // useEffect(() => {
+  //   getRegistrations();
+  // }, []);
 
   const chartData = {
     labels: registrations.map((reg: ChartDataType) => reg._id),
