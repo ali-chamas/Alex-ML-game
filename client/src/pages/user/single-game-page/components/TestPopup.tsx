@@ -70,18 +70,20 @@ const TestPopup = ({
   };
 
   const testModel = async () => {
-    try {
-      const res = await sendRequest("POST", "/user/test_model", {
-        modelUrl: model.modelUrl,
-        example: example,
-      });
+    if (example) {
+      try {
+        const res = await sendRequest("POST", "/user/test_model", {
+          modelUrl: model.modelUrl,
+          example: example,
+        });
 
-      setTestResponse(res.data);
-      setTestResults(Object.entries(res.data.result));
-      setExample("");
-      setTrigger((t) => !t);
-    } catch (error) {
-      console.log(error);
+        setTestResponse(res.data);
+        setTestResults(Object.entries(res.data.result));
+        setExample("");
+        setTrigger((t) => !t);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
