@@ -12,6 +12,7 @@ const adminMiddleware = require("./middlewares/admin.middleware");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 const getAvatars = require("./controllers/avatar.controller");
+
 const app = express();
 
 app.use(express.json());

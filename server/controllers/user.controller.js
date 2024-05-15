@@ -119,6 +119,28 @@ const getUserRegistrations = async (req, res) => {
   }
 };
 
+const getFinishedUsers = async (req, res) => {
+  try {
+    const lastGame = await Game.findOne().sort({ order: -1 });
+    const lastGameOrder = lastGame ? lastGame.order : 0;
+
+    const usersFinishedGames = await User.countDocuments({
+      progress: { $eq: lastGameOrder },
+    });
+    const usersNotFinishedGames = await User.countDocuments({
+      progress: { $ne: lastGameOrder },
+    });
+
+    return res.json({
+      finished: usersFinishedGames,
+      notFinished: usersNotFinishedGames,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   updateUser,
   deleteUser,
@@ -127,4 +149,5 @@ module.exports = {
   getLoggedInUser,
   getCreators,
   getUserRegistrations,
+  getFinishedUsers,
 };
