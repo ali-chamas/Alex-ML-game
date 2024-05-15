@@ -42,7 +42,7 @@ const CounterCards = ({ type }: { type: string }) => {
         type == "admin" && "lg:flex-row"
       }  items-center justify-evenly`}
     >
-      <div className=" bg-primary rounded-lg border  w-[250px] h-[120px] flex items-center justify-center">
+      <div className=" bg-primary rounded-lg   w-[250px] h-[120px] flex items-center justify-center">
         <div className="flex gap-4 items-center">
           <h1 className="text-xl">
             <FaUser />
@@ -50,7 +50,7 @@ const CounterCards = ({ type }: { type: string }) => {
           <h1 className="text-xl">{users.length} Users</h1>
         </div>
       </div>
-      <div className=" bg-primary rounded-lg border  w-[250px] h-[120px] flex items-center justify-center">
+      <div className=" bg-primary rounded-lg   w-[250px] h-[120px] flex items-center justify-center">
         <div className="flex gap-4 items-center">
           <h1 className="text-2xl">
             <IoMdColorPalette />
@@ -62,7 +62,7 @@ const CounterCards = ({ type }: { type: string }) => {
           )}
         </div>
       </div>
-      <div className=" bg-primary rounded-lg border  w-[250px] h-[120px] flex items-center justify-center">
+      <div className=" bg-primary rounded-lg   w-[250px] h-[120px] flex items-center justify-center">
         <div className="flex gap-4 items-center">
           <h1 className="text-xl">
             <FaGamepad />
