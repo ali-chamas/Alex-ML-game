@@ -11,7 +11,7 @@ const router = express.Router();
 //users
 
 router.delete("/delete_user/:id", deleteUser);
-router.get("/get_users", getAllUsers);
+
 router.get("/get_registrations", getUserRegistrations);
 router.put("/update_role/:id", updateUserRole);
 

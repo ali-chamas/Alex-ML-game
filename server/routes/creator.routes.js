@@ -15,5 +15,6 @@ router.delete("/delete_game/:gameId", deleteGame);
 
 //users
 router.get("/get_creators", getCreators);
+router.get("/get_users", getAllUsers);
 
 module.exports = router;
