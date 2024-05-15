@@ -8,7 +8,7 @@ const AdminHome = () => {
   return (
     <div className="flex flex-col gap-10 w-full  items-center">
       <Title title="Dashboard" />
-      <CounterCards />
+      <CounterCards type="admin" />
 
       <div className="flex flex-col lg:flex-row items-center justify-between w-full">
         <UsersChart />

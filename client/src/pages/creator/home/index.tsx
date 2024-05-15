@@ -4,11 +4,13 @@ import DoughnutChart from "../../admin/home/components/DoughnutChart";
 import CounterCards from "./components/CounterCards";
 const CreatorHome = () => {
   return (
-    <section className="flex flex-col items-center w-full  gap-7 ">
+    <section className="flex flex-col items-center w-full  gap-10 ">
       <Title title="Dashboard" />
-      <CounterCards />
-      <div className="flex flex-col gap-2 items-center">
-        <DoughnutChart />
+      <div className="flex flex-col lg:flex-row w-full justify-evenly">
+        <CounterCards type="creator" />
+        <div className="flex flex-col gap-2 items-center">
+          <DoughnutChart />
+        </div>
       </div>
     </section>
   );

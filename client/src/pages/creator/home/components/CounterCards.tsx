@@ -9,13 +9,13 @@ import { FaGamepad, FaUser } from "react-icons/fa6";
 import { IoMdColorPalette } from "react-icons/io";
 import { useSelector } from "react-redux";
 
-const CounterCards = () => {
+const CounterCards = ({ type }: { type: string }) => {
   const users = useSelector((state: any) => state.users.users);
 
   const { globalGames } = useContext(GamesContext) as GamesContextType;
 
   const [gamesCount, setGamesCount] = useState<number>(0);
-  const [usersCount, setUsersCount] = useState<number>(0);
+
   const [creatorsCount, setCreatorsCount] = useState<number>(0);
 
   const getCreators = async () => {
@@ -37,7 +37,11 @@ const CounterCards = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3 lg:flex-row items-center justify-evenly">
+    <div
+      className={`flex flex-col gap-3 ${
+        type == "admin" && "lg:flex-row"
+      }  items-center justify-evenly`}
+    >
       <div className=" bg-primary rounded-lg border  w-[250px] h-[120px] flex items-center justify-center">
         <div className="flex gap-4 items-center">
           <h1 className="text-xl">
