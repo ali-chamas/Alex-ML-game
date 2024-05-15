@@ -100,6 +100,25 @@ const getLoggedInUser = async (req, res) => {
   }
 };
 
+const getUserRegistrations = async (req, res) => {
+  try {
+    const registrations = await User.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+          userCount: { $sum: 1 },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    res.json(registrations);
+  } catch (error) {
+    console.error("Error fetching user registrations:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   updateUser,
   deleteUser,
@@ -107,4 +126,5 @@ module.exports = {
   getAllUsers,
   getLoggedInUser,
   getCreators,
+  getUserRegistrations,
 };
