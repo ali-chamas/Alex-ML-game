@@ -15,6 +15,7 @@ import CreatorHome from "./pages/creator/home";
 import PanelLayout from "./common/components/panel/PanelLayout";
 import CreatorGames from "./pages/creator/games";
 import AdminGames from "./pages/admin/games";
+import AdminUsers from "./pages/admin/users";
 
 const App = () => {
   return (
@@ -42,6 +43,10 @@ const App = () => {
             <Route
               path="/admin"
               element={<PanelLayout type={"admin"} children={<AdminHome />} />}
+            />
+            <Route
+              path="/admin/users"
+              element={<PanelLayout type={"admin"} children={<AdminUsers />} />}
             />
             <Route
               path="/admin/games"
