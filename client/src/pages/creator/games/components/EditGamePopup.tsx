@@ -76,9 +76,6 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
           />
         ))}
 
-        <button className="btn-primary-white" onClick={saveUpdates}>
-          Save
-        </button>
         <div className="max-w-[280px] flex-col md:flex-row sm:max-w-full flex  gap-3 overflow-hidden">
           <input
             type="file"
@@ -125,6 +122,9 @@ const EditGamePopup = ({ game, setOpen }: { game: gameType; setOpen: any }) => {
             </label>
           </div>
         </div>
+        <button className="btn-primary-white" onClick={saveUpdates}>
+          Save
+        </button>
       </div>
     </>
   );
