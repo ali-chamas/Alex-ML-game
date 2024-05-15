@@ -121,21 +121,23 @@ const UsersTable = () => {
       <Toaster />
       <div className="flex justify-between flex-col gap-3 md:flex-row md:items-center items-start">
         <h1 className="md:text-xl xl:text-2xl">{filteredUsers.length} Users</h1>
-        <div>
-          <Input
-            label="Search"
-            type="search"
-            color={isDarkMode ? "white" : "black"}
-            onChange={(e) => searchFilter(e.target.value)}
-          />
-        </div>
-        <div>
-          <Select label="Role" onChange={(e) => roleFilter(e)}>
-            <Option value="all">ALL</Option>
-            <Option value="admin">Admin</Option>
-            <Option value="creator">Creator</Option>
-            <Option value="user">User</Option>
-          </Select>
+        <div className="flex gap-3 items-center">
+          <div>
+            <Input
+              label="Search"
+              type="search"
+              color={isDarkMode ? "white" : "black"}
+              onChange={(e) => searchFilter(e.target.value)}
+            />
+          </div>
+          <div>
+            <Select label="Role" onChange={(e) => roleFilter(e)}>
+              <Option value="all">ALL</Option>
+              <Option value="admin">Admin</Option>
+              <Option value="creator">Creator</Option>
+              <Option value="user">User</Option>
+            </Select>
+          </div>
         </div>
       </div>
       <Card className="h-[450px] overflow-auto w-full bg-white/0">
