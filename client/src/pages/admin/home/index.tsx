@@ -1,3 +1,4 @@
+import CounterCards from "../../creator/home/components/CounterCards";
 import UsersTable from "./components/UsersTable";
 
 const AdminHome = () => {
@@ -6,8 +7,8 @@ const AdminHome = () => {
       <div className="flex justify-between sticky top-0 bg-primary p-5 rounded-lg z-10">
         <h1 className="text-primary text-lg lg:text-3xl">Dashboard</h1>
       </div>
-      {/* <CounterCards /> */}
-      <UsersTable />
+      <CounterCards />
+      {/* <UsersTable /> */}
     </div>
   );
 };
