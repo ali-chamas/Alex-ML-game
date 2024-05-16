@@ -51,7 +51,9 @@ const EditGamePopup = ({ game }: { game: gameType }) => {
         gameInfo
       );
 
-      toast.success(`edited`, { className: "dark:bg-blue-gray-900" });
+      toast.success(`edited`, {
+        className: "dark:bg-blue-gray-900 dark:text-white",
+      });
 
       setCreatorTrigger((t) => !t);
     } catch (error: any) {
