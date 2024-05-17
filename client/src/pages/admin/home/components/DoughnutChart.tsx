@@ -41,7 +41,7 @@ const DoughnutChart = () => {
             datasets: [
               {
                 label: "Count",
-                data: [finishedData["finished"], finishedData["notFinished"]],
+                data: [finishedData["Finished"], finishedData["Not Finished"]],
               },
             ],
           }}
