@@ -150,7 +150,7 @@ const rejectGame = async (req, res) => {
 
     const updatedGame = await Game.findByIdAndUpdate(
       gameId,
-      { isApproved: true },
+      { isApproved: false },
       { new: true }
     );
     res.json({ message: `Game approval status set to ${isApproved}` });
