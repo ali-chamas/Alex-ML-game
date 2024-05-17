@@ -5,6 +5,7 @@ const {
   updateUser,
   deleteUser,
   updateUserRole,
+  getLoggedInUser,
 } = require("../controllers/user.controller");
 const User = require("../models/User.model");
 
@@ -23,6 +24,38 @@ describe("User Controller", () => {
 
   afterEach(() => {
     sinon.restore();
+  });
+
+  describe("getLoggedInUser function", () => {
+    let req;
+    let res;
+
+    beforeEach(() => {
+      req = {};
+      res = {
+        status: jest.fn(() => res),
+        json: jest.fn(),
+      };
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("should return user data with status 200 if user exists in request", async () => {
+      req.user = { id: "user_id", username: "testuser" };
+      await getLoggedInUser(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(req.user);
+    });
+
+    it("should return 'Unauthenticated' message with status 401 if user does not exist in request", async () => {
+      await getLoggedInUser(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(401);
+      expect(res.json).toHaveBeenCalledWith({ message: "Unauthenticated" });
+    });
   });
 
   describe("updateUser", () => {
