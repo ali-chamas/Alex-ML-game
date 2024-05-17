@@ -254,6 +254,7 @@ module.exports = {
   updateGame,
   deleteGame,
   approveGame,
+  rejectGame,
   completeGame,
   startGame,
 };

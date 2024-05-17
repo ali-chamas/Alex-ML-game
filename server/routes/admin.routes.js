@@ -5,7 +5,11 @@ const {
   updateUserRole,
   getUserRegistrations,
 } = require("../controllers/user.controller");
-const { approveGame, deleteGame } = require("../controllers/game.controller");
+const {
+  approveGame,
+  deleteGame,
+  rejectGame,
+} = require("../controllers/game.controller");
 const router = express.Router();
 
 //users
@@ -17,5 +21,6 @@ router.put("/update_role/:id", updateUserRole);
 
 //games
 router.put("/approve_game/:gameId", approveGame);
+router.put("/reject_game/:gameId", rejectGame);
 
 module.exports = router;
