@@ -13,9 +13,18 @@ const AdminGameCard = ({
   setTrigger: any;
   alert: (name: string, deleteGame: () => void) => void;
 }) => {
-  const toggleApprove = async () => {
+  const approveGame = async () => {
     try {
       const res = await sendRequest("PUT", `/admin/approve_game/${game._id}`);
+
+      setTrigger((t: boolean) => !t);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const rejectGame = async () => {
+    try {
+      const res = await sendRequest("PUT", `/admin/reject_game/${game._id}`);
 
       setTrigger((t: boolean) => !t);
     } catch (error) {
@@ -43,14 +52,14 @@ const AdminGameCard = ({
         {!game.isApproved ? (
           <button
             className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 "
-            onClick={toggleApprove}
+            onClick={approveGame}
           >
             <TiTick />
           </button>
         ) : (
           <button
             className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3 "
-            onClick={toggleApprove}
+            onClick={rejectGame}
           >
             <IoClose />
           </button>
