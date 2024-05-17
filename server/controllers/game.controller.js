@@ -128,11 +128,29 @@ const approveGame = async (req, res) => {
       return res.status(404).json({ message: "Game not found" });
     }
 
-    const isApproved = !existingGame.isApproved;
+    const updatedGame = await Game.findByIdAndUpdate(
+      gameId,
+      { isApproved: true },
+      { new: true }
+    );
+    res.json({ message: `Game approval status set to ${isApproved}` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error approving game" });
+  }
+};
+const rejectGame = async (req, res) => {
+  const { gameId } = req.params;
+
+  try {
+    const existingGame = await Game.findById(gameId);
+    if (!existingGame) {
+      return res.status(404).json({ message: "Game not found" });
+    }
 
     const updatedGame = await Game.findByIdAndUpdate(
       gameId,
-      { isApproved },
+      { isApproved: true },
       { new: true }
     );
     res.json({ message: `Game approval status set to ${isApproved}` });
