@@ -83,6 +83,7 @@ const TrainOption = ({
         <button
           className="rounded-full  bg-primary border p-2 hover:opacity-80"
           onClick={() => setOpenJoyride((prev) => ({ ...prev, run: true }))}
+          id="step-7"
         >
           <MdOutlineQuestionMark />
         </button>

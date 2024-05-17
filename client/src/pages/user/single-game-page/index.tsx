@@ -85,6 +85,14 @@ const SingleGame = () => {
         target: "#step-6",
         title: "Play And Complete",
       },
+      {
+        content: (
+          <p className="text-sm">You can always check this guide here!</p>
+        ),
+        placement: "bottom",
+        target: "#step-7",
+        title: "Open The Guide",
+      },
     ],
   });
 
