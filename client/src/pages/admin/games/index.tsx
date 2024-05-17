@@ -6,15 +6,14 @@ import { gameType } from "../../../tools/data-types/gameType";
 import { Option, Select } from "@material-tailwind/react";
 
 const AdminGames = () => {
-  const { globalGames, setCreatorTrigger, gamesStateTrigger } = useContext(
-    GamesContext
-  ) as GamesContextType;
+  const { globalGames, setCreatorTrigger, gamesTrigger, gamesStateTrigger } =
+    useContext(GamesContext) as GamesContextType;
 
   const [filteredGames, setFilteredGames] = useState<gameType[] | []>([]);
 
   useEffect(() => {
     setFilteredGames(globalGames.sort((a, b) => a.order - b.order));
-  }, [gamesStateTrigger]);
+  }, [gamesTrigger, gamesStateTrigger]);
 
   const deleteGameAlert = (title: string, method: () => void) => {
     toast(
@@ -26,6 +25,7 @@ const AdminGames = () => {
               className="btn-primary-danger"
               onClick={() => {
                 method();
+                setCreatorTrigger((t) => !t);
                 toast.dismiss(t.id);
               }}
             >
