@@ -2,7 +2,6 @@ import { IoClose } from "react-icons/io5";
 import { apiUrl } from "../../../../tools/api-url/apiUrl";
 import { gameType } from "../../../../tools/data-types/gameType";
 import { sendRequest } from "../../../../tools/request-method/request";
-import { TiTick } from "react-icons/ti";
 
 const AdminGameCard = ({
   game,
