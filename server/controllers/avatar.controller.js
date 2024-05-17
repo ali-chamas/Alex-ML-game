@@ -19,4 +19,4 @@ const getAvatars = (req, res) => {
     res.status(500).json({ messae: "no avatars found" });
   }
 };
-module.exports = { getAvatars };
+module.exports = getAvatars;
