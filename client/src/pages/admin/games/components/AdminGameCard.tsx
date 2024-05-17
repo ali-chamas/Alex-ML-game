@@ -49,33 +49,49 @@ const AdminGameCard = ({
           alt=""
           className="rounded-t-md h-[150px] w-[300px]"
         />
-        {!game.isApproved ? (
-          <button
-            className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 "
-            onClick={approveGame}
-          >
-            <TiTick />
-          </button>
-        ) : (
-          <button
-            className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3 "
-            onClick={rejectGame}
-          >
-            <IoClose />
-          </button>
-        )}
+
+        <button
+          className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white  p-3"
+          onClick={() => alert(game.name, deleteGame)}
+        >
+          <IoClose />
+        </button>
       </div>
       <div className="px-5  flex flex-col gap-3 items-center">
         <h1 className="font-bold">{game.name}</h1>
         <small className="text-black/70 dark:text-white/70 h-[45px]">
           {game.description}
         </small>
-        <button
-          className="btn-primary-danger"
-          onClick={() => alert(game.name, deleteGame)}
-        >
-          Delete
-        </button>
+        {game.isApproved == null ? (
+          <>
+            <button
+              className="absolute bottom-0 m-3 right-0 text-green-500 rounded-lg  p-3 "
+              onClick={approveGame}
+            >
+              Accept
+            </button>
+            <button
+              className="absolute bottom-0 m-3 left-0 text-red-500 rounded-lg p-3 "
+              onClick={rejectGame}
+            >
+              Reject
+            </button>
+          </>
+        ) : !game.isApproved ? (
+          <button
+            className="absolute bottom-0 m-3 right-0 text-green-500 rounded-lg  p-3 "
+            onClick={approveGame}
+          >
+            Accept
+          </button>
+        ) : (
+          <button
+            className="absolute bottom-0 m-3 right-0 text-red-500 rounded-lg   p-3 "
+            onClick={rejectGame}
+          >
+            Reject
+          </button>
+        )}
       </div>
     </div>
   );

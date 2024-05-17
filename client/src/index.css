@@ -91,9 +91,9 @@
 .dark small {
   @apply text-white;
 }
-.dark button {
+/* .dark button {
   @apply text-white;
-}
+} */
 
 .dark select {
   color: white;
