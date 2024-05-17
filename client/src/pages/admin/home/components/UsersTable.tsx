@@ -168,70 +168,72 @@ const UsersTable = () => {
                 : "px-3 py-4 border-b border-blue-gray-50 dark:border-black";
 
               return (
-                <tr
-                  key={user._id}
-                  className="even:bg-cyan-50 odd:bg-white/40 dark:even:bg-black/20 dark:odd:bg-[#031C28] text-xs"
-                >
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {user.firstName}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {user.lastName}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {user.username}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {user.age}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <select
-                      className="w-[80px] rounded-md p-1 bg-transparent border border-black dark:border-white"
-                      defaultValue={user.role}
-                      onChange={(e) => updateRole(e.target.value, user._id)}
-                    >
-                      <option value="admin">Admin</option>
-                      <option value="creator">Creator</option>
-                      <option value="user">User</option>
-                    </select>
-                  </td>
-                  <td className={classes}>
-                    {user._id === activeUser?._id ? (
-                      <p>(You)</p>
-                    ) : (
-                      <button
-                        className="btn-primary-danger text-sm w-[90px]"
-                        onClick={() => deleteAlert(user)}
+                user._id !== activeUser?._id && (
+                  <tr
+                    key={user._id}
+                    className="even:bg-cyan-50 odd:bg-white/40 dark:even:bg-black/20 dark:odd:bg-[#031C28] text-xs"
+                  >
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
                       >
-                        Delete
-                      </button>
-                    )}
-                  </td>
-                </tr>
+                        {user.firstName}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {user.lastName}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {user.username}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {user.age}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <select
+                        className="w-[80px] rounded-md p-1 bg-transparent border border-black dark:border-white"
+                        defaultValue={user.role}
+                        onChange={(e) => updateRole(e.target.value, user._id)}
+                      >
+                        <option value="admin">Admin</option>
+                        <option value="creator">Creator</option>
+                        <option value="user">User</option>
+                      </select>
+                    </td>
+                    <td className={classes}>
+                      {user._id === activeUser?._id ? (
+                        <p>(You)</p>
+                      ) : (
+                        <button
+                          className="btn-primary-danger text-sm w-[90px]"
+                          onClick={() => deleteAlert(user)}
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                )
               );
             })}
           </tbody>

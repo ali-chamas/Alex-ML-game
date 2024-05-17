@@ -10,6 +10,7 @@ import {
 } from "../../../../context/gamesContext";
 import { TiTick } from "react-icons/ti";
 import { IoClose } from "react-icons/io5";
+import { MdOutlineWatchLater } from "react-icons/md";
 
 const CreatorGameCard = ({ game }: { game: gameType }) => {
   const [openEdit, setOpenEdit] = useState<any | gameType>(false);
@@ -35,6 +36,10 @@ const CreatorGameCard = ({ game }: { game: gameType }) => {
           {game.isApproved ? (
             <p className="absolute top-0 m-3 right-0 bg-green-500 rounded-full text-white p-3 ">
               <TiTick />
+            </p>
+          ) : game.isApproved == null ? (
+            <p className="absolute top-0 m-3 right-0 bg-blue-gray-300 rounded-full text-white p-3 ">
+              <MdOutlineWatchLater />
             </p>
           ) : (
             <p className="absolute top-0 m-3 right-0 bg-red-500 rounded-full text-white p-3 ">
