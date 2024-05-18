@@ -52,10 +52,10 @@ const userSchema = new mongoose.Schema(
     },
     gamesProgress: [
       {
-        _id: { type: mongoose.Schema.Types.ObjectId, ref: "Game", index: true },
+        _id: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
         finished: { type: Boolean, default: false },
         model: { type: modelSchema, default: Model },
-        order: { type: Number },
+        order: { type: Number, default: null },
       },
     ],
   },
