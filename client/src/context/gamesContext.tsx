@@ -43,7 +43,7 @@ const GamesContextProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const getApprovedGames = async () => {
     if (globalGames) {
       const games = globalGames.filter(
-        (e: gameType) => e.isApproved !== false
+        (e: gameType) => e.isApproved == true
       ) as [gameType];
 
       setApprovedGames(games.sort((a, b) => a.order - b.order));

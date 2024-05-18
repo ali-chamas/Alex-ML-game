@@ -80,95 +80,95 @@ const Profile = () => {
     findCurrentGame();
   }, [approvedGames?.length, gamesStateTrigger]);
 
-  return (
-    currentGame && (
-      <section className="mt-10 lg:flex justify-between items-center xl:justify-around xl:gap-10 2xl:mx-10">
-        <div className="min-h-[80vh] lg:min-h-0  flex flex-col justify-between items-center">
-          <div className="flex flex-col items-center gap-4 ">
-            <h1 className="text-primary text-2xl xl:text-4xl">
-              Current mission
-            </h1>
-            <Gamecard game={currentGame} />
-          </div>
-          <button
-            className="btn-primary-dark lg:hidden"
-            onClick={scrollToProfile}
-          >
-            My Progress
-          </button>
+  return currentGame ? (
+    <section className="mt-10 lg:flex justify-between items-center xl:justify-around xl:gap-10 2xl:mx-10">
+      <div className="min-h-[80vh] lg:min-h-0  flex flex-col justify-between items-center">
+        <div className="flex flex-col items-center gap-4 ">
+          <h1 className="text-primary text-2xl xl:text-4xl">Current mission</h1>
+          <Gamecard game={currentGame} />
         </div>
-        <div
-          id="profile"
-          className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
+        <button
+          className="btn-primary-dark lg:hidden"
+          onClick={scrollToProfile}
         >
-          <div className="bg-primary w-[300px] h-[500px] xl:h-[580px] md:w-[450px] xl:w-[680px] 2xl:w-[700px]  rounded-lg flex flex-col gap-2 items-center p-5 justify-between">
-            <h1 className="text-primary text-2xl xl:text-5xl">Player Info</h1>
-            <div className="flex flex-col items-center xl:flex-row justify-evenly w-full gap-3">
-              <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
-                <img
-                  src={`${apiUrl}/${user?.avatar}`}
-                  className="rounded-full object-fill "
-                  alt="avatar"
-                />
-                <button
-                  className="bg-white/40 rounded-full text-black p-1 absolute top-0 right-4 hover:opacity-90"
-                  onClick={() => setOpenAvatars(true)}
-                >
-                  <FaPen />
-                </button>
-                <h1 className="text-lg">Hi {user?.username} !</h1>
-              </div>
-              <div className="flex xl:flex-col gap-3 xl:w-1/4">
-                <button
-                  className=" btn-primary-white "
-                  onClick={() => setOpenInfo(true)}
-                >
-                  Edit Info
-                </button>
-                <button className=" btn-primary-danger " onClick={logout}>
-                  Logout
-                </button>
-              </div>
-            </div>
-
-            <div className="flex flex-col xl:flex-row w-full items-center justify-evenly">
-              <ProgressBar
-                completed={`${countCompletedGames()}`}
-                customLabel={`${countCompletedGames()} / ${approvedGames.length}
-              `}
-                maxCompleted={approvedGames?.length}
-                className="w-full xl:w-1/2 "
-                barContainerClassName=" bg-gray-400/40 dark:bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
-                bgColor={isDarkMode ? "white" : "black"}
-                labelAlignment="outside"
-                labelColor={isDarkMode ? "white" : "black"}
+          My Progress
+        </button>
+      </div>
+      <div
+        id="profile"
+        className="min-h-[100vh] lg:min-h-[80vh] flex items-center justify-center"
+      >
+        <div className="bg-primary w-[300px] h-[500px] xl:h-[580px] md:w-[450px] xl:w-[680px] 2xl:w-[700px]  rounded-lg flex flex-col gap-2 items-center p-5 justify-between">
+          <h1 className="text-primary text-2xl xl:text-5xl">Player Info</h1>
+          <div className="flex flex-col items-center xl:flex-row justify-evenly w-full gap-3">
+            <div className="relative rounded-full w-[150px] flex flex-col gap-3 items-center">
+              <img
+                src={`${apiUrl}/${user?.avatar}`}
+                className="rounded-full object-fill "
+                alt="avatar"
               />
-              <h1
-                className={`p-4 rounded-full  bg-gradient-to-tr ${trophyColor()}  text-7xl xl:text-8xl`}
+              <button
+                className="bg-white/40 rounded-full text-black p-1 absolute top-0 right-4 hover:opacity-90"
+                onClick={() => setOpenAvatars(true)}
               >
-                <FaTrophy fill="white" />
-              </h1>
+                <FaPen />
+              </button>
+              <h1 className="text-lg">Hi {user?.username} !</h1>
+            </div>
+            <div className="flex xl:flex-col gap-3 xl:w-1/4">
+              <button
+                className=" btn-primary-white "
+                onClick={() => setOpenInfo(true)}
+              >
+                Edit Info
+              </button>
+              <button className=" btn-primary-danger " onClick={logout}>
+                Logout
+              </button>
             </div>
           </div>
+
+          <div className="flex flex-col xl:flex-row w-full items-center justify-evenly">
+            <ProgressBar
+              completed={`${countCompletedGames()}`}
+              customLabel={`${countCompletedGames()} / ${approvedGames.length}
+              `}
+              maxCompleted={approvedGames?.length}
+              className="w-full xl:w-1/2 "
+              barContainerClassName=" bg-gray-400/40 dark:bg-black/25 rounded-l-full rounded-r-full border-2 border-white/60 "
+              bgColor={isDarkMode ? "white" : "black"}
+              labelAlignment="outside"
+              labelColor={isDarkMode ? "white" : "black"}
+            />
+            <h1
+              className={`p-4 rounded-full  bg-gradient-to-tr ${trophyColor()}  text-7xl xl:text-8xl`}
+            >
+              <FaTrophy fill="white" />
+            </h1>
+          </div>
         </div>
-        {openAvatars && (
-          <PopupLayout
-            title="Choose Your Avatar"
-            open={openAvatars}
-            setOpen={setOpenAvatars}
-            children={<AvatarsPopup userAvatar={user?.avatar as string} />}
-          />
-        )}
-        {openInfo && (
-          <PopupLayout
-            title="Edit Your Info"
-            children={<EditPopup user={user} />}
-            open={openInfo}
-            setOpen={setOpenInfo}
-          />
-        )}
-      </section>
-    )
+      </div>
+      {openAvatars && (
+        <PopupLayout
+          title="Choose Your Avatar"
+          open={openAvatars}
+          setOpen={setOpenAvatars}
+          children={<AvatarsPopup userAvatar={user?.avatar as string} />}
+        />
+      )}
+      {openInfo && (
+        <PopupLayout
+          title="Edit Your Info"
+          children={<EditPopup user={user} />}
+          open={openInfo}
+          setOpen={setOpenInfo}
+        />
+      )}
+    </section>
+  ) : (
+    <button onClick={logout} className="btn-primary-danger">
+      Logout
+    </button>
   );
 };
 

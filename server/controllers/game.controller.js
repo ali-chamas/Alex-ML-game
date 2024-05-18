@@ -128,9 +128,11 @@ const approveGame = async (req, res) => {
       return res.status(404).json({ message: "Game not found" });
     }
 
+    const isApproved = true;
+
     const updatedGame = await Game.findByIdAndUpdate(
       gameId,
-      { isApproved: true },
+      { isApproved },
       { new: true }
     );
     res.json({ message: `Game approval status set to ${isApproved}` });
@@ -148,9 +150,10 @@ const rejectGame = async (req, res) => {
       return res.status(404).json({ message: "Game not found" });
     }
 
+    const isApproved = false;
     const updatedGame = await Game.findByIdAndUpdate(
       gameId,
-      { isApproved: false },
+      { isApproved },
       { new: true }
     );
     res.json({ message: `Game approval status set to ${isApproved}` });
