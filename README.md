@@ -5,9 +5,9 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A machine learning game, where kids and even adults can learn machine learning by building testing and using their own models using NO CODE.
-> At Alex, users will choose a level (Text recognition, image recognition or numbers recognition), choose a game and build an AI model based on the requirements of this game.
-> After building the model, users can test it, then deploy it to scratch via Alex's extension to play with their model and finish the game! Each time a user finish a game he will unlock another.
+> Alex is a machine learning game, ideal for both kids and adults to build, test, and use their own custom models seamlessly in Scratch 3.0, all without writing a single line of code.
+> At Alex, users select a mission and construct an AI model using Alex's user-friendly interface to meet the game's requirements.
+> Once the model is built, users can test and deploy it to Scratch. With Alex's extension, they can play with their model and complete the game! Completing a game unlocks the next one, keeping the learning journey engaging and progressive.
 
 ### User Stories
 
