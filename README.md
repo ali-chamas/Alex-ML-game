@@ -12,13 +12,13 @@
 ### User Stories
 
 - As a user:
--I'm interested in machine learning but want to learn it in a fun and challenging way.
--I don't want to learn machine learning through courses since I can't code. I want to build my model using no-code tools.
--I want to use my model in Scratch to create a character that represents my model and play with it.
+- I'm interested in machine learning but want to learn it in a fun and challenging way.
+- I don't want to learn machine learning through courses since I can't code. I want to build my model using no-code tools.
+- I want to use my model in Scratch to create a character that represents my model and play with it.
 - As a content creator:
--I aim to invent new game ideas and create step-by-step tutorials for solving them.
--I plan to post these games and their solutions on the website after getting admin approval.
--I want to track user progress to see if they enjoy my games
+- I aim to invent new game ideas and create step-by-step tutorials for solving them.
+- I plan to post these games and their solutions on the website after getting admin approval.
+- I want to track user progress to see if they enjoy my games
 
 <br><br>
 
