@@ -100,6 +100,14 @@
 | --------------------------------------- | ------------------------------------- |------------------------------------- |
 | ![Landing](./readme/screens/admin-dashboard.gif) | ![fsdaf](./readme/screens/users-admin.gif) | ![games](./readme/screens/admin-games.gif) | 
 
+
+### Videos
+
+| Game Solving Example                    | Scratch Game Example                  | 
+| --------------------------------------- | ------------------------------------- |
+| ![dashboard](./readme/videos/solving.mp4) | ![games](./readme/videos/scratch.mp4) |
+
+
 <br><br>
 
 <!-- Prompt Engineering -->
