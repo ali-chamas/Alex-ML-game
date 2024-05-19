@@ -105,7 +105,7 @@
 
 | Game Solving Example                    | Scratch Game Example                  | 
 | --------------------------------------- | ------------------------------------- |
-| ![dashboard](./readme/videos/solving.mp4) | ![games](./readme/videos/scratch.mp4) |
+| ![solving](./readme/videos/solving.mp4) | ![scratch](./readme/videos/scratch.mp4) |
 
 
 <br><br>
