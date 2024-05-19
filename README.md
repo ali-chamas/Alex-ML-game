@@ -146,10 +146,14 @@
 ### Prerequisites
 
 - Node.js : Ensure you have Node.js installed. You can download and install it from [the official Node.js website](https://nodejs.org).
+  
 - npm: Node.js comes with npm (Node Package Manager), which you'll use to install dependencies.
+  
 - MongoDB : You can install MongoDB locally by downloading it from the official [MongoDB website](https://www.mongodb.com/) or use MongoDB Atlas, a cloud-hosted MongoDB service, then Obtain the MongoDB connection URI for your local or cloud database.
+  
 - Open AI API key : Sign up for an API key at [OpenAI](https://platform.openai.com/signup/)
--Add you `.env` file in the server directory and fill your data using this format
+  
+- Add you `.env` file in the server directory and fill your data using this format
    ```js
    MONGODB_URI=
    PORT=
