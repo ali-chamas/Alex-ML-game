@@ -66,8 +66,8 @@
 | Landing Screen                              | Login screen                            |
 | -----------------------------------------   | --------------------------------------- |  
 | ![Landing](./readme/screens/landing.gif)    | ![Login](./readme/screens/login.gif)    |
-| Games screen                               | Menu Screen                               |
-| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf]9./readme/screens/landing_page.gif) | |
+| Profile screen                              | Games Screen                            |
+| ![Landing](./readme/screens/profile.gif)    | ![fsdaf](./readme/screens/games.gif)    |
 
 ### Admin Screens (Web)
 
