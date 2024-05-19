@@ -108,6 +108,11 @@
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+  
+| OpenAi prompt                       |
+| ------------------------------------|
+|![prompt](./readme/prompt/prompt.PNG)|
+
 
 <br><br>
 
@@ -126,6 +131,10 @@
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+
+| Unit Testing                        |
+| ------------------------------------|
+|![unit](./readme/unit-test/unit-test.PNG)|
 
 <br><br>
 
