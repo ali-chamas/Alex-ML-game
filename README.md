@@ -141,11 +141,9 @@
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Alex locally, follow these steps:
 
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
 
 - npm
   ```sh
@@ -154,18 +152,37 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
+1. Clone the repo
+   git clone [github](https://github.com/ali-chamas/Alex-ML-game)
+
+2. install NPM packages in the client directory
    ```sh
+   cd  ./client
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Install NPM packages in the server directory
+   ```sh
+   cd ../server
+   npm install
    ```
+4. Add you `.env` file in the server directory and fill your data using this format
+   ```js
+   MONGODB_URI=
+   PORT=
+   JWT_SECRET=
+   OPENAI_API_KEY=
+   
+   ```
+5. Run the server
+   ```sh
+   npm start
+   ```
+6. Run the client
+   ```sh
+   cd ../client
+   npm run dev
+   ``
+   
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Alex locally and explore its features.
