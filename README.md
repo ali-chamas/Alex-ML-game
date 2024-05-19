@@ -107,7 +107,12 @@
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. In Alex, we used openAI's chat-gpt-3.5 model to generate examples based on the label created by users, for a faster way of creating ML models.
+  
+| OpenAi prompt                       |
+| ------------------------------------|
+|![prompt](./readme/prompt/prompt.PNG)|
+
 
 <br><br>
 
@@ -125,38 +130,63 @@
 
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
-- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+-At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
+
+| Unit Testing                        |
+| ------------------------------------|
+|![unit](./readme/unit-test/unit-test.PNG)|
 
 <br><br>
 
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Alex locally, follow these steps:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- Node.js : Ensure you have Node.js installed. You can download and install it from [the official Node.js website](https://nodejs.org).
+  
+- npm: Node.js comes with npm (Node Package Manager), which you'll use to install dependencies.
+  
+- MongoDB : You can install MongoDB locally by downloading it from the official [MongoDB website](https://www.mongodb.com/) or use MongoDB Atlas, a cloud-hosted MongoDB service, then Obtain the MongoDB connection URI for your local or cloud database.
+  
+- Open AI API key : Sign up for an API key at [OpenAI](https://platform.openai.com/signup/)
+  
+- Add you `.env` file in the server directory and fill your data using this format
+   ```js
+   MONGODB_URI=
+   PORT=8000
+   JWT_SECRET=
+   OPENAI_API_KEY=
+   
+   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
+1. Clone the repo
+   git clone [github](https://github.com/ali-chamas/Alex-ML-game)
+
+2. install NPM packages in the client directory
    ```sh
+   cd  ./client
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Install NPM packages in the server directory
+   ```sh
+   cd ../server
+   npm install
    ```
+4. Run the server
+   ```sh
+   npm start
+   ```
+5. Run the client
+   ```sh
+   cd ../client
+   npm run dev
+   ```
+   
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Alex locally and explore its features.
