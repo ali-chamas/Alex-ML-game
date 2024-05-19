@@ -63,11 +63,11 @@
 
 ### User Screens (Mobile)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf]9./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) |
+| Landing Screen                              | Login screen                            |
+| -----------------------------------------   | --------------------------------------- |  
+| ![Landing](./readme/screens/landing.gif)    | ![Login](./readme/screens/login.gif)    |
+| Games screen                               | Menu Screen                               |
+| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf]9./readme/screens/landing_page.gif) | |
 
 ### Admin Screens (Web)
 
