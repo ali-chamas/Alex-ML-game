@@ -61,13 +61,20 @@
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
-### User Screens (Mobile)
+### User Screens 
 
 | Landing Screen                              | Login screen                            |
 | -----------------------------------------   | --------------------------------------- |  
 | ![Landing](./readme/screens/landing.gif)    | ![Login](./readme/screens/login.gif)    |
 | Profile screen                              | Games Screen                            |
-| ![Landing](./readme/screens/profile.gif)    | ![fsdaf](./readme/screens/games.gif)    |
+| -----------------------------------------   | --------------------------------------- |
+| ![Profile](./readme/screens/profile.gif)    | ![Games](./readme/screens/games.gif)    |
+| Single Game Screen                          | Labels screen                           |
+| -----------------------------------------   | --------------------------------------- |  
+| ![Landing](./readme/screens/single-game.gif)| ![Labels](./readme/screens/labels.gif)  |
+| Examples screen                             | Training Screen                         |
+| -----------------------------------------   | --------------------------------------- |
+| ![examples](./readme/screens/examples.gif)  | ![Training](./readme/screens/training.gif)|
 
 ### Admin Screens (Web)
 
