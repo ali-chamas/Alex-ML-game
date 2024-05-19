@@ -43,7 +43,7 @@
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
+| Home screen                             | Login Screen                          | Games Screen                          |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/figma/landing.png) | ![Login](./readme/figma/login.png) | ![Games](./readme/figma/games.png) |
 
@@ -54,7 +54,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+- ![ERD](./readme/ERD/schema.png)
 
 <br><br>
 
