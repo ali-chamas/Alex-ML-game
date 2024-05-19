@@ -36,12 +36,12 @@ const DoughnutChart = () => {
         <Doughnut
           style={{ maxHeight: 280 }}
           data={{
-            labels: ["finished", "unfinished"],
+            labels: ["Finished", "Unfinished"],
 
             datasets: [
               {
                 label: "Count",
-                data: [finishedData["Finished"], finishedData["Not Finished"]],
+                data: [finishedData["finished"], finishedData["notFinished"]],
               },
             ],
           }}
