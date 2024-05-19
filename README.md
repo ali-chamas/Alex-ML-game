@@ -85,7 +85,7 @@
 
 | Scratch Extension screen                    | Scratch game Example                    |
 | -----------------------------------------   | --------------------------------------- |
-| ![scratch-extension](./readme/screens/scrach-block.gif)  | ![scratch game](./readme/screens/scratc-game.gif)|
+| ![scratch-extension](./readme/screens/scratch-block.gif)  | ![scratch game](./readme/screens/scratc-game.gif)|
 
 
 ### Creator Screens 
@@ -98,7 +98,7 @@
 
 | Dashboard screen                        | Users Screen                          | Games Screen           |               
 | --------------------------------------- | ------------------------------------- |------------------------------------- |
-| ![Landing](./readme/screens/creator-games.gif) | ![fsdaf](./readme/screens/users-admin.gif) | ![games](./readme/screens/admin-games.gif) | 
+| ![Landing](./readme/screens/admin-dashboard.gif) | ![fsdaf](./readme/screens/users-admin.gif) | ![games](./readme/screens/admin-games.gif) | 
 
 <br><br>
 
