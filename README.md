@@ -65,9 +65,9 @@
 
 | Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
 | ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](./readme/screens/landing_page.mp4) | ![fsdaf](./readme/screens/landing.gif) | ![fsdaf](./readme/screens/landing.gif) | ![fsdaf](./readme/screens/landing.gif) |
+| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) |
 | Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](./readme/screens/landing.gif) | ![fsdaf]./readme/screens/landing.gif) | ![fsdaf](./readme/screens/landing.gif) | ![fsdaf](./readme/screens/landing.gif) |
+| ![Landing](./readme/screens/landing_page.gif) | ![fsdaf]9./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) | ![fsdaf](./readme/screens/landing_page.gif) |
 
 ### Admin Screens (Web)
 
