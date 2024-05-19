@@ -61,21 +61,44 @@
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
-### User Screens (Mobile)
+### User Screens 
 
 | Landing Screen                              | Login screen                            |
-| -----------------------------------------   | --------------------------------------- |  
+| -----------------------------------------   | --------------------------------------- |
 | ![Landing](./readme/screens/landing.gif)    | ![Login](./readme/screens/login.gif)    |
+
 | Profile screen                              | Games Screen                            |
-| ![Landing](./readme/screens/profile.gif)    | ![fsdaf](./readme/screens/games.gif)    |
+| -----------------------------------------   | --------------------------------------- |
+| ![Profile](./readme/screens/profile.gif)    | ![Games](./readme/screens/games.gif)    |
+ 
+| Single Game Screen                          | Labels screen                           |
+| -----------------------------------------   | --------------------------------------- |
+| ![Landing](./readme/screens/single-game.gif)| ![Labels](./readme/screens/labels.gif)  |
 
-### Admin Screens (Web)
+| Examples screen                             | Training Screen                         |
+| -----------------------------------------   | --------------------------------------- |
+| ![examples](./readme/screens/examples.gif)  | ![Training](./readme/screens/training.gif)|
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Testing screen                              | Playing Screen                         |
+| -----------------------------------------   | --------------------------------------- |
+| ![testing](./readme/screens/testing.gif)    | ![playing](./readme/screens/complete.gif)|
+
+| Scratch Extension screen                    | Scratch game Example                    |
+| -----------------------------------------   | --------------------------------------- |
+| ![scratch-extension](./readme/screens/scrach-block.gif)  | ![scratch game](./readme/screens/scratc-game.gif)|
+
+
+### Creator Screens 
+
+| Dashboard screen                        | Games screen                          | 
+| --------------------------------------- | ------------------------------------- |
+| ![dashboard](./readme/screens/creator-dashboard.gif) | ![games](./readme/screens/creator-games.gif) |
+
+### Admin Screens 
+
+| Dashboard screen                        | Users Screen                          | Games Screen           |               
+| --------------------------------------- | ------------------------------------- |------------------------------------- |
+| ![Landing](./readme/screens/creator-games.gif) | ![fsdaf](./readme/screens/users-admin.gif) | ![games](./readme/screens/admin-games.gif) | 
 
 <br><br>
 
