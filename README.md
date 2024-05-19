@@ -45,7 +45,7 @@
 
 | Home screen                             | Menu Screen                           | Order Screen                          |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/figma/landing.png) | ![fsdaf](./readme/figma/login.png) | ![fsdaf](./readme/figma/games.png) |
+| ![Landing](./readme/figma/landing.png) | ![Login](./readme/figma/login.png) | ![Games](./readme/figma/games.png) |
 
 <br><br>
 
