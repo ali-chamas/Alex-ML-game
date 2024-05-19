@@ -109,12 +109,12 @@ const generateAiExample = async (req, res) => {
           previousExamples.length > 0
             ? previousExamples.map((example) => ({
                 role: "user",
-                content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra make it simple and easy to understand, different than ${example}`,
+                content: `Your are a words generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra make it simple and easy to understand, different than ${example}`,
               }))
             : [
                 {
                   role: "user",
-                  content: `Your are w word generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra, make it simple and easy to understand.`,
+                  content: `Your are a words generator, Generate an example of a simple word related to "${labelName}", generate a single word only without adding anything extra, make it simple and easy to understand.`,
                 },
               ];
 
