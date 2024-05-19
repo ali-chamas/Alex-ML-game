@@ -182,7 +182,7 @@
    ```sh
    cd ../client
    npm run dev
-   ``
+   ```
    
 
 Now, you should be able to run Alex locally and explore its features.
