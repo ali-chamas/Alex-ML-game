@@ -66,15 +66,19 @@
 | Landing Screen                              | Login screen                            |
 | -----------------------------------------   | --------------------------------------- |  
 | ![Landing](./readme/screens/landing.gif)    | ![Login](./readme/screens/login.gif)    |
+| -----------------------------------------   | --------------------------------------- | 
 | Profile screen                              | Games Screen                            |
 | -----------------------------------------   | --------------------------------------- |
 | ![Profile](./readme/screens/profile.gif)    | ![Games](./readme/screens/games.gif)    |
+| -----------------------------------------   | --------------------------------------- | 
 | Single Game Screen                          | Labels screen                           |
 | -----------------------------------------   | --------------------------------------- |  
 | ![Landing](./readme/screens/single-game.gif)| ![Labels](./readme/screens/labels.gif)  |
+| -----------------------------------------   | --------------------------------------- | 
 | Examples screen                             | Training Screen                         |
 | -----------------------------------------   | --------------------------------------- |
 | ![examples](./readme/screens/examples.gif)  | ![Training](./readme/screens/training.gif)|
+| -----------------------------------------   | --------------------------------------- | 
 
 ### Admin Screens (Web)
 
