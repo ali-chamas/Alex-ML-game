@@ -54,7 +54,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- ![ERD](./readme/ERD/schema.png)
+![ERD](./readme/ERD/schema.png)
 
 <br><br>
 
