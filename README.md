@@ -156,7 +156,7 @@
 - Add you `.env` file in the server directory and fill your data using this format
    ```js
    MONGODB_URI=
-   PORT=
+   PORT=8000
    JWT_SECRET=
    OPENAI_API_KEY=
    
