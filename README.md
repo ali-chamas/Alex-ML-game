@@ -107,7 +107,7 @@
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. In Alex, we used openAI's chat-gpt-3.5 model to generate examples based on the label created by users, for a faster way of creating ML models.
   
 | OpenAi prompt                       |
 | ------------------------------------|
@@ -130,7 +130,7 @@
 
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
-- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+-At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
 
 | Unit Testing                        |
 | ------------------------------------|
