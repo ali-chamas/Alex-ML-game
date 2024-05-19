@@ -105,7 +105,7 @@
 
 | Game Solving Example                    | Scratch Game Example                  | 
 | --------------------------------------- | ------------------------------------- |
-| https://github.com/ali-chamas/Alex-ML-game/assets/130770529/fb00118d-4ee2-4b8c-8143-0b4aad7723ec | https://github.com/ali-chamas/Alex-ML-game/assets/130770529/e59a9a8e-06ed-49ff-89d2-8cfc05f53e5c |
+| ![slivng]( https://github.com/ali-chamas/Alex-ML-game/assets/130770529/fb00118d-4ee2-4b8c-8143-0b4aad7723ec ) | ![scratch](https://github.com/ali-chamas/Alex-ML-game/assets/130770529/e59a9a8e-06ed-49ff-89d2-8cfc05f53e5c) |
 
 
 
