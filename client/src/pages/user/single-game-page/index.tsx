@@ -167,7 +167,7 @@ const SingleGame = () => {
       unlockGame();
     } else {
       setLocked(true);
-      setLoading(false);
+      // setLoading(false);
     }
     setState((prev: any) => ({ ...prev, run: activeGame?.order == 1 }));
   }, [activeGame]);
