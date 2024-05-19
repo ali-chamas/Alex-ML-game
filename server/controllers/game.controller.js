@@ -45,6 +45,8 @@ const getSingleGame = async (req, res) => {
   try {
     const game = await Game.findOne({ name });
 
+    console.log(name, game);
+
     if (game) {
       res.status(200).json(game);
     } else {

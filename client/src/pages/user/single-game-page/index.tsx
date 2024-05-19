@@ -165,11 +165,8 @@ const SingleGame = () => {
   useEffect(() => {
     if (activeGame) {
       unlockGame();
-    } else {
-      setLocked(true);
-      // setLoading(false);
+      setState((prev: any) => ({ ...prev, run: activeGame?.order == 1 }));
     }
-    setState((prev: any) => ({ ...prev, run: activeGame?.order == 1 }));
   }, [activeGame]);
 
   return (
