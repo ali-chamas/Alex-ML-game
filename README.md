@@ -140,7 +140,7 @@ This project uses advanced prompt engineering techniques to optimize the interac
 
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
--At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
+At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
 
 | Unit Testing                        |
 | ------------------------------------|
@@ -153,29 +153,29 @@ This project uses advanced prompt engineering techniques to optimize the interac
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-### Unleashing the Potential with AWS Integration:
+## Unleashing the Potential with AWS Integration:
 
-## This project leverages AWS deployment, below we will discuss the steps of starting a Node.js Express server on AWS EC2:
-# Sign in to AWS Management Console and navigate to the EC2 Dashboard, then launch a new instance.
-# Connect to the EC2 Instance Using PuTTY:
+### This project leverages AWS deployment, below we will discuss the steps of starting a Node.js Express server on AWS EC2:
+#### Sign in to AWS Management Console and navigate to the EC2 Dashboard, then launch a new instance.
+#### Connect to the EC2 Instance Using PuTTY:
 - Convert .pem to .ppk Using PuTTYgen.
 - Connect Using PuTTY by Entering the public IPv4 address of the EC2 instance with the ppk in the credentials section.
-# Update and Upgrade Packages:
+#### Update and Upgrade Packages:
  ```sh
    sudo apt update
    sudo apt upgrade
    ```
-# Install Node.js and NPM:
+#### Install Node.js and NPM:
  ```sh
    sudo apt-get install -y nodejs npm
    ```
-# Install git and clone the repo:
+#### Install git and clone the repo:
  ```sh
    sudo apt-get install git
    git clone https://github.com/ali-chamas/Alex-ML-game.git
    cd Alex-ML-game/server/
    ```
-# Create .env file :
+#### Create .env file :
  ```sh
    nano .env
   # Add your environment variables:
@@ -184,18 +184,18 @@ This project uses advanced prompt engineering techniques to optimize the interac
   # JWT_SECRET= your-secret
   # OPENAI_API_KEY= your_key
    ```
-# Install dependencies:
+#### Install dependencies:
  ```sh
    npm install
    ```
-# Start the server:
+#### Start the server:
  ```sh
    npm start
    ```
 
 | Working Server Exmple                   | Fetching From Server                     |
 | --------------------------------------- | ---------------------------------------  |
-|![server](./readme/aws/server.PNG)| ![fetch](./readme/aws/fetch.PNG)|
+|![server](./readme/aws/server.PNG)       | ![fetch](./readme/aws/fetch.PNG)          |
 
 <br><br>
 
