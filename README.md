@@ -11,11 +11,11 @@
 
 ### User Stories
 
-- ## As a user:
+## As a user:
 - I'm interested in machine learning but want to learn it in a fun and challenging way.
 - I don't want to learn machine learning through courses since I can't code. I want to build my model using no-code tools.
 - I want to use my model in Scratch to create a character that represents my model and play with it.
-- ## As a content creator:
+## As a content creator:
 - I aim to invent new game ideas and create step-by-step tutorials for solving them.
 - I plan to post these games and their solutions on the website after getting admin approval.
 - I want to track user progress to see if they enjoy my games
@@ -126,7 +126,7 @@ https://github.com/ali-chamas/Alex-ML-game/assets/130770529/e59a9a8e-06ed-49ff-8
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. In Alex, we used openAI's chat-gpt-3.5 model to generate examples based on the label created by users, for a faster way of creating ML models.
+This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. In Alex, we used openAI's chat-gpt-3.5 model to generate examples based on the label created by users, for a faster way of creating ML models.
   
 | OpenAi prompt                       |
 | ------------------------------------|
