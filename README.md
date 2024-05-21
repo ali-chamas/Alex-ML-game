@@ -19,6 +19,11 @@
 - I aim to invent new game ideas and create step-by-step tutorials for solving them.
 - I plan to post these games and their solutions on the website after getting admin approval.
 - I want to track user progress to see if they enjoy my games
+## As an admin:
+- I want to track the number of users with their progress to see how well our platform is doing.
+- I want access to all users with the option of deleting and role changing.
+- I want to approve and reject games before the user plays them, so I make sure that no mistakes will be made.
+
 
 <br><br>
 
