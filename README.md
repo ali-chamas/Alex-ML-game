@@ -19,6 +19,11 @@
 - I aim to invent new game ideas and create step-by-step tutorials for solving them.
 - I plan to post these games and their solutions on the website after getting admin approval.
 - I want to track user progress to see if they enjoy my games
+## As an admin:
+- I want to track the number of users with their progress to see how well our platform is doing.
+- I want access to all users with the option of deleting and role changing.
+- I want to approve and reject games before the user plays them, so I make sure that no mistakes will be made.
+
 
 <br><br>
 
@@ -133,27 +138,69 @@ This project uses advanced prompt engineering techniques to optimize the interac
 |![prompt](./readme/prompt/prompt.PNG)|
 
 
-<br><br>
 
-<!-- AWS Deployment -->
-<img src="./readme/title8.svg"/>
-
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
-
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
-
-<br><br>
 
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
 
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
--At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
+At alex, we implemented unit testing to ensure our APIs function correctly and reliably, catching bugs early and improving overall code quality.
 
 | Unit Testing                        |
 | ------------------------------------|
 |![unit](./readme/unit-test/unit-test.PNG)|
+
+<br><br>
+
+<br><br>
+
+<!-- AWS Deployment -->
+<img src="./readme/title8.svg"/>
+
+## Unleashing the Potential with AWS Integration:
+
+### This project leverages AWS deployment, below we will discuss the steps of starting a Node.js Express server on AWS EC2:
+#### Sign in to AWS Management Console and navigate to the EC2 Dashboard, then launch a new instance.
+#### Connect to the EC2 Instance Using PuTTY:
+- Convert .pem to .ppk Using PuTTYgen.
+- Connect Using PuTTY by Entering the public IPv4 address of the EC2 instance with the ppk in the credentials section.
+#### Update and Upgrade Packages:
+ ```sh
+   sudo apt update
+   sudo apt upgrade
+   ```
+#### Install Node.js and NPM:
+ ```sh
+   sudo apt-get install -y nodejs npm
+   ```
+#### Install git and clone the repo:
+ ```sh
+   sudo apt-get install git
+   git clone https://github.com/ali-chamas/Alex-ML-game.git
+   cd Alex-ML-game/server/
+   ```
+#### Create .env file :
+ ```sh
+   nano .env
+  # Add your environment variables:
+  # MONGODB_URI= your_uri
+  # PORT= your_port
+  # JWT_SECRET= your-secret
+  # OPENAI_API_KEY= your_key
+   ```
+#### Install dependencies:
+ ```sh
+   npm install
+   ```
+#### Start the server:
+ ```sh
+   npm start
+   ```
+
+| Working Server Exmple                   | Fetching From Server                     |
+| --------------------------------------- | ---------------------------------------  |
+|![server](./readme/aws/server.PNG)       | ![fetch](./readme/aws/fetch.PNG)          |
 
 <br><br>
 
@@ -174,10 +221,10 @@ This project uses advanced prompt engineering techniques to optimize the interac
   
 - Add you `.env` file in the server directory and fill your data using this format
    ```js
-   MONGODB_URI=
-   PORT=8000
-   JWT_SECRET=
-   OPENAI_API_KEY=
+   MONGODB_URI= your_uri
+   PORT= your_port
+   JWT_SECRET= your-secret
+   OPENAI_API_KEY= your_key
    
    ```
 
